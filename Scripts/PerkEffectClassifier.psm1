@@ -118,7 +118,7 @@ function Classify-Effect {
     elseif ($t -match 'food reserve') { $type = 'food_reserve' }
     elseif ($t -match 'prebuilt catapult|prebuilt ballista') { $type = 'siege_engines'; $subtype = 'prebuilt' }
     elseif ($t -match 'siege camp preparation speed') { $type = 'siege_camp_speed' }
-    elseif ($t -match 'chance from siege bombardments|siege attrition') { $type = 'damage_resistance' }
+    elseif ($t -match 'chance from siege bombardments|siege attrition|getting hit while under bombardment') { $type = 'damage_resistance' }
     elseif ($t -match 'chance of troops getting wounded instead of getting killed|lethal wounds|chance to recover from death|cheat death') { $type = 'death_avoidance' }
     elseif ($t -match 'learning rate of new part designs|crafting stamina recovery rate|stamina spent while|greater chance of creating|produce .* iron|refine .* steel|refine .* iron|thamaskene|charcoal|hardwood') {
         $type = 'crafting_bonus'
@@ -259,7 +259,9 @@ function Classify-Effect {
     elseif ($t -match 'accuracy|aim|spread') { $type = 'ranged_accuracy' }
     elseif ($t -match 'skill') { $type = 'skill_increase' }
     elseif ($t -match 'focus point') { $type = 'focus_increase' }
-    elseif ($t -match 'attribute point|vigor|control|endurance|cunning|social|intelligence') { $type = 'attribute_increase' }
+    elseif ($t -match 'party size|party limit') { $type = 'party_size' }
+    elseif ($t -match 'attribute point|vigor|endurance|cunning|social|intelligence' -or ($t -match '\bcontrol\b' -and $t -notmatch 'you control|controlled')) { $type = 'attribute_increase' }
+    elseif ($t -match 'no morale loss|morale loss from converting|morale loss to troops|morale penalty when troops') { $type = 'morale_bonus' }
     elseif ($t -match 'morale loss|morale damage|morale penalty to enemies|battle morale penalty to enemies|morale effect to enemy') { $type = 'morale_damage' }
     elseif ($t -match 'morale') { $type = 'morale_bonus' }
     elseif ($t -match 'renown') { $type = 'renown_bonus' }
@@ -268,7 +270,6 @@ function Classify-Effect {
     elseif ($t -match 'wage|wages|upkeep') { $type = 'upkeep_reduction' }
     elseif ($t -match 'recruit.*cost|recruitment cost') { $type = 'recruit_cost_reduction' }
     elseif ($t -match 'upgrade cost') { $type = 'upgrade_cost_reduction' }
-    elseif ($t -match 'party size|party limit') { $type = 'party_size' }
     elseif ($t -match 'sight|spotting|track|visual range') { $type = 'party_vision' }
     elseif ($t -match 'food consumption') { $type = 'food_consumption' }
     elseif ($t -match 'hearth') { $type = 'hearth_growth' }
@@ -326,7 +327,7 @@ function Normalize-Classification {
     }
 
     if ($Type -eq 'unique') {
-        $uniqueSubtype = if ($Subtype -eq 'shields') { 'shields' } else { '' }
+        $uniqueSubtype = if ($Subtype -in @('shields', 'shield_bypass')) { 'shields' } else { '' }
         return [pscustomobject]@{ Type = $Type; Subtype = $uniqueSubtype }
     }
 
@@ -434,26 +435,27 @@ function Get-TriggerConditions {
     $conditions = New-Object 'System.Collections.Generic.List[string]'
 
     if ($t -match 'siege|besieging|besieged|bombardment|sally out') { Add-UniqueListValue $conditions 'during siege' }
-    if ($t -match 'while waiting|waiting in|resting in settlements?|stationary on campaign map|stationary for at least') { Add-UniqueListValue $conditions 'while waiting' }
-    if ($t -match 'while traveling|when traveling|traveling through|when moving|moving on campaign map' -or ($t -match 'travel speed' -and $t -notmatch 'throwing weapons?|projectile|missile|javelins?')) { Add-UniqueListValue $conditions 'while traveling' }
+    if ($t -match 'while waiting|waiting in|resting in settlements?|stationary on (?:the )?campaign map|stationary for at least') { Add-UniqueListValue $conditions 'while waiting' }
+    if ($t -match 'while traveling|when traveling|traveling through|traveling in|when moving|moving on campaign map' -or ($t -match 'travel speed' -and $t -notmatch 'throwing weapons?|projectile|missile|javelins?')) { Add-UniqueListValue $conditions 'while traveling' }
     if ($t -match 'sent to confront|sent as attackers|sent to sally out') { Add-UniqueListValue $conditions 'simulation' }
     if ($t -match 'desert|dunes|forest|forests|steppe|steppes|plains|snowy|terrain') { Add-UniqueListValue $conditions 'terrain' }
-    if ($t -match 'after every battle|after a battle|after battle|after battles|from victories|at the end of the battle|battle is over|battles won|winning battles|winning sieges|when an enemy lord is defeated') { Add-UniqueListValue $conditions 'after battle' }
-    if ($t -match 'continuous project|while building a project|when a project is finished|project is finished|boosting projects|build speed.*projects?') { Add-UniqueListValue $conditions 'project active' }
+    if ($t -match 'after every battle|after a battle|after battle|after each battle|after each offensive battle|after battles|from battles|from victories|at the end of the battle|battle is over|battles won|winning battles|winning sieges|when an enemy lord is defeated|helping lords in battle|recover .* in battles') { Add-UniqueListValue $conditions 'after battle' }
+    if ($t -match 'continuous project|while building a project|when a project is finished|project is finished|boosting projects|build speed.*projects?|effect from forums|effect from.*marketplaces|effect from.*festivals|town project effects|civilian projects|construction speed.*prisoners?|projects in the governed') { Add-UniqueListValue $conditions 'project active' }
     if ($t -match 'same culture|own culture') { Add-UniqueListValue $conditions 'same culture' }
     if ($t -match 'different culture|different cultures') { Add-UniqueListValue $conditions 'different culture' }
     if ($t -match 'own kingdom|your kingdom') { Add-UniqueListValue $conditions 'own kingdom' }
     if ($t -notmatch 'morale loss' -and $t -match 'morale .*higher|morale higher|morale .*above') { Add-UniqueListValue $conditions 'morale threshold' }
-    $partyCompositionPattern = 'composed of|less than \d+ soldiers|foot troops|your infantry|footmen on horses|infantry troops|ranged troops|melee troops|mounted troops|cavalry troops|bandit units|bandit troops|bandit prisoners|non-bandit prisoners|mercenary troops?|pack animals|garrisoned cavalry|hero prisoners|tier \d\+? (?:troops|units|recruits|prisoners|bandits|infantry|cavalry|archers)|(?:archers|infantry|cavalry|mounted troops|ranged troops|melee troops|bandits|bandit prisoners|bandit troops|mercenary troops?|pack animals) (?:in your party|in your formation|in the formation|under your formation|garrisoned|of your party|of the party|in the governed settlement)'
+    $tierBandPattern = 'tier \d(?:\+|(?:, \d)*(?: and \d)?| to \d)? (?:troops?|units?|recruits?|prisoners?|bandits?|infantry|cavalry|archers)'
+    $partyCompositionPattern = "composed of|foot troops|your infantry|\binfantry\b|\barchers\b|\bcavalry\b|footmen on horses|infantry prisoners|ranged prisoners|cavalry prisoners|infantry troops?|ranged troops?|melee troops?|mounted troops?|cavalry troops?|bandit units|bandit troops?|bandit prisoners?|non-bandit prisoners?|mercenary troops?|pack animals|garrisoned cavalry|hero prisoners|equipped with throwing weapons|$tierBandPattern|(?:archers|infantry|cavalry|mounted troops|ranged troops|melee troops|bandits|bandit prisoners|bandit troops|mercenary troops?|pack animals) (?:in your party|in your formation|in the formation|under your formation|garrisoned|of your party|of the party|in the governed settlement)"
     if ($t -match $partyCompositionPattern) { Add-UniqueListValue $conditions 'party composition' }
-    if ($t -match 'governed settlement|governed town|governed castle|villages bound|bound villages|governed by your clan') { Add-UniqueListValue $conditions 'governed settlement' }
+    if ($t -match 'governed settlement|governed town|governed castle|governing settlement|villages bound|bound villages|governed by your clan') { Add-UniqueListValue $conditions 'governed settlement' }
     if ($t -match 'for every skill point above|for each .*point above|skill point over|above 200|above 250|above 275') { Add-UniqueListValue $conditions 'over skill cap' }
-    if ($t -match 'while mounted|when you start a battle mounted|on horseback|horseback') { Add-UniqueListValue $conditions 'while mounted' }
+    if ($t -match 'while mounted|when you start a battle mounted|on horseback|horseback|mounted melee|mounted ranged|mounted throwing') { Add-UniqueListValue $conditions 'while mounted' }
     if ($t -match 'on foot|while on foot') { Add-UniqueListValue $conditions 'on foot' }
     if ($t -match 'more than 90%.*hit points|less than half.*hit points') { Add-UniqueListValue $conditions 'health threshold' }
     if ($t -match 'for each enemy you kill|when you kill|kill an enemy|after a kill|with .* kills|kills? by') { Add-UniqueListValue $conditions 'on kill' }
-    if ($t -match 'when attacking|sent as attackers|attacking enemy|offensive battle') { Add-UniqueListValue $conditions 'attacking' }
-    if ($t -match 'when defending|defending at|while defending|defending in|being attacked') { Add-UniqueListValue $conditions 'defending' }
+    if ($t -match 'when attacking|sent as attackers|offensive battle') { Add-UniqueListValue $conditions 'attacking' }
+    if ($t -match 'when defending|defending at|while defending|defending in|being attacked|confront the attacking enemy|sent to sally out|sally out') { Add-UniqueListValue $conditions 'defending' }
 
     @($conditions.ToArray())
 }
@@ -472,12 +474,14 @@ function Get-EffectTags {
     if (-not [string]::IsNullOrWhiteSpace($OldSubtype)) {
         Add-UniqueListValue $tags (Convert-ToReadableLabel $OldSubtype)
     }
-    if ($NewType -eq 'settlement defense' -or $t -match 'security|militia|garrison|fortification|besieged governed settlement|governed settlement.*under siege') { Add-UniqueListValue $tags 'defense' }
+    $defenseText = $t -match 'security|militia|fortification|besieged governed settlement|besieged settlement|governed settlement.*under siege'
+    if ($NewType -eq 'settlement defense' -or $defenseText -or ($NewType -ne 'gold economy' -and $t -match 'garrison')) { Add-UniqueListValue $tags 'defense' }
     if ($t -match 'food|grain|olives|fish|date|starv') { Add-UniqueListValue $tags 'food' }
     if ($t -match 'militia|militias') { Add-UniqueListValue $tags 'militia' }
     if ($t -match 'garrison|garrisoned') { Add-UniqueListValue $tags 'garrison' }
-    if ($t -match 'fortifications?|barrack|(?:settlement|town|castle|siege|defensive) walls?') { Add-UniqueListValue $tags 'fortifications' }
+    if ($t -match 'fortifications?|barrack|(?:settlement|town|castle|siege|defensive) walls?|\bwall hit points') { Add-UniqueListValue $tags 'fortifications' }
     if ($t -match 'build speed|construction speed|build rate|siege engine build speed') { Add-UniqueListValue $tags 'build speed' }
+    if ($t -match 'movement speed penalty.*shields?|wielding shields') { Add-UniqueListValue $tags 'shield penalty' }
     if ($t -match 'tax') { Add-UniqueListValue $tags 'tax' }
     if ($t -match 'tariff') { Add-UniqueListValue $tags 'tariff' }
     if ($t -match 'workshop|workshops') { Add-UniqueListValue $tags 'workshop' }
@@ -488,21 +492,21 @@ function Get-EffectTags {
     if ($t -match 'upgrade cost|upgrade costs') { Add-UniqueListValue $tags 'upgrade cost' }
     if ($t -match 'ransom') { Add-UniqueListValue $tags 'ransom' }
     if ($t -match 'weapon|weapons|swords?|axes?|maces?|javelins?|polearms?|lances?|couched lance|bows?|crossbows?|throwing') { Add-UniqueListValue $tags 'weapons' }
-    if ($t -match '\bmount(?:s|ed)?\b|horses?|horseback|steed|cavalry|pack animals') { Add-UniqueListValue $tags 'mounts' }
+    if ($t -match '\bmount(?:s|ed)?\b|horses?|horseback|steed|cavalry|pack animals|animals in your party|maneuvering|couched lance|couch lance|lance staying couched') { Add-UniqueListValue $tags 'mounts' }
     if ($t -match 'prisoner|prisoners|imprisoned') { Add-UniqueListValue $tags 'prisoners' }
-    if ($t -match 'escape chance|chance to escape|prisoners? escape') { Add-UniqueListValue $tags 'prisoner escape' }
+    if ($t -match 'escape chance|chance to escape|prisoners? escape|prisoner lords escaping') { Add-UniqueListValue $tags 'prisoner escape' }
     if ($t -match 'bandit|bandits') { Add-UniqueListValue $tags 'bandits' }
     if ($t -match 'companion|companions') { Add-UniqueListValue $tags 'companions' }
     if ($t -match 'loot|looted') { Add-UniqueListValue $tags 'loot' }
     if ($t -match 'overburden') { Add-UniqueListValue $tags 'overburden' }
     if ($t -match 'barter') { Add-UniqueListValue $tags 'barter' }
     if ($t -match 'trade|price|profits?|deals') { Add-UniqueListValue $tags 'trade' }
-    if ($t -match '\bprojects?\b|while building a project|boosting projects|project is finished') { Add-UniqueListValue $tags 'projects' }
+    if ($t -match '\bprojects?\b|while building a project|boosting projects|project is finished|forums|marketplaces|festivals') { Add-UniqueListValue $tags 'projects' }
     if ($t -match 'combat movement|in combat') { Add-UniqueListValue $tags 'combat' }
 
     $clean = New-Object 'System.Collections.Generic.List[string]'
     foreach ($tag in $tags) {
-        if ($tag -eq $NewType -or $tag -eq $NewSubtype) { continue }
+        if ($tag -eq $NewType -or ($tag -eq $NewSubtype -and $tag -ne 'mounts')) { continue }
         if ($TriggerConditions -contains $tag) { continue }
         Add-UniqueListValue $clean $tag
     }
@@ -519,7 +523,7 @@ function Get-ReadableFacets {
 
     $t = $Effect.ToLowerInvariant()
     $newType = Convert-ToReadableLabel $Type
-    $newSubtype = if ($Type -eq 'unique') { '' } elseif (-not [string]::IsNullOrWhiteSpace($Subtype)) { Convert-ToReadableLabel $Subtype } else { '' }
+    $newSubtype = if ($Type -eq 'unique' -and $Subtype -eq 'shields') { 'shields' } elseif ($Type -eq 'unique') { '' } elseif (-not [string]::IsNullOrWhiteSpace($Subtype)) { Convert-ToReadableLabel $Subtype } else { '' }
     $social = @('relationship_gain', 'renown_bonus', 'dialog_checks_bonus', 'fertility')
     $partyManagement = @('clan_party_limit', 'companion_limit', 'carrying_capacity', 'morale_bonus', 'party_size', 'party_speed', 'prisoner_management', 'prisoner_recruitment', 'recruitment_bonus', 'recruitment_slot', 'raid_speed')
     $goldEconomy = @('barter_penalty_reduction', 'loot_bonus', 'persuasion_cost_reduction', 'recruit_cost_reduction', 'trade_info', 'trade_penalty_reduction', 'upgrade_cost_reduction', 'upkeep_reduction')
@@ -545,7 +549,7 @@ function Get-ReadableFacets {
             $newType = 'party management'
             $newSubtype = 'troop xp'
         }
-    } elseif ($Type -eq 'skill_increase' -and $t -match 'troops?|infantry|archers|cavalry|formation|garrison') {
+    } elseif ($Type -eq 'skill_increase' -and $t -match 'troops?|units?|infantry|archers|cavalry|bandit|formation|garrison') {
         $newType = 'troop combat'
         $newSubtype = 'skill bonus'
     } elseif ($characterGrowth -contains $Type) {
@@ -557,6 +561,12 @@ function Get-ReadableFacets {
     } elseif ($Type -eq 'party_size' -and $Role -eq 'governor' -and $t -match 'villager|village') {
         $newType = 'settlement economy'
         $newSubtype = 'party size'
+    } elseif ($Type -eq 'prisoner_management' -and $t -match 'imprisoned by mobile parties|escape chance when imprisoned') {
+        $newType = 'utility'
+        $newSubtype = 'prisoners'
+    } elseif ($Type -eq 'prisoner_management' -and $Role -eq 'governor' -and $t -match 'dungeons?|governed settlements?') {
+        $newType = 'settlement governance'
+        $newSubtype = 'prisoners'
     } elseif ($partyManagement -contains $Type) {
         $newType = 'party management'
         $newSubtype = Get-ReadableMechanic $Type
@@ -572,6 +582,9 @@ function Get-ReadableFacets {
     } elseif ($settlementGovernance -contains $Type) {
         $newType = 'settlement governance'
         $newSubtype = Get-ReadableMechanic $Type
+    } elseif ($Type -eq 'mount_management' -and $Role -eq 'governor' -and $t -match 'villages bound|bound villages|producing tier 2 horses') {
+        $newType = 'settlement economy'
+        $newSubtype = 'production'
     } elseif ($movement -contains $Type) {
         $newType = 'movement'
         $newSubtype = Get-ReadableMechanic $Type
@@ -587,7 +600,9 @@ function Get-ReadableFacets {
             $newSubtype = 'income'
         }
     } elseif ($Type -eq 'food_reserve') {
-        if ($Role -eq 'governor') {
+        if ($Role -eq 'governor' -and $t -match 'maximum food reserve limits') {
+            $newType = 'settlement economy'
+        } elseif ($Role -eq 'governor') {
             $newType = 'settlement defense'
         } else {
             $newType = 'party management'
@@ -602,6 +617,9 @@ function Get-ReadableFacets {
             $newType = 'party management'
         }
         $newSubtype = 'food consumption'
+    } elseif ($Type -eq 'regen_bonus' -and $Role -eq 'governor' -and $t -match 'recovery rate from raids in villages bound') {
+        $newType = 'settlement economy'
+        $newSubtype = ''
     } elseif ($Type -eq 'project_speed') {
         if ($t -match 'fortification|military|castle|siege engine|militia|barrack|walls?') {
             $newType = 'settlement defense'
@@ -634,7 +652,7 @@ function Get-ReadableFacets {
     $combatMechanic = ''
     if ($combatMechanicTypes -contains $newType) {
         $combatMechanic = $newType
-    } elseif ($newType -eq 'party management' -and $newSubtype -eq 'morale' -and $t -match 'battle morale|starting battle morale|morale effect to (friendly|enemy) troops') {
+    } elseif ($newType -eq 'party management' -and $newSubtype -eq 'morale' -and $t -match 'battle morale|starting battle morale|morale effect to (friendly|enemy) troops|morale loss to troops|morale penalty when troops|wounded troops.*morale in battles|retreat due to low morale') {
         $combatMechanic = 'morale'
     } elseif ($newType -eq 'movement' -and $newSubtype -eq 'movement speed' -and $t -notmatch 'campaign map|travel speed|party speed') {
         $combatMechanic = 'movement speed'
@@ -642,16 +660,44 @@ function Get-ReadableFacets {
         $combatMechanic = 'mount performance'
     }
 
+    $siegeEnginePattern = 'siege engines?|siege equipment|ballistas?|mangonels?|trebuchets?|rams?|siege-?towers?|bombardments?'
+    if ($combatMechanic -and [string]::IsNullOrWhiteSpace($newSubtype) -and $t -match $siegeEnginePattern) {
+        $newSubtype = 'siege engines'
+    }
+    if ($Role -eq 'governor' -and $combatMechanic) {
+        if ($newType -eq 'ranged accuracy' -and $t -match 'ballistas? in the governed settlement') {
+            $newType = 'settlement defense'
+            $newSubtype = 'ranged accuracy'
+            $combatMechanic = ''
+        } elseif ($newType -eq 'damage resistance' -and $t -match 'siege attrition') {
+            $newType = 'settlement defense'
+            $newSubtype = 'damage resistance'
+            $combatMechanic = ''
+        } elseif ($newType -eq 'hit points' -and $t -match 'wall hit points') {
+            $newType = 'settlement defense'
+            $newSubtype = 'hit points'
+            $combatMechanic = ''
+        } elseif ($newType -eq 'damage increase' -and $t -match 'besieging siege engines|besieging troops in siege bombardment') {
+            $newType = 'settlement defense'
+            $newSubtype = 'siege engines'
+            $combatMechanic = ''
+        }
+    }
+
     if ($combatMechanic) {
         $combatSubtype = if ([string]::IsNullOrWhiteSpace($newSubtype)) { $combatMechanic } else { $newSubtype }
+        $troopTargetPattern = '(?:troops?|units?|infantry|archers|cavalry|mounts?|mounted troops|ranged troops|melee troops|foot troops|formation|garrison|militia)'
+        $troopScopePattern = '(?:in your party|in the party|in your formation|under your formation|in the formation|garrison|governed settlement|friendly troops|enemy troops|by troops|by your troops|to troops|to (?:tier \d(?:\+| to \d)? )?(?:ranged|melee|mounted|cavalry|infantry|foot|bandit)? ?troops|of troops|troops are sent|for troops|to mounts)'
+        $battleMoraleTarget = ($combatMechanic -eq 'morale' -and $t -match 'battle morale|starting battle morale|morale loss to troops|morale penalty when troops|wounded troops.*morale in battles|retreat due to low morale')
         $troopCombat = ($Role -eq 'captain') -or
             ($t -match 'sent to confront|sent as attackers|sent to sally out') -or
-            ($t -match '(?:troops?|infantry|archers|cavalry|mounted troops|ranged troops|melee troops|foot troops|formation|garrison|militia)' -and $t -match '(?:in your party|in your formation|under your formation|in the formation|garrison|governed settlement|friendly troops|enemy troops|by troops|to troops|of troops|troops are sent)')
+            $battleMoraleTarget -or
+            ($t -match $troopTargetPattern -and $t -match $troopScopePattern)
         $personalCombat = ($Role -in @('personal', 'player')) -or
-            ($t -match '\byou\b|your attacks|your .*kills|your throwing weapons|your shields?|with your')
+            ($t -match '\byou\b|your attacks|your .*kills|your throwing weapons|your shields?|with your|other heroes in your party')
 
-        $personalRoleTroopEffect = ($t -match 'battle morale effect to (friendly|enemy) troops') -or
-            ($Role -in @('personal', 'player') -and $t -match '(?:troops?|infantry|archers|cavalry|mounted troops|ranged troops|melee troops|foot troops) in your party')
+        $personalRoleTroopEffect = ($t -match 'battle morale (?:effect )?to troops|battle morale effect to (friendly|enemy) troops') -or
+            ($Role -in @('personal', 'player') -and $t -match $troopTargetPattern -and $t -match '(?:in your party|to troops|to (?:tier \d(?:\+| to \d)? )?(?:ranged|melee|mounted|cavalry|infantry|foot|bandit)? ?troops|for troops)')
 
         if ($troopCombat -and (-not ($Role -in @('personal', 'player')) -or $personalRoleTroopEffect)) {
             $newType = 'troop combat'
@@ -662,10 +708,14 @@ function Get-ReadableFacets {
         }
     }
 
-    $triggers = @(Get-TriggerConditions -Effect $Effect)
-    if ($Role -eq 'governor' -and $newType -match '^settlement ') {
-        Add-UniqueListValue $triggers 'governed settlement'
+    $triggerList = New-Object 'System.Collections.Generic.List[string]'
+    foreach ($trigger in @(Get-TriggerConditions -Effect $Effect)) {
+        Add-UniqueListValue $triggerList $trigger
     }
+    if ($Role -eq 'governor' -and $newType -match '^settlement ') {
+        Add-UniqueListValue $triggerList 'governed settlement'
+    }
+    $triggers = @($triggerList.ToArray())
     $tags = @(Get-EffectTags -Effect $Effect -OldSubtype $Subtype -NewType $newType -NewSubtype $newSubtype -TriggerConditions $triggers)
 
     [pscustomobject]@{
@@ -676,71 +726,4 @@ function Get-ReadableFacets {
     }
 }
 
-function Test-JsonProperty {
-    param($Object, [string]$Name)
-    $null -ne $Object -and $null -ne $Object.PSObject.Properties[$Name]
-}
-
-function Convert-OverrideList {
-    param($Value)
-    if ($null -eq $Value) { return @() }
-    if ($Value -is [System.Array]) { return @($Value) }
-    @($Value)
-}
-
-function Add-OverrideListValues {
-    param([object[]]$Current, $Values)
-    $list = New-Object 'System.Collections.Generic.List[string]'
-    foreach ($item in @($Current)) { Add-UniqueListValue $list ([string]$item) }
-    foreach ($item in @(Convert-OverrideList $Values)) { Add-UniqueListValue $list ([string]$item) }
-    @($list.ToArray())
-}
-
-function Remove-OverrideListValues {
-    param([object[]]$Current, $Values)
-    $remove = @(Convert-OverrideList $Values)
-    @($Current | Where-Object { $remove -notcontains [string]$_ })
-}
-
-function Load-PerkEffectOverrides {
-    param([string]$Path)
-    $overrides = @{}
-    if (-not (Test-Path -LiteralPath $Path)) { return $overrides }
-
-    $items = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
-    foreach ($item in @($items)) {
-        if (-not (Test-JsonProperty -Object $item -Name 'perk_string_id') -or -not (Test-JsonProperty -Object $item -Name 'effect_slot')) {
-            throw "Override entry is missing perk_string_id or effect_slot."
-        }
-        $key = "$($item.perk_string_id)|$($item.effect_slot)"
-        if ($overrides.ContainsKey($key)) {
-            throw "Duplicate override key: $key"
-        }
-        $overrides[$key] = $item
-    }
-    $overrides
-}
-
-function Apply-PerkEffectOverride {
-    param($Row, [hashtable]$Overrides)
-    if ($null -eq $Row -or $null -eq $Overrides) { return $Row }
-
-    $key = "$($Row.PerkStringId)|$($Row.EffectSlot)"
-    if (-not $Overrides.ContainsKey($key)) { return $Row }
-
-    $override = $Overrides[$key]
-    if (Test-JsonProperty -Object $override -Name 'perk_type') { $Row.PerkType = [string]$override.perk_type }
-    if (Test-JsonProperty -Object $override -Name 'perk_subtype') { $Row.PerkSubtype = [string]$override.perk_subtype }
-    if (Test-JsonProperty -Object $override -Name 'trigger_condition') { $Row.TriggerCondition = @(Convert-OverrideList $override.trigger_condition) }
-    if (Test-JsonProperty -Object $override -Name 'add_trigger_condition') { $Row.TriggerCondition = @(Add-OverrideListValues -Current $Row.TriggerCondition -Values $override.add_trigger_condition) }
-    if (Test-JsonProperty -Object $override -Name 'remove_trigger_condition') { $Row.TriggerCondition = @(Remove-OverrideListValues -Current $Row.TriggerCondition -Values $override.remove_trigger_condition) }
-    if (Test-JsonProperty -Object $override -Name 'effect_tags') { $Row.EffectTags = @(Convert-OverrideList $override.effect_tags) }
-    if (Test-JsonProperty -Object $override -Name 'add_effect_tags') { $Row.EffectTags = @(Add-OverrideListValues -Current $Row.EffectTags -Values $override.add_effect_tags) }
-    if (Test-JsonProperty -Object $override -Name 'remove_effect_tags') { $Row.EffectTags = @(Remove-OverrideListValues -Current $Row.EffectTags -Values $override.remove_effect_tags) }
-    if (Test-JsonProperty -Object $override -Name 'perk_wrong') { $Row.PerkWrong = [bool]$override.perk_wrong }
-    if (Test-JsonProperty -Object $override -Name 'notes') { $Row.Notes = [string]$override.notes }
-    if (Test-JsonProperty -Object $override -Name 'classification_review') { $Row.ClassificationReview = [string]$override.classification_review }
-    $Row
-}
-
-Export-ModuleMember -Function Classify-Effect, Normalize-Classification, Get-ReadableFacets, Load-PerkEffectOverrides, Apply-PerkEffectOverride
+Export-ModuleMember -Function Classify-Effect, Normalize-Classification, Get-ReadableFacets

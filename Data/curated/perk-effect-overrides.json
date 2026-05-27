@@ -1,0 +1,398 @@
+[
+  {
+    "perk_string_id": "BowTrainer",
+    "effect_slot": "primary",
+    "perk_wrong": true,
+    "notes": "Party member wording likely targets hero party members (companions/family/main hero if lowest Bow); game bonus is +6 but description has no numeric placeholder."
+  },
+  {
+    "perk_string_id": "TradeLocalConnection",
+    "effect_slot": "primary",
+    "perk_wrong": true,
+    "notes": "Description says double relationship gain, but game increment_type is add while paired Distributed Goods uses add_factor."
+  },
+  {
+    "perk_string_id": "RogueryArmsDealer",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Description renders as 200% militia per day, but game increment_type is add with bonus 2."
+  },
+  {
+    "perk_string_id": "ThrowingSplinters",
+    "effect_slot": "primary",
+    "perk_wrong": true,
+    "notes": "Description says triple shield damage, but bonus 3 with add_factor appears to apply +300% damage, or 4x total, unless this path treats the factor as a direct multiplier."
+  },
+  {
+    "perk_string_id": "TacticsGensdarmes",
+    "effect_slot": "primary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is ranged, but description says cavalry troops in formation; likely value/description mismatch."
+  },
+  {
+    "perk_string_id": "TwoHandedOnTheEdge",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage includes cavalry, but description says swing speed to infantry in your formation."
+  },
+  {
+    "perk_string_id": "LegendarySmith",
+    "effect_slot": "primary",
+    "notes": "Bonus stores the base +5% Legendary chance; description also includes +1% per 5 Smithing above 275."
+  },
+  {
+    "perk_string_id": "TacticsImproviser",
+    "effect_slot": "primary",
+    "classification_review": "Effect removes morale penalty from disorganized state; battle escape is only an indirect source of the state."
+  },
+  {
+    "perk_string_id": "AthleticsFormFittingArmor",
+    "effect_slot": "primary",
+    "classification_review": "Armor-weight reduction has no dedicated taxonomy bucket; utility is a fallback."
+  },
+  {
+    "perk_string_id": "AthleticsStamina",
+    "effect_slot": "secondary",
+    "notes": "Bonus stores +5 prisoner limit; -10% escape chance is present in the description but not represented by the bonus field.",
+    "classification_review": "Composite effect spans prisoner limit and prisoner escape; single subtype is partial."
+  },
+  {
+    "perk_string_id": "AthleticsStrongLegs",
+    "effect_slot": "primary",
+    "notes": "Bonus stores the -50% fall-damage component; +100% kick damage is not represented by the bonus field.",
+    "classification_review": "Composite effect spans fall damage reduction and kick damage; subtype captures fall damage only."
+  },
+  {
+    "perk_string_id": "AthleticsMightyBlow",
+    "effect_slot": "primary",
+    "notes": "Game bonus is +5% longer stun; description has no numeric placeholder.",
+    "classification_review": "Blocked-attack condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "LeadershipLeaderOfMasses",
+    "effect_slot": "primary",
+    "notes": "Scales with controlled towns; no dedicated controlled-settlement trigger condition exists."
+  },
+  {
+    "perk_string_id": "CrossbowLooseAndMove",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is horse_archer, but description says ranged troops in your formation; verify whether this should apply only to mounted ranged troops."
+  },
+  {
+    "perk_string_id": "CharmOratory",
+    "effect_slot": "primary",
+    "classification_review": "Composite effect spans renown and influence; single classification is partial."
+  },
+  {
+    "perk_string_id": "CharmEffortForThePeople",
+    "effect_slot": "primary",
+    "notes": "Hideout-clear condition is not represented by current trigger_condition taxonomy.",
+    "classification_review": "Composite effect spans relationship and town loyalty; single classification is partial."
+  },
+  {
+    "perk_string_id": "CharmParade",
+    "effect_slot": "secondary",
+    "notes": "Same-army condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "BowRenownedArcher",
+    "effect_slot": "secondary",
+    "classification_review": "Composite effect spans recruitment and upgrade costs for ranged troops; single classification is partial."
+  },
+  {
+    "perk_string_id": "BowBowControl",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowDeadAim",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowBodkin",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowNockingPoint",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is mounted, but description says archers in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowQuickAdjustments",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is mounted, but description says archers in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowRapidFire",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is horse_archer, but description says troops in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowStrongBows",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowSkirmishPhaseMaster",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is horse_archer, but description says ranged troops in your formation without that restriction."
+  },
+  {
+    "perk_string_id": "BowBullsEye",
+    "effect_slot": "primary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is horse_archer, but description says ranged troops in your party without that restriction."
+  },
+  {
+    "perk_string_id": "EngineeringMilitaryPlanner",
+    "effect_slot": "secondary",
+    "effect_tags": [
+      "defense",
+      "projects",
+      "build speed"
+    ]
+  },
+  {
+    "perk_string_id": "EngineeringStonecutters",
+    "effect_slot": "primary",
+    "classification_review": "Composite project set spans fortifications, aqueducts, and barracks; settlement-defense classification is partial."
+  },
+  {
+    "perk_string_id": "EngineeringImprovedTools",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is cavalry, but description only says troops in your formation; likely cavalry-only restriction is missing from text."
+  },
+  {
+    "perk_string_id": "OneHandedBasher",
+    "effect_slot": "secondary",
+    "classification_review": "Shield-wall formation condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "OneHandedBasher",
+    "effect_slot": "primary",
+    "classification_review": "Composite effect spans shield-bash damage and stun duration; subtype captures stun/stagger component."
+  },
+  {
+    "perk_string_id": "OneHandedWrappedHandles",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is heroes, but description says infantry troops in your formation; verify whether this applies only to hero agents."
+  },
+  {
+    "perk_string_id": "OneHandedShieldWall",
+    "effect_slot": "secondary",
+    "classification_review": "Shield-wall formation condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "OneHandedShieldWall",
+    "effect_slot": "primary",
+    "classification_review": "Wrong-block-direction condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "OneHandedDeadlyPurpose",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage includes cavalry, but description says infantry in your formation."
+  },
+  {
+    "perk_string_id": "RidingTheWayOfTheSaddle",
+    "effect_slot": "primary",
+    "classification_review": "Composite effect spans mount maneuvering and charge damage; subtype captures mount performance only."
+  },
+  {
+    "perk_string_id": "PolearmPhalanx",
+    "effect_slot": "primary",
+    "classification_review": "Shield-wall formation condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "PolearmUnstoppableForce",
+    "effect_slot": "primary",
+    "perk_wrong": true,
+    "notes": "Description says triple damage to shields, but bonus 3 with add_factor appears to apply +300% damage, or 4x total, unless this path treats the factor as a direct multiplier."
+  },
+  {
+    "perk_string_id": "PolearmUnstoppableForce",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is ranged and melee, but description says cavalry in your formation."
+  },
+  {
+    "perk_string_id": "PolearmCavalry",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is ranged, but description says cavalry troops in your formation."
+  },
+  {
+    "perk_string_id": "PolearmSwiftSwing",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage includes cavalry, but description says infantry in your formation."
+  },
+  {
+    "perk_string_id": "PolearmSharpenTheTip",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage includes cavalry, but description says infantry in your formation."
+  },
+  {
+    "perk_string_id": "MedicineCleanInfrastructure",
+    "effect_slot": "secondary",
+    "classification_review": "Village raid recovery has no dedicated subtype; settlement economy is a broad bucket."
+  },
+  {
+    "perk_string_id": "MedicineFortitudeTonic",
+    "effect_slot": "primary",
+    "notes": "Applies to other heroes in the party, not troops or the main-hero personal effect."
+  },
+  {
+    "perk_string_id": "MedicineMinisterOfHealth",
+    "effect_slot": "primary",
+    "notes": "Role is personal, but effect text targets troops; classified by effect target."
+  },
+  {
+    "perk_string_id": "ExperiencedSmith",
+    "effect_slot": "secondary",
+    "notes": "Successful crafting-order condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "SteelMaker3",
+    "effect_slot": "secondary",
+    "notes": "Successful crafting-order condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "ScoutingRearguard",
+    "effect_slot": "primary",
+    "notes": "Applies only while in an army; no dedicated army-membership trigger condition exists."
+  },
+  {
+    "perk_string_id": "StewardStiffUpperLip",
+    "effect_slot": "secondary",
+    "notes": "Applies only to governed castles; no dedicated castle-only trigger condition exists."
+  },
+  {
+    "perk_string_id": "StewardPriceOfLoyalty",
+    "effect_slot": "primary",
+    "perk_type": "troop combat",
+    "perk_subtype": "morale damage",
+    "effect_tags": [
+      "combat",
+      "food",
+      "wages"
+    ],
+    "classification_review": "Composite effect spans food consumption, wages, and combat morale loss; troop-combat classification captures only the morale-loss component."
+  },
+  {
+    "perk_string_id": "RogueryCarver",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is heroes, but description says troops under your formation; likely hero-only restriction is missing from text or this source field needs review."
+  },
+  {
+    "perk_string_id": "RogueryFleetFooted",
+    "effect_slot": "secondary",
+    "classification_review": "Personal captivity escape is not party-prisoner management; utility/prisoners is the closest current bucket."
+  },
+  {
+    "perk_string_id": "RogueryInBestLight",
+    "effect_slot": "secondary",
+    "classification_review": "Village raid recovery has no dedicated taxonomy bucket; regen bonus is a fallback."
+  },
+  {
+    "perk_string_id": "RogueryManhunter",
+    "effect_slot": "primary",
+    "classification_review": "Ransom-broker deal improvement is not really a trade penalty; current subtype is a lossy fallback unless a ransom-value subtype is added."
+  },
+  {
+    "perk_string_id": "RogueryRansomBroker",
+    "effect_slot": "primary",
+    "classification_review": "Ransom-broker deal improvement is not really a trade penalty; current subtype is a lossy fallback unless a ransom-value subtype is added."
+  },
+  {
+    "perk_string_id": "TacticsLooseFormations",
+    "effect_slot": "secondary",
+    "classification_review": "Formation-type condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "TacticsTightFormations",
+    "effect_slot": "secondary",
+    "classification_review": "Formation-type condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "TacticsSmallUnitTactics",
+    "effect_slot": "secondary",
+    "classification_review": "Formation-size condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "ThrowingHeadHunter",
+    "effect_slot": "secondary",
+    "add_effect_tags": [
+      "recruitment cost"
+    ]
+  },
+  {
+    "perk_string_id": "ThrowingLongReach",
+    "effect_slot": "secondary",
+    "classification_review": "Composite effect spans morale and renown; single classification is partial."
+  },
+  {
+    "perk_string_id": "ThrowingMountedSkirmisher",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is ranged, but description says mounted troops in your formation."
+  },
+  {
+    "perk_string_id": "ThrowingKnockOff",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is ranged, but description only says troops in your formation damaging cavalry; hidden ranged-troop restriction is not in the description."
+  },
+  {
+    "perk_string_id": "ThrowingSaddlebags",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is all, but description says infantry troops in your party."
+  },
+  {
+    "perk_string_id": "TradeArtisanCommunity",
+    "effect_slot": "secondary",
+    "notes": "Merchant-notable recruitment source is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "TradeInsurancePlans",
+    "effect_slot": "primary",
+    "notes": "Caravan-destroyed condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "TradeRapidDevelopment",
+    "effect_slot": "primary",
+    "notes": "Workshop-town-captured condition is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "TradeTrickleDown",
+    "effect_slot": "primary",
+    "notes": "Single-deal spending threshold is not represented by current trigger_condition taxonomy."
+  },
+  {
+    "perk_string_id": "TwoHandedRecklessCharge",
+    "effect_slot": "secondary",
+    "classification_review": "Composite troop combat effect spans damage and movement speed; subtype captures damage only."
+  },
+  {
+    "perk_string_id": "TwoHandedVandal",
+    "effect_slot": "secondary",
+    "perk_wrong": true,
+    "notes": "Game troop_usage is infantry, but description only says troops in your formation."
+  }
+]

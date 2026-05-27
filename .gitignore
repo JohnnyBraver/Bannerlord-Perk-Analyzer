@@ -9,6 +9,10 @@ Thumbs.db
 *.tmp
 *.bak
 
+# Python cache
+__pycache__/
+*.py[cod]
+
 # Do not accidentally vendor local Bannerlord binaries or build output
 *.dll
 *.exe

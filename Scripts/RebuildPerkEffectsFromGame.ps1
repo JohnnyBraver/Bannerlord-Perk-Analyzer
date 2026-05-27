@@ -15,10 +15,9 @@ $coreDll = Join-Path $bin 'TaleWorlds.Core.dll'
 if (-not (Test-Path -LiteralPath $campaignDll) -or -not (Test-Path -LiteralPath $coreDll)) {
     throw "Could not find Bannerlord assemblies under '$bin'. Check -GameRoot."
 }
-$outRoot = Join-Path $workspace 'Data\Perk Effects'
-$reviewPath = Join-Path $workspace 'Perk Classification Review.md'
-$tagIndexPath = Join-Path $workspace 'Tag index.md'
-$overridePath = Join-Path $workspace 'Data\PerkEffectOverrides.json'
+$rawPerksPath = Join-Path $workspace 'Data\raw\perks.json'
+$generatedRowsPath = Join-Path $workspace 'Data\generated\classified-perk-effects.json'
+$postprocessScript = Join-Path $workspace 'src\bannerlord_perk_analyzer\postprocess.py'
 
 [System.AppDomain]::CurrentDomain.add_AssemblyResolve({
     param($sender, $args)
@@ -222,7 +221,6 @@ function Get-SkillAttribute {
 }
 
 Import-Module (Join-Path $PSScriptRoot 'PerkEffectClassifier.psm1') -Force -DisableNameChecking
-$effectOverrides = Load-PerkEffectOverrides -Path $overridePath
 
 function Get-PerkCreateMap {
     param($Instructions)
@@ -358,6 +356,113 @@ function Safe-FilePart {
     $safe.Trim()
 }
 
+function Ensure-Directory {
+    param([string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) {
+        New-Item -ItemType Directory -Path $Path | Out-Null
+    }
+}
+
+function Write-JsonFile {
+    param($Value, [string]$Path)
+    Ensure-Directory -Path (Split-Path -Parent $Path)
+    $json = $Value | ConvertTo-Json -Depth 12
+    [System.IO.File]::WriteAllText($Path, "$json`n", [System.Text.UTF8Encoding]::new($false))
+}
+
+function Convert-RawEffectSlot {
+    param($Perk, [string]$Slot)
+    if ($Slot -eq 'primary') {
+        $template = $Perk.PrimaryTemplate
+        $roleValue = $Perk.PrimaryRoleValue
+        $bonus = $Perk.PrimaryBonus
+        $incrementValue = $Perk.PrimaryIncrementValue
+        $maskValue = $Perk.PrimaryTroopMaskValue
+    } else {
+        $template = $Perk.SecondaryTemplate
+        $roleValue = $Perk.SecondaryRoleValue
+        $bonus = $Perk.SecondaryBonus
+        $incrementValue = $Perk.SecondaryIncrementValue
+        $maskValue = $Perk.SecondaryTroopMaskValue
+    }
+
+    [pscustomobject][ordered]@{
+        template_raw = $template
+        template = Strip-LocPrefix $template
+        role = Convert-Role $roleValue
+        role_value = $roleValue
+        bonus = $bonus
+        increment_type = Convert-Increment $incrementValue
+        increment_value = $incrementValue
+        troop_usage = Convert-TroopMask $maskValue
+        troop_usage_value = $maskValue
+    }
+}
+
+function Convert-PerkToRawObject {
+    param($Perk)
+    [pscustomobject][ordered]@{
+        string_id = $Perk.StringId
+        name_raw = $Perk.NameRaw
+        name = $Perk.Name
+        attribute = Get-SkillAttribute $Perk.Skill
+        skill = $Perk.Skill
+        level = $Perk.Level
+        field = $Perk.Field
+        alternative_field = $Perk.AlternativeField
+        alternative_string_id = $Perk.AlternativeStringId
+        primary_effect = Convert-RawEffectSlot -Perk $Perk -Slot 'primary'
+        secondary_effect = Convert-RawEffectSlot -Perk $Perk -Slot 'secondary'
+    }
+}
+
+function Convert-RowToExportObject {
+    param($Row)
+    [pscustomobject][ordered]@{
+        id = "$($Row.PerkStringId)|$($Row.EffectSlot)"
+        project = $Row.Project
+        type = $Row.Type
+        game_version_target = $Row.GameVersionTarget
+        attribute = $Row.Attribute
+        skill = $Row.Skill
+        level = $Row.Level
+        perk = $Row.Perk
+        perk_string_id = $Row.PerkStringId
+        effect_slot = $Row.EffectSlot
+        alternative_perk_string_id = $Row.AlternativePerkStringId
+        game = [pscustomobject][ordered]@{
+            role = $Row.Role
+            role_value = $Row.RoleValue
+            bonus = $Row.Bonus
+            increment_type = $Row.IncrementType
+            increment_value = $Row.IncrementValue
+            troop_usage = $Row.TroopUsage
+            troop_usage_value = $Row.TroopUsageValue
+            effect = $Row.Effect
+            effect_template = $Row.EffectTemplate
+        }
+        classification = [pscustomobject][ordered]@{
+            perk_type = $Row.PerkType
+            perk_subtype = $Row.PerkSubtype
+            trigger_conditions = @($Row.TriggerCondition)
+            effect_tags = @($Row.EffectTags)
+        }
+        review = [pscustomobject][ordered]@{
+            needs_review = $Row.NeedsReview
+            functioning = $Row.Functioning
+            perk_wrong = $Row.PerkWrong
+            bug_note = $Row.BugNote
+            notes = $Row.Notes
+            classification_review = $Row.ClassificationReview
+        }
+        source = [pscustomobject][ordered]@{
+            status = $Row.SourceStatus
+            name = $Row.Source
+            version = $Row.SourceVersion
+        }
+    }
+}
+
 function New-EffectRow {
     param($Perk, [string]$Slot)
     if ($Slot -eq 'primary') {
@@ -432,60 +537,7 @@ function New-EffectRow {
         Notes = $notes
         ClassificationReview = $classificationReview
     }
-    Apply-PerkEffectOverride -Row $row -Overrides $effectOverrides
-}
-
-function Write-EffectNote {
-    param($Row, [int]$DuplicateIndex)
-    $skillDir = Join-Path $outRoot (Safe-FilePart $Row.Skill)
-    if (-not (Test-Path -LiteralPath $skillDir)) {
-        New-Item -ItemType Directory -Path $skillDir | Out-Null
-    }
-    $sub = if ($Row.PerkSubtype) { " - $($Row.PerkSubtype)" } else { '' }
-    $dup = if ($DuplicateIndex -gt 1) { " - $DuplicateIndex" } else { '' }
-    $fileName = '{0:000} - {1} - {2} - {3}{4}{5}.md' -f $Row.Level, (Safe-FilePart $Row.Perk), $Row.Role, $Row.PerkType, $sub, $dup
-    $path = Join-Path $skillDir $fileName
-    $lines = @(
-        '---'
-        "project: $(Escape-Yaml $Row.Project)"
-        "type: $(Escape-Yaml $Row.Type)"
-        "game_version_target: $(Escape-Yaml $Row.GameVersionTarget)"
-        "attribute: $(Escape-Yaml $Row.Attribute)"
-        "skill: $(Escape-Yaml $Row.Skill)"
-        "level: $($Row.Level)"
-        "perk: $(Escape-Yaml $Row.Perk)"
-        "perk_string_id: $(Escape-Yaml $Row.PerkStringId)"
-        "effect_slot: $(Escape-Yaml $Row.EffectSlot)"
-        "role: $(Escape-Yaml $Row.Role)"
-        "role_value: $($Row.RoleValue)"
-        "perk_type: $(Escape-Yaml $Row.PerkType)"
-        "perk_subtype: $(Escape-Yaml $Row.PerkSubtype)"
-        (Format-YamlList -Name 'trigger_condition' -Values $Row.TriggerCondition)
-        (Format-YamlList -Name 'effect_tags' -Values $Row.EffectTags)
-        "bonus: $($Row.Bonus.ToString('0.########', [Globalization.CultureInfo]::InvariantCulture))"
-        "increment_type: $(Escape-Yaml $Row.IncrementType)"
-        "increment_value: $($Row.IncrementValue)"
-        "troop_usage: $(Escape-Yaml $Row.TroopUsage)"
-        "troop_usage_value: $($Row.TroopUsageValue)"
-        "effect: $(Escape-Yaml $Row.Effect)"
-        "effect_template: $(Escape-Yaml $Row.EffectTemplate)"
-        "alternative_perk_string_id: $(Escape-Yaml $Row.AlternativePerkStringId)"
-        "source_status: $(Escape-Yaml $Row.SourceStatus)"
-        "source: $(Escape-Yaml $Row.Source)"
-        "source_version: $(Escape-Yaml $Row.SourceVersion)"
-        "needs_review: $($Row.NeedsReview.ToString().ToLowerInvariant())"
-        "functioning: null"
-        "perk_wrong: $($Row.PerkWrong.ToString().ToLowerInvariant())"
-        "bug_note: $(Escape-Yaml $Row.BugNote)"
-        "notes: $(Escape-Yaml $Row.Notes)"
-        "classification_review: $(Escape-Yaml $Row.ClassificationReview)"
-        '---'
-        ''
-        "# $($Row.Perk) - $($Row.Role) - $($Row.PerkType)"
-        ''
-        $Row.Effect
-    )
-    [System.IO.File]::WriteAllLines($path, $lines, [System.Text.UTF8Encoding]::new($false))
+    $row
 }
 
 $campaignAsm = [System.Reflection.Assembly]::LoadFrom($campaignDll)
@@ -496,6 +548,8 @@ $initialize = $defaultPerksType.GetMethod('InitializeAll', [System.Reflection.Bi
 
 $createMap = Get-PerkCreateMap (Get-Instructions $register)
 $perks = Get-PerkDefinitions -Instructions (Get-Instructions $initialize) -CreateMap $createMap
+Write-JsonFile -Path $rawPerksPath -Value @($perks | Sort-Object Skill, Level, Name | ForEach-Object { Convert-PerkToRawObject -Perk $_ })
+
 $rows = @()
 foreach ($perk in $perks) {
     $primaryRow = New-EffectRow -Perk $perk -Slot 'primary'
@@ -504,92 +558,36 @@ foreach ($perk in $perks) {
     if ($secondaryRow) { $rows += $secondaryRow }
 }
 
-$resolvedOutParent = (Resolve-Path -LiteralPath (Split-Path -Parent $outRoot)).Path
-if (-not $outRoot.StartsWith($workspace, [System.StringComparison]::OrdinalIgnoreCase)) {
-    throw "Output path is outside workspace: $outRoot"
+Ensure-Directory -Path (Split-Path -Parent $rawPerksPath)
+Ensure-Directory -Path (Split-Path -Parent $generatedRowsPath)
+$resolvedGeneratedParent = (Resolve-Path -LiteralPath (Split-Path -Parent $generatedRowsPath)).Path
+if (-not $generatedRowsPath.StartsWith($workspace, [System.StringComparison]::OrdinalIgnoreCase)) {
+    throw "Generated rows path is outside workspace: $generatedRowsPath"
 }
-if ($resolvedOutParent -notlike "$workspace*") {
-    throw "Output parent is outside workspace: $resolvedOutParent"
+if ($resolvedGeneratedParent -notlike "$workspace*") {
+    throw "Generated rows parent is outside workspace: $resolvedGeneratedParent"
 }
-if (Test-Path -LiteralPath $outRoot) {
-    [System.IO.Directory]::EnumerateFiles($outRoot, '*.md', [System.IO.SearchOption]::AllDirectories) |
-        ForEach-Object {
-            $deletePath = $_
-            for ($attempt = 1; $attempt -le 10; $attempt++) {
-                try {
-                    [System.IO.File]::Delete($deletePath)
-                    break
-                } catch {
-                    if ($attempt -eq 10) { throw }
-                    Start-Sleep -Milliseconds 250
-                }
-            }
-        }
-    Get-ChildItem -LiteralPath $outRoot -Recurse -File | Remove-Item -Force
-} else {
-    New-Item -ItemType Directory -Path $outRoot | Out-Null
-}
+Write-JsonFile -Path $generatedRowsPath -Value @($rows | Sort-Object Attribute, Skill, Level, Perk, EffectSlot | ForEach-Object { Convert-RowToExportObject -Row $_ })
 
-$seen = @{}
-foreach ($row in $rows) {
-    $key = "$($row.Skill)|$($row.Level)|$($row.Perk)|$($row.Role)|$($row.PerkType)|$($row.PerkSubtype)"
-    if (-not $seen.ContainsKey($key)) { $seen[$key] = 0 }
-    $seen[$key]++
-    Write-EffectNote -Row $row -DuplicateIndex $seen[$key]
+if (-not (Test-Path -LiteralPath $postprocessScript)) {
+    throw "Could not find Python post-processing script: $postprocessScript"
+}
+$python = Get-Command python -ErrorAction SilentlyContinue
+if (-not $python) {
+    throw 'Python is required for perk post-processing. Install Python or make python available on PATH.'
+}
+& $python.Source $postprocessScript --workspace $workspace
+if ($LASTEXITCODE -ne 0) {
+    throw "Python post-processing failed with exit code $LASTEXITCODE."
 }
 
 $reviewRows = $rows | Where-Object { $_.ClassificationReview }
-$reviewLines = @(
-    '# Perk Classification Review'
-    ''
-    "Generated from local Bannerlord $($rows[0].GameVersionTarget) assembly data. Rows listed here are classification heuristics that look ambiguous and should be hand-checked."
-    ''
-)
-if ($reviewRows.Count -eq 0) {
-    $reviewLines += 'No classification review flags were generated.'
-} else {
-    $reviewLines += '| Skill | Level | Perk | Role | Type | Subtype | Effect | Review |'
-    $reviewLines += '|---|---:|---|---|---|---|---|---|'
-    foreach ($row in $reviewRows | Sort-Object Skill, Level, Perk, EffectSlot) {
-        $reviewLines += '| {0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} |' -f `
-            ($row.Skill -replace '\|','\|'), $row.Level, ($row.Perk -replace '\|','\|'), $row.Role, $row.PerkType, $row.PerkSubtype, ($row.Effect -replace '\|','\|'), ($row.ClassificationReview -replace '\|','\|')
-    }
-}
-[System.IO.File]::WriteAllLines($reviewPath, $reviewLines, [System.Text.UTF8Encoding]::new($false))
-
-$tagLines = @('role')
-$tagLines += $rows | Select-Object -ExpandProperty Role -Unique | Sort-Object
-$tagLines += ''
-$tagLines += 'perk_type'
-$tagLines += $rows | Select-Object -ExpandProperty PerkType -Unique | Sort-Object
-$tagLines += ''
-$tagLines += 'perk_subtype'
-$tagLines += $rows |
-    Where-Object { -not [string]::IsNullOrWhiteSpace($_.PerkSubtype) } |
-    Select-Object -ExpandProperty PerkSubtype -Unique |
-    Sort-Object
-$tagLines += ''
-$tagLines += 'trigger_condition'
-$tagLines += $rows |
-    ForEach-Object { $_.TriggerCondition } |
-    Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) } |
-    Select-Object -Unique |
-    Sort-Object
-$tagLines += ''
-$tagLines += 'effect_tags'
-$tagLines += $rows |
-    ForEach-Object { $_.EffectTags } |
-    Where-Object { -not [string]::IsNullOrWhiteSpace([string]$_) } |
-    Select-Object -Unique |
-    Sort-Object
-[System.IO.File]::WriteAllLines($tagIndexPath, $tagLines, [System.Text.UTF8Encoding]::new($false))
-
 $roleSummary = $rows | Group-Object Role | Sort-Object Name | ForEach-Object { "$($_.Name): $($_.Count)" }
 $typeSummary = $rows | Group-Object PerkType | Sort-Object Name | ForEach-Object { "$($_.Name): $($_.Count)" }
 Write-Output "Perks extracted: $($perks.Count)"
-Write-Output "Effect rows written: $($rows.Count)"
-Write-Output "Review flags: $($reviewRows.Count)"
-Write-Output 'Roles:'
+Write-Output "Generated effect rows: $($rows.Count)"
+Write-Output "Generated review flags: $($reviewRows.Count)"
+Write-Output 'Generated roles:'
 $roleSummary | ForEach-Object { Write-Output "  $_" }
-Write-Output 'Types:'
+Write-Output 'Generated types:'
 $typeSummary | ForEach-Object { Write-Output "  $_" }
