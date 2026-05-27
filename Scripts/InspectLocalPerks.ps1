@@ -1,8 +1,20 @@
+param(
+    [string]$GameRoot = $env:BANNERLORD_GAME_ROOT
+)
+
 $ErrorActionPreference = 'Stop'
 
-$gameRoot = 'E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord'
-$bin = Join-Path $gameRoot 'bin\Win64_Shipping_Client'
+if ([string]::IsNullOrWhiteSpace($GameRoot)) {
+    throw 'Bannerlord game root is required. Pass -GameRoot or set BANNERLORD_GAME_ROOT.'
+}
+$GameRoot = (Resolve-Path -LiteralPath $GameRoot).Path
+$bin = Join-Path $GameRoot 'bin\Win64_Shipping_Client'
 $campaignDll = Join-Path $bin 'TaleWorlds.CampaignSystem.dll'
+$objectSystemDll = Join-Path $bin 'TaleWorlds.ObjectSystem.dll'
+$coreDll = Join-Path $bin 'TaleWorlds.Core.dll'
+if (-not (Test-Path -LiteralPath $campaignDll) -or -not (Test-Path -LiteralPath $objectSystemDll) -or -not (Test-Path -LiteralPath $coreDll)) {
+    throw "Could not find Bannerlord assemblies under '$bin'. Check -GameRoot."
+}
 
 [System.AppDomain]::CurrentDomain.add_AssemblyResolve({
     param($sender, $args)
@@ -15,8 +27,8 @@ $campaignDll = Join-Path $bin 'TaleWorlds.CampaignSystem.dll'
 })
 
 $asm = [System.Reflection.Assembly]::LoadFrom($campaignDll)
-$objectSystemAsm = [System.Reflection.Assembly]::LoadFrom((Join-Path $bin 'TaleWorlds.ObjectSystem.dll'))
-$coreAsm = [System.Reflection.Assembly]::LoadFrom((Join-Path $bin 'TaleWorlds.Core.dll'))
+$objectSystemAsm = [System.Reflection.Assembly]::LoadFrom($objectSystemDll)
+$coreAsm = [System.Reflection.Assembly]::LoadFrom($coreDll)
 
 $objectManagerType = $objectSystemAsm.GetType('TaleWorlds.ObjectSystem.MBObjectManager', $true)
 try {

@@ -1,10 +1,20 @@
+param(
+    [string]$GameRoot = $env:BANNERLORD_GAME_ROOT
+)
+
 $ErrorActionPreference = 'Stop'
 
 $workspace = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
-$gameRoot = 'E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord'
-$bin = Join-Path $gameRoot 'bin\Win64_Shipping_Client'
+if ([string]::IsNullOrWhiteSpace($GameRoot)) {
+    throw 'Bannerlord game root is required. Pass -GameRoot or set BANNERLORD_GAME_ROOT.'
+}
+$GameRoot = (Resolve-Path -LiteralPath $GameRoot).Path
+$bin = Join-Path $GameRoot 'bin\Win64_Shipping_Client'
 $campaignDll = Join-Path $bin 'TaleWorlds.CampaignSystem.dll'
 $coreDll = Join-Path $bin 'TaleWorlds.Core.dll'
+if (-not (Test-Path -LiteralPath $campaignDll) -or -not (Test-Path -LiteralPath $coreDll)) {
+    throw "Could not find Bannerlord assemblies under '$bin'. Check -GameRoot."
+}
 $outRoot = Join-Path $workspace 'Data\Perk Effects'
 $reviewPath = Join-Path $workspace 'Perk Classification Review.md'
 $tagIndexPath = Join-Path $workspace 'Tag index.md'
