@@ -1,6 +1,6 @@
 # XP Awards
 
-This note summarizes the first PowerShell extraction pass in `Data/generated/reports/xp-awards.md`.
+This note summarizes the local assembly extraction report in `Data/generated/reports/xp-awards.md`.
 
 ## Hero Skill XP
 
@@ -14,8 +14,10 @@ This note summarizes the first PowerShell extraction pass in `Data/generated/rep
 ## Combat XP
 
 - `DefaultCombatXpModel.GetXpFromHit` is the central hit/kill combat XP formula.
-- The formula uses the attacked troop power, attacker troop power, capped damage, and fatal-hit bonus. The visible IL constants are `0.4`, `0.5`, and `1`.
-- Fatal hits add the target's max hit points to the damage term after damage is capped at max hit points.
+- The direct hit formula is:
+  `0.4 * (attacker troop power + 0.5) * (target troop power + 0.5) * effective damage * mission multiplier`.
+- `effective damage = min(damage, target max hit points) + target max hit points` when the hit is fatal.
+- Fatal hits therefore add a full target max-HP chunk after damage is capped at max HP.
 - Mission type multipliers are:
   - Battle: `1`
   - PracticeFight: `0.0625`
@@ -23,6 +25,14 @@ This note summarizes the first PowerShell extraction pass in `Data/generated/rep
   - SimulationBattle: `0.9`
   - NoXp: `0`
 - `GetBattleXpBonusFromPerks` applies perk factors after the base hit XP is built.
+- A targeted module scan found `Mission.GetShootDifficulty(affectedAgent, affectorAgent, isHeadShot)`.
+- Mission-side shot difficulty is:
+  `clamp(0.3 * ((distance + 4) / 4) * ((4 + lateralMotion * relativeSpeed) / 4), 1, 12)`.
+- `distance` is the distance between attacker and target. `relativeSpeed` is target movement minus attacker movement. `lateralMotion` is the perpendicular share of that relative movement against the shot line.
+- Headshots multiply the clamped shot difficulty by `1.2`, raising the possible max from `12` to `14.4`.
+- `GetXpMultiplierFromShotDifficulty(shotDifficulty)` maps difficulty `1..14.4` to a raw factor from `0..2`: `lerp(0, 2, (min(shotDifficulty, 14.4) - 1) / 13.4)`.
+- `DefaultSkillLevelingManager.OnCombatHit` applies that as an XP factor: `finalXp = baseXp * (1 + skillFactor * shotDifficultyFactor)`, where `skillFactor` is `0.5` for Bow and `1.0` for other ranged skills.
+- `OnGainingRidingExperience(hero, baseXpAmount, horse)` awards separate Riding XP while mounted: `baseXpAmount * (1 + horse.Difficulty * 0.02)`. This is separate from `GetXpFromHit`, so horseback can increase total XP without being a direct combat-hit multiplier.
 
 ## Battle Troop XP
 

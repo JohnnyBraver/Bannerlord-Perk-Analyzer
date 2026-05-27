@@ -21,17 +21,17 @@ The pipeline is intentionally staged:
 
 ## Rebuild
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Scripts\RebuildPerkEffectsFromGame.ps1 -GameRoot "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
+```text
+python .\src\bannerlord_perk_analyzer\rebuild.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
 ```
 
-You can also set `BANNERLORD_GAME_ROOT` and omit `-GameRoot`.
+You can also set `BANNERLORD_GAME_ROOT` and omit `--game-root`.
 
-The rebuild script still uses PowerShell for local .NET assembly extraction, but post-processing, markdown/report generation, and validation are Python.
+The rebuild command uses the local .NET extractor in `tools/BannerlordExtractor/` for Bannerlord assembly reading, then Python handles classification, post-processing, markdown/report generation, and validation. Use `--skip-extract` to regenerate custom fields from the existing `Data/raw/perks.json` without reading the game install.
 
 ## Post-process
 
-```powershell
+```text
 python .\src\bannerlord_perk_analyzer\postprocess.py
 ```
 
@@ -39,7 +39,7 @@ python .\src\bannerlord_perk_analyzer\postprocess.py
 
 Generate a terminal build plan from skill levels or perk names:
 
-```powershell
+```text
 python .\src\bannerlord_perk_analyzer\build_generator.py --target "Bow:275" --target "Riding:225" --perk "Minister of Health"
 ```
 
@@ -49,14 +49,34 @@ The planner uses the game-wide skill limit and peak learning range formulas, 1 f
 
 Generate a first-pass map of XP award logic from the local compiled assemblies:
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Scripts\ExtractXpAwardModel.ps1 -GameRoot "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord" -IncludeIl
+```text
+python .\src\bannerlord_perk_analyzer\extract_xp_awards.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord" --include-il
 ```
 
-The script writes `Data/generated/xp-award-methods.json`, `Data/generated/reports/xp-awards.md`, and, with `-IncludeIl`, `Data/generated/reports/xp-award-il.md`. The default scan covers `TaleWorlds.Core` and `TaleWorlds.CampaignSystem`; use `-DeepScanCallers` for a slower pass that inspects every method body for calls into XP sinks.
+The script writes `Data/generated/xp-award-methods.json`, `Data/generated/reports/xp-awards.md`, and, with `--include-il`, `Data/generated/reports/xp-award-il.md`. The default scan covers `TaleWorlds.Core` and `TaleWorlds.CampaignSystem`; use `--deep-scan-callers` for a slower pass that inspects every method body for calls into XP sinks.
+
+Dig into broader XP formula candidates across campaign, mission, sandbox, and story assemblies:
+
+```text
+python .\src\bannerlord_perk_analyzer\extract_xp_formulas.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
+```
+
+This wraps the `.NET` extractor's method search in thematic scans for combat, hero progression, troop XP, crafting/discard XP, and activity XP. It writes `Data/generated/xp-formula-methods.json`, `Data/generated/reports/xp-formulas.md`, and the friendlier guide `Data/generated/reports/xp-insights.md`; pass `--no-il` for a smaller JSON file, or `--keep-temp` to preserve the per-scan intermediate JSON files.
+
+For focused IL debugging, call the extractor directly:
+
+```text
+dotnet run --project .\tools\BannerlordExtractor -- dump-il --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord" --assembly TaleWorlds.CampaignSystem --type TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks --method InitializeAll
+```
+
+For targeted method searches across game and module assemblies:
+
+```text
+dotnet run --project .\tools\BannerlordExtractor -- find-methods --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord" --assembly SandBox --assembly TaleWorlds.MountAndBlade --query shotDifficulty --include-il --output Data\generated\shot-difficulty-methods.json
+```
 
 ## Validate
 
-```powershell
+```text
 python .\src\bannerlord_perk_analyzer\validate.py
 ```
