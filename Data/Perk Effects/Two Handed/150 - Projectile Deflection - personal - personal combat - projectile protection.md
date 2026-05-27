@@ -1,0 +1,39 @@
+---
+project: "Bannerlord"
+type: "bannerlord_perk_effect"
+game_version_target: "1.4.5"
+attribute: "Vigor"
+skill: "Two Handed"
+level: 150
+perk: "Projectile Deflection"
+perk_string_id: "TwoHandedProjectileDeflection"
+effect_slot: "primary"
+role: "personal"
+role_value: 12
+perk_type: "personal combat"
+perk_subtype: "projectile protection"
+trigger_condition: []
+effect_tags:
+  - "weapons"
+bonus: 0
+increment_type: "increment_-1"
+increment_value: -1
+troop_usage: "all"
+troop_usage_value: 65535
+effect: "You can deflect projectiles with two handed swords by blocking."
+effect_template: "You can deflect projectiles with two handed swords by blocking."
+alternative_perk_string_id: ""
+source_status: "local_game_assembly"
+source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
+source_version: "1.4.5"
+needs_review: false
+functioning: null
+perk_wrong: false
+bug_note: ""
+notes: ""
+classification_review: ""
+---
+
+# Projectile Deflection - personal - personal combat
+
+You can deflect projectiles with two handed swords by blocking.

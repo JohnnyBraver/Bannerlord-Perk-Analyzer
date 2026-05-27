@@ -1,0 +1,132 @@
+filters:
+  and:
+    - or:
+        - file.inFolder("Data/Perk Effects")
+        - file.inFolder("Bannerlord/Data/Perk Effects")
+    - project == "Bannerlord"
+    - type == "bannerlord_perk_effect"
+    - source_status == "local_game_assembly"
+properties:
+  attribute:
+    displayName: Attribute
+  skill:
+    displayName: Skill
+  level:
+    displayName: Level
+  perk:
+    displayName: Perk
+  role:
+    displayName: Role
+  perk_type:
+    displayName: Perk Type
+  perk_subtype:
+    displayName: Perk Subtype
+  trigger_condition:
+    displayName: Trigger Condition
+  effect_tags:
+    displayName: Effect Tags
+  bonus:
+    displayName: Bonus
+  increment_type:
+    displayName: Increment Type
+  troop_usage:
+    displayName: Troop Usage
+  effect:
+    displayName: Effect
+  game_version_target:
+    displayName: Target Version
+  classification_review:
+    displayName: Classification Review
+  perk_wrong:
+    displayName: Perk Wrong
+  notes:
+    displayName: Notes
+views:
+  - type: table
+    name: All Bannerlord Perk Effects
+    order:
+      - attribute
+      - skill
+      - level
+      - perk
+      - role
+      - perk_type
+      - perk_subtype
+      - trigger_condition
+      - effect_tags
+      - bonus
+      - increment_type
+      - troop_usage
+      - effect
+      - perk_wrong
+      - notes
+      - game_version_target
+    sort:
+      - property: level
+        direction: DESC
+      - property: perk_subtype
+        direction: ASC
+      - property: perk
+        direction: ASC
+      - property: skill
+        direction: ASC
+      - property: attribute
+        direction: ASC
+      - property: role
+        direction: ASC
+    columnSize:
+      note.level: 80
+  - type: table
+    name: Captain Effects
+    filters:
+      and:
+        - role == "captain"
+    order:
+      - attribute
+      - skill
+      - level
+      - perk
+      - perk_type
+      - perk_subtype
+      - trigger_condition
+      - effect_tags
+      - bonus
+      - troop_usage
+      - effect
+      - notes
+  - type: table
+    name: Classification Review
+    filters:
+      and:
+        - classification_review != ""
+    order:
+      - attribute
+      - skill
+      - level
+      - perk
+      - role
+      - perk_type
+      - perk_subtype
+      - trigger_condition
+      - effect_tags
+      - classification_review
+      - perk_wrong
+      - notes
+      - effect
+  - type: table
+    name: Perk Wrong
+    filters:
+      and:
+        - perk_wrong == true
+    order:
+      - attribute
+      - skill
+      - level
+      - perk
+      - role
+      - perk_type
+      - perk_subtype
+      - bonus
+      - increment_type
+      - notes
+      - effect

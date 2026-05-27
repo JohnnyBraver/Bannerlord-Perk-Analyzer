@@ -1,0 +1,17 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local logs and scratch output
+*.log
+*.tmp
+*.bak
+
+# Do not accidentally vendor local Bannerlord binaries or build output
+*.dll
+*.exe
+*.pdb
+bin/
+obj/

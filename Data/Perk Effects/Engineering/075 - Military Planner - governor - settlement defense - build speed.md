@@ -1,0 +1,43 @@
+---
+project: "Bannerlord"
+type: "bannerlord_perk_effect"
+game_version_target: "1.4.5"
+attribute: "Intelligence"
+skill: "Engineering"
+level: 75
+perk: "Military Planner"
+perk_string_id: "EngineeringMilitaryPlanner"
+effect_slot: "secondary"
+role: "governor"
+role_value: 3
+perk_type: "settlement defense"
+perk_subtype: "build speed"
+trigger_condition:
+  - "project active"
+  - "governed settlement"
+effect_tags:
+  - "defense"
+  - "fortifications"
+  - "projects"
+bonus: 0.25
+increment_type: "add_factor"
+increment_value: 1
+troop_usage: "all"
+troop_usage_value: 65535
+effect: "25% build speed for projects in the governed castle."
+effect_template: "{VALUE}% build speed for projects in the governed castle."
+alternative_perk_string_id: "EngineeringCarpenters"
+source_status: "local_game_assembly"
+source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
+source_version: "1.4.5"
+needs_review: false
+functioning: null
+perk_wrong: false
+bug_note: ""
+notes: ""
+classification_review: ""
+---
+
+# Military Planner - governor - settlement defense
+
+25% build speed for projects in the governed castle.
