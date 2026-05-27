@@ -12,7 +12,8 @@ role: "governor"
 role_value: 3
 perk_type: "settlement economy"
 perk_subtype: "settlement income"
-trigger_condition: []
+trigger_condition:
+  - "governed settlement"
 effect_tags:
   - "tax"
 bonus: 0.1

@@ -14,6 +14,7 @@ perk_type: "settlement governance"
 perk_subtype: "project effect"
 trigger_condition:
   - "governed settlement"
+  - "project active"
 effect_tags:
   - "projects"
 bonus: 0.1

@@ -35,7 +35,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: ""
+classification_review: "Composite project set spans fortifications, aqueducts, and barracks; settlement-defense classification is partial."
 ---
 
 # Stonecutters - governor - settlement defense

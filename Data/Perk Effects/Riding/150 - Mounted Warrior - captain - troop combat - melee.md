@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "melee"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags:
   - "mounts"
 bonus: 0.05

@@ -12,7 +12,8 @@ role: "governor"
 role_value: 3
 perk_type: "settlement economy"
 perk_subtype: "production"
-trigger_condition: []
+trigger_condition:
+  - "governed settlement"
 effect_tags:
   - "workshop"
 bonus: 0.25

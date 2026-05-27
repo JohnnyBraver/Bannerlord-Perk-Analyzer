@@ -12,8 +12,11 @@ role: "governor"
 role_value: 3
 perk_type: "settlement governance"
 perk_subtype: "project effect"
-trigger_condition: []
-effect_tags: []
+trigger_condition:
+  - "project active"
+  - "governed settlement"
+effect_tags:
+  - "projects"
 bonus: 0.1
 increment_type: "add_factor"
 increment_value: 1

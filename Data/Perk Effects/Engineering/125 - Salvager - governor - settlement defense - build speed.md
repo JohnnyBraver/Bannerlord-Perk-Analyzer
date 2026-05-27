@@ -14,6 +14,7 @@ perk_type: "settlement defense"
 perk_subtype: "build speed"
 trigger_condition:
   - "during siege"
+  - "governed settlement"
 effect_tags:
   - "defense"
   - "militia"

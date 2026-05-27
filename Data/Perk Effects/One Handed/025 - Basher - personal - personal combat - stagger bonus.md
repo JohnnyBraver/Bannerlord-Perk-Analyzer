@@ -30,7 +30,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: "Composite effect spans multiple classification categories."
+classification_review: "Composite effect spans shield-bash damage and stun duration; subtype captures stun/stagger component."
 ---
 
 # Basher - personal - personal combat

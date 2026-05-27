@@ -15,6 +15,7 @@ perk_subtype: "mounts"
 trigger_condition: []
 effect_tags:
   - "weapons"
+  - "mounts"
 bonus: 0.69999999
 increment_type: "add_factor"
 increment_value: 1

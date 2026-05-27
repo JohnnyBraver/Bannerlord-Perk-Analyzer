@@ -12,7 +12,8 @@ role: "quartermaster"
 role_value: 10
 perk_type: "party management"
 perk_subtype: "carrying capacity"
-trigger_condition: []
+trigger_condition:
+  - "party composition"
 effect_tags:
   - "mounts"
 bonus: 0.2

@@ -12,9 +12,9 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "skill bonus"
-trigger_condition:
-  - "party composition"
-effect_tags: []
+trigger_condition: []
+effect_tags:
+  - "weapons"
 bonus: 20
 increment_type: "add"
 increment_value: 0
@@ -28,9 +28,9 @@ source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
 source_version: "1.4.5"
 needs_review: false
 functioning: null
-perk_wrong: false
+perk_wrong: true
 bug_note: ""
-notes: ""
+notes: "Game troop_usage is mounted, but description says troops in your formation without that restriction."
 classification_review: ""
 ---
 

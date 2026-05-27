@@ -12,9 +12,9 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "skill bonus"
-trigger_condition:
-  - "party composition"
-effect_tags: []
+trigger_condition: []
+effect_tags:
+  - "weapons"
 bonus: 30
 increment_type: "add"
 increment_value: 0

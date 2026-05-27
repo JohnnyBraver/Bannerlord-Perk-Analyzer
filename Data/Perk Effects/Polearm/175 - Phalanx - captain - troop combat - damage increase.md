@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "damage increase"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags:
   - "weapons"
 bonus: 0.03

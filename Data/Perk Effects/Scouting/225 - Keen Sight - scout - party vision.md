@@ -14,6 +14,7 @@ perk_type: "party vision"
 perk_subtype: ""
 trigger_condition:
   - "terrain"
+  - "while traveling"
 effect_tags: []
 bonus: -0.5
 increment_type: "add_factor"

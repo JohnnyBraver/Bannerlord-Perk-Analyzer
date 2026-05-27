@@ -12,7 +12,8 @@ role: "surgeon"
 role_value: 7
 perk_type: "regen bonus"
 perk_subtype: ""
-trigger_condition: []
+trigger_condition:
+  - "while waiting"
 effect_tags: []
 bonus: 0.30000001
 increment_type: "add_factor"

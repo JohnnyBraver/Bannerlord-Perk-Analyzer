@@ -12,7 +12,9 @@ role: "governor"
 role_value: 3
 perk_type: "settlement governance"
 perk_subtype: "build speed"
-trigger_condition: []
+trigger_condition:
+  - "project active"
+  - "governed settlement"
 effect_tags:
   - "prisoners"
 bonus: 0.01

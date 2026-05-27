@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "projectile protection"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags: []
 bonus: 0.01
 increment_type: "add"

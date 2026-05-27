@@ -12,7 +12,8 @@ role: "party leader"
 role_value: 5
 perk_type: "social"
 perk_subtype: "renown"
-trigger_condition: []
+trigger_condition:
+  - "after battle"
 effect_tags: []
 bonus: 0.30000001
 increment_type: "add_factor"

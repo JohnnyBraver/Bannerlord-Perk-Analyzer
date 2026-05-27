@@ -12,8 +12,7 @@ role: "party leader"
 role_value: 5
 perk_type: "troop combat"
 perk_subtype: "hit points"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags: []
 bonus: 5
 increment_type: "add"

@@ -15,7 +15,8 @@ perk_subtype: "morale"
 trigger_condition:
   - "during siege"
   - "defending"
-effect_tags: []
+effect_tags:
+  - "defense"
 bonus: 1
 increment_type: "add"
 increment_value: 0

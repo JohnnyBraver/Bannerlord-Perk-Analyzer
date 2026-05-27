@@ -13,7 +13,8 @@ role_value: 12
 perk_type: "movement"
 perk_subtype: "mount performance"
 trigger_condition: []
-effect_tags: []
+effect_tags:
+  - "mounts"
 bonus: 0.1
 increment_type: "add_factor"
 increment_value: 1

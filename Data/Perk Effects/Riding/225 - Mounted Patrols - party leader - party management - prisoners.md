@@ -12,8 +12,7 @@ role: "party leader"
 role_value: 5
 perk_type: "party management"
 perk_subtype: "prisoners"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags:
   - "prisoner escape"
 bonus: -0.5

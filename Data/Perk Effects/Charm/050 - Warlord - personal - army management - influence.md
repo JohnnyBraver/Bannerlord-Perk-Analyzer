@@ -12,7 +12,8 @@ role: "personal"
 role_value: 12
 perk_type: "army management"
 perk_subtype: "influence"
-trigger_condition: []
+trigger_condition:
+  - "after battle"
 effect_tags: []
 bonus: 0.30000001
 increment_type: "add_factor"

@@ -13,6 +13,7 @@ role_value: 3
 perk_type: "settlement defense"
 perk_subtype: "security"
 trigger_condition:
+  - "party composition"
   - "governed settlement"
 effect_tags:
   - "defense"

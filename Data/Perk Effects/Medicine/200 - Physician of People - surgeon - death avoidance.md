@@ -12,7 +12,8 @@ role: "surgeon"
 role_value: 7
 perk_type: "death avoidance"
 perk_subtype: ""
-trigger_condition: []
+trigger_condition:
+  - "party composition"
 effect_tags: []
 bonus: 0.30000001
 increment_type: "add_factor"

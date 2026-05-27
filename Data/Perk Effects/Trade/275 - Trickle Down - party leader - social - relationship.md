@@ -29,7 +29,7 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
+notes: "Single-deal spending threshold is not represented by current trigger_condition taxonomy."
 classification_review: ""
 ---
 

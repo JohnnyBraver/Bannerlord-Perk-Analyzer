@@ -29,7 +29,7 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
+notes: "Applies only while in an army; no dedicated army-membership trigger condition exists."
 classification_review: ""
 ---
 

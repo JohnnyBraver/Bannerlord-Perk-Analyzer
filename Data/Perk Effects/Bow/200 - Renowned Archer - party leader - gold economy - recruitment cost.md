@@ -32,7 +32,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: ""
+classification_review: "Composite effect spans recruitment and upgrade costs for ranged troops; single classification is partial."
 ---
 
 # Renowned Archer - party leader - gold economy

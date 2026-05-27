@@ -28,9 +28,9 @@ source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
 source_version: "1.4.5"
 needs_review: false
 functioning: null
-perk_wrong: false
+perk_wrong: true
 bug_note: ""
-notes: ""
+notes: "Game troop_usage is horse_archer, but description says ranged troops in your formation; verify whether this should apply only to mounted ranged troops."
 classification_review: ""
 ---
 

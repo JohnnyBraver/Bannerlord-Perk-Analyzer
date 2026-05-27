@@ -14,7 +14,6 @@ perk_type: "troop combat"
 perk_subtype: "movement speed"
 trigger_condition:
   - "terrain"
-  - "party composition"
 effect_tags: []
 bonus: 0.02
 increment_type: "add_factor"

@@ -13,6 +13,7 @@ role_value: 5
 perk_type: "party management"
 perk_subtype: "troop xp"
 trigger_condition:
+  - "after battle"
   - "party composition"
 effect_tags:
   - "weapons"

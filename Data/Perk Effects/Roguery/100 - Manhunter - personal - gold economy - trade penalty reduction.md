@@ -32,7 +32,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: ""
+classification_review: "Ransom-broker deal improvement is not really a trade penalty; current subtype is a lossy fallback unless a ransom-value subtype is added."
 ---
 
 # Manhunter - personal - gold economy

@@ -12,7 +12,8 @@ role: "personal"
 role_value: 12
 perk_type: "gold economy"
 perk_subtype: "wages"
-trigger_condition: []
+trigger_condition:
+  - "party composition"
 effect_tags:
   - "bandits"
 bonus: -0.2

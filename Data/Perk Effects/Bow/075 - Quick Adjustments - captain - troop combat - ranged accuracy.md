@@ -28,9 +28,9 @@ source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
 source_version: "1.4.5"
 needs_review: false
 functioning: null
-perk_wrong: false
+perk_wrong: true
 bug_note: ""
-notes: ""
+notes: "Game troop_usage is mounted, but description says archers in your formation without that restriction."
 classification_review: ""
 ---
 

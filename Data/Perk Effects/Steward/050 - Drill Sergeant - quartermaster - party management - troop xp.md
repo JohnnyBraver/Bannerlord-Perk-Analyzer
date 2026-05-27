@@ -12,8 +12,7 @@ role: "quartermaster"
 role_value: 10
 perk_type: "party management"
 perk_subtype: "troop xp"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags: []
 bonus: 2
 increment_type: "add"

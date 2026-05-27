@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "party management"
 perk_subtype: "troop xp"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags: []
 bonus: 0.05
 increment_type: "add_factor"

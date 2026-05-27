@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "damage increase"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags:
   - "weapons"
   - "mounts"
@@ -30,9 +29,9 @@ source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
 source_version: "1.4.5"
 needs_review: false
 functioning: null
-perk_wrong: false
+perk_wrong: true
 bug_note: ""
-notes: ""
+notes: "Game troop_usage is ranged, but description only says troops in your formation damaging cavalry; hidden ranged-troop restriction is not in the description."
 classification_review: ""
 ---
 

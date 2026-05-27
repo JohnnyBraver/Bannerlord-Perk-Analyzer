@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "armor increase"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags: []
 bonus: 5
 increment_type: "add"

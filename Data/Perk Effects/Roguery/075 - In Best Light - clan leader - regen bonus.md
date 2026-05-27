@@ -31,7 +31,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: ""
+classification_review: "Village raid recovery has no dedicated taxonomy bucket; regen bonus is a fallback."
 ---
 
 # In Best Light - clan leader - regen bonus

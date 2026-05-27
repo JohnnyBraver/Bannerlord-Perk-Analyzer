@@ -12,7 +12,6 @@ scout
 surgeon
 
 perk_type
-ammo capacity
 army management
 battle escape
 character growth
@@ -23,7 +22,6 @@ damage resistance
 death avoidance
 gold economy
 hit points
-morale damage
 mount management
 movement
 party management
@@ -166,6 +164,7 @@ prisoners
 profit marking
 projects
 ransom
+recruitment cost
 shield penalty
 tariff
 tax

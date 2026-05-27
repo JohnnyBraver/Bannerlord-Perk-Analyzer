@@ -14,6 +14,7 @@ perk_type: "personal combat"
 perk_subtype: "dismount"
 trigger_condition: []
 effect_tags:
+  - "weapons"
   - "mounts"
 bonus: 0.5
 increment_type: "add_factor"

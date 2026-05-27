@@ -30,7 +30,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: "Composite effect spans multiple classification categories."
+classification_review: "Composite effect spans renown and influence; single classification is partial."
 ---
 
 # Oratory - personal - social

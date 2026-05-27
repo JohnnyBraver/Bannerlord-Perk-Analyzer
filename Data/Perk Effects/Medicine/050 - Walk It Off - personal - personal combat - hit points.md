@@ -14,6 +14,7 @@ perk_type: "personal combat"
 perk_subtype: "hit points"
 trigger_condition:
   - "attacking"
+  - "after battle"
 effect_tags: []
 bonus: 10
 increment_type: "add"

@@ -12,7 +12,8 @@ role: "personal"
 role_value: 12
 perk_type: "personal combat"
 perk_subtype: "melee"
-trigger_condition: []
+trigger_condition:
+  - "while mounted"
 effect_tags:
   - "mounts"
 bonus: 0.05

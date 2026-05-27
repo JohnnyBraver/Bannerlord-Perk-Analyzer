@@ -12,8 +12,7 @@ role: "quartermaster"
 role_value: 10
 perk_type: "party management"
 perk_subtype: "carrying capacity"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags: []
 bonus: 0.1
 increment_type: "add_factor"

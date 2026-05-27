@@ -30,7 +30,7 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
+notes: "Caravan-destroyed condition is not represented by current trigger_condition taxonomy."
 classification_review: ""
 ---
 

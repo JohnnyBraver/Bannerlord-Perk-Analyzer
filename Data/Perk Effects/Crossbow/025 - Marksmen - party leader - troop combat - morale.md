@@ -1,0 +1,39 @@
+---
+project: "Bannerlord"
+type: "bannerlord_perk_effect"
+game_version_target: "1.4.5"
+attribute: "Control"
+skill: "Crossbow"
+level: 25
+perk: "Marksmen"
+perk_string_id: "CrossbowMarksmen"
+effect_slot: "secondary"
+role: "party leader"
+role_value: 5
+perk_type: "troop combat"
+perk_subtype: "morale"
+trigger_condition:
+  - "party composition"
+effect_tags: []
+bonus: 0.1
+increment_type: "add_factor"
+increment_value: 1
+troop_usage: "all"
+troop_usage_value: 65535
+effect: "10% starting battle morale to ranged troops in your party."
+effect_template: "{VALUE}% starting battle morale to ranged troops in your party."
+alternative_perk_string_id: "CrossbowPiercer"
+source_status: "local_game_assembly"
+source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
+source_version: "1.4.5"
+needs_review: false
+functioning: null
+perk_wrong: false
+bug_note: ""
+notes: ""
+classification_review: ""
+---
+
+# Marksmen - party leader - troop combat
+
+10% starting battle morale to ranged troops in your party.

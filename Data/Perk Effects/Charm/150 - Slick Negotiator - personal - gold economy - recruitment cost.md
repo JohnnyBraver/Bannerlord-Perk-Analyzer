@@ -12,7 +12,8 @@ role: "personal"
 role_value: 12
 perk_type: "gold economy"
 perk_subtype: "recruitment cost"
-trigger_condition: []
+trigger_condition:
+  - "party composition"
 effect_tags: []
 bonus: -0.2
 increment_type: "add_factor"

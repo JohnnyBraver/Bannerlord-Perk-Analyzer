@@ -29,8 +29,8 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
-classification_review: ""
+notes: "Game bonus is +5% longer stun; description has no numeric placeholder."
+classification_review: "Blocked-attack condition is not represented by current trigger_condition taxonomy."
 ---
 
 # Mighty Blow - personal - personal combat

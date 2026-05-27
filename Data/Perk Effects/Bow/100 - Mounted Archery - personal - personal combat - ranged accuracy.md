@@ -15,6 +15,7 @@ perk_subtype: "ranged accuracy"
 trigger_condition:
   - "while mounted"
 effect_tags:
+  - "weapons"
   - "mounts"
 bonus: -0.30000001
 increment_type: "add_factor"

@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "ranged"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags: []
 bonus: -0.03
 increment_type: "add_factor"

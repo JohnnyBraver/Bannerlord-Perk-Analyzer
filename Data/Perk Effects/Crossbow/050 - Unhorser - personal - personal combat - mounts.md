@@ -13,7 +13,8 @@ role_value: 12
 perk_type: "personal combat"
 perk_subtype: "mounts"
 trigger_condition: []
-effect_tags: []
+effect_tags:
+  - "weapons"
 bonus: 0.40000001
 increment_type: "add_factor"
 increment_value: 1

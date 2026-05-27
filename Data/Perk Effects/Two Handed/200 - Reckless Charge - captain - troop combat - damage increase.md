@@ -31,7 +31,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: "Composite effect spans multiple classification categories."
+classification_review: "Composite troop combat effect spans damage and movement speed; subtype captures damage only."
 ---
 
 # Reckless Charge - captain - troop combat

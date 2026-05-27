@@ -12,7 +12,8 @@ role: "personal"
 role_value: 12
 perk_type: "social"
 perk_subtype: "relationship"
-trigger_condition: []
+trigger_condition:
+  - "after battle"
 effect_tags: []
 bonus: 2
 increment_type: "add_factor"

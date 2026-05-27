@@ -30,7 +30,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: ""
+classification_review: "Shield-wall formation condition is not represented by current trigger_condition taxonomy."
 ---
 
 # Basher - captain - troop combat

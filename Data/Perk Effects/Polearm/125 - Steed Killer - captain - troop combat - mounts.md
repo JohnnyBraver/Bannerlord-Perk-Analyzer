@@ -16,6 +16,7 @@ trigger_condition:
   - "party composition"
 effect_tags:
   - "weapons"
+  - "mounts"
 bonus: 0.30000001
 increment_type: "add_factor"
 increment_value: 1

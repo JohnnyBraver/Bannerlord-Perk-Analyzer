@@ -14,6 +14,7 @@ perk_type: "gold economy"
 perk_subtype: "wages"
 trigger_condition:
   - "governed settlement"
+  - "party composition"
 effect_tags:
   - "defense"
   - "garrison"

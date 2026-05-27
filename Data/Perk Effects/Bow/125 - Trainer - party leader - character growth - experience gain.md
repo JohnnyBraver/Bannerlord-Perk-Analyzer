@@ -13,7 +13,8 @@ role_value: 5
 perk_type: "character growth"
 perk_subtype: "experience gain"
 trigger_condition: []
-effect_tags: []
+effect_tags:
+  - "weapons"
 bonus: 6
 increment_type: "add"
 increment_value: 0

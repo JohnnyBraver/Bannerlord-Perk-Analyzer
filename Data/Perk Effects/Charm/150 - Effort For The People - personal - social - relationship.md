@@ -29,8 +29,8 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
-classification_review: ""
+notes: "Hideout-clear condition is not represented by current trigger_condition taxonomy."
+classification_review: "Composite effect spans relationship and town loyalty; single classification is partial."
 ---
 
 # Effort For The People - personal - social

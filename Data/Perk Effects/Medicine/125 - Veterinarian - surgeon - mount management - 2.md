@@ -14,6 +14,7 @@ perk_type: "mount management"
 perk_subtype: ""
 trigger_condition:
   - "party composition"
+  - "after battle"
 effect_tags:
   - "mounts"
 bonus: 0.5

@@ -15,6 +15,7 @@ perk_subtype: "skill bonus"
 trigger_condition:
   - "party composition"
 effect_tags:
+  - "weapons"
   - "mounts"
 bonus: 30
 increment_type: "add"

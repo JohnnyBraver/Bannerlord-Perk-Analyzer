@@ -12,8 +12,7 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "movement speed"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags:
   - "combat"
 bonus: 0.05

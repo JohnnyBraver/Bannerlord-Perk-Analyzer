@@ -12,7 +12,8 @@ role: "quartermaster"
 role_value: 10
 perk_type: "gold economy"
 perk_subtype: "trade penalty reduction"
-trigger_condition: []
+trigger_condition:
+  - "party composition"
 effect_tags:
   - "mounts"
   - "trade"

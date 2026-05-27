@@ -17,8 +17,8 @@ trigger_condition:
   - "governed settlement"
 effect_tags:
   - "defense"
-  - "fortifications"
   - "projects"
+  - "build speed"
 bonus: 0.25
 increment_type: "add_factor"
 increment_value: 1

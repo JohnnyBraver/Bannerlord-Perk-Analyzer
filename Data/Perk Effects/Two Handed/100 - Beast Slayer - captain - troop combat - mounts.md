@@ -12,9 +12,9 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "mounts"
-trigger_condition:
-  - "party composition"
-effect_tags: []
+trigger_condition: []
+effect_tags:
+  - "mounts"
 bonus: 0.1
 increment_type: "add_factor"
 increment_value: 1

@@ -13,9 +13,9 @@ role_value: 13
 perk_type: "troop combat"
 perk_subtype: "morale damage"
 trigger_condition:
-  - "party composition"
   - "on kill"
-effect_tags: []
+effect_tags:
+  - "weapons"
 bonus: 0.25
 increment_type: "add_factor"
 increment_value: 1

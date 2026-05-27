@@ -14,7 +14,8 @@ perk_type: "gold economy"
 perk_subtype: "recruitment cost"
 trigger_condition:
   - "party composition"
-effect_tags: []
+effect_tags:
+  - "recruitment cost"
 bonus: -0.2
 increment_type: "add_factor"
 increment_value: 1

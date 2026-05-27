@@ -14,6 +14,7 @@ perk_type: "settlement governance"
 perk_subtype: "build speed"
 trigger_condition:
   - "project active"
+  - "governed settlement"
 effect_tags:
   - "projects"
 bonus: 0.30000001

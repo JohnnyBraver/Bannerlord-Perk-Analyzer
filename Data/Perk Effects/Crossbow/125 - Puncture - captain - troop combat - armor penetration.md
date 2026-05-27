@@ -12,9 +12,9 @@ role: "captain"
 role_value: 13
 perk_type: "troop combat"
 perk_subtype: "armor penetration"
-trigger_condition:
-  - "party composition"
-effect_tags: []
+trigger_condition: []
+effect_tags:
+  - "weapons"
 bonus: 0.05
 increment_type: "add_factor"
 increment_value: 1

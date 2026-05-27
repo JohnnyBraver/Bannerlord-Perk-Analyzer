@@ -14,7 +14,8 @@ perk_type: "movement"
 perk_subtype: "mount performance"
 trigger_condition:
   - "over skill cap"
-effect_tags: []
+effect_tags:
+  - "mounts"
 bonus: 0.30000001
 increment_type: "add"
 increment_value: 0
@@ -31,7 +32,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: "Composite effect spans multiple classification categories."
+classification_review: "Composite effect spans mount maneuvering and charge damage; subtype captures mount performance only."
 ---
 
 # The Way Of The Saddle - personal - movement

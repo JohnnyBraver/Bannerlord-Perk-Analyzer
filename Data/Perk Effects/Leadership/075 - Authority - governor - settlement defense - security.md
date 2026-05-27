@@ -12,7 +12,8 @@ role: "governor"
 role_value: 3
 perk_type: "settlement defense"
 perk_subtype: "security"
-trigger_condition: []
+trigger_condition:
+  - "governed settlement"
 effect_tags:
   - "defense"
   - "garrison"

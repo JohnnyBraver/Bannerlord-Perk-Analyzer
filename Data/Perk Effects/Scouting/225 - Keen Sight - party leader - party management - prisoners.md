@@ -15,6 +15,7 @@ perk_subtype: "prisoners"
 trigger_condition: []
 effect_tags:
   - "hero prisoners"
+  - "prisoner escape"
 bonus: -0.5
 increment_type: "add_factor"
 increment_value: 1

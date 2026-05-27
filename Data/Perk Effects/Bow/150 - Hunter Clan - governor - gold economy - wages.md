@@ -17,7 +17,6 @@ trigger_condition:
 effect_tags:
   - "defense"
   - "garrison"
-  - "fortifications"
 bonus: -0.15000001
 increment_type: "add_factor"
 increment_value: 1

@@ -15,7 +15,6 @@ perk_subtype: "wages"
 trigger_condition:
   - "governed settlement"
 effect_tags:
-  - "defense"
   - "garrison"
 bonus: -0.05
 increment_type: "add_factor"

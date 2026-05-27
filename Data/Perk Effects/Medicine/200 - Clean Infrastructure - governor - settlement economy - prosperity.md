@@ -14,6 +14,7 @@ perk_type: "settlement economy"
 perk_subtype: "prosperity"
 trigger_condition:
   - "governed settlement"
+  - "project active"
 effect_tags:
   - "projects"
 bonus: 1

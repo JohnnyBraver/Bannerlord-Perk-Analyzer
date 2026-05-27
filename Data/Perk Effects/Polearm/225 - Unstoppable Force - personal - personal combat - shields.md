@@ -13,7 +13,9 @@ role_value: 12
 perk_type: "personal combat"
 perk_subtype: "shields"
 trigger_condition: []
-effect_tags: []
+effect_tags:
+  - "weapons"
+  - "mounts"
 bonus: 3
 increment_type: "add_factor"
 increment_value: 1
@@ -27,9 +29,9 @@ source: "TaleWorlds.CampaignSystem.dll DefaultPerks.InitializeAll"
 source_version: "1.4.5"
 needs_review: false
 functioning: null
-perk_wrong: false
+perk_wrong: true
 bug_note: ""
-notes: ""
+notes: "Description says triple damage to shields, but bonus 3 with add_factor appears to apply +300% damage, or 4x total, unless this path treats the factor as a direct multiplier."
 classification_review: ""
 ---
 

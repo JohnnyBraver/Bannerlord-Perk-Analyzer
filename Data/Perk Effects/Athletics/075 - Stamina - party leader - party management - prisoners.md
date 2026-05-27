@@ -31,8 +31,8 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
-classification_review: ""
+notes: "Bonus stores +5 prisoner limit; -10% escape chance is present in the description but not represented by the bonus field."
+classification_review: "Composite effect spans prisoner limit and prisoner escape; single subtype is partial."
 ---
 
 # Stamina - party leader - party management

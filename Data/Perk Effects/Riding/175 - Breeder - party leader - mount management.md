@@ -13,7 +13,8 @@ role_value: 5
 perk_type: "mount management"
 perk_subtype: ""
 trigger_condition: []
-effect_tags: []
+effect_tags:
+  - "mounts"
 bonus: 0.01
 increment_type: "add_factor"
 increment_value: 1

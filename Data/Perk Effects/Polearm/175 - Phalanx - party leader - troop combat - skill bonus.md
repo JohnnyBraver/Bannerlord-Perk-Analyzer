@@ -12,8 +12,7 @@ role: "party leader"
 role_value: 5
 perk_type: "troop combat"
 perk_subtype: "skill bonus"
-trigger_condition:
-  - "party composition"
+trigger_condition: []
 effect_tags:
   - "weapons"
 bonus: 30
@@ -32,7 +31,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: ""
+classification_review: "Shield-wall formation condition is not represented by current trigger_condition taxonomy."
 ---
 
 # Phalanx - party leader - troop combat

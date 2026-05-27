@@ -30,7 +30,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: "Numeric utility effect may deserve a more specific perk_type."
+classification_review: "Armor-weight reduction has no dedicated taxonomy bucket; utility is a fallback."
 ---
 
 # Form Fitting Armor - personal - utility

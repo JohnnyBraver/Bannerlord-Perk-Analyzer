@@ -17,7 +17,6 @@ trigger_condition:
 effect_tags:
   - "defense"
   - "garrison"
-  - "fortifications"
 bonus: -0.2
 increment_type: "add_factor"
 increment_value: 1
@@ -33,7 +32,7 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
+notes: "Applies only to governed castles; no dedicated castle-only trigger condition exists."
 classification_review: ""
 ---
 

@@ -14,7 +14,8 @@ perk_type: "personal combat"
 perk_subtype: "damage increase"
 trigger_condition:
   - "over skill cap"
-effect_tags: []
+effect_tags:
+  - "weapons"
 bonus: 0.005
 increment_type: "add_factor"
 increment_value: 1

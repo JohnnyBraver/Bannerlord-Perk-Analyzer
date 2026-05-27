@@ -29,8 +29,8 @@ needs_review: false
 functioning: null
 perk_wrong: false
 bug_note: ""
-notes: ""
-classification_review: "Composite effect spans multiple classification categories."
+notes: "Bonus stores the -50% fall-damage component; +100% kick damage is not represented by the bonus field."
+classification_review: "Composite effect spans fall damage reduction and kick damage; subtype captures fall damage only."
 ---
 
 # Strong Legs - personal - personal combat

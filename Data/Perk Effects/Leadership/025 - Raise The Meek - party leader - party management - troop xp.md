@@ -12,7 +12,8 @@ role: "party leader"
 role_value: 5
 perk_type: "party management"
 perk_subtype: "troop xp"
-trigger_condition: []
+trigger_condition:
+  - "party composition"
 effect_tags: []
 bonus: 4
 increment_type: "add"

@@ -14,7 +14,6 @@ perk_type: "party management"
 perk_subtype: "troop xp"
 trigger_condition:
   - "after battle"
-  - "party composition"
 effect_tags: []
 bonus: 0.05
 increment_type: "add_factor"

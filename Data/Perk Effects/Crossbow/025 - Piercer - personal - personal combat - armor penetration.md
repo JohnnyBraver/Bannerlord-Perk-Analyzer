@@ -13,7 +13,8 @@ role_value: 12
 perk_type: "personal combat"
 perk_subtype: "armor penetration"
 trigger_condition: []
-effect_tags: []
+effect_tags:
+  - "weapons"
 bonus: 20
 increment_type: "add"
 increment_value: 0

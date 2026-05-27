@@ -31,7 +31,7 @@ functioning: null
 perk_wrong: false
 bug_note: ""
 notes: ""
-classification_review: "Composite effect spans multiple classification categories."
+classification_review: "Composite effect spans morale and renown; single classification is partial."
 ---
 
 # Long Reach - party leader - party management

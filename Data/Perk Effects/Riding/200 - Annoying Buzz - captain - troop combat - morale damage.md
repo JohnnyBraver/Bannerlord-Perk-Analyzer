@@ -13,7 +13,6 @@ role_value: 13
 perk_type: "troop combat"
 perk_subtype: "morale damage"
 trigger_condition:
-  - "party composition"
   - "on kill"
 effect_tags:
   - "mounts"

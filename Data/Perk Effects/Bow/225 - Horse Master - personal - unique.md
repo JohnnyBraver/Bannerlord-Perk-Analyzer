@@ -15,6 +15,7 @@ perk_subtype: ""
 trigger_condition:
   - "while mounted"
 effect_tags:
+  - "weapons"
   - "mounts"
 bonus: 0
 increment_type: "increment_-1"
