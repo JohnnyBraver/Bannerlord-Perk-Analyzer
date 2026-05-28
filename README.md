@@ -51,7 +51,9 @@ Character creation choices can be applied by option id or title after generating
 python .\src\bannerlord_perk_analyzer\build_generator.py --target "Bow:275" --creation-choice "empire_hunter_option" --creation-choice "childhood_detail_option" --creation-choice "age_selection_adult_option"
 ```
 
-Fixed character creation choices add their listed starting attributes/focus to the base plan. Sandbox age choices add flexible unspent focus and attribute points, so those reduce the required level-up budget without being tied to a specific skill.
+Fixed character creation choices add their listed starting attributes/focus to the base plan. Sandbox age choices add flexible unspent focus and attribute points, so those reduce the required level-up budget without being tied to a specific skill. Story campaign does not use the sandbox age menu; its final escape choice replaces age 20 by fixing that +1 attribute/+2 focus budget to one attribute and two skills, with +10 starting levels in those two skills.
+
+Campaign family members are separate from those player-choice effects. Their culture, names, appearance, equipment, and home settlement can be set during story character creation, but their attribute/focus/skill distribution comes from fixed StoryMode hero templates plus the normal HeroCreator/HeroDeveloper initialization flow.
 
 ## XP Extraction
 
@@ -85,7 +87,7 @@ Generate the character creation option map:
 python .\src\bannerlord_perk_analyzer\extract_character_creation.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
 ```
 
-This writes `Data/generated/character-creation-options.json` and `Data/generated/reports/character-creation-options.md`, including family/background, childhood, education, youth, adulthood, sandbox age, and story-mode escape choices.
+This writes `Data/generated/character-creation-options.json` and `Data/generated/reports/character-creation-options.md`, including family/background, childhood, education, youth, adulthood, sandbox age, story-mode escape choices, campaign family mechanical stats, and the HeroCreator initialization flow that applies to family members.
 
 For focused IL debugging, call the extractor directly:
 
