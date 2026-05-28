@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -69,6 +70,7 @@ FORMULA_SCANS = [
             "GetSkillLevelChange",
             "GetXpAmountForSkillLevelChange",
             "GetXpRequiredForLevel",
+            "GetXpMultiplier",
             "SkillsRequiredForLevel",
         ],
         notes=[
@@ -313,6 +315,74 @@ def method_anchor(method: dict[str, Any] | None) -> str:
     return f"`{method.get('type')}.{method.get('method')}`"
 
 
+def type_short_name(type_name: str) -> str:
+    return type_name.split("+")[-1].split(".")[-1]
+
+
+def issue_title(method: dict[str, Any]) -> str:
+    name = type_short_name(str(method.get("type", "")))
+    name = re.sub(r"Issue(Quest)?$", "", name)
+    name = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", name)
+    name = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1 \2", name)
+    return name.strip() or type_short_name(str(method.get("type", "")))
+
+
+def il_numeric_operands(method: dict[str, Any]) -> list[float]:
+    values: list[float] = []
+    for line in method.get("il", []):
+        match = re.search(r"\bldc\.(?:r4|r8|i4(?:\.s)?)\s+(-?\d+(?:\.\d+)?)\b", str(line))
+        if match:
+            raw_value = match.group(1)
+            value = float(raw_value) if "." in raw_value else int(raw_value)
+            values.append(value)
+    return values
+
+
+def companion_issue_rewards(payload: dict[str, Any]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for method in payload.get("methods", []):
+        if method.get("method") != "get_CompanionSkillRewardXP":
+            continue
+        if str(method.get("type", "")).endswith(".IssueBase"):
+            continue
+        values = il_numeric_operands(method)
+        if len(values) < 2:
+            constants = method.get("numeric_constants", [])
+            if len(constants) < 2:
+                continue
+            values = list(constants[:2])
+        base = values[0]
+        scale = values[1]
+        rows.append(
+            {
+                "issue": issue_title(method),
+                "method": method,
+                "base": base,
+                "scale": scale,
+                "at_difficulty_1": base + scale,
+            }
+        )
+    return sorted(rows, key=lambda row: (-float(row["at_difficulty_1"]), row["issue"]))
+
+
+def companion_issue_table(rows: list[dict[str, Any]], limit: int | None = None) -> list[str]:
+    shown = rows if limit is None else rows[:limit]
+    lines = [
+        "| Issue | Formula | At difficulty 1 |",
+        "| --- | --- | ---: |",
+    ]
+    for row in shown:
+        lines.append(
+            "| {issue} | `{base} + {scale} * difficulty` | {total} |".format(
+                issue=table_escape(row["issue"]),
+                base=format_number(row["base"]),
+                scale=format_number(row["scale"]),
+                total=format_number(row["at_difficulty_1"]),
+            )
+        )
+    return lines
+
+
 def write_formula_report(payload: dict[str, Any], path: Path, workspace: Path, json_output: Path) -> None:
     get_xp_from_hit = find_method(payload, "DefaultCombatXpModel", "GetXpFromHit")
     get_shoot_difficulty = find_method(payload, ".Mission", "GetShootDifficulty")
@@ -322,6 +392,7 @@ def write_formula_report(payload: dict[str, Any], path: Path, workspace: Path, j
     troop_reward = find_method(payload, "DefaultPartyTrainingModel", "GetXpReward")
     healing = find_method(payload, "DefaultPartyHealingModel", "GetSkillXpFromHealingTroop")
     add_skill_xp = find_method(payload, "HeroDeveloper", "AddSkillXp")
+    generic_xp_multiplier = find_method(payload, "DefaultGenericXpModel", "GetXpMultiplier")
     learning_limit = find_method(payload, "DefaultCharacterDevelopmentModel", "CalculateLearningLimit")
     learning_rate = find_method(payload, "DefaultCharacterDevelopmentModel", "CalculateLearningRate")
     party_shared_xp = find_method(payload, "MobilePartyHelper", "PartyAddSharedXp")
@@ -346,6 +417,7 @@ def write_formula_report(payload: dict[str, Any], path: Path, workspace: Path, j
     persuasion = find_method(payload, "DefaultPersuasionModel", "GetSkillXpFromPersuasion")
     workshop = find_method(payload, "DefaultWorkshopModel", "GetTradeXpPerWarehouseProduction")
     charm_relation = find_method(payload, "DefaultDiplomacyModel", "GetCharmExperienceFromRelationGain")
+    companion_rewards = companion_issue_rewards(payload)
 
     lines = [
         "# Bannerlord XP Formula Extraction",
@@ -493,6 +565,19 @@ def write_formula_report(payload: dict[str, Any], path: Path, workspace: Path, j
         f"Alley constants found: `{constants_text(alley_initial)} | {constants_text(alley_daily_main)} | {constants_text(alley_daily_assigned)} | {constants_text(alley_defense)}`",
         f"Activity constants found: `{constants_text(tournament)} | {constants_text(hideout_ghost)} | {constants_text(hideout_end)} | {constants_text(persuasion)} | {constants_text(workshop)} | {constants_text(charm_relation)}`",
         "",
+        "### Companion XP",
+        "",
+        f"Sources: {method_anchor(generic_xp_multiplier)} and `{len(companion_rewards)}` issue `CompanionSkillRewardXP` getters",
+        "",
+        "```text",
+        "genericXpMultiplier = 1.2 for player companions if the main hero has Charm.NaturalLeader, otherwise 1.0",
+        "companionIssueRewardXp = int(base + scale * IssueDifficultyMultiplier)",
+        "```",
+        "",
+        f"Generic XP constants found: `{constants_text(generic_xp_multiplier)}`",
+        "",
+        *companion_issue_table(companion_rewards),
+        "",
         "## Scan Groups",
         "",
     ]
@@ -538,6 +623,7 @@ def write_formula_report(payload: dict[str, Any], path: Path, workspace: Path, j
 
 
 def write_insights_report(payload: dict[str, Any], path: Path, workspace: Path, formula_report_path: Path) -> None:
+    companion_rewards = companion_issue_rewards(payload)
     lines = [
         "# Bannerlord XP Insights",
         "",
@@ -553,6 +639,7 @@ def write_insights_report(payload: dict[str, Any], path: Path, workspace: Path, 
         "- Ranged difficulty is a real XP lever. Distance helps, lateral movement helps, and headshots multiply difficulty by `1.2`.",
         "- Riding XP from mounted actions is separate from weapon XP, so mounted ranged play can look like it pays unusually well even when the weapon XP formula is unchanged.",
         "- Learning rate can dominate everything. A high-value action at zero learning rate is still effectively wasted for that skill.",
+        "- Player companions can get a generic `1.2x` XP multiplier from the main hero's Charm `NaturalLeader` perk.",
         "- Troop XP is capacity-based. Stacks that still need XP toward an upgrade can absorb shared XP; stacks that are already capped for upgrades stop being useful sinks.",
         "",
         "## Combat Tips",
@@ -657,11 +744,35 @@ def write_insights_report(payload: dict[str, Any], path: Path, workspace: Path, 
         "- Warehouse production Trade XP is `0.1 * productionBaseValue`.",
         "- Charm relation XP uses relation change times a branch multiplier. The multiplier branches need friendlier naming, but the constants suggest leaders and notables can matter a lot.",
         "",
+        "## Companion XP",
+        "",
+        "Companion XP shows up in two places in the extraction:",
+        "",
+        "```text",
+        "genericXpMultiplier = 1.2 if hero is a player companion and main hero has Charm.NaturalLeader, otherwise 1.0",
+        "issueCompanionSkillRewardXp = int(base + scale * IssueDifficultyMultiplier)",
+        "```",
+        "",
+        "- The `NaturalLeader` multiplier is broad because it comes from `DefaultGenericXpModel.GetXpMultiplier`, which sits inside the generic hero skill XP path.",
+        "- Issue companion rewards are formulaic. Most are a base value plus a difficulty-scaled value; harder issue variants should therefore pay more companion skill XP.",
+        "- The table below ranks extracted issue rewards by their value when `IssueDifficultyMultiplier` is `1`. That is a comparison point, not a guarantee that every issue always reaches that multiplier.",
+        "",
+        *companion_issue_table(companion_rewards, limit=12),
+        "",
+        "## More Non-Combat XP Notes",
+        "",
+        "- Healing has a tiny model constant: `GetSkillXpFromHealingTroop` returns `5`. The waiting/healing hook still needs friendlier decoding to say exactly how often that is applied.",
+        "- Board games grant skill XP through `OnBoardGameWonAgainstLord`; the extracted constants are `20`, `50`, and `100`, but the win/opponent branches need naming.",
+        "- Upgrading troops grants personal skill XP through `GetSkillXpFromUpgradingTroops`, which returns `10`; the calling hook also carries `0.025`, `0.05`, and `15` constants.",
+        "- Discarding or donating items is connected to shared party/troop XP. `DefaultItemDiscardModel.GetXpBonusForDiscardingItem` has tier-like constants `35`, `75`, `150`, `250`, and `300`, but this deserves a focused read before turning it into advice.",
+        "- Personal, party, and settlement skill exercise hooks are present as XP sinks. They tell us there are non-combat skill-use pathways, but the event-specific trigger logic is still mostly in candidate form.",
+        "",
         "## Things Worth Checking Next",
         "",
         "- Decode the exact branch names in `GetCharmExperienceFromRelationGain` so the charm multipliers become player-readable.",
+        "- Decode the board-game, healing-over-time, and troop-upgrade XP hooks into named branches.",
         "- Hand-read crafting-order bonus and penalty checks; the IL shows a base, tier factor, and halving path, but the condition names matter.",
-        "- Check whether discard/donation XP candidates need a dedicated insight section once the scan query is widened or hand-read.",
+        "- Turn discard/donation XP into a dedicated section once the item-tier/value branches are decoded.",
         "- Connect perk effects to these formulas, especially troop training perks, battle XP perks, smithing learning perks, and ranged shot-difficulty helpers.",
         "",
         "## Source",

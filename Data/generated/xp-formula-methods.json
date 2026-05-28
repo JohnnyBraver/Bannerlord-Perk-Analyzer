@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T21:17:10.303640+03:00",
+  "generated_at": "2026-05-27T21:57:10.423413+03:00",
   "include_il": true,
   "scans": [
     {
@@ -67,6 +67,7 @@
         "getskilllevelchange",
         "getxpamountforskilllevelchange",
         "getxprequiredforlevel",
+        "getxpmultiplier",
         "skillsrequiredforlevel"
       ],
       "assemblies_scanned": [
@@ -74,7 +75,7 @@
       ],
       "load_errors": [],
       "methods_scanned": 27184,
-      "methods_matched": 61,
+      "methods_matched": 65,
       "method_keys": [
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.AgentOrigins.SimpleAgentOrigin|TaleWorlds.Core.IAgentOriginBase.OnScoreHit|System.Void TaleWorlds.CampaignSystem.AgentOrigins.SimpleAgentOrigin.TaleWorlds.Core.IAgentOriginBase.OnScoreHit(TaleWorlds.Core.BasicCharacterObject victim, TaleWorlds.Core.BasicCharacterObject formationCaptain, System.Int32 damage, System.Boolean isFatal, System.Boolean isTeamKill, TaleWorlds.Core.WeaponComponentData attackerWeapon)",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior|CreateCraftedWeaponInCraftingOrderMode|TaleWorlds.Core.ItemObject TaleWorlds.CampaignSystem.CampaignBehaviors.CraftingCampaignBehavior.CreateCraftedWeaponInCraftingOrderMode(TaleWorlds.CampaignSystem.Hero crafterHero, TaleWorlds.CampaignSystem.CraftingSystem.CraftingOrder craftingOrder, TaleWorlds.Core.WeaponDesign weaponDesign)",
@@ -120,6 +121,8 @@
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel|GetXpAmountForSkillLevelChange|System.Int32 TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.GetXpAmountForSkillLevelChange(TaleWorlds.CampaignSystem.Hero hero, TaleWorlds.Core.SkillObject skill, System.Int32 skillLevelChange)",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel|GetXpRequiredForSkillLevel|System.Int32 TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.GetXpRequiredForSkillLevel(System.Int32 skillLevel)",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel|SkillsRequiredForLevel|System.Int32 TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.SkillsRequiredForLevel(System.Int32 level)",
+        "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.ComponentInterfaces.CombatXpModel|GetXpMultiplierFromShotDifficulty|System.Single TaleWorlds.CampaignSystem.ComponentInterfaces.CombatXpModel.GetXpMultiplierFromShotDifficulty(System.Single shotDifficulty)",
+        "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.ComponentInterfaces.GenericXpModel|GetXpMultiplier|System.Single TaleWorlds.CampaignSystem.ComponentInterfaces.GenericXpModel.GetXpMultiplier(TaleWorlds.CampaignSystem.Hero hero)",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel|.ctor|void TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel..ctor()",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel|CalculateLearningLimit|TaleWorlds.CampaignSystem.ExplainedNumber TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.CalculateLearningLimit(TaleWorlds.Core.IReadOnlyPropertyOwner<TaleWorlds.Core.CharacterAttribute> characterAttributes, System.Int32 focusValue, TaleWorlds.Core.SkillObject skill, System.Boolean includeDescriptions)",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel|CalculateLearningRate|TaleWorlds.CampaignSystem.ExplainedNumber TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.CalculateLearningRate(TaleWorlds.Core.IReadOnlyPropertyOwner<TaleWorlds.Core.CharacterAttribute> characterAttributes, System.Int32 focusValue, System.Int32 skillValue, TaleWorlds.Core.SkillObject skill, System.Boolean includeDescriptions)",
@@ -131,6 +134,8 @@
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel|InitializeSkillsRequiredForLevel|System.Void TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.InitializeSkillsRequiredForLevel()",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel|InitializeXpRequiredForSkillLevel|System.Void TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.InitializeXpRequiredForSkillLevel()",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel|SkillsRequiredForLevel|System.Int32 TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.SkillsRequiredForLevel(System.Int32 level)",
+        "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultCombatXpModel|GetXpMultiplierFromShotDifficulty|System.Single TaleWorlds.CampaignSystem.GameComponents.DefaultCombatXpModel.GetXpMultiplierFromShotDifficulty(System.Single shotDifficulty)",
+        "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.GameComponents.DefaultGenericXpModel|GetXpMultiplier|System.Single TaleWorlds.CampaignSystem.GameComponents.DefaultGenericXpModel.GetXpMultiplier(TaleWorlds.CampaignSystem.Hero hero)",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.Hero|AddSkillXp|System.Void TaleWorlds.CampaignSystem.Hero.AddSkillXp(TaleWorlds.Core.SkillObject skill, System.Single xpAmount)",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.Incidents.IncidentEffect+<>c__DisplayClass17_0|<SkillChange>b__1|System.Collections.Generic.List<TaleWorlds.Localization.TextObject> TaleWorlds.CampaignSystem.Incidents.IncidentEffect+<>c__DisplayClass17_0.<SkillChange>b__1()",
         "TaleWorlds.CampaignSystem|TaleWorlds.CampaignSystem.Incidents.IncidentEffect+<>c__DisplayClass17_0|<SkillChange>b__2|System.Collections.Generic.List<TaleWorlds.Localization.TextObject> TaleWorlds.CampaignSystem.Incidents.IncidentEffect+<>c__DisplayClass17_0.<SkillChange>b__2(TaleWorlds.CampaignSystem.Incidents.IncidentEffect effect)",
@@ -366,7 +371,7 @@
       ]
     }
   ],
-  "methods_matched": 201,
+  "methods_matched": 203,
   "methods": [
     {
       "matched_queries": [
@@ -18174,7 +18179,8 @@
         "addskillxp",
         "gainrawxp",
         "getfocusfactor",
-        "getskilllevelchange"
+        "getskilllevelchange",
+        "getxpmultiplier"
       ],
       "assembly": "TaleWorlds.CampaignSystem",
       "assembly_path": "bin\\Win64_Shipping_Client\\TaleWorlds.CampaignSystem.dll",
@@ -19651,7 +19657,8 @@
       "il": [],
       "errors": [],
       "formula_scan_keys": [
-        "combat_hit_xp"
+        "combat_hit_xp",
+        "hero_progression"
       ]
     },
     {
@@ -19741,6 +19748,33 @@
       "errors": [],
       "formula_scan_keys": [
         "activity_xp"
+      ]
+    },
+    {
+      "matched_queries": [
+        "getxpmultiplier"
+      ],
+      "assembly": "TaleWorlds.CampaignSystem",
+      "assembly_path": "bin\\Win64_Shipping_Client\\TaleWorlds.CampaignSystem.dll",
+      "type": "TaleWorlds.CampaignSystem.ComponentInterfaces.GenericXpModel",
+      "method": "GetXpMultiplier",
+      "signature": "System.Single TaleWorlds.CampaignSystem.ComponentInterfaces.GenericXpModel.GetXpMultiplier(TaleWorlds.CampaignSystem.Hero hero)",
+      "visibility": "public",
+      "is_static": false,
+      "parameters": [
+        {
+          "name": "hero",
+          "type": "TaleWorlds.CampaignSystem.Hero"
+        }
+      ],
+      "il_bytes": 0,
+      "numeric_constants": [],
+      "string_literals": [],
+      "referenced_members": [],
+      "il": [],
+      "errors": [],
+      "formula_scan_keys": [
+        "hero_progression"
       ]
     },
     {
@@ -22027,7 +22061,8 @@
       ],
       "errors": [],
       "formula_scan_keys": [
-        "combat_hit_xp"
+        "combat_hit_xp",
+        "hero_progression"
       ]
     },
     {
@@ -22349,6 +22384,53 @@
       "errors": [],
       "formula_scan_keys": [
         "activity_xp"
+      ]
+    },
+    {
+      "matched_queries": [
+        "getxpmultiplier"
+      ],
+      "assembly": "TaleWorlds.CampaignSystem",
+      "assembly_path": "bin\\Win64_Shipping_Client\\TaleWorlds.CampaignSystem.dll",
+      "type": "TaleWorlds.CampaignSystem.GameComponents.DefaultGenericXpModel",
+      "method": "GetXpMultiplier",
+      "signature": "System.Single TaleWorlds.CampaignSystem.GameComponents.DefaultGenericXpModel.GetXpMultiplier(TaleWorlds.CampaignSystem.Hero hero)",
+      "visibility": "public",
+      "is_static": false,
+      "parameters": [
+        {
+          "name": "hero",
+          "type": "TaleWorlds.CampaignSystem.Hero"
+        }
+      ],
+      "il_bytes": 37,
+      "numeric_constants": [
+        1,
+        1.2000000476837158
+      ],
+      "string_literals": [],
+      "referenced_members": [
+        "TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Charm.get_NaturalLeader()",
+        "TaleWorlds.CampaignSystem.Hero.GetPerkValue(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)",
+        "TaleWorlds.CampaignSystem.Hero.get_IsPlayerCompanion()",
+        "TaleWorlds.CampaignSystem.Hero.get_MainHero()"
+      ],
+      "il": [
+        "IL_0000: ldarg.1",
+        "IL_0001: callvirt       TaleWorlds.CampaignSystem.Hero.get_IsPlayerCompanion()",
+        "IL_0006: brfalse.s      23",
+        "IL_0008: call           TaleWorlds.CampaignSystem.Hero.get_MainHero()",
+        "IL_000d: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Charm.get_NaturalLeader()",
+        "IL_0012: callvirt       TaleWorlds.CampaignSystem.Hero.GetPerkValue(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)",
+        "IL_0017: brfalse.s      6",
+        "IL_0019: ldc.r4         1.2",
+        "IL_001e: ret",
+        "IL_001f: ldc.r4         1",
+        "IL_0024: ret"
+      ],
+      "errors": [],
+      "formula_scan_keys": [
+        "hero_progression"
       ]
     },
     {

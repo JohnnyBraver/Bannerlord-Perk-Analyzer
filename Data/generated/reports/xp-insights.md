@@ -1,6 +1,6 @@
 # Bannerlord XP Insights
 
-Generated: 2026-05-27T21:17:10.303640+03:00
+Generated: 2026-05-27T21:57:10.423413+03:00
 
 This is the approachable companion to `Data/generated/reports/xp-formulas.md`. The formula report keeps the evidence trail; this guide turns the same findings into gameplay and analysis notes.
 
@@ -12,6 +12,7 @@ This is the approachable companion to `Data/generated/reports/xp-formulas.md`. T
 - Ranged difficulty is a real XP lever. Distance helps, lateral movement helps, and headshots multiply difficulty by `1.2`.
 - Riding XP from mounted actions is separate from weapon XP, so mounted ranged play can look like it pays unusually well even when the weapon XP formula is unchanged.
 - Learning rate can dominate everything. A high-value action at zero learning rate is still effectively wasted for that skill.
+- Player companions can get a generic `1.2x` XP multiplier from the main hero's Charm `NaturalLeader` perk.
 - Troop XP is capacity-based. Stacks that still need XP toward an upgrade can absorb shared XP; stacks that are already capped for upgrades stop being useful sinks.
 
 ## Combat Tips
@@ -116,11 +117,48 @@ smithingFreeBuildXp = round(0.02 * itemValue)
 - Warehouse production Trade XP is `0.1 * productionBaseValue`.
 - Charm relation XP uses relation change times a branch multiplier. The multiplier branches need friendlier naming, but the constants suggest leaders and notables can matter a lot.
 
+## Companion XP
+
+Companion XP shows up in two places in the extraction:
+
+```text
+genericXpMultiplier = 1.2 if hero is a player companion and main hero has Charm.NaturalLeader, otherwise 1.0
+issueCompanionSkillRewardXp = int(base + scale * IssueDifficultyMultiplier)
+```
+
+- The `NaturalLeader` multiplier is broad because it comes from `DefaultGenericXpModel.GetXpMultiplier`, which sits inside the generic hero skill XP path.
+- Issue companion rewards are formulaic. Most are a base value plus a difficulty-scaled value; harder issue variants should therefore pay more companion skill XP.
+- The table below ranks extracted issue rewards by their value when `IssueDifficultyMultiplier` is `1`. That is a comparison point, not a guarantee that every issue always reaches that multiplier.
+
+| Issue | Formula | At difficulty 1 |
+| --- | --- | ---: |
+| Gang Leader Needs To Offload Stolen Goods | `1000 + 1250 * difficulty` | 2250 |
+| Nearby Bandit Base | `1000 + 1250 * difficulty` | 2250 |
+| Artisan Cant Sell Products At A Fair Price | `400 + 1700 * difficulty` | 2100 |
+| Artisan Overpriced Goods | `400 + 1700 * difficulty` | 2100 |
+| Escort Merchant Caravan | `800 + 1000 * difficulty` | 1800 |
+| Extortion By Deserters | `800 + 1000 * difficulty` | 1800 |
+| Lesser Noble Revolt | `800 + 1000 * difficulty` | 1800 |
+| Merchant Army Of Poachers | `800 + 1000 * difficulty` | 1800 |
+| Snare The Wealthy | `800 + 1000 * difficulty` | 1800 |
+| Captured By Bounty Hunters | `750 + 1000 * difficulty` | 1750 |
+| Rival Gang Moving In | `750 + 1000 * difficulty` | 1750 |
+| Gang Leader Needs Weapons | `800 + 900 * difficulty` | 1700 |
+
+## More Non-Combat XP Notes
+
+- Healing has a tiny model constant: `GetSkillXpFromHealingTroop` returns `5`. The waiting/healing hook still needs friendlier decoding to say exactly how often that is applied.
+- Board games grant skill XP through `OnBoardGameWonAgainstLord`; the extracted constants are `20`, `50`, and `100`, but the win/opponent branches need naming.
+- Upgrading troops grants personal skill XP through `GetSkillXpFromUpgradingTroops`, which returns `10`; the calling hook also carries `0.025`, `0.05`, and `15` constants.
+- Discarding or donating items is connected to shared party/troop XP. `DefaultItemDiscardModel.GetXpBonusForDiscardingItem` has tier-like constants `35`, `75`, `150`, `250`, and `300`, but this deserves a focused read before turning it into advice.
+- Personal, party, and settlement skill exercise hooks are present as XP sinks. They tell us there are non-combat skill-use pathways, but the event-specific trigger logic is still mostly in candidate form.
+
 ## Things Worth Checking Next
 
 - Decode the exact branch names in `GetCharmExperienceFromRelationGain` so the charm multipliers become player-readable.
+- Decode the board-game, healing-over-time, and troop-upgrade XP hooks into named branches.
 - Hand-read crafting-order bonus and penalty checks; the IL shows a base, tier factor, and halving path, but the condition names matter.
-- Check whether discard/donation XP candidates need a dedicated insight section once the scan query is widened or hand-read.
+- Turn discard/donation XP into a dedicated section once the item-tier/value branches are decoded.
 - Connect perk effects to these formulas, especially troop training perks, battle XP perks, smithing learning perks, and ranged shot-difficulty helpers.
 
 ## Source

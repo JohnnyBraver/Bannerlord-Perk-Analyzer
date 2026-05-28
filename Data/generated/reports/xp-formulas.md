@@ -1,6 +1,6 @@
 # Bannerlord XP Formula Extraction
 
-Generated: 2026-05-27T21:17:10.303640+03:00
+Generated: 2026-05-27T21:57:10.423413+03:00
 
 This report is produced by `src/bannerlord_perk_analyzer/extract_xp_formulas.py`, which uses the local .NET extractor's `find-methods` command to search campaign, mission, and module assemblies for XP formula candidates.
 
@@ -143,6 +143,52 @@ charmRelationXp = round(relationChange * branchMultiplier), with branch multipli
 Alley constants found: `1500 | 40 | 200 | 6000`
 Activity constants found: `0.2, 0.4, 0.6, 0.8, 500 | 1000, 1400 | 225, 400, 700, 1000 | 0, 1, 5 | 0.1 | 1, 10, 20, 30`
 
+### Companion XP
+
+Sources: `TaleWorlds.CampaignSystem.GameComponents.DefaultGenericXpModel.GetXpMultiplier` and `32` issue `CompanionSkillRewardXP` getters
+
+```text
+genericXpMultiplier = 1.2 for player companions if the main hero has Charm.NaturalLeader, otherwise 1.0
+companionIssueRewardXp = int(base + scale * IssueDifficultyMultiplier)
+```
+
+Generic XP constants found: `1, 1.2`
+
+| Issue | Formula | At difficulty 1 |
+| --- | --- | ---: |
+| Gang Leader Needs To Offload Stolen Goods | `1000 + 1250 * difficulty` | 2250 |
+| Nearby Bandit Base | `1000 + 1250 * difficulty` | 2250 |
+| Artisan Cant Sell Products At A Fair Price | `400 + 1700 * difficulty` | 2100 |
+| Artisan Overpriced Goods | `400 + 1700 * difficulty` | 2100 |
+| Escort Merchant Caravan | `800 + 1000 * difficulty` | 1800 |
+| Extortion By Deserters | `800 + 1000 * difficulty` | 1800 |
+| Lesser Noble Revolt | `800 + 1000 * difficulty` | 1800 |
+| Merchant Army Of Poachers | `800 + 1000 * difficulty` | 1800 |
+| Snare The Wealthy | `800 + 1000 * difficulty` | 1800 |
+| Captured By Bounty Hunters | `750 + 1000 * difficulty` | 1750 |
+| Rival Gang Moving In | `750 + 1000 * difficulty` | 1750 |
+| Gang Leader Needs Weapons | `800 + 900 * difficulty` | 1700 |
+| Land Lord The Art Of The Trade | `900 + 800 * difficulty` | 1700 |
+| Lord Needs Garrison Troops | `800 + 900 * difficulty` | 1700 |
+| Landlord Needs Access To Village Commons | `700 + 900 * difficulty` | 1600 |
+| Prodigal Son | `700 + 900 * difficulty` | 1600 |
+| Notable Wants Daughter Found | `500 + 1000 * difficulty` | 1500 |
+| Rural Notable Inn And Out | `500 + 1000 * difficulty` | 1500 |
+| Smugglers | `500 + 1000 * difficulty` | 1500 |
+| Caravan Ambush | `600 + 800 * difficulty` | 1400 |
+| Merchant Needs Help With Outlaws | `600 + 800 * difficulty` | 1400 |
+| The Spy Party | `600 + 800 * difficulty` | 1400 |
+| Family Feud | `500 + 700 * difficulty` | 1200 |
+| Gang Leader Needs Recruits | `500 + 700 * difficulty` | 1200 |
+| Headman Needs Grain | `500 + 700 * difficulty` | 1200 |
+| Headman Needs To Deliver A Herd | `500 + 700 * difficulty` | 1200 |
+| Headman Village Needs Draught Animals | `500 + 700 * difficulty` | 1200 |
+| Land Lord Needs Manual Laborers | `500 + 700 * difficulty` | 1200 |
+| Landlord Training For Retainers | `500 + 700 * difficulty` | 1200 |
+| Lord Needs Horses | `500 + 700 * difficulty` | 1200 |
+| Village Needs Crafting Materials | `500 + 700 * difficulty` | 1200 |
+| Village Needs Tools | `500 + 700 * difficulty` | 1200 |
+
 ## Scan Groups
 
 ### Combat Hit, Kill, Shot, And Riding XP
@@ -179,9 +225,9 @@ Activity constants found: `0.2, 0.4, 0.6, 0.8, 500 | 1000, 1400 | 225, 400, 700,
 ### Hero Skill XP, Learning, And Level Progression
 
 - Captures the path from raw skill XP through learning-rate/focus scaling and skill/character level thresholds.
-- Queries: `addskillxp, gainrawxp, getfocusfactor, calculatelearninglimit, calculatelearningrate, initializexprequiredforskilllevel, getxprequiredforskilllevel, getskilllevelchange, getxpamountforskilllevelchange, getxprequiredforlevel, skillsrequiredforlevel`
+- Queries: `addskillxp, gainrawxp, getfocusfactor, calculatelearninglimit, calculatelearningrate, initializexprequiredforskilllevel, getxprequiredforskilllevel, getskilllevelchange, getxpamountforskilllevelchange, getxprequiredforlevel, getxpmultiplier, skillsrequiredforlevel`
 - Methods scanned: 27184
-- Methods matched in scan: 61
+- Methods matched in scan: 65
 
 | Method | Constants | IL bytes | Matched queries |
 | --- | --- | ---: | --- |
@@ -212,7 +258,7 @@ Activity constants found: `0.2, 0.4, 0.6, 0.8, 500 | 1000, 1400 | 225, 400, 700,
 | `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultSkillLevelingManager.OnTravelOnFoot` | 0.2, 1 | 27 | addskillxp |
 | `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultSkillLevelingManager.OnUpgradeTroops` | 0.025, 0.05, 15 | 94 | addskillxp |
 | `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultSkillLevelingManager.OnWarehouseProduction` |  | 37 | addskillxp |
-| `TaleWorlds.CampaignSystem.CharacterDevelopment.HeroDeveloper.AddSkillXp` | 0 | 142 | addskillxp, gainrawxp, getfocusfactor, getskilllevelchange |
+| `TaleWorlds.CampaignSystem.CharacterDevelopment.HeroDeveloper.AddSkillXp` | 0 | 142 | addskillxp, gainrawxp, getfocusfactor, getskilllevelchange, getxpmultiplier |
 | `TaleWorlds.CampaignSystem.CharacterDevelopment.HeroDeveloper.AfterLoad` | 0 | 281 | skillsrequiredforlevel |
 | `TaleWorlds.CampaignSystem.CharacterDevelopment.HeroDeveloper.ChangeSkillLevel` | 0, 1 | 144 | addskillxp, getxprequiredforskilllevel |
 | `TaleWorlds.CampaignSystem.CharacterDevelopment.HeroDeveloper.CheckLevel` | 0, 1 | 92 | getxprequiredforlevel |
@@ -229,6 +275,8 @@ Activity constants found: `0.2, 0.4, 0.6, 0.8, 500 | 1000, 1400 | 225, 400, 700,
 | `TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.GetXpAmountForSkillLevelChange` |  | 0 | getxpamountforskilllevelchange |
 | `TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.GetXpRequiredForSkillLevel` |  | 0 | getxprequiredforskilllevel |
 | `TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.SkillsRequiredForLevel` |  | 0 | skillsrequiredforlevel |
+| `TaleWorlds.CampaignSystem.ComponentInterfaces.CombatXpModel.GetXpMultiplierFromShotDifficulty` |  | 0 | getxpmultiplierfromshotdifficulty |
+| `TaleWorlds.CampaignSystem.ComponentInterfaces.GenericXpModel.GetXpMultiplier` |  | 0 | getxpmultiplier |
 | `TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel..ctor` | 63, 1024 | 48 | initializexprequiredforskilllevel, skillsrequiredforlevel |
 | `TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.CalculateLearningLimit` | 0, 1, 10, 30 | 150 | calculatelearninglimit |
 | `TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.CalculateLearningRate` | -1, 0, 0.1, 0.4, 1, 1.25 | 216 | calculatelearninglimit, calculatelearningrate |
@@ -240,6 +288,8 @@ Activity constants found: `0.2, 0.4, 0.6, 0.8, 500 | 1000, 1400 | 225, 400, 700,
 | `TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.InitializeSkillsRequiredForLevel` | 0, 1, 2, 5, 1000 | 71 | skillsrequiredforlevel |
 | `TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.InitializeXpRequiredForSkillLevel` | 0, 0.3, 1, 10, 30, 1024 | 117 | initializexprequiredforskilllevel |
 | `TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterDevelopmentModel.SkillsRequiredForLevel` | 62 | 35 | skillsrequiredforlevel |
+| `TaleWorlds.CampaignSystem.GameComponents.DefaultCombatXpModel.GetXpMultiplierFromShotDifficulty` | 0, 0.00001, 1, 2, 13.4, 14.4 | 49 | getxpmultiplierfromshotdifficulty |
+| `TaleWorlds.CampaignSystem.GameComponents.DefaultGenericXpModel.GetXpMultiplier` | 1, 1.2 | 37 | getxpmultiplier |
 | `TaleWorlds.CampaignSystem.Hero.AddSkillXp` | 1 | 21 | addskillxp |
 | `TaleWorlds.CampaignSystem.Incidents.IncidentEffect+<>c__DisplayClass17_0.<SkillChange>b__1` | 0, 1 | 208 | addskillxp, calculatelearningrate |
 | `TaleWorlds.CampaignSystem.Incidents.IncidentEffect+<>c__DisplayClass17_0.<SkillChange>b__2` | 0, 1, 100 | 233 | calculatelearningrate |
