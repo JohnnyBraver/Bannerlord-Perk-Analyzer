@@ -48,6 +48,135 @@ STAGE_ORDER = [
     "other",
 ]
 
+AVAILABILITY_BY_STAGE = {
+    "age": ["sandbox"],
+    "escape": ["campaign"],
+}
+
+POINT_ALLOCATION_BY_STAGE = {
+    "age": "sandbox_flexible_age_points",
+    "escape": "campaign_fixed_age_20_equivalent",
+}
+
+CAMPAIGN_FAMILY_MECHANICS = {
+    "choice_dependency": "not_initial_choice_dependent",
+    "summary": (
+        "Story campaign family attributes, focus, and skill values are not allocated from the player's "
+        "character creation choices. Family members are registered through HeroCreator.CreateBasicHero from "
+        "fixed StoryMode character objects. Creation menus can later change family culture, names, appearance, "
+        "equipment, and home settlement, but not their underlying template-driven stat source."
+    ),
+    "skill_initialization": (
+        "DefaultHeroCreationModel.GetDefaultSkillsForHero reads CharacterObject.GetDefaultCharacterSkills(). "
+        "For adult heroes it adds a random +5 to +9 to each nonzero template skill before the hero developer "
+        "derives level, focus, attributes, and perks from those skill values. Underage siblings defer this until "
+        "they pass the game's coming-of-age check."
+    ),
+    "attribute_focus_initialization": (
+        "HeroDeveloper.InitializeHeroDeveloper and DefaultCharacterDevelopmentModel distribute unspent focus "
+        "and attribute points toward skills that are over their current learning limits. This can vary slightly "
+        "with the random skill noise, but it is not driven by the selected family/background/escape options."
+    ),
+    "members": [
+        {
+            "member": "father",
+            "character_id": "main_hero_father",
+            "skill_template": "SkillSet.spc_cavalry_skills_rookie",
+        },
+        {
+            "member": "mother",
+            "character_id": "main_hero_mother",
+            "skill_template": "SkillSet.spc_matriarch_skills_rookie",
+        },
+        {
+            "member": "elder_brother",
+            "character_id": "tutorial_npc_brother",
+            "skill_template": "SkillSet.spc_cavalry_skills_rookie",
+        },
+        {
+            "member": "younger_brother",
+            "character_id": "storymode_little_brother",
+            "skill_template": "SkillSet.spc_cavalry_skills_rookie",
+        },
+        {
+            "member": "younger_sister",
+            "character_id": "storymode_little_sister",
+            "skill_template": "SkillSet.spc_cavalry_skills_rookie",
+        },
+    ],
+    "source_methods": [
+        "StoryModeHeroes.RegisterAll",
+        "HeroCreator.CreateBasicHero",
+        "HeroCreator.InitializeHeroFromSettings",
+        "StoryModeCharacterCreationCampaignBehavior.FinalizeParentsAndLittleSiblings",
+        "StoryModeCharacterCreationCampaignBehavior.ApplyCulture",
+        "StoryModeCharacterCreationCampaignBehavior.FinalizeMainHeroAndElderBrother",
+        "StoryModeHelpers.SetPlayerSiblingsSkillsIfNeeded",
+        "DefaultHeroCreationModel.GetDefaultSkillsForHero",
+        "HeroDeveloper.InitializeHeroDeveloper",
+    ],
+}
+
+HERO_CREATION_FLOW = {
+    "summary": (
+        "HeroCreation is the game's generic hero factory plus initializer. It creates or finds a Hero, builds "
+        "HeroInitializationArgs, then asks HeroCreationModel for defaults such as born settlement, culture, "
+        "traits, skills, body properties, and equipment."
+    ),
+    "family_entry": (
+        "StoryModeHeroes.RegisterAll calls HeroCreator.CreateBasicHero for the player's parents, elder brother, "
+        "younger brother, and younger sister. Parents are registered as not alive and StoryMode assigns their "
+        "birth/death days; siblings are registered alive. StoryMode then links siblings to the fixed mother and "
+        "father heroes. The elder brother gets ResetCharacterStats after that link; younger siblings defer skill "
+        "setup until the story rescue/load/coming-of-age helper sees they need it."
+    ),
+    "create_basic_hero": (
+        "CreateBasicHero first tries to find an existing hero by string id. If none exists, it asks "
+        "HeroCreationModel.GetBirthAndDeathDay for dates, creates a Hero from the exact CharacterObject, wraps "
+        "it in HeroInitializationArgs with isOffspring=false, and calls InitializeHeroFromSettings."
+    ),
+    "create_special_hero": (
+        "CreateSpecialHero is the dynamic NPC path: it clones the template CharacterObject, enables generated "
+        "first/full names, optionally sets born settlement, clan, and supporter clan, then uses the same "
+        "InitializeHeroFromSettings initializer. The campaign family path does not use this clone path."
+    ),
+    "initialize_steps": [
+        {
+            "step": "family_and_identity",
+            "detail": "Applies mother, father, gender, level, occupation, supporter clan, body build/weight, names, born settlement, clan, culture, and preferred formation from args or HeroCreationModel defaults.",
+        },
+        {
+            "step": "traits",
+            "detail": "Calls HeroCreationModel.GetTraitsForHero and writes the returned trait levels. For campaign family this is still model/template driven, not one of the player creation choices.",
+        },
+        {
+            "step": "skills",
+            "detail": "Calls HeroCreationModel.GetDefaultSkillsForHero and writes those skill values onto the hero. For adults this reads the character skill template and adds +5 to +9 noise to nonzero skills.",
+        },
+        {
+            "step": "developer",
+            "detail": "Initializes HeroDeveloper immediately for offspring, or for non-offspring heroes only when they are at or above the coming-of-age threshold. This derives level, attributes, focus, and perks from skill values.",
+        },
+        {
+            "step": "equipment",
+            "detail": "Assigns civilian and battle equipment from HeroCreationModel. Underage heroes get delivered-offspring/civilian-derived equipment; adults keep their current civilian and battle equipment.",
+        },
+    ],
+    "source_methods": [
+        "HeroCreator.CreateBasicHero",
+        "HeroCreator.CreateHero",
+        "HeroCreator.CreateSpecialHero",
+        "HeroCreator.InitializeHeroFromSettings",
+        "HeroInitializationArgs..ctor",
+        "DefaultHeroCreationModel.GetBirthAndDeathDay",
+        "DefaultHeroCreationModel.GetDefaultSkillsForHero",
+        "DefaultHeroCreationModel.GetTraitsForHero",
+        "DefaultHeroCreationModel.GetCulture",
+        "DefaultHeroCreationModel.GetCivilianEquipment",
+        "DefaultHeroCreationModel.GetBattleEquipment",
+    ],
+}
+
 CULTURE_PREFIXES = {
     "Aserai": "Aserai",
     "Battania": "Battania",
@@ -289,6 +418,32 @@ def stage_for_method(method: dict[str, Any]) -> str:
     return "other"
 
 
+def availability_for_stage(stage: str) -> list[str]:
+    return list(AVAILABILITY_BY_STAGE.get(stage, ["campaign", "sandbox"]))
+
+
+def point_allocation_for_stage(stage: str) -> str:
+    return POINT_ALLOCATION_BY_STAGE.get(stage, "fixed_choice")
+
+
+def notes_for_stage(stage: str) -> list[str]:
+    if stage == "age":
+        return [
+            "Sandbox-only age choice. These points are unspent and can be assigned freely.",
+            "Story campaign deletes the age selection menu and uses the escape choice instead.",
+        ]
+    if stage == "escape":
+        return [
+            "Campaign-only final escape choice. This replaces the sandbox age choice.",
+            "Mechanically this is the age-20 point budget allocated to one attribute and two skills, plus +10 starting levels in those two skills.",
+        ]
+    if stage == "family":
+        return [
+            "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice.",
+        ]
+    return []
+
+
 def culture_for_method(method: dict[str, Any]) -> str:
     name = str(method.get("method", ""))
     for prefix, culture in CULTURE_PREFIXES.items():
@@ -366,6 +521,7 @@ def extract_options(payload: dict[str, Any]) -> list[dict[str, Any]]:
 
         option_id = registration.get("option_id", slugify(method_choice_name(method_name)))
         choice_name = registration.get("title") or method_choice_name(method_name)
+        stage = stage_for_method(method)
         option = {
             "id": option_id,
             "option_id": option_id,
@@ -373,7 +529,10 @@ def extract_options(payload: dict[str, Any]) -> list[dict[str, Any]]:
             "title_raw": registration.get("title_raw", ""),
             "description": registration.get("description", ""),
             "description_raw": registration.get("description_raw", ""),
-            "stage": stage_for_method(method),
+            "stage": stage,
+            "availability": availability_for_stage(stage),
+            "point_allocation": point_allocation_for_stage(stage),
+            "notes": notes_for_stage(stage),
             "culture": culture_for_method(method),
             "assembly": method.get("assembly", ""),
             "type": method.get("type", ""),
@@ -468,6 +627,8 @@ def write_markdown(payload: dict[str, Any], options: list[dict[str, Any]], path:
         if option.get("effects", {}).get("attribute")
     )
     field_defaults = payload.get("character_creation_field_defaults", {})
+    family_mechanics = payload.get("campaign_family_mechanics", CAMPAIGN_FAMILY_MECHANICS)
+    hero_creation_flow = payload.get("hero_creation_flow", HERO_CREATION_FLOW)
 
     lines = [
         "# Bannerlord Character Creation Choices",
@@ -483,17 +644,23 @@ def write_markdown(payload: dict[str, Any], options: list[dict[str, Any]], path:
         f"+{field_defaults.get('_skillLevelToAdd', '?')} skill levels per affected skill, and "
         f"+{field_defaults.get('_attributeLevelToAdd', '?')} attribute level.",
         "- `Smithing` appears as `Crafting` in the compiled `DefaultSkills` API; this report displays the player-facing skill name.",
-        "- Age choices add unspent points rather than assigning them to a specific skill or attribute.",
-        "- Story-mode escape choices are included because they use the same character creation option effect path.",
+        "- Sandbox age choices add unspent points rather than assigning them to a specific skill or attribute.",
+        "- Story campaign deletes the sandbox age-selection menu. Its final escape choice replaces age 20: the same +1 attribute and +2 focus budget is fixed to one attribute and two skills, and it also adds +10 starting levels to those two skills.",
+        "- Story campaign also has a larger family context than sandbox. Those relatives do not inherit the player's character creation attribute/focus/skill choices; they use fixed StoryMode templates plus the normal HeroCreator/HeroDeveloper initialization flow.",
         "",
         "## Stage Summary",
         "",
-        "| Stage | Options |",
-        "| --- | ---: |",
+        "| Stage | Availability | Point allocation | Options |",
+        "| --- | --- | --- | ---: |",
     ]
     for stage in STAGE_ORDER:
         if stage_counts.get(stage):
-            lines.append(f"| {title_case_stage(stage)} | {stage_counts[stage]} |")
+            lines.append(
+                f"| {title_case_stage(stage)} | "
+                f"{', '.join(availability_for_stage(stage))} | "
+                f"{point_allocation_for_stage(stage)} | "
+                f"{stage_counts[stage]} |"
+            )
 
     lines += [
         "",
@@ -518,6 +685,51 @@ def write_markdown(payload: dict[str, Any], options: list[dict[str, Any]], path:
 
     lines += [
         "",
+        "## Campaign Family Mechanics",
+        "",
+        str(family_mechanics.get("summary", "")),
+        "",
+        str(family_mechanics.get("skill_initialization", "")),
+        "",
+        str(family_mechanics.get("attribute_focus_initialization", "")),
+        "",
+        "| Family member | Character id | Skill source |",
+        "| --- | --- | --- |",
+    ]
+    for member in family_mechanics.get("members", []):
+        lines.append(
+            "| {member} | `{character_id}` | `{skill_template}` |".format(
+                member=table_escape(split_words(str(member.get("member", ""))).title()),
+                character_id=table_escape(str(member.get("character_id", ""))),
+                skill_template=table_escape(str(member.get("skill_template", ""))),
+            )
+        )
+
+    lines += [
+        "",
+        "## Hero Creation Flow",
+        "",
+        str(hero_creation_flow.get("summary", "")),
+        "",
+        str(hero_creation_flow.get("family_entry", "")),
+        "",
+        str(hero_creation_flow.get("create_basic_hero", "")),
+        "",
+        str(hero_creation_flow.get("create_special_hero", "")),
+        "",
+        "| Step | Effect |",
+        "| --- | --- |",
+    ]
+    for step in hero_creation_flow.get("initialize_steps", []):
+        lines.append(
+            "| {step} | {detail} |".format(
+                step=table_escape(split_words(str(step.get("step", ""))).title()),
+                detail=table_escape(str(step.get("detail", ""))),
+            )
+        )
+
+    lines += [
+        "",
         "## Options",
         "",
     ]
@@ -531,12 +743,13 @@ def write_markdown(payload: dict[str, Any], options: list[dict[str, Any]], path:
             lines += [
                 f"### {title_case_stage(stage)}",
                 "",
-                "| Culture | Choice | Effects | Option id |",
-                "| --- | --- | --- | --- |",
+                "| Availability | Culture | Choice | Effects | Option id |",
+                "| --- | --- | --- | --- | --- |",
             ]
         culture = option.get("culture") or ""
         lines.append(
-            "| {culture} | {choice} | {effects} | `{option_id}` |".format(
+            "| {availability} | {culture} | {choice} | {effects} | `{option_id}` |".format(
+                availability=table_escape(", ".join(option.get("availability", []))),
                 culture=table_escape(culture),
                 choice=table_escape(option.get("title", "")),
                 effects=table_escape(effect_summary(option)),
@@ -572,6 +785,8 @@ def extract_character_creation(
     payload["character_creation_field_defaults"] = constructor_defaults(payload)
     payload["character_creation_options"] = options
     payload["character_creation_option_count"] = len(options)
+    payload["campaign_family_mechanics"] = CAMPAIGN_FAMILY_MECHANICS
+    payload["hero_creation_flow"] = HERO_CREATION_FLOW
     write_json(json_output, payload)
     write_markdown(payload, options, markdown_output, workspace, json_output)
     print(f"Character creation JSON written: {json_output}")

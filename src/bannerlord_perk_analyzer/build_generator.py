@@ -647,11 +647,12 @@ def render_text(plan: BuildPlan) -> str:
 
     if plan.creation_choices:
         lines.append("Character Creation")
-        lines.append("| Stage | Culture | Choice | Option id |")
-        lines.append("|---|---|---|---|")
+        lines.append("| Availability | Stage | Culture | Choice | Option id |")
+        lines.append("|---|---|---|---|---|")
         for choice in plan.creation_choices:
             lines.append(
-                f"| {choice.get('stage', '')} | {choice.get('culture', '')} | "
+                f"| {', '.join(choice.get('availability', []))} | "
+                f"{choice.get('stage', '')} | {choice.get('culture', '')} | "
                 f"{choice.get('title', '')} | `{choice.get('id', '')}` |"
             )
         starting_levels = {skill: value for skill, value in plan.starting_skill_levels.items() if value}
@@ -756,7 +757,15 @@ def selected_creation_choices(args: argparse.Namespace, workspace: Path) -> list
     if not args.creation_choice:
         return []
     options = load_character_creation_options(workspace)
-    return [resolve_creation_choice(spec, options) for spec in args.creation_choice]
+    choices = [resolve_creation_choice(spec, options) for spec in args.creation_choice]
+    has_sandbox_only = any(choice.get("availability") == ["sandbox"] for choice in choices)
+    has_campaign_only = any(choice.get("availability") == ["campaign"] for choice in choices)
+    if has_sandbox_only and has_campaign_only:
+        raise ValueError(
+            "Sandbox age choices and campaign escape choices are mutually exclusive. "
+            "Use an age_selection_* option for sandbox, or an escape_* option for story campaign."
+        )
+    return choices
 
 
 def apply_creation_choices(
