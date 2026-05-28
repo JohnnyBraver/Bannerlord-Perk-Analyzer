@@ -45,6 +45,14 @@ python .\src\bannerlord_perk_analyzer\build_generator.py --target "Bow:275" --ta
 
 The planner uses the game-wide skill limit and peak learning range formulas, 1 focus point per player level, and 1 attribute point per 4 player levels. Attribute points apply to every skill in their attribute group, so raising Control helps Bow, Crossbow, and Throwing together. By default it may add Athletics/Smithing enabler targets when Endurance attribute perks reduce the total point budget; pass `--no-auto-endurance` to use only the requested build targets.
 
+Character creation choices can be applied by option id or title after generating the character creation data:
+
+```text
+python .\src\bannerlord_perk_analyzer\build_generator.py --target "Bow:275" --creation-choice "empire_hunter_option" --creation-choice "childhood_detail_option" --creation-choice "age_selection_adult_option"
+```
+
+Fixed character creation choices add their listed starting attributes/focus to the base plan. Sandbox age choices add flexible unspent focus and attribute points, so those reduce the required level-up budget without being tied to a specific skill.
+
 ## XP Extraction
 
 Generate a first-pass map of XP award logic from the local compiled assemblies:
@@ -62,6 +70,22 @@ python .\src\bannerlord_perk_analyzer\extract_xp_formulas.py --game-root "E:\Ste
 ```
 
 This wraps the `.NET` extractor's method search in thematic scans for combat, hero progression, troop XP, crafting/discard XP, and activity XP. It writes `Data/generated/xp-formula-methods.json`, `Data/generated/reports/xp-formulas.md`, and the friendlier guide `Data/generated/reports/xp-insights.md`; pass `--no-il` for a smaller JSON file, or `--keep-temp` to preserve the per-scan intermediate JSON files.
+
+Generate a skill-by-skill source map for XP gain:
+
+```text
+python .\src\bannerlord_perk_analyzer\extract_skill_xp_sources.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
+```
+
+This writes `Data/generated/skill-xp-source-methods.json` and `Data/generated/reports/skill-xp-sources.md`, grouping direct and inferred XP sources under each player-facing skill.
+
+Generate the character creation option map:
+
+```text
+python .\src\bannerlord_perk_analyzer\extract_character_creation.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
+```
+
+This writes `Data/generated/character-creation-options.json` and `Data/generated/reports/character-creation-options.md`, including family/background, childhood, education, youth, adulthood, sandbox age, and story-mode escape choices.
 
 For focused IL debugging, call the extractor directly:
 
