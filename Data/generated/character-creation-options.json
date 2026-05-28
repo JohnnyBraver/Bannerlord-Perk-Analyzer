@@ -28882,6 +28882,14 @@
       "description": "Your father worked for a fitiwi, one of the strongmen who keep order in the poorer quarters of the oasis towns. He resolved disputes over land, dice and insults, imposing his authority with the fitiwi's traditional staff.",
       "description_raw": "{=6bUSbsKC}Your father worked for a fitiwi, one of the strongmen who keep order in the poorer quarters of the oasis towns. He resolved disputes over land, dice and insults, imposing his authority with the fitiwi's traditional staff.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Aserai",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -28924,6 +28932,14 @@
       "description": "Your family tilled the soil in one of the oases of the Nahasa and tended the palm orchards that produced the desert's famous dates. Your father was a member of the main foot levy of his tribe, fighting with his kinsmen under the emir's banner.",
       "description_raw": "{=5P0KqBAw}Your family tilled the soil in one of the oases of the Nahasa and tended the palm orchards that produced the desert's famous dates. Your father was a member of the main foot levy of his tribe, fighting with his kinsmen under the emir's banner.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Aserai",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -28966,6 +28982,14 @@
       "description": "Your family were part of a nomadic clan, crisscrossing the wastes between wadi beds and wells to feed their herds of goats and camels on the scraggly scrubs of the Nahasa.",
       "description_raw": "{=PKhcPbBX}Your family were part of a nomadic clan, crisscrossing the wastes between wadi beds and wells to feed their herds of goats and camels on the scraggly scrubs of the Nahasa.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Aserai",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29008,6 +29032,14 @@
       "description": "Your family was from a smaller offshoot of an emir's tribe. Your father's land gave him enough income to afford a horse but he was not quite wealthy enough to buy the armor needed to join the heavier cavalry. He fought as one of the light horsemen for which the desert is famous.",
       "description_raw": "{=MFrIHJZM}Your family was from a smaller offshoot of an emir's tribe. Your father's land gave him enough income to afford a horse but he was not quite wealthy enough to buy the armor needed to join the heavier cavalry. He fought as one of the light horsemen for which the desert is famous.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Aserai",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29050,6 +29082,14 @@
       "description": "Your family were respected physicians in an oasis town. They set bones and cured the sick, and their skills were in much demand. They were respected in the higher echelons of society too.",
       "description_raw": "{=BhQlmQoj}Your family were respected physicians in an oasis town. They set bones and cured the sick, and their skills were in much demand. They were respected in the higher echelons of society too.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Aserai",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29092,6 +29132,14 @@
       "description": "Your father was part of one of the slave-bodyguards maintained by the Aserai emirs. He fought by his master's side with tribe's armored cavalry, and was freed - perhaps for an act of valor, or perhaps he paid for his freedom with his share of the spoils of battle. He then married your mother.",
       "description_raw": "{=GsPC2MgU}Your father was part of one of the slave-bodyguards maintained by the Aserai emirs. He fought by his master's side with tribe's armored cavalry, and was freed - perhaps for an act of valor, or perhaps he paid for his freedom with his share of the spoils of battle. He then married your mother.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Aserai",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29134,6 +29182,14 @@
       "description": "Your family were smiths, a revered profession among the Battanians. They crafted everything from fine filigree jewelry in geometric designs to the well-balanced longswords favored by the Battanian aristocracy.",
       "description_raw": "{=kg9YtrOg}Your family were smiths, a revered profession among the Battanians. They crafted everything from fine filigree jewelry in geometric designs to the well-balanced longswords favored by the Battanian aristocracy.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Battania",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29176,6 +29232,14 @@
       "description": "Your father was a bard, drifting from chieftain's hall to chieftain's hall making his living singing the praises of one Battanian aristocrat and mocking his enemies, then going to his enemy's hall and doing the reverse. You learned from him that a clever tongue could spare you  from a life toiling in the fields, if you kept your wits about you.",
       "description_raw": "{=aVzcyhhy}Your father was a bard, drifting from chieftain's hall to chieftain's hall making his living singing the praises of one Battanian aristocrat and mocking his enemies, then going to his enemy's hall and doing the reverse. You learned from him that a clever tongue could spare you  from a life toiling in the fields, if you kept your wits about you.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Battania",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29218,6 +29282,14 @@
       "description": "Your family were middle-ranking members of a Battanian clan, who tilled their own land. Your father fought with the kern, the main body of his people's warriors, joining in the screaming charges for which the Battanians were famous.",
       "description_raw": "{=WchH8bS2}Your family were middle-ranking members of a Battanian clan, who tilled their own land. Your father fought with the kern, the main body of his people's warriors, joining in the screaming charges for which the Battanians were famous.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Battania",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29260,6 +29332,14 @@
       "description": "Your parents were healers who gathered herbs and treated the sick. As a living reservoir of Battanian tradition, they were also asked to adjudicate many disputes between the clans.",
       "description_raw": "{=j6py5Rv5}Your parents were healers who gathered herbs and treated the sick. As a living reservoir of Battanian tradition, they were also asked to adjudicate many disputes between the clans.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Battania",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29302,6 +29382,14 @@
       "description": "Your family had little land of their own, so they earned their living from the woods, hunting and trapping. They taught you from an early age that skills like finding game trails and killing an animal with one shot could make the difference between eating and starvation.",
       "description_raw": "{=7jBroUUQ}Your family had little land of their own, so they earned their living from the woods, hunting and trapping. They taught you from an early age that skills like finding game trails and killing an animal with one shot could make the difference between eating and starvation.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Battania",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29344,6 +29432,14 @@
       "description": "Your family were the trusted kinfolk of a Battanian chieftain, and sat at his table in his great hall. Your father assisted his chief in running the affairs of the clan and trained with the traditional weapons of the Battanian elite, the two-handed sword or falx and the bow.",
       "description_raw": "{=LpH8SYFL}Your family were the trusted kinfolk of a Battanian chieftain, and sat at his table in his great hall. Your father assisted his chief in running the affairs of the clan and trained with the traditional weapons of the Battanian elite, the two-handed sword or falx and the bow.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Battania",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29386,6 +29482,14 @@
       "description": "Your family owned their own workshop in a city, making goods from raw materials brought in from the countryside. Your father played an active if minor role in the town council, and also served in the militia.",
       "description_raw": "{=ueCm5y1C}Your family owned their own workshop in a city, making goods from raw materials brought in from the countryside. Your father played an active if minor role in the town council, and also served in the militia.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Empire",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29428,6 +29532,14 @@
       "description": "Your family were small farmers with just enough land to feed themselves and make a small profit. People like them were the pillars of the imperial rural economy, as well as the backbone of the levy.",
       "description_raw": "{=09z8Q08f}Your family were small farmers with just enough land to feed themselves and make a small profit. People like them were the pillars of the imperial rural economy, as well as the backbone of the levy.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Empire",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29470,6 +29582,14 @@
       "description": "Your family lived in a village, but did not own their own land. Instead, your father supplemented paid jobs with long trips in the woods, hunting and trapping, always keeping a wary eye for the lord's game wardens.",
       "description_raw": "{=yRFSzSDZ}Your family lived in a village, but did not own their own land. Instead, your father supplemented paid jobs with long trips in the woods, hunting and trapping, always keeping a wary eye for the lord's game wardens.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Empire",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29512,6 +29632,14 @@
       "description": "Your father was a trusted lieutenant of the local landowning aristocrat. He rode with the lord's cavalry, fighting as an armored lancer.",
       "description_raw": "{=ivKl4mV2}Your father was a trusted lieutenant of the local landowning aristocrat. He rode with the lord's cavalry, fighting as an armored lancer.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Empire",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29554,6 +29682,14 @@
       "description": "Your family were merchants in one of the main cities of the Empire. They sometimes organized caravans to nearby towns, and discussed issues in the town council.",
       "description_raw": "{=FQntPChs}Your family were merchants in one of the main cities of the Empire. They sometimes organized caravans to nearby towns, and discussed issues in the town council.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Empire",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29596,6 +29732,14 @@
       "description": "Your family numbered among the many poor migrants living in the slums that grow up outside the walls of imperial cities, making whatever money they could from a variety of odd jobs. Sometimes they did service for one of the Empire's many criminal gangs, and you had an early look at the dark side of life.",
       "description_raw": "{=Jvf6K7TZ}Your family numbered among the many poor migrants living in the slums that grow up outside the walls of imperial cities, making whatever money they could from a variety of odd jobs. Sometimes they did service for one of the Empire's many criminal gangs, and you had an early look at the dark side of life.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Empire",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29638,6 +29782,14 @@
       "description": "Your family tilled one of the small patches of arable land in the steppes for generations. When the Khuzaits came, they ceased paying taxes to the emperor and providing conscripts for his army, and served the khan instead.",
       "description_raw": "{=5QSGoRFj}Your family tilled one of the small patches of arable land in the steppes for generations. When the Khuzaits came, they ceased paying taxes to the emperor and providing conscripts for his army, and served the khan instead.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Khuzait",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29680,6 +29832,14 @@
       "description": "Your family were guardians of the sacred traditions of the Khuzaits, channelling the spirits of the wilderness and of the ancestors. They tended the sick and dispensed wisdom, resolving disputes and providing practical advice.",
       "description_raw": "{=WOKNhaG2}Your family were guardians of the sacred traditions of the Khuzaits, channelling the spirits of the wilderness and of the ancestors. They tended the sick and dispensed wisdom, resolving disputes and providing practical advice.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Khuzait",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29722,6 +29882,14 @@
       "description": "Your family's clan never pledged its loyalty to the khan and never settled down, preferring to live out in the deep steppe away from his authority. They remain some of the finest trackers and scouts in the grasslands, as the ability to spot an enemy coming and move quickly is often all that protects their herds from their neighbors' predations.",
       "description_raw": "{=9aoQYpZs}Your family's clan never pledged its loyalty to the khan and never settled down, preferring to live out in the deep steppe away from his authority. They remain some of the finest trackers and scouts in the grasslands, as the ability to spot an enemy coming and move quickly is often all that protects their herds from their neighbors' predations.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Khuzait",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29764,6 +29932,14 @@
       "description": "Your family were middle-ranking members of one of the Khuzait clans. He had some herds of his own, but was not rich. When the Khuzait horde was summoned to battle, he fought with the horse archers, shooting and wheeling and wearing down the enemy before the lancers delivered the final punch.",
       "description_raw": "{=URgZ4ai4}Your family were middle-ranking members of one of the Khuzait clans. He had some herds of his own, but was not rich. When the Khuzait horde was summoned to battle, he fought with the horse archers, shooting and wheeling and wearing down the enemy before the lancers delivered the final punch.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Khuzait",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29806,6 +29982,14 @@
       "description": "Your family came from one of the merchant clans that dominated the cities in eastern Calradia before the Khuzait conquest. They adjusted quickly to their new masters, keeping the caravan routes running and ensuring that the tariff revenues that once went into imperial coffers now flowed to the khanate.",
       "description_raw": "{=qPg3IDiq}Your family came from one of the merchant clans that dominated the cities in eastern Calradia before the Khuzait conquest. They adjusted quickly to their new masters, keeping the caravan routes running and ensuring that the tariff revenues that once went into imperial coffers now flowed to the khanate.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Khuzait",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29848,6 +30032,14 @@
       "description": "Your family were the trusted kinsfolk of a Khuzait noyan, and shared his meals in the chieftain's yurt. Your father assisted his chief in running the affairs of the clan and fought in the core of armored lancers in the center of the Khuzait battle line.",
       "description_raw": "{=jAs3kDXh}Your family were the trusted kinsfolk of a Khuzait noyan, and shared his meals in the chieftain's yurt. Your father assisted his chief in running the affairs of the clan and fought in the core of armored lancers in the center of the Khuzait battle line.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Khuzait",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29890,6 +30082,14 @@
       "description": "Your family owned their own workshop in a city, making goods from raw materials brought in from the countryside. Your father played an active if minor role in the town council, and also served in the militia.",
       "description_raw": "{=ueCm5y1C}Your family owned their own workshop in a city, making goods from raw materials brought in from the countryside. Your father played an active if minor role in the town council, and also served in the militia.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Sturgia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29932,6 +30132,14 @@
       "description": "Your father was a member of a boyar's druzhina, the 'companions' that make up his retinue. He sat at his lord's table in the great hall, oversaw the boyar's estates, and stood by his side in the center of the shield wall in battle.",
       "description_raw": "{=hob3WVkU}Your father was a member of a boyar's druzhina, the 'companions' that make up his retinue. He sat at his lord's table in the great hall, oversaw the boyar's estates, and stood by his side in the center of the shield wall in battle.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Sturgia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -29974,6 +30182,14 @@
       "description": "Your family had just enough land to feed themselves and make a small profit. People like them were the pillars of the kingdom's economy, as well as the backbone of the levy.",
       "description_raw": "{=Mcd3ZyKq}Your family had just enough land to feed themselves and make a small profit. People like them were the pillars of the kingdom's economy, as well as the backbone of the levy.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Sturgia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30016,6 +30232,14 @@
       "description": "Your family had no taste for the authority of the boyars. They made their living deep in the woods, slashing and burning fields which they tended for a year or two before moving on. They hunted and trapped fox, hare, ermine, and other fur-bearing animals.",
       "description_raw": "{=WyZ2UtFF}Your family had no taste for the authority of the boyars. They made their living deep in the woods, slashing and burning fields which they tended for a year or two before moving on. They hunted and trapped fox, hare, ermine, and other fur-bearing animals.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Sturgia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30058,6 +30282,14 @@
       "description": "Your family were merchants who lived in one of Sturgia's great river ports, organizing the shipment of the north's bounty of furs, honey and other goods to faraway lands.",
       "description_raw": "{=bjVMtW3W}Your family were merchants who lived in one of Sturgia's great river ports, organizing the shipment of the north's bounty of furs, honey and other goods to faraway lands.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Sturgia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30100,6 +30332,14 @@
       "description": "Your family numbered among the poor migrants living in the slums that grow up outside the walls of the river cities, making whatever money they could from a variety of odd jobs. Sometimes they did services for one of the region's many criminal gangs.",
       "description_raw": "{=2SDWhGmQ}Your family numbered among the poor migrants living in the slums that grow up outside the walls of the river cities, making whatever money they could from a variety of odd jobs. Sometimes they did services for one of the region's many criminal gangs.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Sturgia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30142,6 +30382,14 @@
       "description": "Your family owned a smithy in a city. Your father played an active if minor role in the town council, and also served in the militia.",
       "description_raw": "{=btsMpRcA}Your family owned a smithy in a city. Your father played an active if minor role in the town council, and also served in the militia.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Vlandia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30184,6 +30432,14 @@
       "description": "Your family were small farmers with just enough land to feed themselves and make a small profit. People like them were the pillars of the kingdom's economy, as well as the backbone of the levy.",
       "description_raw": "{=BLZ4mdhb}Your family were small farmers with just enough land to feed themselves and make a small profit. People like them were the pillars of the kingdom's economy, as well as the backbone of the levy.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Vlandia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30226,6 +30482,14 @@
       "description": "Your family lived in a village, but did not own their own land. Instead, your father supplemented paid jobs with long trips in the woods, hunting and trapping, always keeping a wary eye for the lord's game wardens.",
       "description_raw": "{=yRFSzSDZ}Your family lived in a village, but did not own their own land. Instead, your father supplemented paid jobs with long trips in the woods, hunting and trapping, always keeping a wary eye for the lord's game wardens.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Vlandia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30268,6 +30532,14 @@
       "description": "Your father joined one of Vlandia's many mercenary companies, composed of men who got such a taste for war in their lord's service that they never took well to peace. Their crossbowmen were much valued across Calradia. Your mother was a camp follower, taking you along in the wake of bloody campaigns.",
       "description_raw": "{=yYhX6JQC}Your father joined one of Vlandia's many mercenary companies, composed of men who got such a taste for war in their lord's service that they never took well to peace. Their crossbowmen were much valued across Calradia. Your mother was a camp follower, taking you along in the wake of bloody campaigns.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Vlandia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30310,6 +30582,14 @@
       "description": "Your family were merchants in one of the main cities of the kingdom. They organized caravans to nearby towns and were active in the local merchant's guild.",
       "description_raw": "{=qNZFkxJb}Your family were merchants in one of the main cities of the kingdom. They organized caravans to nearby towns and were active in the local merchant's guild.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Vlandia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30352,6 +30632,14 @@
       "description": "Your father was a bailiff for a local feudal magnate. He looked after his liege's estates, resolved disputes in the village, and helped train the village levy. He rode with the lord's cavalry, fighting as an armored knight.",
       "description_raw": "{=0Suu1Q9q}Your father was a bailiff for a local feudal magnate. He looked after his liege's estates, resolved disputes in the village, and helped train the village levy. He rode with the lord's cavalry, fighting as an armored knight.",
       "stage": "family",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [
+        "Available before the sandbox/campaign split. The story campaign has a larger family context, but family member attributes, focus, and skills come from fixed hero templates rather than this choice."
+      ],
       "culture": "Vlandia",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30394,6 +30682,12 @@
       "description": "You were big, and other children looked to have you around in any scrap with children from a neighboring village. You pushed a plough and threw an axe like an adult.",
       "description_raw": "{=YKzuGc54}You were big, and other children looked to have you around in any scrap with children from a neighboring village. You pushed a plough and threw an axe like an adult.",
       "stage": "childhood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30436,6 +30730,12 @@
       "description": "You were quick on your feet and attentive to what was going on around you. Usually you could run away from trouble, though you could give a good account of yourself in a fight with other children if cornered.",
       "description_raw": "{=JUSHAPnu}You were quick on your feet and attentive to what was going on around you. Usually you could run away from trouble, though you could give a good account of yourself in a fight with other children if cornered.",
       "stage": "childhood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30478,6 +30778,12 @@
       "description": "You were always drawn to animals, and spent as much time as possible hanging out in the village stables. You could calm horses, and were sometimes called upon to break in new colts. You learned the basics of veterinary arts, much of which is applicable to humans as well.",
       "description_raw": "{=ngazFofr}You were always drawn to animals, and spent as much time as possible hanging out in the village stables. You could calm horses, and were sometimes called upon to break in new colts. You learned the basics of veterinary arts, much of which is applicable to humans as well.",
       "stage": "childhood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30520,6 +30826,12 @@
       "description": "You were always attentive to other people, good at guessing their motivations. You studied how individuals were swayed, and tried out what you learned from adults on your friends.",
       "description_raw": "{=w2TEQq26}You were always attentive to other people, good at guessing their motivations. You studied how individuals were swayed, and tried out what you learned from adults on your friends.",
       "stage": "childhood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30562,6 +30874,12 @@
       "description": "If the wolf pup gang of your early childhood had an alpha, it was definitely you. All the other kids followed your lead as you decided what to play and where to play, and led them in games and mischief.",
       "description_raw": "{=FfNwXtii}If the wolf pup gang of your early childhood had an alpha, it was definitely you. All the other kids followed your lead as you decided what to play and where to play, and led them in games and mischief.",
       "stage": "childhood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30604,6 +30922,12 @@
       "description": "Most children around you had only the most rudimentary education, but you lingered after class to study letters and mathematics. You were fascinated by the marketplace - weights and measures, tallies and accounts, the chatter about profits and losses.",
       "description_raw": "{=DFidSjIf}Most children around you had only the most rudimentary education, but you lingered after class to study letters and mathematics. You were fascinated by the marketplace - weights and measures, tallies and accounts, the chatter about profits and losses.",
       "stage": "childhood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30646,6 +30970,12 @@
       "description": "All towns had their share of projects that were constantly in need of both skilled and unskilled labor. You learned how hoists and scaffolds were constructed, how planks and stones were hewn and fitted, and other skills.",
       "description_raw": "{=bhdkegZ4}All towns had their share of projects that were constantly in need of both skilled and unskilled labor. You learned how hoists and scaffolds were constructed, how planks and stones were hewn and fitted, and other skills.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30688,6 +31018,12 @@
       "description": "You were sent by the village healer up into the hills to look for useful medicinal plants. You learned which herbs healed wounds or brought down a fever, and how to find them.",
       "description_raw": "{=9ks4u5cH}You were sent by the village healer up into the hills to look for useful medicinal plants. You learned which herbs healed wounds or brought down a fever, and how to find them.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30730,6 +31066,12 @@
       "description": "You helped dig wells, rethatch houses, and fix broken plows. You learned about the basics of construction, as well as what it takes to keep a farming community prosperous.",
       "description_raw": "{=6LFj919J}You helped dig wells, rethatch houses, and fix broken plows. You learned about the basics of construction, as well as what it takes to keep a farming community prosperous.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30772,6 +31114,12 @@
       "description": "The gang leaders who kept watch over the slums of Calradian cities were always in need of poor youth to run messages and back them up in turf wars, while thrill-seeking merchants' sons and daughters sometimes slummed it in their company as well.",
       "description_raw": "{=1SUTcF0J}The gang leaders who kept watch over the slums of Calradian cities were always in need of poor youth to run messages and back them up in turf wars, while thrill-seeking merchants' sons and daughters sometimes slummed it in their company as well.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30814,6 +31162,12 @@
       "description": "You went with other fleet-footed youths to take the villages' sheep, goats or cattle to graze in pastures near the village. You were in charge of chasing down stray beasts, and always kept a big stone on hand to be hurled at lurking predators if necessary.",
       "description_raw": "{=KfaqPpbK}You went with other fleet-footed youths to take the villages' sheep, goats or cattle to graze in pastures near the village. You were in charge of chasing down stray beasts, and always kept a big stone on hand to be hurled at lurking predators if necessary.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30856,6 +31210,12 @@
       "description": "Your family owned a few horses at the town stables and you took charge of their care. Many evenings you would take them out beyond the walls and gallup through the fields, racing other youth.",
       "description_raw": "{=Ghz90npw}Your family owned a few horses at the town stables and you took charge of their care. Many evenings you would take them out beyond the walls and gallup through the fields, racing other youth.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30898,6 +31258,12 @@
       "description": "You accompanied a local hunter as he went into the wilderness, helping him set up traps and catch small animals.",
       "description_raw": "{=RuvSk3QT}You accompanied a local hunter as he went into the wilderness, helping him set up traps and catch small animals.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30940,6 +31306,12 @@
       "description": "You helped your family handle their business affairs, going down to the marketplace to make purchases and oversee the arrival of caravans.",
       "description_raw": "{=rmMcwSn8}You helped your family handle their business affairs, going down to the marketplace to make purchases and oversee the arrival of caravans.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -30982,6 +31354,12 @@
       "description": "You took your family's goods to the nearest town to sell your produce and buy supplies. It was hard work, but you enjoyed the hubbub of the marketplace.",
       "description_raw": "{=DIgsfYfz}You took your family's goods to the nearest town to sell your produce and buy supplies. It was hard work, but you enjoyed the hubbub of the marketplace.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31024,6 +31402,12 @@
       "description": "You were apprenticed to the local smith. You learned how to heat and forge metal, hammering for hours at a time until your muscles ached.",
       "description_raw": "{=y6j1bJTH}You were apprenticed to the local smith. You learned how to heat and forge metal, hammering for hours at a time until your muscles ached.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31066,6 +31450,12 @@
       "description": "Your family arranged for a private tutor and you took full advantage, reading voraciously on history, mathematics, and philosophy and discussing what you read with your tutor and classmates.",
       "description_raw": "{=hXl25avg}Your family arranged for a private tutor and you took full advantage, reading voraciously on history, mathematics, and philosophy and discussing what you read with your tutor and classmates.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31108,6 +31498,12 @@
       "description": "You watched the town's watch practice shooting and perfect their plans to defend the walls in case of a siege.",
       "description_raw": "{=qnqdEJOv}You watched the town's watch practice shooting and perfect their plans to defend the walls in case of a siege.",
       "stage": "education",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31150,6 +31546,12 @@
       "description": "You avoided service with one of the main forces of your realm's armies, but followed instead in the train - the troops' wives, lovers and servants, and those who make their living by caring for, entertaining, or cheating the soldiery.",
       "description_raw": "{=64rWqBLN}You avoided service with one of the main forces of your realm's armies, but followed instead in the train - the troops' wives, lovers and servants, and those who make their living by caring for, entertaining, or cheating the soldiery.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31192,6 +31594,12 @@
       "description": "You could never have bought the equipment on your own, but you were a good enough rider so that the local lord lent you a horse and equipment. You joined the armored cavalry, training with the lance.",
       "description_raw": "{=7cHsIMLP}You could never have bought the equipment on your own, but you were a good enough rider so that the local lord lent you a horse and equipment. You joined the armored cavalry, training with the lance.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31234,6 +31642,12 @@
       "description": "Your family arranged for you to accompany an envoy. You were not given major responsibilities - mostly carrying arms and trying to look imposing. - but it did give you a chance to travel a lot and socialise and see the world.",
       "description_raw": "{=qPamcCkA}Your family arranged for you to accompany an envoy. You were not given major responsibilities - mostly carrying arms and trying to look imposing. - but it did give you a chance to travel a lot and socialise and see the world.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31276,6 +31690,12 @@
       "description": "Your family arranged for you to accompany an envoy. You were not given major responsibilities but it did give you a chance to travel and socialise and see a bit of the world.",
       "description_raw": "{=VYU1nEHP}Your family arranged for you to accompany an envoy. You were not given major responsibilities but it did give you a chance to travel and socialise and see a bit of the world.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31318,6 +31738,12 @@
       "description": "You were chosen by a knight to accompany a minor baron of the Vlandian kingdom. You were not given major responsibilities - mostly carrying messages and tending to his horse - but it did give you a chance to see how campaigns were planned and men were deployed in battle.",
       "description_raw": "{=i3k7YtA8}You were chosen by a knight to accompany a minor baron of the Vlandian kingdom. You were not given major responsibilities - mostly carrying messages and tending to his horse - but it did give you a chance to see how campaigns were planned and men were deployed in battle.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31360,6 +31786,12 @@
       "description": "Urban troops spend much of their time guarding the town walls. Most of their training was in missile weapons.",
       "description_raw": "{=oR58iNDz}Urban troops spend much of their time guarding the town walls. Most of their training was in missile weapons.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31402,6 +31834,12 @@
       "description": "The garrisons spent most of their time guarding the town walls, and their training focused largely on missile weapons.",
       "description_raw": "{=e6lINjFg}The garrisons spent most of their time guarding the town walls, and their training focused largely on missile weapons.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31444,6 +31882,12 @@
       "description": "Urban troops spend much of their time guarding the town walls. Most of their training was in missile weapons, especially useful during sieges.",
       "description_raw": "{=63TAYbkx}Urban troops spend much of their time guarding the town walls. Most of their training was in missile weapons, especially useful during sieges.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31486,6 +31930,12 @@
       "description": "Urban troops spend much of their time guarding the town walls. Most of their training was in missile weapons.",
       "description_raw": "{=oR58iNDz}Urban troops spend much of their time guarding the town walls. Most of their training was in missile weapons.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31528,6 +31978,12 @@
       "description": "You were a big and imposing enough youth that the chief's guard allowed you to train alongside them, in preparation to join them some day.",
       "description_raw": "{=RmbWW6Bm}You were a big and imposing enough youth that the chief's guard allowed you to train alongside them, in preparation to join them some day.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31570,6 +32026,12 @@
       "description": "Levy armed with spear and shield, drawn from smallholding farmers, have always been the backbone of most armies of Calradia.",
       "description_raw": "{=afH90aNs}Levy armed with spear and shield, drawn from smallholding farmers, have always been the backbone of most armies of Calradia.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31612,6 +32074,12 @@
       "description": "Many Battanians fight as kern, versatile troops who could both harass the enemy line with their javelins or join in the final screaming charge once it weakened.",
       "description_raw": "{=tTb28jyU}Many Battanians fight as kern, versatile troops who could both harass the enemy line with their javelins or join in the final screaming charge once it weakened.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31654,6 +32122,12 @@
       "description": "All of Calradia's kingdoms recognize the value of good light cavalry and horse archers, and are sure to recruit nomads and borderers with the skills to fulfill those duties. You were a good enough rider that your neighbors pitched in to buy you a small pony and a good bow so that you could fulfill their levy obligations.",
       "description_raw": "{=888lmJqs}All of Calradia's kingdoms recognize the value of good light cavalry and horse archers, and are sure to recruit nomads and borderers with the skills to fulfill those duties. You were a good enough rider that your neighbors pitched in to buy you a small pony and a good bow so that you could fulfill their levy obligations.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31696,6 +32170,12 @@
       "description": "All of Calradia's kingdoms recognize the value of good light cavalry, and are sure to recruit nomads and borderers with the skills to fulfill those duties. You were a good enough rider that your neighbors pitched in to buy you a small pony and a sheaf of javelins so that you could fulfill their levy obligations.",
       "description_raw": "{=sYuN6hPD}All of Calradia's kingdoms recognize the value of good light cavalry, and are sure to recruit nomads and borderers with the skills to fulfill those duties. You were a good enough rider that your neighbors pitched in to buy you a small pony and a sheaf of javelins so that you could fulfill their levy obligations.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31738,6 +32218,12 @@
       "description": "Local wise man picked you to become the messenger of a chieftain of your people. You were not given major responsibilities - mostly carrying messages and tending to his horse - but it did give you a chance to see how campaigns were planned and men were deployed in battle.",
       "description_raw": "{=neMCgMZM}Local wise man picked you to become the messenger of a chieftain of your people. You were not given major responsibilities - mostly carrying messages and tending to his horse - but it did give you a chance to see how campaigns were planned and men were deployed in battle.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31780,6 +32266,12 @@
       "description": "Younger recruits, or those of a slighter build, or those too poor to buy shield and armor tend to join the skirmishers. Fighting with bow and javelin, they try to stay out of reach of the main enemy forces.",
       "description_raw": "{=bXAg5w19}Younger recruits, or those of a slighter build, or those too poor to buy shield and armor tend to join the skirmishers. Fighting with bow and javelin, they try to stay out of reach of the main enemy forces.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31822,6 +32314,12 @@
       "description": "You were picked as the courier of the commander of the local forces. You were not given major responsibilities - mostly carrying messages and tending to his horse - but it did give you a chance to see how campaigns were planned and men were deployed in battle.",
       "description_raw": "{=ANbNblaH}You were picked as the courier of the commander of the local forces. You were not given major responsibilities - mostly carrying messages and tending to his horse - but it did give you a chance to see how campaigns were planned and men were deployed in battle.",
       "stage": "youth",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31864,6 +32362,12 @@
       "description": "Your family needed someone trustworthy to take a caravan to a neighboring town. You organized supplies, ensured a constant watch to keep away bandits, and brought it safely to its destination.",
       "description_raw": "{=joRHKCkm}Your family needed someone trustworthy to take a caravan to a neighboring town. You organized supplies, ensured a constant watch to keep away bandits, and brought it safely to its destination.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31912,6 +32416,12 @@
       "description": "Not everyone who musters for the levy marches to war, and not everyone who goes on campaign sees action. You did both, and you also took down an enemy warrior in direct one-to-one combat, in the full view of your comrades.",
       "description_raw": "{=1IEroJKs}Not everyone who musters for the levy marches to war, and not everyone who goes on campaign sees action. You did both, and you also took down an enemy warrior in direct one-to-one combat, in the full view of your comrades.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -31960,6 +32470,12 @@
       "description": "Maybe it was a love affair, or maybe you cheated at dice, or maybe you just chose your words poorly when drinking with a dangerous crowd. Anyway, on one of your trips into town you got into the kind of trouble from which only a quick tongue or quick feet get you out alive.",
       "description_raw": "{=DjeAJtix}Maybe it was a love affair, or maybe you cheated at dice, or maybe you just chose your words poorly when drinking with a dangerous crowd. Anyway, on one of your trips into town you got into the kind of trouble from which only a quick tongue or quick feet get you out alive.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32008,6 +32524,12 @@
       "description": "Maybe it was a love affair, or maybe you cheated at dice, or maybe you just chose your words poorly when drinking with a dangerous crowd. Anyway, you got into the kind of trouble from which only a quick tongue or quick feet get you out alive.",
       "description_raw": "{=lD5Ob3R4}Maybe it was a love affair, or maybe you cheated at dice, or maybe you just chose your words poorly when drinking with a dangerous crowd. Anyway, you got into the kind of trouble from which only a quick tongue or quick feet get you out alive.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32056,6 +32578,12 @@
       "description": "Wolves, bears are a constant menace to the flocks of northern Calradia, while hyenas and leopards trouble the south. You went with a group of your fellow villagers and fired the missile that brought down the beast.",
       "description_raw": "{=I3PcdaaL}Wolves, bears are a constant menace to the flocks of northern Calradia, while hyenas and leopards trouble the south. You went with a group of your fellow villagers and fired the missile that brought down the beast.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32104,6 +32632,12 @@
       "description": "Your parents didn't give you much money, but they did leave just enough for you to purchase a plot of unused land at the edge of the village. You cleared away rocks and dug an irrigation ditch, raised a few seasons of crops, than sold it for a considerable profit.",
       "description_raw": "{=cbF9jdQo}Your parents didn't give you much money, but they did leave just enough for you to purchase a plot of unused land at the edge of the village. You cleared away rocks and dug an irrigation ditch, raised a few seasons of crops, than sold it for a considerable profit.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32152,6 +32686,12 @@
       "description": "When your community needed to organize a posse to pursue horse thieves, you were the obvious choice. You hunted down the raiders, surrounded them and forced their surrender, and took back your stolen property.",
       "description_raw": "{=4f5xwzX0}When your community needed to organize a posse to pursue horse thieves, you were the obvious choice. You hunted down the raiders, surrounded them and forced their surrender, and took back your stolen property.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32200,6 +32740,12 @@
       "description": "Yours wasn't the kind of reputation that local legends are made of, but it was the kind that wins you respect among those around you. You were consistently fair and honest in your business dealings and helpful to those in trouble. In doing so, you got a sense of what made people tick.",
       "description_raw": "{=dDmcqTzb}Yours wasn't the kind of reputation that local legends are made of, but it was the kind that wins you respect among those around you. You were consistently fair and honest in your business dealings and helpful to those in trouble. In doing so, you got a sense of what made people tick.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32257,6 +32803,12 @@
       "description": "When a sudden blaze broke out in a back alley, your neighbors needed quick-thinking leadership and you provided it. You organized a bucket line to the nearest well, putting the fire out before any homes were lost.",
       "description_raw": "{=ZAGR6PYc}When a sudden blaze broke out in a back alley, your neighbors needed quick-thinking leadership and you provided it. You organized a bucket line to the nearest well, putting the fire out before any homes were lost.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32305,6 +32857,12 @@
       "description": "When a sudden storm caused the local stream to rise suddenly, your neighbors needed quick-thinking leadership. You provided it, directing them to build levees to save their homes.",
       "description_raw": "{=bWlmGDf3}When a sudden storm caused the local stream to rise suddenly, your neighbors needed quick-thinking leadership. You provided it, directing them to build levees to save their homes.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32353,6 +32911,12 @@
       "description": "Your hometown was briefly placed under siege, and you were called to defend the walls. Everyone did their part to repulse the enemy assault, and everyone is justly proud of what they endured.",
       "description_raw": "{=FhZPjhli}Your hometown was briefly placed under siege, and you were called to defend the walls. Everyone did their part to repulse the enemy assault, and everyone is justly proud of what they endured.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32396,6 +32960,12 @@
       "description": "Your parents didn't give you much money, but they did leave just enough for you to secure a loan against a larger amount to build a small workshop. You paid back what you borrowed, and sold your enterprise for a profit.",
       "description_raw": "{=PyVqDLBu}Your parents didn't give you much money, but they did leave just enough for you to secure a loan against a larger amount to build a small workshop. You paid back what you borrowed, and sold your enterprise for a profit.",
       "stage": "adulthood",
+      "availability": [
+        "campaign",
+        "sandbox"
+      ],
+      "point_allocation": "fixed_choice",
+      "notes": [],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32444,6 +33014,14 @@
       "description": "You are at your prime, You still have some youthful energy but also have a substantial amount of experience under your belt.",
       "description_raw": "{=NUlVFRtK}You are at your prime, You still have some youthful energy but also have a substantial amount of experience under your belt.",
       "stage": "age",
+      "availability": [
+        "sandbox"
+      ],
+      "point_allocation": "sandbox_flexible_age_points",
+      "notes": [
+        "Sandbox-only age choice. These points are unspent and can be assigned freely.",
+        "Story campaign deletes the age selection menu and uses the escape choice instead."
+      ],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32471,6 +33049,14 @@
       "description": "While you are past your prime, there is still enough time to go on that last big adventure for you. And you have all the experience you need to overcome anything!",
       "description_raw": "{=ePD5Afvy}While you are past your prime, there is still enough time to go on that last big adventure for you. And you have all the experience you need to overcome anything!",
       "stage": "age",
+      "availability": [
+        "sandbox"
+      ],
+      "point_allocation": "sandbox_flexible_age_points",
+      "notes": [
+        "Sandbox-only age choice. These points are unspent and can be assigned freely.",
+        "Story campaign deletes the age selection menu and uses the escape choice instead."
+      ],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32498,6 +33084,14 @@
       "description": "This is the right age for starting off, you have years of experience, and you are old enough for people to respect you and gather under your banner.",
       "description_raw": "{=5MxTYApM}This is the right age for starting off, you have years of experience, and you are old enough for people to respect you and gather under your banner.",
       "stage": "age",
+      "availability": [
+        "sandbox"
+      ],
+      "point_allocation": "sandbox_flexible_age_points",
+      "notes": [
+        "Sandbox-only age choice. These points are unspent and can be assigned freely.",
+        "Story campaign deletes the age selection menu and uses the escape choice instead."
+      ],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32525,6 +33119,14 @@
       "description": "While lacking experience a bit, you are full with youthful energy, you are fully eager, for the long years of adventuring ahead.",
       "description_raw": "{=2k7adlh7}While lacking experience a bit, you are full with youthful energy, you are fully eager, for the long years of adventuring ahead.",
       "stage": "age",
+      "availability": [
+        "sandbox"
+      ],
+      "point_allocation": "sandbox_flexible_age_points",
+      "notes": [
+        "Sandbox-only age choice. These points are unspent and can be assigned freely.",
+        "Story campaign deletes the age selection menu and uses the escape choice instead."
+      ],
       "culture": "",
       "assembly": "TaleWorlds.CampaignSystem",
       "type": "TaleWorlds.CampaignSystem.CampaignBehaviors.CharacterCreationCampaignBehavior",
@@ -32552,6 +33154,14 @@
       "description": "You grabbed a bow and sent a few arrows the raiders' way. They took cover, giving you the opportunity to flee with your brother.",
       "description_raw": "{=ccf67J3J}You grabbed a bow and sent a few arrows the raiders' way. They took cover, giving you the opportunity to flee with your brother.",
       "stage": "escape",
+      "availability": [
+        "campaign"
+      ],
+      "point_allocation": "campaign_fixed_age_20_equivalent",
+      "notes": [
+        "Campaign-only final escape choice. This replaces the sandbox age choice.",
+        "Mechanically this is the age-20 point budget allocated to one attribute and two skills, plus +10 starting levels in those two skills."
+      ],
       "culture": "",
       "assembly": "StoryMode",
       "type": "StoryMode.GameComponents.CampaignBehaviors.StoryModeCharacterCreationCampaignBehavior",
@@ -32594,6 +33204,14 @@
       "description": "You encouraged the few travellers in the inn to break out in a coordinated fashion. Raiders killed or captured most but you and your brother were able to escape.",
       "description_raw": "{=Lmfi0cYk}You encouraged the few travellers in the inn to break out in a coordinated fashion. Raiders killed or captured most but you and your brother were able to escape.",
       "stage": "escape",
+      "availability": [
+        "campaign"
+      ],
+      "point_allocation": "campaign_fixed_age_20_equivalent",
+      "notes": [
+        "Campaign-only final escape choice. This replaces the sandbox age choice.",
+        "Mechanically this is the age-20 point budget allocated to one attribute and two skills, plus +10 starting levels in those two skills."
+      ],
       "culture": "",
       "assembly": "StoryMode",
       "type": "StoryMode.GameComponents.CampaignBehaviors.StoryModeCharacterCreationCampaignBehavior",
@@ -32636,6 +33254,14 @@
       "description": "Jumping on the two remaining horses in the inn's burning stable, you and your brother broke out of the encircling raiders and rode off.",
       "description_raw": "{=cepWNzEA}Jumping on the two remaining horses in the inn's burning stable, you and your brother broke out of the encircling raiders and rode off.",
       "stage": "escape",
+      "availability": [
+        "campaign"
+      ],
+      "point_allocation": "campaign_fixed_age_20_equivalent",
+      "notes": [
+        "Campaign-only final escape choice. This replaces the sandbox age choice.",
+        "Mechanically this is the age-20 point budget allocated to one attribute and two skills, plus +10 starting levels in those two skills."
+      ],
       "culture": "",
       "assembly": "StoryMode",
       "type": "StoryMode.GameComponents.CampaignBehaviors.StoryModeCharacterCreationCampaignBehavior",
@@ -32678,6 +33304,14 @@
       "description": "You encouraged the few travellers in the inn to break out in a coordinated fashion. Raiders killed or captured most but you and your brother were able to escape.",
       "description_raw": "{=Lmfi0cYk}You encouraged the few travellers in the inn to break out in a coordinated fashion. Raiders killed or captured most but you and your brother were able to escape.",
       "stage": "escape",
+      "availability": [
+        "campaign"
+      ],
+      "point_allocation": "campaign_fixed_age_20_equivalent",
+      "notes": [
+        "Campaign-only final escape choice. This replaces the sandbox age choice.",
+        "Mechanically this is the age-20 point budget allocated to one attribute and two skills, plus +10 starting levels in those two skills."
+      ],
       "culture": "",
       "assembly": "StoryMode",
       "type": "StoryMode.GameComponents.CampaignBehaviors.StoryModeCharacterCreationCampaignBehavior",
@@ -32720,6 +33354,14 @@
       "description": "You were able to grab a knife in the confusion of the attack. You stabbed a raider blocking your way.",
       "description_raw": "{=CvBoRaFv}You were able to grab a knife in the confusion of the attack. You stabbed a raider blocking your way.",
       "stage": "escape",
+      "availability": [
+        "campaign"
+      ],
+      "point_allocation": "campaign_fixed_age_20_equivalent",
+      "notes": [
+        "Campaign-only final escape choice. This replaces the sandbox age choice.",
+        "Mechanically this is the age-20 point budget allocated to one attribute and two skills, plus +10 starting levels in those two skills."
+      ],
       "culture": "",
       "assembly": "StoryMode",
       "type": "StoryMode.GameComponents.CampaignBehaviors.StoryModeCharacterCreationCampaignBehavior",
@@ -32762,6 +33404,14 @@
       "description": "In the confusion of the attack you shouted that someone had found treasure in the back room. You then made your way out of the undefended entrance with your brother.",
       "description_raw": "{=ZqOvtLBM}In the confusion of the attack you shouted that someone had found treasure in the back room. You then made your way out of the undefended entrance with your brother.",
       "stage": "escape",
+      "availability": [
+        "campaign"
+      ],
+      "point_allocation": "campaign_fixed_age_20_equivalent",
+      "notes": [
+        "Campaign-only final escape choice. This replaces the sandbox age choice.",
+        "Mechanically this is the age-20 point budget allocated to one attribute and two skills, plus +10 starting levels in those two skills."
+      ],
       "culture": "",
       "assembly": "StoryMode",
       "type": "StoryMode.GameComponents.CampaignBehaviors.StoryModeCharacterCreationCampaignBehavior",
@@ -32797,5 +33447,90 @@
       ]
     }
   ],
-  "character_creation_option_count": 93
+  "character_creation_option_count": 93,
+  "campaign_family_mechanics": {
+    "choice_dependency": "not_initial_choice_dependent",
+    "summary": "Story campaign family attributes, focus, and skill values are not allocated from the player's character creation choices. Family members are registered through HeroCreator.CreateBasicHero from fixed StoryMode character objects. Creation menus can later change family culture, names, appearance, equipment, and home settlement, but not their underlying template-driven stat source.",
+    "skill_initialization": "DefaultHeroCreationModel.GetDefaultSkillsForHero reads CharacterObject.GetDefaultCharacterSkills(). For adult heroes it adds a random +5 to +9 to each nonzero template skill before the hero developer derives level, focus, attributes, and perks from those skill values. Underage siblings defer this until they pass the game's coming-of-age check.",
+    "attribute_focus_initialization": "HeroDeveloper.InitializeHeroDeveloper and DefaultCharacterDevelopmentModel distribute unspent focus and attribute points toward skills that are over their current learning limits. This can vary slightly with the random skill noise, but it is not driven by the selected family/background/escape options.",
+    "members": [
+      {
+        "member": "father",
+        "character_id": "main_hero_father",
+        "skill_template": "SkillSet.spc_cavalry_skills_rookie"
+      },
+      {
+        "member": "mother",
+        "character_id": "main_hero_mother",
+        "skill_template": "SkillSet.spc_matriarch_skills_rookie"
+      },
+      {
+        "member": "elder_brother",
+        "character_id": "tutorial_npc_brother",
+        "skill_template": "SkillSet.spc_cavalry_skills_rookie"
+      },
+      {
+        "member": "younger_brother",
+        "character_id": "storymode_little_brother",
+        "skill_template": "SkillSet.spc_cavalry_skills_rookie"
+      },
+      {
+        "member": "younger_sister",
+        "character_id": "storymode_little_sister",
+        "skill_template": "SkillSet.spc_cavalry_skills_rookie"
+      }
+    ],
+    "source_methods": [
+      "StoryModeHeroes.RegisterAll",
+      "HeroCreator.CreateBasicHero",
+      "HeroCreator.InitializeHeroFromSettings",
+      "StoryModeCharacterCreationCampaignBehavior.FinalizeParentsAndLittleSiblings",
+      "StoryModeCharacterCreationCampaignBehavior.ApplyCulture",
+      "StoryModeCharacterCreationCampaignBehavior.FinalizeMainHeroAndElderBrother",
+      "StoryModeHelpers.SetPlayerSiblingsSkillsIfNeeded",
+      "DefaultHeroCreationModel.GetDefaultSkillsForHero",
+      "HeroDeveloper.InitializeHeroDeveloper"
+    ]
+  },
+  "hero_creation_flow": {
+    "summary": "HeroCreation is the game's generic hero factory plus initializer. It creates or finds a Hero, builds HeroInitializationArgs, then asks HeroCreationModel for defaults such as born settlement, culture, traits, skills, body properties, and equipment.",
+    "family_entry": "StoryModeHeroes.RegisterAll calls HeroCreator.CreateBasicHero for the player's parents, elder brother, younger brother, and younger sister. Parents are registered as not alive and StoryMode assigns their birth/death days; siblings are registered alive. StoryMode then links siblings to the fixed mother and father heroes. The elder brother gets ResetCharacterStats after that link; younger siblings defer skill setup until the story rescue/load/coming-of-age helper sees they need it.",
+    "create_basic_hero": "CreateBasicHero first tries to find an existing hero by string id. If none exists, it asks HeroCreationModel.GetBirthAndDeathDay for dates, creates a Hero from the exact CharacterObject, wraps it in HeroInitializationArgs with isOffspring=false, and calls InitializeHeroFromSettings.",
+    "create_special_hero": "CreateSpecialHero is the dynamic NPC path: it clones the template CharacterObject, enables generated first/full names, optionally sets born settlement, clan, and supporter clan, then uses the same InitializeHeroFromSettings initializer. The campaign family path does not use this clone path.",
+    "initialize_steps": [
+      {
+        "step": "family_and_identity",
+        "detail": "Applies mother, father, gender, level, occupation, supporter clan, body build/weight, names, born settlement, clan, culture, and preferred formation from args or HeroCreationModel defaults."
+      },
+      {
+        "step": "traits",
+        "detail": "Calls HeroCreationModel.GetTraitsForHero and writes the returned trait levels. For campaign family this is still model/template driven, not one of the player creation choices."
+      },
+      {
+        "step": "skills",
+        "detail": "Calls HeroCreationModel.GetDefaultSkillsForHero and writes those skill values onto the hero. For adults this reads the character skill template and adds +5 to +9 noise to nonzero skills."
+      },
+      {
+        "step": "developer",
+        "detail": "Initializes HeroDeveloper immediately for offspring, or for non-offspring heroes only when they are at or above the coming-of-age threshold. This derives level, attributes, focus, and perks from skill values."
+      },
+      {
+        "step": "equipment",
+        "detail": "Assigns civilian and battle equipment from HeroCreationModel. Underage heroes get delivered-offspring/civilian-derived equipment; adults keep their current civilian and battle equipment."
+      }
+    ],
+    "source_methods": [
+      "HeroCreator.CreateBasicHero",
+      "HeroCreator.CreateHero",
+      "HeroCreator.CreateSpecialHero",
+      "HeroCreator.InitializeHeroFromSettings",
+      "HeroInitializationArgs..ctor",
+      "DefaultHeroCreationModel.GetBirthAndDeathDay",
+      "DefaultHeroCreationModel.GetDefaultSkillsForHero",
+      "DefaultHeroCreationModel.GetTraitsForHero",
+      "DefaultHeroCreationModel.GetCulture",
+      "DefaultHeroCreationModel.GetCivilianEquipment",
+      "DefaultHeroCreationModel.GetBattleEquipment"
+    ]
+  }
 }
