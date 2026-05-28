@@ -83,8 +83,14 @@ class BuildPlan:
     purchased_attributes: dict[str, int]
     base_attributes: dict[str, int]
     base_focus: dict[str, int]
+    creation_choices: list[dict[str, Any]]
+    starting_skill_levels: dict[str, int]
     skill_plans: list[SkillPlan]
     bonus_plan: BonusPlan
+    free_focus_points: int
+    free_attribute_points: int
+    free_focus_points_used: int
+    free_attribute_points_used: int
     focus_points_spent: int
     attribute_points_spent: int
     level_ups_needed: int
@@ -128,6 +134,17 @@ def load_skill_info(workspace: Path) -> dict[str, SkillInfo]:
     return dict(sorted(skills.items()))
 
 
+def load_character_creation_options(workspace: Path) -> list[dict[str, Any]]:
+    path = workspace / "Data" / "generated" / "character-creation-options.json"
+    if not path.exists():
+        raise ValueError(
+            "Character creation options are not generated yet. "
+            "Run extract_character_creation.py with --game-root first."
+        )
+    payload = read_json(path)
+    return list(payload.get("character_creation_options", []))
+
+
 def resolve_named(value: str, choices: list[str], kind: str) -> str:
     key = normalize(value)
     exact = [choice for choice in choices if normalize(choice) == key]
@@ -140,6 +157,41 @@ def resolve_named(value: str, choices: list[str], kind: str) -> str:
         raise ValueError(f"Unknown {kind}: {value}")
     matches = ", ".join(sorted(exact or contains)[:8])
     raise ValueError(f"Ambiguous {kind} {value!r}: {matches}")
+
+
+def resolve_creation_choice(value: str, options: list[dict[str, Any]]) -> dict[str, Any]:
+    key = normalize(value)
+    matches: list[dict[str, Any]] = []
+    for option in options:
+        candidates = [
+            str(option.get("id", "")),
+            str(option.get("option_id", "")),
+            str(option.get("title", "")),
+            str(option.get("method", "")),
+            str(option.get("short_method", "")),
+        ]
+        if any(normalize(candidate) == key for candidate in candidates):
+            matches.append(option)
+
+    if not matches:
+        for option in options:
+            candidates = [
+                str(option.get("id", "")),
+                str(option.get("option_id", "")),
+                str(option.get("title", "")),
+                str(option.get("method", "")),
+                str(option.get("short_method", "")),
+            ]
+            if any(key and key in normalize(candidate) for candidate in candidates):
+                matches.append(option)
+
+    unique: dict[str, dict[str, Any]] = {str(option.get("id", "")): option for option in matches}
+    if len(unique) == 1:
+        return next(iter(unique.values()))
+    if not unique:
+        raise ValueError(f"Unknown character creation choice: {value}")
+    rendered = ", ".join(f"{option.get('title')} ({option.get('id')})" for option in unique.values())
+    raise ValueError(f"Ambiguous character creation choice {value!r}: {rendered}")
 
 
 def resolve_perk(value: str, skills: dict[str, SkillInfo], skill_hint: str | None = None) -> tuple[str, str, int]:
@@ -408,6 +460,10 @@ def solve_for_bonus_plan(
     skills: dict[str, SkillInfo],
     base_attributes: dict[str, int],
     base_focus: dict[str, int],
+    creation_choices: list[dict[str, Any]],
+    starting_skill_levels: dict[str, int],
+    free_focus_points: int,
+    free_attribute_points: int,
 ) -> BuildPlan | None:
     targets = merge_targets(requested, plan)
     used_attributes = sorted({skills[skill].attribute for skill in targets}, key=ATTRIBUTES.index)
@@ -449,8 +505,12 @@ def solve_for_bonus_plan(
         if not valid_bonus_timing(plan, purchased, focus_by_skill, skills):
             continue
 
-        focus_points = sum(max(0, focus_by_skill[skill] - base_focus.get(skill, 0)) for skill in targets)
-        attribute_points = sum(max(0, purchased[attribute] - base_attributes[attribute]) for attribute in ATTRIBUTES)
+        raw_focus_points = sum(max(0, focus_by_skill[skill] - base_focus.get(skill, 0)) for skill in targets)
+        raw_attribute_points = sum(max(0, purchased[attribute] - base_attributes[attribute]) for attribute in ATTRIBUTES)
+        free_focus_used = min(free_focus_points, raw_focus_points)
+        free_attribute_used = min(free_attribute_points, raw_attribute_points)
+        focus_points = raw_focus_points - free_focus_used
+        attribute_points = raw_attribute_points - free_attribute_used
         level_ups = max(focus_points, attribute_points * 4)
         enabler_levels = sum(
             max(0, detail.level - requested.get(skill, TargetDetail(0)).level)
@@ -464,8 +524,14 @@ def solve_for_bonus_plan(
             purchased_attributes=purchased,
             base_attributes=base_attributes,
             base_focus=base_focus,
+            creation_choices=creation_choices,
+            starting_skill_levels=starting_skill_levels,
             skill_plans=sorted(skill_plans, key=lambda item: (ATTRIBUTES.index(item.attribute), item.skill)),
             bonus_plan=plan,
+            free_focus_points=free_focus_points,
+            free_attribute_points=free_attribute_points,
+            free_focus_points_used=free_focus_used,
+            free_attribute_points_used=free_attribute_used,
             focus_points_spent=focus_points,
             attribute_points_spent=attribute_points,
             level_ups_needed=level_ups,
@@ -483,12 +549,26 @@ def optimize_build(
     skills: dict[str, SkillInfo],
     base_attributes: dict[str, int],
     base_focus: dict[str, int],
+    creation_choices: list[dict[str, Any]],
+    starting_skill_levels: dict[str, int],
+    free_focus_points: int,
+    free_attribute_points: int,
     bonus_mode: str,
     auto_endurance: bool,
 ) -> BuildPlan:
     candidates: list[BuildPlan] = []
     for plan in enumerate_bonus_plans(bonus_mode, requested, auto_endurance):
-        solved = solve_for_bonus_plan(requested, plan, skills, base_attributes, base_focus)
+        solved = solve_for_bonus_plan(
+            requested,
+            plan,
+            skills,
+            base_attributes,
+            base_focus,
+            creation_choices,
+            starting_skill_levels,
+            free_focus_points,
+            free_attribute_points,
+        )
         if solved is not None:
             candidates.append(solved)
     if not candidates:
@@ -517,6 +597,12 @@ def plan_to_json(plan: BuildPlan) -> dict[str, Any]:
         "attribute_points_spent": plan.attribute_points_spent,
         "unused_focus_points": plan.unused_focus_points,
         "unused_attribute_points": plan.unused_attribute_points,
+        "creation_choices": plan.creation_choices,
+        "starting_skill_levels": {skill: value for skill, value in plan.starting_skill_levels.items() if value},
+        "free_focus_points": plan.free_focus_points,
+        "free_attribute_points": plan.free_attribute_points,
+        "free_focus_points_used": plan.free_focus_points_used,
+        "free_attribute_points_used": plan.free_attribute_points_used,
         "requested_targets": {skill: target_to_json(detail) for skill, detail in plan.requested_targets.items()},
         "final_targets": {skill: target_to_json(detail) for skill, detail in plan.final_targets.items()},
         "purchased_attributes": plan.purchased_attributes,
@@ -542,9 +628,15 @@ def render_text(plan: BuildPlan) -> str:
     lines.append("================")
     lines.append("")
     lines.append(
-        f"Minimum level-ups worth of points: {plan.level_ups_needed} "
+        f"Minimum level-ups worth of points after creation bonuses: {plan.level_ups_needed} "
         f"(focus {plan.focus_points_spent}, attributes {plan.attribute_points_spent} x 4)"
     )
+    if plan.free_focus_points or plan.free_attribute_points:
+        lines.append(
+            "Flexible creation points used: "
+            f"{plan.free_focus_points_used}/{plan.free_focus_points} focus, "
+            f"{plan.free_attribute_points_used}/{plan.free_attribute_points} attribute."
+        )
     if plan.unused_focus_points or plan.unused_attribute_points:
         lines.append(
             f"Point slack at that level: {plan.unused_focus_points} focus, "
@@ -552,6 +644,24 @@ def render_text(plan: BuildPlan) -> str:
         )
     lines.append("Attribute points apply to every skill in their attribute group, not just the skill that forced the purchase.")
     lines.append("")
+
+    if plan.creation_choices:
+        lines.append("Character Creation")
+        lines.append("| Stage | Culture | Choice | Option id |")
+        lines.append("|---|---|---|---|")
+        for choice in plan.creation_choices:
+            lines.append(
+                f"| {choice.get('stage', '')} | {choice.get('culture', '')} | "
+                f"{choice.get('title', '')} | `{choice.get('id', '')}` |"
+            )
+        starting_levels = {skill: value for skill, value in plan.starting_skill_levels.items() if value}
+        if starting_levels:
+            rendered = ", ".join(f"{skill} +{value}" for skill, value in sorted(starting_levels.items()))
+            lines.append("")
+            lines.append(f"Starting skill levels from creation: {rendered}.")
+            lines.append("These help the XP grind, but the cap plan still targets the actual perk level.")
+        lines.append("")
+
     lines.append("Targets")
     lines.append("| Skill | Attribute | Level | Source | Perks at level |")
     lines.append("|---|---|---:|---|---|")
@@ -642,6 +752,46 @@ def build_base_focus(args: argparse.Namespace, skills: dict[str, SkillInfo]) -> 
     return focus
 
 
+def selected_creation_choices(args: argparse.Namespace, workspace: Path) -> list[dict[str, Any]]:
+    if not args.creation_choice:
+        return []
+    options = load_character_creation_options(workspace)
+    return [resolve_creation_choice(spec, options) for spec in args.creation_choice]
+
+
+def apply_creation_choices(
+    choices: list[dict[str, Any]],
+    base_attributes: dict[str, int],
+    base_focus: dict[str, int],
+    skills: dict[str, SkillInfo],
+) -> tuple[dict[str, int], dict[str, int], dict[str, int], int, int]:
+    attributes = dict(base_attributes)
+    focus = dict(base_focus)
+    starting_skill_levels = {skill: 0 for skill in skills}
+    free_focus_points = 0
+    free_attribute_points = 0
+
+    for choice in choices:
+        effects = choice.get("effects", {})
+        attribute = effects.get("attribute")
+        if attribute:
+            name = str(attribute.get("attribute", ""))
+            if name in attributes:
+                attributes[name] = min(MAX_ATTRIBUTE, attributes[name] + int(attribute.get("levels", 0)))
+
+        for skill_effect in effects.get("skills", []):
+            skill = str(skill_effect.get("skill", ""))
+            if skill not in focus:
+                continue
+            focus[skill] = min(MAX_FOCUS, focus[skill] + int(skill_effect.get("focus", 0)))
+            starting_skill_levels[skill] += int(skill_effect.get("skill_levels", 0))
+
+        free_focus_points += int(effects.get("unspent_focus", 0))
+        free_attribute_points += int(effects.get("unspent_attribute", 0))
+
+    return attributes, focus, starting_skill_levels, free_focus_points, free_attribute_points
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Generate a Bannerlord terminal build point plan.",
@@ -657,6 +807,12 @@ def main() -> None:
     parser.add_argument("--perk", action="append", default=[], help="Perk name or Skill:perk to include as a target.")
     parser.add_argument("--base-attribute", action="append", default=[], help="Starting attribute, e.g. Control=4.")
     parser.add_argument("--base-focus", action="append", default=[], help="Starting focus, e.g. Bow=2.")
+    parser.add_argument(
+        "--creation-choice",
+        action="append",
+        default=[],
+        help="Character creation option id/title to apply, e.g. vlandia_blacksmith_option or age_selection_adult_option.",
+    )
     parser.add_argument(
         "--bonus-mode",
         choices=("none", "permanent", "stretch"),
@@ -674,14 +830,25 @@ def main() -> None:
     try:
         workspace = args.workspace.resolve()
         skills = load_skill_info(workspace)
+        creation_choices = selected_creation_choices(args, workspace)
         targets = build_targets(args, skills)
         base_attributes = build_base_attributes(args)
         base_focus = build_base_focus(args, skills)
+        base_attributes, base_focus, starting_skill_levels, free_focus_points, free_attribute_points = apply_creation_choices(
+            creation_choices,
+            base_attributes,
+            base_focus,
+            skills,
+        )
         plan = optimize_build(
             requested=targets,
             skills=skills,
             base_attributes=base_attributes,
             base_focus=base_focus,
+            creation_choices=creation_choices,
+            starting_skill_levels=starting_skill_levels,
+            free_focus_points=free_focus_points,
+            free_attribute_points=free_attribute_points,
             bonus_mode=args.bonus_mode,
             auto_endurance=not args.no_auto_endurance,
         )
