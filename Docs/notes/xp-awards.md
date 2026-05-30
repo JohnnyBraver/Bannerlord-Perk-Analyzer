@@ -58,4 +58,5 @@ This note summarizes the local assembly extraction report in `Data/generated/rep
   - free-build smithing: `0.02 * item value`
   - crafting order smithing: `0.1 * item value`
   - refining: driven by the refining formula, with visible multiplier `0.3`
+- Smithing part research and craft/smelt optimization notes are expanded in `Docs/notes/smithing.md`.
 - Activity XP sources include alley XP, hideout roguery XP, tournament skill XP, workshop trade XP, persuasion XP, charm XP from relation gain, and companion quest reward XP.
