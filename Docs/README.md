@@ -7,4 +7,6 @@
 - `notes/medicine-survival.md` summarizes troop-facing Medicine, casualty survival math, and cross-skill troop durability perks.
 - `notes/troop-category-counting.md` explains how foot, ranged, mounted, infantry, cavalry, and horse-archer perk filters are counted.
 - `notes/troop-ai-fighting-behavior.md` details the live-battle AI formulas fed by troop skills and the perk stacks that maximize them.
+- `notes/personal-combat.md` summarizes player-facing combat perks, weapon-skill effects, and high-tier personal combat payoffs.
+- `notes/personal-noncombat.md` summarizes personal economy, social, utility, unique, and character-growth perks that are not primarily live-battle combat effects.
 - `notes/low-investment-perks.md` summarizes strong one-focus perk splashes for the level 25 and 50 perk tiers.
