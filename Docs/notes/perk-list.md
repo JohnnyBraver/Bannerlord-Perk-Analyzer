@@ -111,6 +111,7 @@
 [[Standard Bearer]] [[Polearm]]
 
 [[Drills]] [[Polearm]]
+#bannerlord/party_leader #bannerlord/troop_xp BUG: listed as +0.1 daily XP, but the daily-training helper rounds perk XP to an integer, so this appears to add 0 XP. Horrible party-XP pick; take only if you specifically want the governor militia-quality side.
 [[Hardy Frontline]] [[Polearm]]
 #bannerlord/party_leader #bannerlord/hp_increase +5 hp to troops in party
 
@@ -204,8 +205,9 @@
 #bannerlord/captain #bannerlord/movement_speed +5% movement speed to ranged troops
 
 [[Counter Fire]] [[Crossbow]] #bannerlord/Level175 
-#bannerlord/personal #bannerlord/damage_resistance -10% ranged damage taken when holding crssbow
-#bannerlord/captain #bannerlord/damage_resistance -3% ranged damage taken by troops
+#bannerlord/personal #bannerlord/damage_resistance -10% ranged damage taken when holding crossbow
+#bannerlord/captain #bannerlord/damage_resistance -3% ranged damage taken by troops holding crossbows
+The captain effect is code-gated to the victim's current main-hand weapon being a crossbow, so bow archers and melee infantry do not get this mitigation.
 [[Mounted Crossbowman]] [[Crossbow]] #bannerlord/Level175 
 
 [[Sniper]] [[Crossbow]] #bannerlord/Level200 

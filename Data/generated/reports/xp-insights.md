@@ -76,9 +76,11 @@ skillLimit = 4 + 14 * (attribute - 1) + 40 * focus
 
 ## Troop XP
 
-The direct troop battle XP reward grows roughly quadratically with troop level:
+The direct troop battle XP reward grows roughly quadratically with the killed unit's internal character level.
 
-| Killed troop level | XP reward |
+This is not the in-game upgrade tier. Visible troop tiers normally end at tier 6; `CharacterObject.Level` is a separate game-data value used by XP, power, and other formulas. The rows below are sample character levels, not tier numbers.
+
+| Killed unit character level | XP reward |
 | ---: | ---: |
 | 1 | 16 |
 | 6 | 48 |
@@ -87,7 +89,7 @@ The direct troop battle XP reward grows roughly quadratically with troop level:
 | 21 | 243 |
 | 26 | 341 |
 
-- Higher-level kills are much better troop-XP fuel than low-level kills.
+- Higher character-level kills are much better troop-XP fuel than low character-level kills.
 - Shared XP distribution is proportional to each stack's remaining upgrade capacity.
 - If a stack is already sitting on enough XP to upgrade, it stops being a good shared-XP target. Upgrading or diversifying stacks can keep XP from bunching up awkwardly.
 - Daily training from towns, buildings, and perks is useful background pressure, but the battle reward formula is the larger lever for fast troop growth.

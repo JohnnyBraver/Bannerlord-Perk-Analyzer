@@ -49,8 +49,10 @@ Constants found: `0.02, 1`
 Source: `TaleWorlds.CampaignSystem.GameComponents.DefaultPartyTrainingModel.GetXpReward`
 
 ```text
-troopBattleXpReward = (troopLevel + 6)^2 / 3
+troopBattleXpReward = (killedCharacter.Level + 6)^2 / 3
 ```
+
+`CharacterObject.Level` is the internal troop/character level from game data, not the visible upgrade tier.
 
 Constants found: `3, 6`
 
@@ -84,7 +86,7 @@ Learning constants found: `-1, 0, 0.1, 0.4, 1, 1.25`
 Sources: `Helpers.MobilePartyHelper.CanTroopGainXp`, `Helpers.MobilePartyHelper.PartyAddSharedXp`, `TaleWorlds.CampaignSystem.GameComponents.DefaultPartyTroopUpgradeModel.GetXpCostForUpgrade`, `TaleWorlds.CampaignSystem.GameComponents.DefaultDailyTroopXpBonusModel.CalculateTroopXpBonusInternal`
 
 ```text
-troopBattleXpReward = (troopLevel + 6)^2 / 3
+troopBattleXpReward = (killedCharacter.Level + 6)^2 / 3
 upgradeCost sums each tier step from current tier + 1 through target tier
 upgrade tier costs: <=1:100, 2:300, 3:550, 4:900, 5:1300, 6:1700, 7:2100
 upgrade fallback per higher tier: int(1.333 * (targetLevel + 4)^2)
