@@ -12,6 +12,8 @@ Attribute points apply to every skill in the same attribute group. For example, 
 
 The build planner treats 2 attribute and 0 focus as the default practical floor, but the full grid below includes 1 attribute because it explains the formula.
 
+For practical splash planning, 2 attribute + 1 focus reaches a limit of 58. That covers the level 25 and level 50 perk tiers; see `low-investment-perks.md` for useful one-focus pickups such as Trade price marking and Medicine post-battle recovery.
+
 ## Skill Limit Grid
 
 Cells are `limit (peak learning range)`.
