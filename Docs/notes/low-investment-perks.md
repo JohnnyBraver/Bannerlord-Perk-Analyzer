@@ -49,7 +49,7 @@ The early weapon-skill perks are usually good only when the character personally
 | --- | --- |
 | One Handed | `Wrapped Handles` is a strong handling/infantry-skill pick; `Basher` is shield-bash and shield-wall mitigation. |
 | Two Handed | `Strong Grip` and `Wood Chopper` are solid for two-handed infantry or personal two-handed builds. |
-| Polearm | The first two tiers are mostly damage/cavalry-control tools. Good for polearm users, less general than Trade or Medicine. |
+| Polearm | The first two tiers are mostly damage/cavalry-control tools. Good for polearm users, less general than Trade or Medicine. The level 75 captain choice is worth a closer look because `Clean Thrust` gives foot polearm troops skill, which feeds damage, speed, and AI behavior; see `troop-ai-fighting-behavior.md`. |
 | Bow | Great for personal archers or archer captains: movement accuracy, headshot damage, armor penetration, reload movement. |
 | Crossbow | Strong if you personally use crossbows or captain crossbow troops; otherwise it is not a general party splash. |
 | Throwing | Good for throwing builds and formations; `Flexible Fighter` is especially interesting because it grants formation skill bonuses across Control/Vigor depending on troop type. |
