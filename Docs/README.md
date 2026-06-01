@@ -11,4 +11,9 @@
 - `notes/personal-noncombat.md` summarizes personal economy, social, utility, unique, and character-growth perks that are not primarily live-battle combat effects.
 - `notes/party-management.md` summarizes party speed, troop XP, carrying capacity, food, morale, party size, prisoners, and recruitment perks.
 - `notes/trade-economy.md` explains shop price layers, trade penalty, Trade XP, and economy-facing perk lanes.
+- `notes/settlement-economy.md` explains taxes, tariffs, village production, hearth growth, prosperity income, and economy-facing governor perks.
+- `notes/settlement-development.md` explains loyalty, construction, food pressure, project effects, hearth recovery, and the growth/stability layer between economy and defense.
+- `notes/settlement-defense.md` explains security, militia, garrison strength, siege food, wall durability, bombardment, and defense-facing governor perks.
+- `notes/settlement-workshops.md` is the workshop appendix for ownership limits, production perks, warehouse Trade XP, and workshop follow-ups.
+- `notes/settlement-alleys.md` is the alley appendix for alley income, crime rating, troop limits, XP, and criminal-holding follow-ups.
 - `notes/low-investment-perks.md` summarizes strong one-focus perk splashes for the level 25 and 50 perk tiers.
