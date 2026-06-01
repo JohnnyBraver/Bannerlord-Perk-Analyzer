@@ -16,4 +16,6 @@
 - `notes/settlement-defense.md` explains security, militia, garrison strength, siege food, wall durability, bombardment, and defense-facing governor perks.
 - `notes/settlement-workshops.md` is the workshop appendix for ownership limits, production perks, warehouse Trade XP, and workshop follow-ups.
 - `notes/settlement-alleys.md` is the alley appendix for alley income, crime rating, troop limits, XP, and criminal-holding follow-ups.
+- `notes/kingdom-management.md` explains influence, policy voting, ruler overrides, army costs, diplomacy scoring, and clan politics.
+- `notes/kingdom-policies.md` is the policy appendix with every kingdom policy, major tradeoffs, and hidden A/O/E voting weights.
 - `notes/low-investment-perks.md` summarizes strong one-focus perk splashes for the level 25 and 50 perk tiers.
