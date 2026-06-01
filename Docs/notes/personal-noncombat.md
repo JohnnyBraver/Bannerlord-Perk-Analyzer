@@ -2,7 +2,7 @@
 
 This note covers perks with `personal` role that are not primarily about the player's live-battle damage, defense, accuracy, or weapon handling.
 
-Combat-relevant unique unlocks such as horseback bows, horseback crossbow reload, and shield-piercing javelins are discussed in `personal-combat.md`. Smithing mechanics are summarized here only briefly; the detailed XP, value, refining, and part-research notes live in `smithing.md`.
+Combat-relevant unique unlocks such as horseback bows, horseback crossbow reload, and shield-piercing javelins are discussed in `personal-combat.md`. Smithing mechanics are summarized here only briefly; the detailed XP, value, refining, and part-research notes live in `smithing.md`. Detailed shop-price, trade-penalty, and economy routing notes live in `trade-economy.md`.
 
 ## Main Takeaways
 

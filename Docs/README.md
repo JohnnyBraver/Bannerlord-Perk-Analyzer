@@ -10,4 +10,5 @@
 - `notes/personal-combat.md` summarizes player-facing combat perks, weapon-skill effects, and high-tier personal combat payoffs.
 - `notes/personal-noncombat.md` summarizes personal economy, social, utility, unique, and character-growth perks that are not primarily live-battle combat effects.
 - `notes/party-management.md` summarizes party speed, troop XP, carrying capacity, food, morale, party size, prisoners, and recruitment perks.
+- `notes/trade-economy.md` explains shop price layers, trade penalty, Trade XP, and economy-facing perk lanes.
 - `notes/low-investment-perks.md` summarizes strong one-focus perk splashes for the level 25 and 50 perk tiers.
