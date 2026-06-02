@@ -1,160 +1,196 @@
-# Kingdom Management
+# Kingdom Management and Policies Manual
 
-This note covers the kingdom-level layer: influence, policy voting, ruler overrides, armies, war and peace decisions, clan politics, and the policies that make those systems tilt. Read this together with `kingdom-policies.md`, which has the full policy table.
+This manual covers the mechanics of kingdom-level governance, diplomacy, army assembly, and the voting processes of Bannerlord. It details how the influence economy operates, how ruler overrides are calculated, and how the A/O/E (Authoritarian, Oligarchic, Egalitarian) voting weights shape noble council decisions.
 
-The extraction source for this pass is `Data/generated/kingdom-management-methods.json`.
+---
 
-## Main Takeaways
+## 1. The Influence Economy & Proposal Costs
 
-- Kingdom management is mostly an influence economy. Influence buys proposals, votes, army summons, cohesion, ruler overrides, clan support, and political pressure.
-- Policies are not just passive bonuses. Many of them redistribute money, influence, loyalty, prosperity, troop access, or army control between the ruler, high-tier nobles, settlement owners, and commoners.
-- Being the ruler is a different game from being a vassal. Ruler-favoring policies are powerful, but several of them directly drain vassal influence, loyalty, prosperity, workshop output, or trade value.
-- Voting has hidden ideology weights. Each policy has authoritarian, oligarchic, and egalitarian weights; clan tier, ruler status, minor-faction status, and leader traits change which weights a clan tends to support.
-- War and peace are scored from strength, settlement value, war progress, exposure, relations, culture claims, tribute, alliances, and trade agreements. Winning fights is only part of the diplomatic picture.
+Influence is the primary currency of statecraft. It is expended to propose laws, veto council decisions, annex fiefs, summon lords to war, and maintain cohesion.
 
-## Influence Costs
+### Base Decision Costs
+The base cost to propose a kingdom-level action or decision is dictated by the campaign diplomacy model:
 
-The extracted `DefaultDiplomacyModel` gives these base proposal costs:
+| Action / Proposal | Base Cost | Strategic Modifiers |
+| :--- | ---: | :--- |
+| **Propose or Disavow Policy** | 100 Influence | `Firebrand` (Charm 125) reduces proposal cost by $25\%$. |
+| **Propose Peace** | 100 Influence | `Firebrand` reduces cost by $25\%$. |
+| **Propose War** | 200 Influence | Doubled for the ruling clan if `War Tax` policy is active. |
+| **Annex Fief** | 200 Influence | Doubled by `Feudal Inheritance`. Halved for ruler by `Precarial Land Tenure`. |
+| **Expel Clan** | 200 Influence | `Firebrand` reduces cost by $25\%$. |
 
-| Decision | Base cost | Important modifiers |
-| --- | ---: | --- |
-| Propose or disavow policy | 100 influence | `Firebrand` reduces kingdom decision proposal cost by 25%. |
-| Propose peace | 100 influence | `Firebrand` applies. |
-| Propose war | 200 influence | `War Tax` doubles this for the ruling clan. `Firebrand` applies. |
-| Propose fief annexation | 200 influence | `Feudal Inheritance` doubles it. `Precarial Land Tenure` halves it for the ruling clan. `Firebrand` applies. |
-| Expel clan | 200 influence | `Firebrand` applies. |
+### Council Voting Support
+When a proposal goes to vote, clans can back their stance at three strength tiers:
 
-Voting support uses the familiar three strengths:
+| Support Strength | Cost (Influence) | Personal Modifiers |
+| :--- | ---: | :--- |
+| **Low Support** | 20 | `Flexible Ethics` (Charm 125) reduces vote costs. |
+| **Medium Support** | 60 | `Flexible Ethics` reduces vote costs. |
+| **High Support** | 150 | `Flexible Ethics` reduces vote costs. |
 
-| Support strength | Cost |
-| --- | ---: |
-| Low | 20 influence |
-| Medium | 60 influence |
-| High | 150 influence |
+> [!TIP]
+> The perk `Good Natured` (Charm 175) refunds spent influence if a proposal you supported fails to pass. This provides significant political safety when attempting to sway hostile councils.
 
-`Flexible Ethics` reduces the influence cost of voting for kingdom proposals made by others. `Good Natured` refunds influence when a supported proposal fails. Those are easy to underestimate because they do not create influence directly, but they make your political budget stretch much further.
+### Ruler Overrides
+The ruler can overrule any council vote by spending influence proportional to the support gap.
+* **Cost formula**: The cost scales quadratically based on the percentage support gap between the ruler's choice and the popular choice.
+* **Override discount**: The policy `Royal Privilege` applies a flat $20\%$ discount to all ruler override costs, enabling the ruler to force centralization over vassal objections.
 
-## Ruler Overrides
+---
 
-The ruler can override the council outcome by paying influence. The extracted `DefaultClanPoliticsModel.GetInfluenceRequiredToOverrideKingdomDecision` scales the cost from the support-point gap and rounds to a multiple of 5. `Royal Privilege` applies a 20% reduction when the ruler is overriding the popular decision.
+## 2. Policy Voting Tendencies & Hidden Ideologies
 
-The practical read is simple:
+Voting clans are not purely random. Every kingdom policy has hidden ideology weights across three vectors: Authoritarian (A), Oligarchic (O), and Egalitarian (E).
 
-- If you are the ruler, influence is your emergency brake.
-- If you want to govern democratically, `Royal Privilege` is optional.
-- If you want to force through hostile ruler policies, `Royal Privilege`, `Sacred Majesty`, `Firebrand`, and daily influence generation matter a lot.
+### Clan Decision-Making
+A clan's support for a policy is determined by its cultural leanings and current situation:
 
-## Policy Voting
+| Clan Type / Situation | Voting Tendency | Ideological Focus |
+| :--- | :--- | :--- |
+| **Ruling Clan** | Favors policies that concentrate power/income at the top. | Strongly Authoritarian, Anti-Egalitarian. |
+| **Minor Factions (Mercenaries)** | Favors clan autonomy, independence, and flat rights. | Strongly Egalitarian, Anti-Authoritarian. |
+| **Tier 3+ Clans (Vassals)** | Favors noble privileges, vassal rights, and fief security. | Strongly Oligarchic, Anti-Authoritarian. |
+| **Leader Traits** | Trait levels (Honor, Mercy, etc.) scale leans. | Trait levels align with A/O/E axes. |
 
-`KingdomPolicyDecision.DetermineSupport` starts each clan with hidden lean values for authoritarian, oligarchic, and egalitarian policies, then adjusts them:
+---
 
-| Clan situation | Voting tendency from extraction |
-| --- | --- |
-| Ruling clan | More authoritarian, less oligarchic and egalitarian. |
-| Minor faction | More egalitarian, less oligarchic and authoritarian. |
-| Tier 3+ clan | More oligarchic, less authoritarian and egalitarian. Higher tier strengthens the oligarchic pull. |
-| Tier 2 clan | Slightly more oligarchic, less authoritarian and egalitarian. |
-| Leader traits | Authoritarian, Oligarchic, and Egalitarian trait levels push the matching policy weights. |
+## 3. Daily Influence & Military Coronae
 
-That means a ruler-heavy kingdom can push ruler laws, a high-tier noble bloc likes noble privileges, and commoner/settlement-stability laws can face resistance from the people who actually have votes.
+Clans generate or lose influence daily based on active policies and owned holdings:
 
-See `kingdom-policies.md` for the full A/O/E weight table.
+* **Sacred Majesty**: Ruler clan gains $+3$ daily influence; non-ruler clans lose $-0.5$ daily influence.
+* **Royal Guard**: Ruler party size $+60$; non-ruler clans lose $-0.2$ daily influence.
+* **Senate**: Tier 3+ clans gain $+0.5$ daily influence.
+* **Lords' Privy Council**: Tier 5+ clans gain $+0.5$ daily influence.
+* **Feudal Inheritance**: $+0.1$ daily influence per owned fief.
+* **Serfdom**: $+0.2$ daily influence per owned village.
+* **Bailiffs**: $+1$ daily influence per owned town with security $>60$.
+* **Council of the Commons**: $+0.1$ daily influence per notable in owned settlements (extremely potent in well-populated territories).
+* **Lawspeakers**: Leaders with Charm $>100$ gain $+1$ daily influence; leaders with Charm $<100$ lose $-1$ daily influence.
 
-## Daily Influence
+> [!IMPORTANT]
+> The policy `Military Coronae` multiplies all combat-related influence gains by $+20\%$, but increases overall troop wages by $+10\%$. This policy should only be enacted by highly active, offensive clans that can offset the wage increase through constant combat victories.
 
-Policy influence income is scattered across several systems:
+---
 
-| Source | Effect |
-| --- | --- |
-| `Sacred Majesty` | Ruler clan +3 influence/day; non-ruler clans -0.5/day. |
-| `Royal Guard` | Non-ruling clans -0.2/day. |
-| `Marshals` | Ruling clan -1/day. |
-| `Senate` | Tier 3+ clans +0.5/day. |
-| `Lords' Privy Council` | Tier 5+ clans +0.5/day. |
-| `Noble Retinues` | Tier 5+ clans -1/day, but their leaders gain party size. |
-| `Feudal Inheritance` | +0.1 influence/day per owned fief. |
-| `Serfdom` | +0.2 influence/day per owned village. |
-| `Bailiffs` | +1 influence/day per owned town with security above 60. |
-| `Council of the Commons` | +0.1 influence/day per notable in owned settlements. |
-| `Trial by Jury` | All clans -1 influence/day. |
-| `Lawspeakers` | Clan leader with Charm above 100 gains +1/day; otherwise loses -1/day. |
+## 4. Army Summoning & Cohesion Mechanics
 
-`Military Coronae` multiplies many military influence awards by 20%, but raises troop wages by 10%. It is best when your kingdom actually fights enough for the extra influence to matter.
+ summons and army cohesion are governed by a strict model of relations, party size ratios, and distance:
 
-## Armies
+* **Average Army Summon Baseline**: 20 Influence.
+* **Size Eligibility (Player)**: A clan member's party must be at least $40\%$ full ($0.4$ ratio) to be summoned.
+* **Size Eligibility (AI)**: An AI lord's party must be at least $60\%$ full ($0.6$ ratio) to be summoned.
+* **Minimum Food Supply**: Called parties must carry at least 15 days of food reserves.
+* **Cohesion Decay**: Cohesion decays by a baseline $-2$ points per day.
+* **Dispersion Threshold**: When cohesion falls below $10$, the army automatically disperses.
+* **Daily Influence Award**: Army members receive daily influence based on their party strength:
+$$\text{Daily Influence Award} = \frac{\text{Party Strength} + 20}{200} \text{ (Before culture modifiers)}$$
 
-The extracted army model has a few useful constants:
+### Army Cost Modifiers
 
-| Army rule | Extracted value |
-| --- | ---: |
-| Average call-to-army cost baseline | 20 influence |
-| Player party size ratio used for call eligibility | 0.4 |
-| AI party size ratio used for call eligibility | 0.6 |
-| Minimum food days to call a party | 15 days |
-| Maximum wait time while gathering | 3 days |
-| Cohesion threshold for dispersion | 10 |
-| AI influence budget while creating army | 70% of clan influence |
-| Base daily cohesion change | -2 cohesion/day |
-| Army-member influence award | `(party strength + 20) / 200` per day before culture modifiers |
+| Source | Effect | Tactical Read |
+| :--- | :--- | :--- |
+| `Inspiring Leader` | Army leader pays $-20\%$ influence to call parties. | Essential Leadership perk for warfare. |
+| `Call To Arms` | $-15\%$ summoning cost and called parties move faster. | Improves tactical response times. |
+| `Encirclement` | $-10\%$ influence cost to boost army cohesion. | Extends army duration in long campaigns. |
+| `Horde Leader` | Army leader loses $5\%$ less cohesion daily. | Reduces influence drain while sieging. |
+| `Royal Commissions` | Ruler army cost $-30\%$, Vassal army cost $+10\%$. | Restricts army-leading capabilities to the crown. |
 
-Army summon cost is not a flat price. It scales with relation to the target leader, target party strength, target party size readiness, distance, random leader variation, policies, perks, and culture.
+---
 
-Important army modifiers:
+## 5. Diplomacy & War Scoring
 
-| Source | Effect |
-| --- | --- |
-| `Royal Commissions` | Ruler army creation cost -30%; ruler army cohesion boost cost -30%; non-ruler army creation cost +10%. |
-| `Marshals` | Tier 5+ nobles pay 10% less to lead armies; ruler clan loses 1 influence/day. |
-| `Lords' Privy Council` | Calling Tier 4 or lower parties costs 20% more. |
-| `Senate` | Calling Tier 2 or lower parties costs 10% more. |
-| `Inspiring Leader` | Army leader pays 20% less influence to call parties. |
-| `Call To Arms` | Army leader pays 15% less influence to call parties and called parties move faster. |
-| `Encirclement` | Army leader pays 10% less influence to boost cohesion. |
-| `Horde Leader` | Army leader loses 5% less army cohesion. |
+War and peace are calculated using a diplomatic evaluation score rather than simple military dominance. The key vectors include:
+1. **Military Strength**: Relative total strength between kingdoms.
+2. **Settlement Values**: The total prosperity and village status of owned lands. Losing prosperous towns drastically shifts a kingdom's peace evaluation.
+3. **Casualties**: Cumulative battle casualties. High casualty counts trigger war fatigue.
+4. **Frontage and Exposure**: Factions bordered by multiple hostile kingdoms become significantly more peace-inclined to avoid multi-front wars.
+5. **Cultural Claims**: Factions prioritize reclaiming towns and castles that share their faction culture.
 
-`Royal Commissions` is the clean ruler army policy. `Marshals` is the high-tier noble army policy. The names are easy to mentally merge, but the formulas treat them differently.
+---
 
-## Diplomacy And War Score
+## 6. Vanilla Policies Encyclopedia
 
-The diplomacy extraction is too wide to reduce to one clean formula, but the important inputs are visible:
+### Ruler Power & Revenue Policies
 
-- Relative strength and enemy strength.
-- Value of settlements, including town prosperity and bound villages.
-- War progress, including casualties and settlement outcomes.
-- Exposure to other factions.
-- Same-culture towns held by the target.
-- Relations between leaders/clans.
-- Tribute direction and amount.
-- Alliances, trade agreements, and constant-war rules.
+| Policy | Mechanical Effect | Strategic Implications | A/O/E |
+| :--- | :--- | :--- | :---: |
+| **Land Tax** | $+5\%$ village tax to ruler; $-5\%$ village tax to vassals. | Skims wealth from vassals to the crown. Punishes vassal economy. | `0.70 / 0.15 / -0.70` |
+| **State Monopolies** | $+5\%$ workshop profits to ruler; $-10\%$ workshop speed. | Boosts royal coffers but degrades overall workshop productivity. | `0.75 / 0.10 / -0.60` |
+| **Sacred Majesty** | Ruler $+3$ influence/day; Vassals $-0.5$ influence/day. | Excellent for locking down central rule; starves vassals of votes. | `0.85 / 0.10 / -0.90` |
+| **Debasement of Currency** | Ruler $+100$ gold/day per town; Towns $-1$ loyalty/day. | Emergency crown cash at the cost of catastrophic loyalty decay. | `0.70 / 0.10 / -0.70` |
+| **Crown Duty** | Ruler $+5\%$ tariffs; Town trade penalty $+5\%$; Prosperity $-1$/day. | Converts trade into royal income, but prosperity loss is costly. | `0.75 / 0.15 / -0.40` |
+| **Imperial Towns** | Ruler towns $+1$ loyalty/prosperity; Vassal towns $-0.3$ loyalty. | Centralizes economic value under the crown's direct holdings. | `0.70 / 0.15 / -0.30` |
+| **Royal Guard** | Ruler party size $+60$; Vassals $-0.2$ influence/day. | Drastically improves the ruler's personal army limit. | `0.75 / 0.00 / -0.50` |
+| **War Tax** | Ruler $+5\%$ tax from settlements; Prosperity $-1$/day; War proposal cost doubled. | High war-funding tax, but hurts long-term development. | `0.70 / -0.10 / -0.65` |
+| **Royal Privilege** | Ruler override costs reduced by $20\%$. | Enables cheap ruler overrides against popular votes. | `0.80 / -0.15 / -0.75` |
+| **Precarial Land Tenure** | Ruler fief annexation proposal cost reduced by $50\%$. | Makes stripping vassals of fiefs significantly cheaper. | `0.75 / 0.00 / -0.60` |
 
-Practical implications:
+---
 
-- Taking towns changes diplomacy more than farming small parties.
-- Bleeding enemy parties matters because war progress includes casualties, but settlement value is a huge diplomatic lever.
-- A kingdom that is exposed on multiple fronts becomes more peace-inclined.
-- Relations and culture claims can bend the score around the raw military math.
+### Armies & Noble Power Policies
 
-## Clan Politics
+| Policy | Mechanical Effect | Strategic Implications | A/O/E |
+| :--- | :--- | :--- | :---: |
+| **Royal Commissions** | Ruler army cost $-30\%$; Vassal army cost $+10\%$. | Prevents vassals from forming independent war hosts. | `0.65 / 0.00 / -0.45` |
+| **Marshals** | Tier 5+ nobles army cost $-10\%$; Ruler $-1$ influence/day. | Delegates army coordination to senior vassal clans. | `-0.45 / 0.50 / 0.00` |
+| **Senate** | Tier 3+ clans $+0.5$ influence/day; T2 army cost $+10\%$. | Empowers mid-tier noble clans. | `-0.70 / 0.85 / 0.70` |
+| **Lords' Privy Council** | Tier 5+ clans $+0.5$ influence/day; T4 army cost $+20\%$. | Concentrates military and voting power within elite vassal clans. | `-0.50 / 0.70 / -0.15` |
+| **Military Coronae** | Combat influence gains $+20\%$; Troop wages $+10\%$. | High-tempo military expansion policy; expensive in peacetime. | `-0.15 / 0.60 / 0.35` |
+| **Feudal Inheritance** | Annexation cost doubled; Fiefs $+0.1$ influence/day. | Protects vassal fiefs from royal annexation. | `-0.75 / 0.75 / 0.65` |
+| **Noble Retinues** | Tier 5+ clans leader party size $+40$; Influence $-1$/day. | Converts top-clan political weight into raw battlefield troops. | `-0.35 / 0.65 / -0.45` |
+| **Castle Charters** | Castle upgrade construction costs reduced by $20\%$. | Accelerates defensive castle upgrades across the realm. | `-0.65 / 0.45 / 0.00` |
 
-Clan recruitment and retention are not only about cash. The diplomacy model looks at settlement value, culture, relation, clan strength, war-party limit, current fiefs, reliability, and the value of joining or leaving a kingdom.
+---
 
-For a player kingdom, the management loop is:
+### Settlement Owners & Local Rule Policies
 
-1. Keep influence generation positive before forcing votes.
-2. Use ruler policies only when the kingdom can survive the loyalty, prosperity, or vassal-influence loss.
-3. Build relations with major clans before you need their votes.
-4. Give clans enough fief value that leaving is unattractive.
-5. Use war wins to gain fiefs and tribute leverage, not just loot.
+| Policy | Mechanical Effect | Strategic Implications | A/O/E |
+| :--- | :--- | :--- | :---: |
+| **Magistrates** | Town security $+1$/day; Town taxes $-5\%$. | Excellent for stabilizing conquered towns at a minor cost. | `0.60 / 0.35 / 0.10` |
+| **Bailiffs** | Town security $+1$/day; Town owner $+1$ influence/day (if security $>60$); Taxes $-5\%$. | Rewards landed owners with influence for keeping order. | `0.00 / 0.40 / -0.10` |
+| **Serfdom** | Owner $+0.2$ influence/day per village; Security $+1$/day; Militia $-1$/day. | Boosts owner influence, but weakens town defense counts. | `-0.40 / 0.50 / -0.25` |
+| **Hunting Rights** | Town/Castle food production $+2$; Loyalty $-0.2$/day. | Excellent emergency food injection for sieged fiefs. | `-0.20 / 0.35 / -0.15` |
+| **Road Tolls** | Owner trade tax $+3\%$; Prosperity $-0.2$/day. | Short-term cash injection for fief owners; restricts growth. | `-0.50 / 0.45 / -0.35` |
+| **Council of Commons** | Owner $+0.1$ influence/day per notable; Taxes $-5\%$. | Massively scales vassal influence in highly populated towns. | `-0.50 / 0.10 / 0.70` |
 
-## Strong Kingdom Build Pieces
+---
 
-| Area | Picks |
-| --- | --- |
-| Proposal economy | `Charm 125 Firebrand`, `Charm 125 Flexible Ethics`, `Charm 175 Good Natured`. |
-| Daily influence | `Charm 275 Immortal Charm`, `Sacred Majesty`, `Lawspeakers` if the ruler and vassals have high Charm. |
-| Battle influence | `Charm 50 Warlord`, `Tactics 225 Pre Battle Maneuvers`, `Tactics 225 Besieged`, `Military Coronae`. |
-| Army control | `Leadership 175 Inspiring Leader`, `Tactics 150 Call To Arms`, `Tactics 200 Encirclement`, `Royal Commissions`. |
-| Troop donation influence | `Steward 150 Relocation`. |
-| Stable rule | `Citizenship`, `Forgiveness of Debts`, `Tribunes of the People`, `Bailiffs`, with care around taxes and production. |
+### Commoner & Stability Policies
 
-The cleanest ruler setup is influence first, armies second, taxes third. Money policies are tempting, but unstable towns and angry vassals can turn short-term income into a long-term governance tax.
+| Policy | Mechanical Effect | Strategic Implications | A/O/E |
+| :--- | :--- | :--- | :---: |
+| **Forgiveness of Debts** | Town loyalty $+2$/day; Workshop production $-5\%$. | The premier policy for stabilizing conquest-heavy kingdoms. | `-0.40 / -0.40 / 0.60` |
+| **Citizenship** | Same-culture town loyalty $+0.5$; Wrong-culture town loyalty $-0.5$; Militia $+1$/day. | Excellent for culturally mono-realms; deadly for empires. | `-0.65 / -0.35 / 0.70` |
+| **Tribunes of People** | Ruler town taxes $-5\%$; Town loyalty $+1$/day. | Reduces royal income to stabilize town loyalty. | `-0.60 / -0.20 / 0.55` |
+| **Grazing Rights** | Settlement loyalty $+0.5$/day; Village hearth growth $-0.25$/day. | Minor loyalty boost, but degrades village production over time. | `-0.75 / -0.30 / 0.70` |
+| **Trial by Jury** | Town loyalty $+0.5$/day; Security $-0.2$/day; Clans $-1$ influence/day. | Politically draining stability tool. | `-0.30 / 0.10 / 0.60` |
+| **Cantons** | Militia production $+1$/day; Recruitment speed $+20\%$; Taxes $-10\%$. | Manpower-focused war mobilization policy. | `-0.20 / -0.10 / 0.40` |
+| **Veterans' Land Grants**| Veteran militia rate $+10\%$; Village taxes $-5\%$. | Upgrades the defense quality of militias. | `-0.35 / -0.15 / 0.50` |
+
+---
+
+## 7. Strategic Policy Bundles
+
+### Centralized Player Ruler Setup
+This setup maximizes the ruler's influence, cash, and army limits while starving vassals of political power:
+* **Core Policies**: `Sacred Majesty` (influence drain), `Royal Guard` (party size), `Royal Commissions` (army control), `Royal Privilege` (veto override discount), `Precarial Land Tenure` (cheap land confiscation).
+* **Revenue Additions**: `Land Tax` (village skim), `State Monopolies` (workshop tax).
+
+### Conquered Expansion Realm Setup
+Designed to pacify newly captured fiefs of different cultures, preventing rebellions and stabilizing borders:
+* **Core Policies**: `Forgiveness of Debts` ($+2$ loyalty), `Tribunes of the People` ($+1$ loyalty), `Magistrates` ($+1$ security), `Bailiffs` ($+1$ security).
+* **Avoid**: `Debasement of the Currency` (loyalty decay), `War Tax` (prosperity decay).
+
+### Democratic Vassal Coalition Setup
+Enacted to empower senior vassal houses, maximizing noble cooperation and defense:
+* **Core Policies**: `Senate` (nobility influence), `Feudal Inheritance` (fief security), `Council of the Commons` (notable-based influence), `Marshals` (vassal-led armies).
+
+---
+
+## 8. Political Traps to Avoid
+
+* **Debasement of the Currency**: The $+100$ gold per town is negligible compared to the devastating $-1$ daily loyalty hit, which triggers rebellions and halts construction.
+* **War Tax**: Restricts the ruler's ability to drive warfare by doubling war proposal costs, while degrading overall settlement prosperity.
+* **Citizenship in Multi-Culture Kingdoms**: The $-0.5$ loyalty penalty to mismatching cultures will trigger massive rebellions in conquering realms.
+* **Trial by Jury**: Starves small vassal clans of influence completely due to the global $-1$ daily influence drain.
