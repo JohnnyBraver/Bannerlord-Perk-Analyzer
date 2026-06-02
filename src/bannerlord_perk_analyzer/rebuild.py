@@ -2,35 +2,30 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
-import subprocess
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 try:
     from .classifier import classify_effect, get_readable_facets, matches, normalize_classification
-    from .postprocess import postprocess
+    from .postprocess import default_workspace, postprocess
+    from .prune_overrides import prune_overrides
+    from .utils import resolve_game_root, run_extractor
 except ImportError:
     from classifier import classify_effect, get_readable_facets, matches, normalize_classification
-    from postprocess import postprocess
-
-
-def default_workspace() -> Path:
-    return Path(__file__).resolve().parents[2]
+    from postprocess import default_workspace, postprocess
+    from prune_overrides import prune_overrides
+    from utils import resolve_game_root, run_extractor
 
 
 def read_json(path: Path) -> Any:
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="\n") as handle:
-        json.dump(value, handle, ensure_ascii=False, indent=2)
-        handle.write("\n")
+    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
 def strip_loc_prefix(text: Any) -> str:
@@ -149,40 +144,32 @@ def classify_perks(raw_perks: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sort_rows(rows)
 
 
-def run_extractor(workspace: Path, game_root: Path, raw_output: Path) -> None:
-    project = workspace / "tools" / "BannerlordExtractor" / "BannerlordExtractor.csproj"
-    if not project.exists():
-        raise SystemExit(f"Extractor project is missing: {project}")
-    command = [
-        "dotnet",
-        "run",
-        "--project",
-        str(project),
-        "--",
-        "perks",
-        "--game-root",
-        str(game_root),
-        "--output",
-        str(raw_output),
-    ]
-    subprocess.run(command, check=True)
-
-
 def rebuild(workspace: Path, game_root: Path | None, skip_extract: bool = False) -> None:
     raw_path = workspace / "Data" / "raw" / "perks.json"
     generated_path = workspace / "Data" / "generated" / "classified-perk-effects.json"
 
     if not skip_extract:
-        env_game_root = os.environ.get("BANNERLORD_GAME_ROOT")
-        if game_root is None and not env_game_root:
-            raise SystemExit("Bannerlord game root is required. Pass --game-root, set BANNERLORD_GAME_ROOT, or use --skip-extract.")
-        resolved_game_root = game_root or Path(str(env_game_root))
-        run_extractor(workspace, resolved_game_root.resolve(), raw_path)
+        resolved_game_root = resolve_game_root(game_root)
+        run_extractor(workspace, [
+            "perks",
+            "--game-root",
+            str(resolved_game_root.resolve()),
+            "--output",
+            str(raw_path.resolve()),
+        ])
 
     raw_perks = read_json(raw_path)
     rows = classify_perks(raw_perks)
     write_json(generated_path, rows)
     postprocess(workspace)
+
+    # Automatically prune redundant overrides
+    try:
+        before_entries, after_entries, pruned_fields = prune_overrides(workspace, dry_run=False)
+        if pruned_fields > 0 or before_entries > after_entries:
+            print(f"Auto-pruned {before_entries - after_entries} redundant override entries and {pruned_fields} machine fields.")
+    except Exception as e:
+        print(f"Warning: Auto-pruning overrides encountered an error: {e}")
 
     review_rows = [row for row in rows if row["review"].get("classification_review")]
     role_summary = Counter(row["game"]["role"] for row in rows)
@@ -209,3 +196,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
