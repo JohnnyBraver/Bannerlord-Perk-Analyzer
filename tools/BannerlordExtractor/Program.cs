@@ -611,15 +611,17 @@ internal static class Program
         }
 
         var parts = new List<string>();
-        if ((value & 1) != 0) parts.Add("infantry");
-        if ((value & 2) != 0) parts.Add("ranged");
-        if ((value & 4) != 0) parts.Add("cavalry");
-        if ((value & 8) != 0) parts.Add("horse_archer");
-        if ((value & 16) != 0) parts.Add("heroes");
-        if ((value & 32) != 0) parts.Add("non_hero");
-        if ((value & 64) != 0) parts.Add("formation");
-        if ((value & 128) != 0) parts.Add("melee");
-        if ((value & 256) != 0) parts.Add("mounted");
+        if ((value & 1) != 0) parts.Add("on_foot");
+        if ((value & 2) != 0) parts.Add("mounted");
+        if ((value & 4) != 0) parts.Add("melee");
+        if ((value & 8) != 0) parts.Add("ranged");
+        if ((value & 16) != 0) parts.Add("one_handed_user");
+        if ((value & 32) != 0) parts.Add("shield_user");
+        if ((value & 64) != 0) parts.Add("two_handed_user");
+        if ((value & 128) != 0) parts.Add("polearm_user");
+        if ((value & 256) != 0) parts.Add("bow_user");
+        if ((value & 512) != 0) parts.Add("thrown_user");
+        if ((value & 1024) != 0) parts.Add("crossbow_user");
         return parts.Count == 0 ? "none" : string.Join(", ", parts);
     }
 

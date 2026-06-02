@@ -24,18 +24,6 @@
     "notes": "Description says triple shield damage, but bonus 3 with add_factor appears to apply +300% damage, or 4x total, unless this path treats the factor as a direct multiplier."
   },
   {
-    "perk_string_id": "TacticsGensdarmes",
-    "effect_slot": "primary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is ranged, but description says cavalry troops in formation; likely value/description mismatch."
-  },
-  {
-    "perk_string_id": "TwoHandedOnTheEdge",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage includes cavalry, but description says swing speed to infantry in your formation."
-  },
-  {
     "perk_string_id": "LegendarySmith",
     "effect_slot": "primary",
     "notes": "Bonus stores the base +5% Legendary chance; description also includes +1% per 5 Smithing above 275."
@@ -74,12 +62,6 @@
     "notes": "Scales with controlled towns; no dedicated controlled-settlement trigger condition exists."
   },
   {
-    "perk_string_id": "CrossbowLooseAndMove",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is horse_archer, but description says ranged troops in your formation; verify whether this should apply only to mounted ranged troops."
-  },
-  {
     "perk_string_id": "CharmOratory",
     "effect_slot": "primary",
     "classification_review": "Composite effect spans renown and influence; single classification is partial."
@@ -101,58 +83,20 @@
     "classification_review": "Composite effect spans recruitment and upgrade costs for ranged troops; single classification is partial."
   },
   {
-    "perk_string_id": "BowBowControl",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-  },
-  {
-    "perk_string_id": "BowDeadAim",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-  },
-  {
-    "perk_string_id": "BowBodkin",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-  },
-  {
-    "perk_string_id": "BowNockingPoint",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is mounted, but description says archers in your formation without that restriction."
-  },
-  {
-    "perk_string_id": "BowQuickAdjustments",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is mounted, but description says archers in your formation without that restriction."
-  },
-  {
     "perk_string_id": "BowRapidFire",
     "effect_slot": "secondary",
     "perk_wrong": true,
-    "notes": "Game troop_usage is horse_archer, but description says troops in your formation without that restriction."
+    "notes": "Game troop_usage is ranged, but description only says troops in your formation; likely hidden ranged-troop restriction."
   },
   {
-    "perk_string_id": "BowStrongBows",
+    "perk_string_id": "CrossbowCounterFire",
     "effect_slot": "secondary",
     "perk_wrong": true,
-    "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-  },
-  {
-    "perk_string_id": "BowSkirmishPhaseMaster",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is horse_archer, but description says ranged troops in your formation without that restriction."
-  },
-  {
-    "perk_string_id": "BowBullsEye",
-    "effect_slot": "primary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is horse_archer, but description says ranged troops in your party without that restriction."
+    "effect_tags": [
+      "weapons"
+    ],
+    "notes": "Description says your troops, but SandboxAgentApplyDamageModel only applies the captain bonus when the victim's current main-hand weapon class is Crossbow; bow archers and melee infantry do not benefit.",
+    "classification_review": "Hidden current-weapon condition; treat as crossbow-user projectile mitigation, not all-troops or melee-infantry mitigation."
   },
   {
     "perk_string_id": "EngineeringMilitaryPlanner",
@@ -169,12 +113,6 @@
     "classification_review": "Composite project set spans fortifications, aqueducts, and barracks; settlement-defense classification is partial."
   },
   {
-    "perk_string_id": "EngineeringImprovedTools",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is cavalry, but description only says troops in your formation; likely cavalry-only restriction is missing from text."
-  },
-  {
     "perk_string_id": "OneHandedBasher",
     "effect_slot": "secondary",
     "classification_review": "Shield-wall formation condition is not represented by current trigger_condition taxonomy."
@@ -188,7 +126,7 @@
     "perk_string_id": "OneHandedWrappedHandles",
     "effect_slot": "secondary",
     "perk_wrong": true,
-    "notes": "Game troop_usage is heroes, but description says infantry troops in your formation; verify whether this applies only to hero agents."
+    "notes": "Game troop_usage is one_handed_user, but description says infantry troops in your formation; likely applies to one-handed users rather than all infantry."
   },
   {
     "perk_string_id": "OneHandedShieldWall",
@@ -199,12 +137,6 @@
     "perk_string_id": "OneHandedShieldWall",
     "effect_slot": "primary",
     "classification_review": "Wrong-block-direction condition is not represented by current trigger_condition taxonomy."
-  },
-  {
-    "perk_string_id": "OneHandedDeadlyPurpose",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage includes cavalry, but description says infantry in your formation."
   },
   {
     "perk_string_id": "RidingTheWayOfTheSaddle",
@@ -221,30 +153,6 @@
     "effect_slot": "primary",
     "perk_wrong": true,
     "notes": "Description says triple damage to shields, but bonus 3 with add_factor appears to apply +300% damage, or 4x total, unless this path treats the factor as a direct multiplier."
-  },
-  {
-    "perk_string_id": "PolearmUnstoppableForce",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is ranged and melee, but description says cavalry in your formation."
-  },
-  {
-    "perk_string_id": "PolearmCavalry",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is ranged, but description says cavalry troops in your formation."
-  },
-  {
-    "perk_string_id": "PolearmSwiftSwing",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage includes cavalry, but description says infantry in your formation."
-  },
-  {
-    "perk_string_id": "PolearmSharpenTheTip",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage includes cavalry, but description says infantry in your formation."
   },
   {
     "perk_string_id": "MedicineCleanInfrastructure",
@@ -294,12 +202,6 @@
     "classification_review": "Composite effect spans food consumption, wages, and combat morale loss; troop-combat classification captures only the morale-loss component."
   },
   {
-    "perk_string_id": "RogueryCarver",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is heroes, but description says troops under your formation; likely hero-only restriction is missing from text or this source field needs review."
-  },
-  {
     "perk_string_id": "RogueryFleetFooted",
     "effect_slot": "secondary",
     "classification_review": "Personal captivity escape is not party-prisoner management; utility/prisoners is the closest current bucket."
@@ -347,16 +249,10 @@
     "classification_review": "Composite effect spans morale and renown; single classification is partial."
   },
   {
-    "perk_string_id": "ThrowingMountedSkirmisher",
-    "effect_slot": "secondary",
-    "perk_wrong": true,
-    "notes": "Game troop_usage is ranged, but description says mounted troops in your formation."
-  },
-  {
     "perk_string_id": "ThrowingKnockOff",
     "effect_slot": "secondary",
     "perk_wrong": true,
-    "notes": "Game troop_usage is ranged, but description only says troops in your formation damaging cavalry; hidden ranged-troop restriction is not in the description."
+    "notes": "Game troop_usage is mounted, thrown_user, but description only says troops in your formation damaging cavalry; hidden mounted throwing restriction is not in the description."
   },
   {
     "perk_string_id": "ThrowingSaddlebags",
@@ -393,6 +289,6 @@
     "perk_string_id": "TwoHandedVandal",
     "effect_slot": "secondary",
     "perk_wrong": true,
-    "notes": "Game troop_usage is infantry, but description only says troops in your formation."
+    "notes": "Game troop_usage is on_foot, but description only says troops in your formation; hidden foot-troop restriction is not in the description."
   }
 ]
