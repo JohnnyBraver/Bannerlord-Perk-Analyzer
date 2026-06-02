@@ -8,7 +8,7 @@ This repository extracts Bannerlord perk effect data from the local game assembl
 - `Data/generated/` contains classifier output, post-processed snapshots, generated markdown notes, and reports.
 - `Data/curated/` contains human-maintained overrides, review notes, and suspected game-data issues.
 - `Data/export/` contains merged JSON intended for tools and UI work.
-- `Docs/` contains supporting notes and the old Obsidian view definition.
+- `Docs/` contains supporting notes and manual references.
 
 Game values and custom fields are kept separate in the source layout. The merged export keeps the split visible with `game`, `classification`, `review`, `source`, and `provenance` sections.
 
