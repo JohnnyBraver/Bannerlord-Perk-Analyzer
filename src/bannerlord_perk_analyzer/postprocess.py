@@ -293,76 +293,119 @@ def write_markdown_rows(rows: list[dict[str, Any]], output_root: Path) -> int:
         shutil.rmtree(output_root)
     output_root.mkdir(parents=True)
 
-    seen: defaultdict[str, int] = defaultdict(int)
-    count = 0
-    for row in sort_rows(rows):
+    sorted_rows = sort_rows(rows)
+    
+    # 1. Write the master-perk-effects.md file
+    master_lines = [
+        "---",
+        "title: Master Perk Effects",
+        f"game_version: {yaml_escape(rows[0]['game_version_target']) if rows else 'unknown'}",
+        "---",
+        "",
+        "# Master Perk Effects",
+        "",
+        "| Skill | Level | Perk | Slot | Role | Effect | Type | Subtype | Triggers | Tags | Target Version | Curation/Status | ID |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ]
+    
+    def get_curation_status(row: dict[str, Any]) -> str:
+        review = ensure_review(row)
+        parts = []
+        if review.get("needs_review"):
+            parts.append("Needs Review")
+        if review.get("perk_wrong"):
+            bug_note = review.get("bug_note", "")
+            if bug_note:
+                parts.append(f"Wrong ({bug_note})")
+            else:
+                parts.append("Wrong")
+        if review.get("functioning") is not None:
+            parts.append(f"Functioning: {review['functioning']}")
+        if review.get("classification_review"):
+            parts.append(f"Review: {review['classification_review']}")
+        if review.get("notes"):
+            parts.append(f"Notes: {review['notes']}")
+        return "; ".join(parts) if parts else "OK"
+
+    for row in sorted_rows:
         game = row["game"]
         classification = row["classification"]
-        review = ensure_review(row)
-        duplicate_key = "|".join(
-            [
-                str(row["skill"]),
-                str(row["level"]),
-                str(row["perk"]),
-                str(game["role"]),
-                str(classification["perk_type"]),
-                str(classification.get("perk_subtype") or ""),
-            ]
-        )
-        seen[duplicate_key] += 1
-        duplicate_suffix = f" - {seen[duplicate_key]}" if seen[duplicate_key] > 1 else ""
-        subtype = f" - {classification['perk_subtype']}" if classification.get("perk_subtype") else ""
-        skill_dir = output_root / safe_file_part(row["skill"])
-        skill_dir.mkdir(parents=True, exist_ok=True)
-        filename = (
-            f"{int(row['level']):03d} - {safe_file_part(row['perk'])} - "
-            f"{game['role']} - {classification['perk_type']}{subtype}{duplicate_suffix}.md"
-        )
-        path = skill_dir / filename
-        lines = [
-            "---",
-            f"project: {yaml_escape(row['project'])}",
-            f"type: {yaml_escape(row['type'])}",
-            f"game_version_target: {yaml_escape(row['game_version_target'])}",
-            f"attribute: {yaml_escape(row['attribute'])}",
-            f"skill: {yaml_escape(row['skill'])}",
-            f"level: {row['level']}",
-            f"perk: {yaml_escape(row['perk'])}",
-            f"perk_string_id: {yaml_escape(row['perk_string_id'])}",
-            f"effect_slot: {yaml_escape(row['effect_slot'])}",
-            f"role: {yaml_escape(game['role'])}",
-            f"role_value: {game['role_value']}",
-            f"perk_type: {yaml_escape(classification['perk_type'])}",
-            f"perk_subtype: {yaml_escape(classification.get('perk_subtype') or '')}",
-            *format_yaml_list("trigger_condition", classification.get("trigger_conditions", [])),
-            *format_yaml_list("effect_tags", classification.get("effect_tags", [])),
-            f"bonus: {format_number(game['bonus'])}",
-            f"increment_type: {yaml_escape(game['increment_type'])}",
-            f"increment_value: {game['increment_value']}",
-            f"troop_usage: {yaml_escape(game['troop_usage'])}",
-            f"troop_usage_value: {game['troop_usage_value']}",
-            f"effect: {yaml_escape(game['effect'])}",
-            f"effect_template: {yaml_escape(game['effect_template'])}",
-            f"alternative_perk_string_id: {yaml_escape(row.get('alternative_perk_string_id') or '')}",
-            f"source_status: {yaml_escape(row['source']['status'])}",
-            f"source: {yaml_escape(row['source']['name'])}",
-            f"source_version: {yaml_escape(row['source']['version'])}",
-            f"needs_review: {str(review['needs_review']).lower()}",
-            f"functioning: {format_nullable(review['functioning'])}",
-            f"perk_wrong: {str(review['perk_wrong']).lower()}",
-            f"bug_note: {yaml_escape(review['bug_note'])}",
-            f"notes: {yaml_escape(review['notes'])}",
-            f"classification_review: {yaml_escape(review['classification_review'])}",
-            "---",
-            "",
-            f"# {row['perk']} - {game['role']} - {classification['perk_type']}",
-            "",
-            str(game["effect"]),
-            "",
+        curation = get_curation_status(row)
+        
+        triggers = ", ".join(classification.get("trigger_conditions", []))
+        tags = ", ".join(classification.get("effect_tags", []))
+        
+        cols = [
+            row["skill"],
+            str(row["level"]),
+            row["perk"],
+            row["effect_slot"],
+            game["role"],
+            game["effect"],
+            classification["perk_type"],
+            classification.get("perk_subtype") or "",
+            triggers,
+            tags,
+            row["game_version_target"],
+            curation,
+            row["perk_string_id"]
         ]
-        path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
-        count += 1
-    return count
+        cols_escaped = [table_escape(c) for c in cols]
+        master_lines.append("| " + " | ".join(cols_escaped) + " |")
+        
+    master_path = output_root / "master-perk-effects.md"
+    master_path.write_text("\n".join(master_lines) + "\n", encoding="utf-8", newline="\n")
+
+    # 2. Write skill files
+    rows_by_skill = defaultdict(list)
+    for row in sorted_rows:
+        rows_by_skill[row["skill"]].append(row)
+        
+    for skill_name, skill_rows in rows_by_skill.items():
+        first_row = skill_rows[0]
+        skill_lines = [
+            "---",
+            f"skill: {yaml_escape(skill_name)}",
+            f"attribute: {yaml_escape(first_row.get('attribute', ''))}",
+            f"game_version: {yaml_escape(first_row.get('game_version_target', ''))}",
+            "---",
+            "",
+            f"# {skill_name} Perks",
+            "",
+            "| Level | Perk | Slot | Role | Effect | Type | Subtype | Triggers | Tags | Target Version | Curation/Status | ID |",
+            "|---|---|---|---|---|---|---|---|---|---|---|---|",
+        ]
+        for row in skill_rows:
+            game = row["game"]
+            classification = row["classification"]
+            curation = get_curation_status(row)
+            
+            triggers = ", ".join(classification.get("trigger_conditions", []))
+            tags = ", ".join(classification.get("effect_tags", []))
+            
+            cols = [
+                str(row["level"]),
+                row["perk"],
+                row["effect_slot"],
+                game["role"],
+                game["effect"],
+                classification["perk_type"],
+                classification.get("perk_subtype") or "",
+                triggers,
+                tags,
+                row["game_version_target"],
+                curation,
+                row["perk_string_id"]
+            ]
+            cols_escaped = [table_escape(c) for c in cols]
+            skill_lines.append("| " + " | ".join(cols_escaped) + " |")
+            
+        skill_filename = f"{safe_file_part(skill_name)}.md"
+        skill_path = output_root / skill_filename
+        skill_path.write_text("\n".join(skill_lines) + "\n", encoding="utf-8", newline="\n")
+        
+    return len(rows_by_skill) + 1
+
 
 
 def table_escape(value: Any) -> str:

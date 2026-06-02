@@ -6,6 +6,8 @@ The data tree is split by responsibility:
 - `generated/classified-perk-effects.json`: classifier output before overrides.
 - `generated/postprocessed-perk-effects.json`: classifier output after mechanical taxonomy post-processing.
 - `generated/xp-award-methods.json`: extracted XP-related method index from local assemblies.
+- `generated/guide-stat-extracts.json`: guide-facing perk/stat buckets and stack definitions used by manual notes.
+- `generated/perk-investment-costs.json`: generated additive allocation cost tiers and above-focus-only perk analysis.
 - `generated/perk-effects/`: generated markdown from the final export.
 - `generated/reports/`: generated review and tag reports.
 - `curated/`: human-maintained corrections and notes.

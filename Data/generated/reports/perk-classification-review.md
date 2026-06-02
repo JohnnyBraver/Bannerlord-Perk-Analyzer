@@ -5,6 +5,7 @@ Generated from local Bannerlord assembly data. Rows listed here are classificati
 | Skill | Level | Perk | Role | Type | Subtype | Effect | Review |
 |---|---:|---|---|---|---|---|---|
 | Bow | 200 | Renowned Archer | party leader | gold economy | recruitment cost | -30% recruitment and upgrade cost to ranged troops. | Composite effect spans recruitment and upgrade costs for ranged troops; single classification is partial. |
+| Crossbow | 175 | Counter Fire | captain | troop combat | ranged | -3% damage taken from projectiles by your troops. | Hidden current-weapon condition; treat as crossbow-user projectile mitigation, not all-troops or melee-infantry mitigation. |
 | Throwing | 50 | Flexible Fighter | captain | troop combat | skill bonus | 15 Control skills of infantry, 15 Vigor skills of archers in your formation. | Troop skill bonus spans infantry Control and archer Vigor; not hero character growth. |
 | Throwing | 225 | Long Reach | party leader | party management | morale | 20% morale and renown gained from battles won. | Composite effect spans morale and renown; single classification is partial. |
 | Roguery | 75 | In Best Light | clan leader | regen bonus |  | 20% faster recovery from raids for your villages. | Village raid recovery has no dedicated taxonomy bucket; regen bonus is a fallback. |

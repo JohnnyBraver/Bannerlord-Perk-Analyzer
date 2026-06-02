@@ -86,7 +86,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "mounted",
+      "troop_usage": "bow_user",
       "troop_usage_value": 256,
       "effect": "5% damage with bows by troops in your formation.",
       "effect_template": "{VALUE}% damage with bows by troops in your formation."
@@ -102,9 +102,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -136,24 +136,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -248,7 +232,7 @@
       "bonus": 20,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "mounted",
+      "troop_usage": "bow_user",
       "troop_usage_value": 256,
       "effect": "20 Bow skill to troops in your formation.",
       "effect_template": "{VALUE} Bow skill to troops in your formation."
@@ -264,9 +248,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -298,24 +282,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -410,7 +378,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "mounted",
+      "troop_usage": "bow_user",
       "troop_usage_value": 256,
       "effect": "5% armor penetration with bows by troops in your formation.",
       "effect_template": "{VALUE}% armor penetration with bows by troops in your formation."
@@ -426,9 +394,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -460,24 +428,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -568,7 +520,7 @@
       "bonus": 0.029999999329447746,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "mounted",
+      "troop_usage": "bow_user",
       "troop_usage_value": 256,
       "effect": "3% movement speed to archers in your formation.",
       "effect_template": "{VALUE}% movement speed to archers in your formation."
@@ -584,9 +536,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is mounted, but description says archers in your formation without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -618,24 +570,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is mounted, but description says archers in your formation without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -726,7 +662,7 @@
       "bonus": -0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "mounted",
+      "troop_usage": "bow_user",
       "troop_usage_value": 256,
       "effect": "-5% accuracy penalty to archers in your formation.",
       "effect_template": "{VALUE}% accuracy penalty to archers in your formation."
@@ -742,9 +678,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is mounted, but description says archers in your formation without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -776,24 +712,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is mounted, but description says archers in your formation without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -888,7 +808,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "horse_archer",
+      "troop_usage": "ranged",
       "troop_usage_value": 8,
       "effect": "5% reload speed to troops in your formation.",
       "effect_template": "{VALUE}% reload speed to troops in your formation."
@@ -904,7 +824,7 @@
       "functioning": null,
       "perk_wrong": true,
       "bug_note": "",
-      "notes": "Game troop_usage is horse_archer, but description says troops in your formation without that restriction.",
+      "notes": "Game troop_usage is ranged, but description only says troops in your formation; likely hidden ranged-troop restriction.",
       "classification_review": ""
     },
     "source": {
@@ -943,7 +863,7 @@
             "field": "review.notes",
             "operation": "replace",
             "from": "",
-            "to": "Game troop_usage is horse_archer, but description says troops in your formation without that restriction."
+            "to": "Game troop_usage is ranged, but description only says troops in your formation; likely hidden ranged-troop restriction."
           },
           {
             "field": "review.perk_wrong",
@@ -1352,7 +1272,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "mounted",
+      "troop_usage": "bow_user",
       "troop_usage_value": 256,
       "effect": "5% damage with bows by tier 3+ troops in your formation.",
       "effect_template": "{VALUE}% damage with bows by tier 3+ troops in your formation."
@@ -1370,9 +1290,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is mounted, but description says troops in your formation without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -1406,24 +1326,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is mounted, but description says troops in your formation without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -2112,7 +2016,7 @@
       "bonus": -0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "horse_archer",
+      "troop_usage": "ranged",
       "troop_usage_value": 8,
       "effect": "-10% damage taken from projectiles by ranged troops in your formation.",
       "effect_template": "{VALUE}% damage taken from projectiles by ranged troops in your formation."
@@ -2128,9 +2032,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is horse_archer, but description says ranged troops in your formation without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -2162,24 +2066,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is horse_archer, but description says ranged troops in your formation without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -2201,7 +2089,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "horse_archer",
+      "troop_usage": "ranged",
       "troop_usage_value": 8,
       "effect": "10% bonus experience to ranged troops in your party after every battle.",
       "effect_template": "{VALUE}% bonus experience to ranged troops in your party after every battle."
@@ -2218,9 +2106,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is horse_archer, but description says ranged troops in your party without that restriction.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -2253,24 +2141,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is horse_archer, but description says ranged troops in your party without that restriction."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -2747,7 +2619,7 @@
       "bonus": 30,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "ranged, mounted",
+      "troop_usage": "mounted, bow_user",
       "troop_usage_value": 258,
       "effect": "30 bow skill to horse archers in your formation",
       "effect_template": "{VALUE} bow skill to horse archers in your formation"
@@ -3649,7 +3521,7 @@
       "bonus": 0.20000000298023224,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "20% damage against mounts to crossbow troops in your formation.",
       "effect_template": "{VALUE}% damage against mounts to crossbow troops in your formation."
@@ -3797,7 +3669,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "5% crossbow reload speed to troops in your formation.",
       "effect_template": "{VALUE}% crossbow reload speed to troops in your formation."
@@ -3939,7 +3811,7 @@
       "bonus": 30,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "30 crossbow skill to troops in your formation.",
       "effect_template": "{VALUE} crossbow skill to troops in your formation."
@@ -4085,7 +3957,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "10% crossbow damage to infantry by troops in your formation.",
       "effect_template": "{VALUE}% crossbow damage to infantry by troops in your formation."
@@ -4679,7 +4551,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "5% armor penetration with crossbows by troops in your formation.",
       "effect_template": "{VALUE}% armor penetration with crossbows by troops in your formation."
@@ -4825,7 +4697,7 @@
       "bonus": 0.5,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "50% resistance to getting staggered while reloading crossbows to troops in your formation.",
       "effect_template": "{VALUE}% resistance to getting staggered while reloading crossbows to troops in your formation."
@@ -4971,7 +4843,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "horse_archer",
+      "troop_usage": "ranged",
       "troop_usage_value": 8,
       "effect": "5% movement speed to ranged troops in your formation.",
       "effect_template": "{VALUE}% movement speed to ranged troops in your formation."
@@ -4987,9 +4859,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is horse_archer, but description says ranged troops in your formation; verify whether this should apply only to mounted ranged troops.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -5021,24 +4893,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is horse_archer, but description says ranged troops in your formation; verify whether this should apply only to mounted ranged troops."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -5142,15 +4998,17 @@
       "perk_type": "troop combat",
       "perk_subtype": "ranged",
       "trigger_conditions": [],
-      "effect_tags": []
+      "effect_tags": [
+        "weapons"
+      ]
     },
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": false,
+      "perk_wrong": true,
       "bug_note": "",
-      "notes": "",
-      "classification_review": ""
+      "notes": "Description says your troops, but SandboxAgentApplyDamageModel only applies the captain bonus when the victim's current main-hand weapon class is Crossbow; bow archers and melee infantry do not benefit.",
+      "classification_review": "Hidden current-weapon condition; treat as crossbow-user projectile mitigation, not all-troops or melee-infantry mitigation."
     },
     "source": {
       "status": "local_game_assembly",
@@ -5175,12 +5033,46 @@
         }
       },
       "postprocessed": {
-        "override_fields": [],
-        "changes": []
+        "override_fields": [
+          "classification.effect_tags"
+        ],
+        "changes": [
+          {
+            "field": "classification.effect_tags",
+            "operation": "replace",
+            "from": [],
+            "to": [
+              "weapons"
+            ]
+          }
+        ]
       },
       "curated": {
-        "override_fields": [],
-        "changes": []
+        "override_fields": [
+          "review.classification_review",
+          "review.notes",
+          "review.perk_wrong"
+        ],
+        "changes": [
+          {
+            "field": "review.classification_review",
+            "operation": "replace",
+            "from": "",
+            "to": "Hidden current-weapon condition; treat as crossbow-user projectile mitigation, not all-troops or melee-infantry mitigation."
+          },
+          {
+            "field": "review.notes",
+            "operation": "replace",
+            "from": "",
+            "to": "Description says your troops, but SandboxAgentApplyDamageModel only applies the captain bonus when the victim's current main-hand weapon class is Crossbow; bow archers and melee infantry do not benefit."
+          },
+          {
+            "field": "review.perk_wrong",
+            "operation": "replace",
+            "from": false,
+            "to": true
+          }
+        ]
       }
     }
   },
@@ -5741,7 +5633,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "10% damage with crossbows by troops in your formation.",
       "effect_template": "{VALUE}% damage with crossbows by troops in your formation."
@@ -6179,7 +6071,7 @@
       "bonus": 0.25,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "25% morale loss to enemy due to crossbow kills by troops in your formation.",
       "effect_template": "{VALUE}% morale loss to enemy due to crossbow kills by troops in your formation."
@@ -6483,7 +6375,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "10% draw speed with throwing weapons to troops in your formation.",
       "effect_template": "{VALUE}% draw speed with throwing weapons to troops in your formation."
@@ -6629,7 +6521,7 @@
       "bonus": 0.07999999821186066,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "8% damage to shields with throwing weapons by troops in your formation.",
       "effect_template": "{VALUE}% damage to shields with throwing weapons by troops in your formation."
@@ -6775,7 +6667,7 @@
       "bonus": 15,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "15 Control skills of infantry, 15 Vigor skills of archers in your formation.",
       "effect_template": "{VALUE} Control skills of infantry, {VALUE} Vigor skills of archers in your formation."
@@ -6923,7 +6815,7 @@
       "bonus": 0.07999999821186066,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "8% damage to mounts with throwing weapons by troops in your formation.",
       "effect_template": "{VALUE}% damage to mounts with throwing weapons by troops in your formation."
@@ -7077,7 +6969,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted, thrown_user",
       "troop_usage_value": 514,
       "effect": "10% damage with throwing weapons by mounted troops in your formation.",
       "effect_template": "{VALUE}% damage with throwing weapons by mounted troops in your formation."
@@ -7096,9 +6988,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is ranged, but description says mounted troops in your formation.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -7133,24 +7025,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is ranged, but description says mounted troops in your formation."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -7397,7 +7273,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted, thrown_user",
       "troop_usage_value": 514,
       "effect": "5% throwing weapon damage to cavalry by troops in your formation.",
       "effect_template": "{VALUE}% throwing weapon damage to cavalry by troops in your formation."
@@ -7418,7 +7294,7 @@
       "functioning": null,
       "perk_wrong": true,
       "bug_note": "",
-      "notes": "Game troop_usage is ranged, but description only says troops in your formation damaging cavalry; hidden ranged-troop restriction is not in the description.",
+      "notes": "Game troop_usage is mounted, thrown_user, but description only says troops in your formation damaging cavalry; hidden mounted throwing restriction is not in the description.",
       "classification_review": ""
     },
     "source": {
@@ -7462,7 +7338,7 @@
             "field": "review.notes",
             "operation": "replace",
             "from": "",
-            "to": "Game troop_usage is ranged, but description only says troops in your formation damaging cavalry; hidden ranged-troop restriction is not in the description."
+            "to": "Game troop_usage is mounted, thrown_user, but description only says troops in your formation damaging cavalry; hidden mounted throwing restriction is not in the description."
           },
           {
             "field": "review.perk_wrong",
@@ -7565,7 +7441,7 @@
       "bonus": 30,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "30 throwing skill to troops in your formation.",
       "effect_template": "{VALUE} throwing skill to troops in your formation."
@@ -8792,7 +8668,7 @@
       "bonus": 0.5,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "50% damage to shields with throwing weapons by troops in your formation.",
       "effect_template": "{VALUE}% damage to shields with throwing weapons by troops in your formation."
@@ -9097,7 +8973,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "10% travel speed to throwing weapons of troops in your formation.",
       "effect_template": "{VALUE}% travel speed to throwing weapons of troops in your formation."
@@ -9243,7 +9119,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "10% damage with throwing weapons by troops in your formation.",
       "effect_template": "{VALUE}% damage with throwing weapons by troops in your formation."
@@ -9389,7 +9265,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "10% armor penetration with throwing weapons by troops in your formation.",
       "effect_template": "{VALUE}% armor penetration with throwing weapons by troops in your formation."
@@ -11791,7 +11667,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "heroes",
+      "troop_usage": "one_handed_user",
       "troop_usage_value": 16,
       "effect": "2% one handed damage by troops under your formation.",
       "effect_template": "{VALUE}% one handed damage by troops under your formation."
@@ -11805,9 +11681,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is heroes, but description says troops under your formation; likely hero-only restriction is missing from text or this source field needs review.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -11837,24 +11713,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is heroes, but description says troops under your formation; likely hero-only restriction is missing from text or this source field needs review."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -12434,7 +12294,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "formation",
+      "troop_usage": "two_handed_user",
       "troop_usage_value": 64,
       "effect": "2% two handed weapon damage by troops in your formation.",
       "effect_template": "{VALUE}% two handed weapon damage by troops in your formation."
@@ -18599,7 +18459,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted",
       "troop_usage_value": 2,
       "effect": "2% damage to infantry by cavalry troops in your formation.",
       "effect_template": "{VALUE}% damage to infantry by cavalry troops in your formation."
@@ -18617,9 +18477,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is ranged, but description says cavalry troops in formation; likely value/description mismatch.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -18653,24 +18513,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is ranged, but description says cavalry troops in formation; likely value/description mismatch."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -18917,7 +18761,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "5% combat movement speed to troops in your formation.",
       "effect_template": "{VALUE}% combat movement speed to troops in your formation."
@@ -19210,7 +19054,7 @@
       "bonus": 0.03999999910593033,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "4% combat movement speed to tier 3+ foot troops in your formation.",
       "effect_template": "{VALUE}% combat movement speed to tier 3+ foot troops in your formation."
@@ -19364,7 +19208,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "10% weapon handling to foot troops in your formation.",
       "effect_template": "{VALUE}% weapon handling to foot troops in your formation."
@@ -19812,7 +19656,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "cavalry",
+      "troop_usage": "melee",
       "troop_usage_value": 4,
       "effect": "2% melee damage by troops in your formation.",
       "effect_template": "{VALUE}% melee damage by troops in your formation."
@@ -19958,7 +19802,7 @@
       "bonus": 0.029999999329447746,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "3% combat movement speed to infantry troops in your formation.",
       "effect_template": "{VALUE}% combat movement speed to infantry troops in your formation."
@@ -20104,7 +19948,7 @@
       "bonus": -0.30000001192092896,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "-30% charge damage taken by troops in your formation.",
       "effect_template": "{VALUE}% charge damage taken by troops in your formation."
@@ -20246,7 +20090,7 @@
       "bonus": 0.30000001192092896,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "30% damage bonus from speed to troops in your formation.",
       "effect_template": "{VALUE}% damage bonus from speed to troops in your formation."
@@ -21260,7 +21104,7 @@
       "bonus": 20,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "none",
+      "troop_usage": "thrown_user",
       "troop_usage_value": 512,
       "effect": "20 throwing skill to troops in your formation.",
       "effect_template": "{VALUE} throwing skill to troops in your formation."
@@ -21572,7 +21416,7 @@
       "bonus": 5,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "5 armor to all equipped armor pieces of foot troops in your formation.",
       "effect_template": "{VALUE} armor to all equipped armor pieces of foot troops in your formation."
@@ -22018,7 +21862,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted",
       "troop_usage_value": 2,
       "effect": "10% charge damage dealt by troops in your formation.",
       "effect_template": "{VALUE}% charge damage dealt by troops in your formation."
@@ -22160,7 +22004,7 @@
       "bonus": 30,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted",
       "troop_usage_value": 2,
       "effect": "30 riding skill to troops in your formation.",
       "effect_template": "{VALUE} riding skill to troops in your formation."
@@ -22750,7 +22594,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, cavalry",
+      "troop_usage": "mounted, melee",
       "troop_usage_value": 6,
       "effect": "10% melee damage bonus from speed to mounted troops in your formation.",
       "effect_template": "{VALUE}% melee damage bonus from speed to mounted troops in your formation."
@@ -22904,7 +22748,7 @@
       "bonus": -0.15000000596046448,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, horse_archer",
+      "troop_usage": "mounted, ranged",
       "troop_usage_value": 10,
       "effect": "-15% accuracy penalty to mounted troops in your formation.",
       "effect_template": "{VALUE}% accuracy penalty to mounted troops in your formation."
@@ -23350,7 +23194,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, mounted",
+      "troop_usage": "mounted, bow_user",
       "troop_usage_value": 258,
       "effect": "5% damage by mounted archers in your formation.",
       "effect_template": "{VALUE}% damage by mounted archers in your formation."
@@ -23504,7 +23348,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, cavalry",
+      "troop_usage": "mounted, melee",
       "troop_usage_value": 6,
       "effect": "5% mounted melee damage by troops in your formation.",
       "effect_template": "{VALUE}% mounted melee damage by troops in your formation."
@@ -23958,7 +23802,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, horse_archer",
+      "troop_usage": "mounted, ranged",
       "troop_usage_value": 10,
       "effect": "5% battle morale penalty to enemies with mounted ranged kills by troops in your formation.",
       "effect_template": "{VALUE}% battle morale penalty to enemies with mounted ranged kills by troops in your formation."
@@ -24116,7 +23960,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, cavalry",
+      "troop_usage": "mounted, melee",
       "troop_usage_value": 6,
       "effect": "10% battle morale penalty to enemies with mounted melee kills by troops in your formation.",
       "effect_template": "{VALUE}% battle morale penalty to enemies with mounted melee kills by troops in your formation."
@@ -24580,7 +24424,7 @@
       "bonus": 5,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted",
       "troop_usage_value": 2,
       "effect": "5 armor to all equipped armor pieces of mounted troops in your formation.",
       "effect_template": "{VALUE} armor to all equipped armor pieces of mounted troops in your formation."
@@ -24730,7 +24574,7 @@
       "bonus": 10,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted",
       "troop_usage_value": 2,
       "effect": "10 armor to mounts of troops in your formation.",
       "effect_template": "{VALUE} armor to mounts of troops in your formation."
@@ -27458,7 +27302,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "none",
+      "troop_usage": "crossbow_user",
       "troop_usage_value": 1024,
       "effect": "5% crossbow damage by troops in your formation.",
       "effect_template": "{VALUE}% crossbow damage by troops in your formation."
@@ -28959,7 +28803,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "cavalry",
+      "troop_usage": "melee",
       "troop_usage_value": 4,
       "effect": "5% melee damage by troops in your formation.",
       "effect_template": "{VALUE}% melee damage by troops in your formation."
@@ -28973,9 +28817,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is cavalry, but description only says troops in your formation; likely cavalry-only restriction is missing from text.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -29005,24 +28849,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is cavalry, but description only says troops in your formation; likely cavalry-only restriction is missing from text."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -45074,7 +44902,7 @@
       "bonus": -0.03999999910593033,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "-4% damage taken by infantry while in shield wall formation.",
       "effect_template": "{VALUE}% damage taken by infantry while in shield wall formation."
@@ -45229,7 +45057,7 @@
       "bonus": 30,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "heroes",
+      "troop_usage": "one_handed_user",
       "troop_usage_value": 16,
       "effect": "30 one handed skill to infantry troops in your formation.",
       "effect_template": "{VALUE} one handed skill to infantry troops in your formation."
@@ -45247,7 +45075,7 @@
       "functioning": null,
       "perk_wrong": true,
       "bug_note": "",
-      "notes": "Game troop_usage is heroes, but description says infantry troops in your formation; verify whether this applies only to hero agents.",
+      "notes": "Game troop_usage is one_handed_user, but description says infantry troops in your formation; likely applies to one-handed users rather than all infantry.",
       "classification_review": ""
     },
     "source": {
@@ -45288,7 +45116,7 @@
             "field": "review.notes",
             "operation": "replace",
             "from": "",
-            "to": "Game troop_usage is heroes, but description says infantry troops in your formation; verify whether this applies only to hero agents."
+            "to": "Game troop_usage is one_handed_user, but description says infantry troops in your formation; likely applies to one-handed users rather than all infantry."
           },
           {
             "field": "review.perk_wrong",
@@ -45699,7 +45527,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, cavalry",
+      "troop_usage": "mounted, melee",
       "troop_usage_value": 6,
       "effect": "5% melee damage by cavalry troops in your formation.",
       "effect_template": "{VALUE}% melee damage by cavalry troops in your formation."
@@ -45849,7 +45677,7 @@
       "bonus": 0.029999999329447746,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "3% movement speed to infantry in your formation.",
       "effect_template": "{VALUE}% movement speed to infantry in your formation."
@@ -46277,7 +46105,7 @@
       "bonus": 0.009999999776482582,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "non_hero",
+      "troop_usage": "shield_user",
       "troop_usage_value": 32,
       "effect": "Larger shield protection area against projectiles for troops in your formation.",
       "effect_template": "Larger shield protection area against projectiles for troops in your formation."
@@ -46424,7 +46252,7 @@
       "bonus": 0.009999999776482582,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "non_hero",
+      "troop_usage": "shield_user",
       "troop_usage_value": 32,
       "effect": "Larger shield protection area against projectiles to troops in your formation while in shield wall formation.",
       "effect_template": "Larger shield protection area against projectiles to troops in your formation while in shield wall formation."
@@ -47169,7 +46997,7 @@
       "bonus": 0.03999999910593033,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "4% movement speed to infantry in your formation.",
       "effect_template": "{VALUE}% movement speed to infantry in your formation."
@@ -47311,7 +47139,7 @@
       "bonus": -0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "non_hero",
+      "troop_usage": "shield_user",
       "troop_usage_value": 32,
       "effect": "-10% damage to shields of infantry troops in your formation.",
       "effect_template": "{VALUE}% damage to shields of infantry troops in your formation."
@@ -47457,7 +47285,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry, cavalry",
+      "troop_usage": "on_foot, melee",
       "troop_usage_value": 5,
       "effect": "10% melee weapon damage by infantry in your formation.",
       "effect_template": "{VALUE}% melee weapon damage by infantry in your formation."
@@ -47475,9 +47303,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage includes cavalry, but description says infantry in your formation.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -47511,24 +47339,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage includes cavalry, but description says infantry in your formation."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -48209,7 +48021,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged",
+      "troop_usage": "mounted",
       "troop_usage_value": 2,
       "effect": "2% damage by cavalry troops in your formation.",
       "effect_template": "{VALUE}% damage by cavalry troops in your formation."
@@ -48227,9 +48039,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is ranged, but description says cavalry troops in your formation.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -48263,24 +48075,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is ranged, but description says cavalry troops in your formation."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -48379,7 +48175,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "2% damage by infantry troops in your formation.",
       "effect_template": "{VALUE}% damage by infantry troops in your formation."
@@ -48531,7 +48327,7 @@
       "bonus": 0.10000000149011612,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "10% damage by infantry in your formation against cavalry.",
       "effect_template": "{VALUE}% damage by infantry in your formation against cavalry."
@@ -48833,7 +48629,7 @@
       "bonus": 30,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "infantry, melee",
+      "troop_usage": "on_foot, polearm_user",
       "troop_usage_value": 129,
       "effect": "30 polearm skill to infantry in your formation.",
       "effect_template": "{VALUE} polearm skill to infantry in your formation."
@@ -48983,7 +48779,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry, cavalry",
+      "troop_usage": "on_foot, melee",
       "troop_usage_value": 5,
       "effect": "2% swing speed to infantry in your formation.",
       "effect_template": "{VALUE}% swing speed to infantry in your formation."
@@ -48999,9 +48795,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage includes cavalry, but description says infantry in your formation.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -49033,24 +48829,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage includes cavalry, but description says infantry in your formation."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -49147,7 +48927,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "2% movement speed to infantry in your formation.",
       "effect_template": "{VALUE}% movement speed to infantry in your formation."
@@ -49445,7 +49225,7 @@
       "bonus": 0.30000001192092896,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "melee",
+      "troop_usage": "polearm_user",
       "troop_usage_value": 128,
       "effect": "30% damage bonus from speed with polearms by troops in your formation.",
       "effect_template": "{VALUE}% damage bonus from speed with polearms by troops in your formation."
@@ -49593,7 +49373,7 @@
       "bonus": 0.30000001192092896,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry, melee",
+      "troop_usage": "on_foot, polearm_user",
       "troop_usage_value": 129,
       "effect": "30% damage to mounts with polearms by infantry in your formation.",
       "effect_template": "{VALUE}% damage to mounts with polearms by infantry in your formation."
@@ -50066,7 +49846,7 @@
       "bonus": 0.029999999329447746,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "melee",
+      "troop_usage": "polearm_user",
       "troop_usage_value": 128,
       "effect": "3% damage with polearms by troops in your formation.",
       "effect_template": "{VALUE}% damage with polearms by troops in your formation."
@@ -50646,7 +50426,7 @@
       "bonus": -0.30000001192092896,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "-30% charge damage taken by troops in your formation.",
       "effect_template": "{VALUE}% charge damage taken by troops in your formation."
@@ -50806,7 +50586,7 @@
       "bonus": 0.30000001192092896,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "ranged, melee",
+      "troop_usage": "mounted, polearm_user",
       "troop_usage_value": 130,
       "effect": "30% damage bonus from speed with polearms to cavalry in your formation.",
       "effect_template": "{VALUE}% damage bonus from speed with polearms to cavalry in your formation."
@@ -50825,9 +50605,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage is ranged and melee, but description says cavalry in your formation.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -50862,24 +50642,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage is ranged and melee, but description says cavalry in your formation."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -50974,7 +50738,7 @@
       "bonus": 20,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "melee",
+      "troop_usage": "polearm_user",
       "troop_usage_value": 128,
       "effect": "20 polearm skill to troops in your formation.",
       "effect_template": "{VALUE} polearm skill to troops in your formation."
@@ -51120,7 +50884,7 @@
       "bonus": 0.05000000074505806,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry, cavalry",
+      "troop_usage": "on_foot, melee",
       "troop_usage_value": 5,
       "effect": "5% damage with thrust attacks by infantry troops in your formation.",
       "effect_template": "{VALUE}% damage with thrust attacks by infantry troops in your formation."
@@ -51136,9 +50900,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage includes cavalry, but description says infantry in your formation.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -51170,24 +50934,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage includes cavalry, but description says infantry in your formation."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -51436,7 +51184,7 @@
       "bonus": 30,
       "increment_type": "add",
       "increment_value": 0,
-      "troop_usage": "infantry, formation",
+      "troop_usage": "on_foot, two_handed_user",
       "troop_usage_value": 65,
       "effect": "30 two handed skill to infantry troops in your formation.",
       "effect_template": "{VALUE} two handed skill to infantry troops in your formation."
@@ -51724,7 +51472,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "2% damage by infantry in your formation.",
       "effect_template": "{VALUE}% damage by infantry in your formation."
@@ -51870,7 +51618,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry, cavalry",
+      "troop_usage": "on_foot, melee",
       "troop_usage_value": 5,
       "effect": "2% swing speed to infantry in your formation.",
       "effect_template": "{VALUE}% swing speed to infantry in your formation."
@@ -51886,9 +51634,9 @@
     "review": {
       "needs_review": false,
       "functioning": null,
-      "perk_wrong": true,
+      "perk_wrong": false,
       "bug_note": "",
-      "notes": "Game troop_usage includes cavalry, but description says swing speed to infantry in your formation.",
+      "notes": "",
       "classification_review": ""
     },
     "source": {
@@ -51920,24 +51668,8 @@
         "changes": []
       },
       "curated": {
-        "override_fields": [
-          "review.notes",
-          "review.perk_wrong"
-        ],
-        "changes": [
-          {
-            "field": "review.notes",
-            "operation": "replace",
-            "from": "",
-            "to": "Game troop_usage includes cavalry, but description says swing speed to infantry in your formation."
-          },
-          {
-            "field": "review.perk_wrong",
-            "operation": "replace",
-            "from": false,
-            "to": true
-          }
-        ]
+        "override_fields": [],
+        "changes": []
       }
     }
   },
@@ -53378,7 +53110,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "2% damage and movement speed to infantry in your formation.",
       "effect_template": "{VALUE}% damage and movement speed to infantry in your formation."
@@ -53671,7 +53403,7 @@
       "bonus": 0.019999999552965164,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "2% attack speed to infantry in your formation.",
       "effect_template": "{VALUE}% attack speed to infantry in your formation."
@@ -53813,7 +53545,7 @@
       "bonus": 0.20000000298023224,
       "increment_type": "add_factor",
       "increment_value": 1,
-      "troop_usage": "infantry",
+      "troop_usage": "on_foot",
       "troop_usage_value": 1,
       "effect": "20% damage against destructible objects by troops in your formation.",
       "effect_template": "{VALUE}% damage against destructible objects by troops in your formation."
@@ -53829,7 +53561,7 @@
       "functioning": null,
       "perk_wrong": true,
       "bug_note": "",
-      "notes": "Game troop_usage is infantry, but description only says troops in your formation.",
+      "notes": "Game troop_usage is on_foot, but description only says troops in your formation; hidden foot-troop restriction is not in the description.",
       "classification_review": ""
     },
     "source": {
@@ -53868,7 +53600,7 @@
             "field": "review.notes",
             "operation": "replace",
             "from": "",
-            "to": "Game troop_usage is infantry, but description only says troops in your formation."
+            "to": "Game troop_usage is on_foot, but description only says troops in your formation; hidden foot-troop restriction is not in the description."
           },
           {
             "field": "review.perk_wrong",

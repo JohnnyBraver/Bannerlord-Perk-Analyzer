@@ -12,28 +12,10 @@ EXPECTED_WRONG = {
     "TradeLocalConnection|primary",
     "RogueryArmsDealer|secondary",
     "ThrowingSplinters|primary",
-    "TacticsGensdarmes|primary",
-    "TwoHandedOnTheEdge|secondary",
-    "CrossbowLooseAndMove|secondary",
-    "BowBowControl|secondary",
-    "BowDeadAim|secondary",
-    "BowBodkin|secondary",
-    "BowNockingPoint|secondary",
-    "BowQuickAdjustments|secondary",
     "BowRapidFire|secondary",
-    "BowStrongBows|secondary",
-    "BowSkirmishPhaseMaster|secondary",
-    "BowBullsEye|primary",
-    "EngineeringImprovedTools|secondary",
+    "CrossbowCounterFire|secondary",
     "OneHandedWrappedHandles|secondary",
-    "OneHandedDeadlyPurpose|secondary",
-    "PolearmCavalry|secondary",
-    "PolearmSwiftSwing|secondary",
     "PolearmUnstoppableForce|primary",
-    "PolearmUnstoppableForce|secondary",
-    "PolearmSharpenTheTip|secondary",
-    "RogueryCarver|secondary",
-    "ThrowingMountedSkirmisher|secondary",
     "ThrowingKnockOff|secondary",
     "ThrowingSaddlebags|secondary",
     "TwoHandedVandal|secondary",
@@ -69,24 +51,47 @@ def yaml_list(text: str, name: str) -> list[str]:
 def read_markdown_rows(data_root: Path) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in sorted(data_root.rglob("*.md")):
+        if path.name == "master-perk-effects.md":
+            continue
         text = path.read_text(encoding="utf-8")
-        key = f"{yaml_scalar(text, 'perk_string_id')}|{yaml_scalar(text, 'effect_slot')}"
-        rows.append(
-            {
-                "path": path,
-                "key": key,
-                "perk_string_id": yaml_scalar(text, "perk_string_id"),
-                "effect_slot": yaml_scalar(text, "effect_slot"),
-                "role": yaml_scalar(text, "role"),
-                "perk_type": yaml_scalar(text, "perk_type"),
-                "perk_subtype": yaml_scalar(text, "perk_subtype"),
-                "trigger_conditions": yaml_list(text, "trigger_condition"),
-                "effect_tags": yaml_list(text, "effect_tags"),
-                "troop_usage": yaml_scalar(text, "troop_usage"),
-                "effect": yaml_scalar(text, "effect"),
-                "perk_wrong": yaml_scalar(text, "perk_wrong") == "true",
-            }
-        )
+        for line in text.splitlines():
+            line = line.strip()
+            if not line.startswith("|"):
+                continue
+            parts = [cell.strip() for cell in line.split("|")]
+            if len(parts) < 14:
+                continue
+            if parts[1] == "Level" or parts[1].startswith("---"):
+                continue
+            
+            # parts structure: ['', Level, Perk, Slot, Role, Effect, Type, Subtype, Triggers, Tags, Target Version, Curation/Status, ID, '']
+            effect_slot = parts[3]
+            role = parts[4]
+            effect = parts[5]
+            perk_type = parts[6]
+            perk_subtype = parts[7]
+            triggers_str = parts[8]
+            tags_str = parts[9]
+            curation = parts[11]
+            perk_string_id = parts[12]
+            
+            key = f"{perk_string_id}|{effect_slot}"
+            rows.append(
+                {
+                    "path": path,
+                    "key": key,
+                    "perk_string_id": perk_string_id,
+                    "effect_slot": effect_slot,
+                    "role": role,
+                    "perk_type": perk_type,
+                    "perk_subtype": perk_subtype,
+                    "trigger_conditions": [t.strip() for t in triggers_str.split(",") if t.strip()] if triggers_str else [],
+                    "effect_tags": [t.strip() for t in tags_str.split(",") if t.strip()] if tags_str else [],
+                    "troop_usage": "",
+                    "effect": effect,
+                    "perk_wrong": "Wrong" in curation,
+                }
+            )
     return rows
 
 
