@@ -1,0 +1,2977 @@
+{
+  "generated_at": "2026-05-31T18:45:08.771266+03:00",
+  "inputs": {
+    "perk_export": "Data\\export\\perk-effects.json"
+  },
+  "direct_weapon_effects": [
+    {
+      "skill": "One Handed",
+      "effects": "weapon speed, weapon damage",
+      "per_skill": {
+        "speed_pct": 0.07,
+        "damage_pct": 0.15
+      }
+    },
+    {
+      "skill": "Two Handed",
+      "effects": "weapon speed, weapon damage",
+      "per_skill": {
+        "speed_pct": 0.06,
+        "damage_pct": 0.16
+      }
+    },
+    {
+      "skill": "Polearm",
+      "effects": "weapon speed, weapon damage",
+      "per_skill": {
+        "speed_pct": 0.06,
+        "damage_pct": 0.07
+      }
+    },
+    {
+      "skill": "Bow",
+      "effects": "damage, accuracy",
+      "per_skill": {
+        "damage_pct": 0.11,
+        "accuracy_effect_pct": 0.09
+      }
+    },
+    {
+      "skill": "Crossbow",
+      "effects": "reload speed, accuracy",
+      "per_skill": {
+        "reload_pct": 0.07,
+        "accuracy_effect_pct": 0.05
+      }
+    },
+    {
+      "skill": "Throwing",
+      "effects": "ready speed, damage, accuracy",
+      "per_skill": {
+        "ready_speed_pct": 0.07,
+        "damage_pct": 0.06,
+        "accuracy_effect_pct": 0.06
+      }
+    }
+  ],
+  "ai_behavior_formulas": [
+    {
+      "key": "ai_level",
+      "track": "base",
+      "formula": "clamp(effectiveSkill / 300 * difficultyFactor * AILevelMultiplier, 0, 1)",
+      "normal_high_difficulty": "difficultyFactor = 0.96"
+    },
+    {
+      "key": "AiShootFreq",
+      "track": "ranged",
+      "formula": "0.3 + 0.7 * currentAI",
+      "shape": "linear"
+    },
+    {
+      "key": "AiWaitBeforeShootFactor",
+      "track": "ranged",
+      "formula": "1 - 0.5 * currentAI",
+      "shape": "linear reduction"
+    },
+    {
+      "key": "AIBlockOnDecideAbility",
+      "track": "melee",
+      "formula": "lerp(0.5, 0.99, sqrt(meleeAI))",
+      "shape": "diminishing"
+    },
+    {
+      "key": "AIParryOnDecideAbility",
+      "track": "melee",
+      "formula": "lerp(0.5, 0.95, meleeAI)",
+      "shape": "linear"
+    },
+    {
+      "key": "AIDecideOnRealizeEnemyBlockingAttackAbility",
+      "track": "melee",
+      "formula": "clamp(meleeAI^2.5 - 0.1, 0, 1)",
+      "shape": "high-skill weighted"
+    },
+    {
+      "key": "AIRealizeBlockingFromIncorrectSideAbility",
+      "track": "melee",
+      "formula": "clamp(meleeAI^2.5 - 0.01, 0, 1)",
+      "shape": "high-skill weighted"
+    },
+    {
+      "key": "AiRandomizedDefendDirectionChance",
+      "track": "melee",
+      "formula": "1 - meleeAI^3",
+      "shape": "high-skill mistake reduction"
+    },
+    {
+      "key": "AiUseShieldAgainstEnemyMissileProbability",
+      "track": "shield",
+      "formula": "0.1 + 0.6 * meleeAI + 0.2 * (meleeAI + defensiveness)",
+      "shape": "linear plus defensiveness"
+    }
+  ],
+  "survival_formulas": [
+    {
+      "key": "regular_troop_death_chance",
+      "formula": "deathChance = 1 / ((1 + medicine * 0.01 * eventMultiplier + troopLevel * 0.02 + additiveBonuses) * (1 + factorBonuses))",
+      "notes": [
+        "Player map event eventMultiplier is 1.0.",
+        "Non-player map event eventMultiplier is 0.25.",
+        "Medicine is capped at 330 for player-facing skill."
+      ]
+    },
+    {
+      "key": "minister_of_health_max_hp",
+      "formula": "maxBonus = max(0, medicineSkill - 250), capped by max skill 330 => +80 HP"
+    }
+  ],
+  "smithing_formulas": [
+    {
+      "key": "refining_xp",
+      "formula": "round(0.3 * outputMaterialValue * outputCount)"
+    },
+    {
+      "key": "smelting_xp",
+      "formula": "round(0.02 * itemValue)"
+    },
+    {
+      "key": "crafting_order_xp",
+      "formula": "round(0.1 * itemValue)"
+    },
+    {
+      "key": "free_build_xp",
+      "formula": "round(0.02 * itemValue)"
+    },
+    {
+      "key": "crafting_order_base_experience",
+      "formula": "0.25 * theoreticalMaxItemMarketValue(requestedDesignItem)"
+    }
+  ],
+  "buckets": {
+    "troop_ai_skill_bonuses": {
+      "title": "Troop AI Skill Bonus Perks",
+      "description": "Perks that add effective skills to troops and can feed AI formulas when the troop uses that skill.",
+      "count": 13,
+      "rows": [
+        {
+          "id": "AthleticsStrongArms|secondary",
+          "skill": "Athletics",
+          "level": 225,
+          "perk": "Strong Arms",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 20,
+          "increment_type": "add",
+          "troop_usage": "thrown_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "20 throwing skill to troops in your formation."
+        },
+        {
+          "id": "BowDeadAim|secondary",
+          "skill": "Bow",
+          "level": 25,
+          "perk": "Dead Aim",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 20,
+          "increment_type": "add",
+          "troop_usage": "bow_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "20 Bow skill to troops in your formation."
+        },
+        {
+          "id": "BowHorseMaster|secondary",
+          "skill": "Bow",
+          "level": 225,
+          "perk": "Horse Master",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "mounted, bow_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "weapons",
+            "mounts"
+          ],
+          "effect": "30 bow skill to horse archers in your formation"
+        },
+        {
+          "id": "CrossbowDonkeysSwiftness|secondary",
+          "skill": "Crossbow",
+          "level": 75,
+          "perk": "Donkey's Swiftness",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "crossbow_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "30 crossbow skill to troops in your formation."
+        },
+        {
+          "id": "OneHandedWrappedHandles|secondary",
+          "skill": "One Handed",
+          "level": 25,
+          "perk": "Wrapped Handles",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "one_handed_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "30 one handed skill to infantry troops in your formation."
+        },
+        {
+          "id": "PolearmCleanThrust|secondary",
+          "skill": "Polearm",
+          "level": 75,
+          "perk": "Clean Thrust",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "on_foot, polearm_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "30 polearm skill to infantry in your formation."
+        },
+        {
+          "id": "PolearmPhalanx|primary",
+          "skill": "Polearm",
+          "level": 175,
+          "perk": "Phalanx",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "30 melee weapon skills to troops in your party while in shield wall formation."
+        },
+        {
+          "id": "PolearmCounterweight|secondary",
+          "skill": "Polearm",
+          "level": 250,
+          "perk": "Counterweight",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 20,
+          "increment_type": "add",
+          "troop_usage": "polearm_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "20 polearm skill to troops in your formation."
+        },
+        {
+          "id": "RidingNimbleStead|secondary",
+          "skill": "Riding",
+          "level": 25,
+          "perk": "Nimble Steed",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "mounted",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "30 riding skill to troops in your formation."
+        },
+        {
+          "id": "RogueryOneOfTheFamily|primary",
+          "skill": "Roguery",
+          "level": 175,
+          "perk": "One of the Family",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 10,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "bandits"
+          ],
+          "effect": "10 bonus Vigor and Control skills to bandit units in your party"
+        },
+        {
+          "id": "ThrowingFlexibleFighter|secondary",
+          "skill": "Throwing",
+          "level": 50,
+          "perk": "Flexible Fighter",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 15,
+          "increment_type": "add",
+          "troop_usage": "on_foot",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "15 Control skills of infantry, 15 Vigor skills of archers in your formation."
+        },
+        {
+          "id": "ThrowingRunningThrow|secondary",
+          "skill": "Throwing",
+          "level": 100,
+          "perk": "Running Throw",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "thrown_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "30 throwing skill to troops in your formation."
+        },
+        {
+          "id": "TwoHandedStrongGrip|secondary",
+          "skill": "Two Handed",
+          "level": 25,
+          "perk": "Strong Grip",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 30,
+          "increment_type": "add",
+          "troop_usage": "on_foot, two_handed_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "skill bonus",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "30 two handed skill to infantry troops in your formation."
+        }
+      ]
+    },
+    "troop_survival_hit_points": {
+      "title": "Troop Hit Point Perks",
+      "description": "Troop- or mount-facing hit point perks used by the survivability guide.",
+      "count": 9,
+      "rows": [
+        {
+          "id": "AthleticsWellBuilt|secondary",
+          "skill": "Athletics",
+          "level": 25,
+          "perk": "Well Built",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5 hit points to foot troops in your party."
+        },
+        {
+          "id": "CrossbowBoltenGuard|secondary",
+          "skill": "Crossbow",
+          "level": 250,
+          "perk": "Picked Shots",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5 hit points to ranged troops in your party."
+        },
+        {
+          "id": "MedicineSledges|secondary",
+          "skill": "Medicine",
+          "level": 75,
+          "perk": "Sledges",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 15,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "mounts"
+          ],
+          "effect": "15 hit points to mounts in your party."
+        },
+        {
+          "id": "MedicineMinisterOfHealth|primary",
+          "skill": "Medicine",
+          "level": 275,
+          "perk": "Minister of Health",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 1,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [
+            "over skill cap"
+          ],
+          "effect_tags": [],
+          "effect": "1 hit point to troops for every skill point above 250."
+        },
+        {
+          "id": "OneHandedUnwaveringDefense|secondary",
+          "skill": "One Handed",
+          "level": 225,
+          "perk": "Unwavering Defense",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 10,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10 hit points to infantry in your party."
+        },
+        {
+          "id": "PolearmHardKnock|secondary",
+          "skill": "Polearm",
+          "level": 100,
+          "perk": "Hard Knock",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "3 hit points to infantry in your party."
+        },
+        {
+          "id": "PolearmHardyFrontline|primary",
+          "skill": "Polearm",
+          "level": 200,
+          "perk": "Hardy Frontline",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "5 hit points to troops in your party."
+        },
+        {
+          "id": "RidingVeterinary|secondary",
+          "skill": "Riding",
+          "level": 50,
+          "perk": "Veterinary",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "mounts"
+          ],
+          "effect": "10% hit points to mounts of troops in your party."
+        },
+        {
+          "id": "TwoHandedThickHides|secondary",
+          "skill": "Two Handed",
+          "level": 200,
+          "perk": "Thick Hides",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "hit points",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "5 hit points to troops in your party."
+        }
+      ]
+    },
+    "troop_survival_armor": {
+      "title": "Troop Armor Perks",
+      "description": "Troop- or mount-facing armor perks used by the survivability guide.",
+      "count": 4,
+      "rows": [
+        {
+          "id": "AthleticsIgnorePain|secondary",
+          "skill": "Athletics",
+          "level": 250,
+          "perk": "Ignore Pain",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "on_foot",
+          "perk_type": "troop combat",
+          "perk_subtype": "armor increase",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5 armor to all equipped armor pieces of foot troops in your formation."
+        },
+        {
+          "id": "EngineeringMetallurgy|secondary",
+          "skill": "Engineering",
+          "level": 225,
+          "perk": "Metallurgy",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "none",
+          "perk_type": "troop combat",
+          "perk_subtype": "armor increase",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "5 armor to all equipped armor pieces of troops in your formation."
+        },
+        {
+          "id": "RidingDauntlessSteed|secondary",
+          "skill": "Riding",
+          "level": 250,
+          "perk": "Dauntless Steed",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "mounted",
+          "perk_type": "troop combat",
+          "perk_subtype": "armor increase",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "mounts"
+          ],
+          "effect": "5 armor to all equipped armor pieces of mounted troops in your formation."
+        },
+        {
+          "id": "RidingToughSteed|secondary",
+          "skill": "Riding",
+          "level": 250,
+          "perk": "Tough Steed",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 10,
+          "increment_type": "add",
+          "troop_usage": "mounted",
+          "perk_type": "troop combat",
+          "perk_subtype": "armor increase",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "mounts"
+          ],
+          "effect": "10 armor to mounts of troops in your formation."
+        }
+      ]
+    },
+    "troop_survival_damage_reduction": {
+      "title": "Troop Damage Reduction And Shield Perks",
+      "description": "Damage-taken, charge, projectile-protection, and shield durability perks.",
+      "count": 12,
+      "rows": [
+        {
+          "id": "AthleticsBraced|secondary",
+          "skill": "Athletics",
+          "level": 125,
+          "perk": "Braced",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.30000001192092896,
+          "increment_type": "add_factor",
+          "troop_usage": "on_foot",
+          "perk_type": "troop combat",
+          "perk_subtype": "charge",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-30% charge damage taken by troops in your formation."
+        },
+        {
+          "id": "BowSkirmishPhaseMaster|secondary",
+          "skill": "Bow",
+          "level": 175,
+          "perk": "Skirmish Phase Master",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "ranged",
+          "perk_type": "troop combat",
+          "perk_subtype": "ranged",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-10% damage taken from projectiles by ranged troops in your formation."
+        },
+        {
+          "id": "CrossbowCounterFire|secondary",
+          "skill": "Crossbow",
+          "level": 175,
+          "perk": "Counter Fire",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.029999999329447746,
+          "increment_type": "add_factor",
+          "troop_usage": "none",
+          "perk_type": "troop combat",
+          "perk_subtype": "ranged",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "-3% damage taken from projectiles by your troops."
+        },
+        {
+          "id": "OneHandedBasher|secondary",
+          "skill": "One Handed",
+          "level": 25,
+          "perk": "Basher",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.03999999910593033,
+          "increment_type": "add_factor",
+          "troop_usage": "on_foot",
+          "perk_type": "troop combat",
+          "perk_subtype": "damage resistance",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-4% damage taken by infantry while in shield wall formation."
+        },
+        {
+          "id": "OneHandedArrowCatcher|secondary",
+          "skill": "One Handed",
+          "level": 125,
+          "perk": "Arrow Catcher",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 0.009999999776482582,
+          "increment_type": "add",
+          "troop_usage": "shield_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "projectile protection",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "Larger shield protection area against projectiles for troops in your formation."
+        },
+        {
+          "id": "OneHandedShieldWall|secondary",
+          "skill": "One Handed",
+          "level": 125,
+          "perk": "Shieldwall",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 0.009999999776482582,
+          "increment_type": "add",
+          "troop_usage": "shield_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "projectile protection",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "Larger shield protection area against projectiles to troops in your formation while in shield wall formation."
+        },
+        {
+          "id": "OneHandedSteelCoreShields|secondary",
+          "skill": "One Handed",
+          "level": 200,
+          "perk": "Steel Core Shields",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "shield_user",
+          "perk_type": "troop combat",
+          "perk_subtype": "shield durability",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-10% damage to shields of infantry troops in your formation."
+        },
+        {
+          "id": "PolearmSureFooted|secondary",
+          "skill": "Polearm",
+          "level": 225,
+          "perk": "Sure Footed",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.30000001192092896,
+          "increment_type": "add_factor",
+          "troop_usage": "on_foot",
+          "perk_type": "troop combat",
+          "perk_subtype": "charge",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-30% charge damage taken by troops in your formation."
+        },
+        {
+          "id": "TacticsLooseFormations|primary",
+          "skill": "Tactics",
+          "level": 25,
+          "perk": "Loose Formations",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "damage resistance",
+          "trigger_conditions": [
+            "simulation",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-10% damage to your infantry from ranged troops when troops are sent to confront the enemy."
+        },
+        {
+          "id": "TacticsEliteReserves|primary",
+          "skill": "Tactics",
+          "level": 200,
+          "perk": "Elite Reserves",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "troop combat",
+          "perk_subtype": "damage resistance",
+          "trigger_conditions": [
+            "simulation",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-20% less damage to tier 3+ units when troops are sent to confront the enemy."
+        },
+        {
+          "id": "TacticsEliteReserves|secondary",
+          "skill": "Tactics",
+          "level": 200,
+          "perk": "Elite Reserves",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "none",
+          "perk_type": "troop combat",
+          "perk_subtype": "damage resistance",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-5% damage taken by troops in your formation."
+        },
+        {
+          "id": "ThrowingSkirmisher|secondary",
+          "skill": "Throwing",
+          "level": 125,
+          "perk": "Skirmisher",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.029999999329447746,
+          "increment_type": "add_factor",
+          "troop_usage": "none",
+          "perk_type": "troop combat",
+          "perk_subtype": "ranged",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-3% damage taken by ranged attacks to troops in your formation."
+        }
+      ]
+    },
+    "troop_xp": {
+      "title": "Troop XP Perks",
+      "description": "Perks that directly mention troop XP or experience gains.",
+      "count": 36,
+      "rows": [
+        {
+          "id": "AthleticsAGoodDaysRest|secondary",
+          "skill": "Athletics",
+          "level": 150,
+          "perk": "A Good Days Rest",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 10,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while waiting",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10 daily experience to foot troops while waiting in settlements."
+        },
+        {
+          "id": "AthleticsWalkItOff|secondary",
+          "skill": "Athletics",
+          "level": 150,
+          "perk": "Walk It Off",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while traveling",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "3 daily experience to foot troops while traveling."
+        },
+        {
+          "id": "BowTrainer|secondary",
+          "skill": "Bow",
+          "level": 125,
+          "perk": "Trainer",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "3 daily experience to archers in your party."
+        },
+        {
+          "id": "BowBullsEye|primary",
+          "skill": "Bow",
+          "level": 200,
+          "perk": "Bulls Eye",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "ranged",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10% bonus experience to ranged troops in your party after every battle."
+        },
+        {
+          "id": "BowBullsEye|secondary",
+          "skill": "Bow",
+          "level": 200,
+          "perk": "Bulls Eye",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison"
+          ],
+          "effect": "3 daily experience to garrison troops in the governed settlement."
+        },
+        {
+          "id": "CrossbowRenownMarksmen|primary",
+          "skill": "Crossbow",
+          "level": 100,
+          "perk": "Renowned Marksmen",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "2 daily experience to ranged troops in your party."
+        },
+        {
+          "id": "CrossbowMountedCrossbowman|secondary",
+          "skill": "Crossbow",
+          "level": 175,
+          "perk": "Mounted Crossbowman",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience gained to ranged troops in your party."
+        },
+        {
+          "id": "EngineeringApprenticeship|primary",
+          "skill": "Engineering",
+          "level": 200,
+          "perk": "Apprenticeship",
+          "effect_slot": "primary",
+          "role": "engineer",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "during siege"
+          ],
+          "effect_tags": [],
+          "effect": "5 experience to troops when a siege engine is built."
+        },
+        {
+          "id": "LeadershipCombatTips|primary",
+          "skill": "Leadership",
+          "level": 25,
+          "perk": "Combat Tips",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "2 experience per day to all troops in party."
+        },
+        {
+          "id": "LeadershipRaiseTheMeek|primary",
+          "skill": "Leadership",
+          "level": 25,
+          "perk": "Raise The Meek",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 4,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "4 experience per day to tier 1 and 2 troops."
+        },
+        {
+          "id": "LeadershipRaiseTheMeek|secondary",
+          "skill": "Leadership",
+          "level": 25,
+          "perk": "Raise The Meek",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison"
+          ],
+          "effect": "3 experience per day to each troop in garrison in the governed settlement."
+        },
+        {
+          "id": "LeadershipFamousCommander|secondary",
+          "skill": "Leadership",
+          "level": 100,
+          "perk": "Famous Commander",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 200,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "200 experience to troops on recruitment."
+        },
+        {
+          "id": "LeadershipLeaderOfMasses|secondary",
+          "skill": "Leadership",
+          "level": 125,
+          "perk": "Leader of the Masses",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience from battles shared with the troops in your party."
+        },
+        {
+          "id": "LeadershipInspiringLeader|secondary",
+          "skill": "Leadership",
+          "level": 175,
+          "perk": "Inspiring Leader",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "none",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "5% experience to troops in your formation."
+        },
+        {
+          "id": "LeadershipLeadByExample|secondary",
+          "skill": "Leadership",
+          "level": 200,
+          "perk": "Lead by Example",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "mounts"
+          ],
+          "effect": "10% shared experience for cavalry troops."
+        },
+        {
+          "id": "LeadershipTrustedCommander|secondary",
+          "skill": "Leadership",
+          "level": 200,
+          "perk": "Trusted Commander",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "simulation"
+          ],
+          "effect_tags": [],
+          "effect": "20% experience for troops, when they are sent to confront the enemy."
+        },
+        {
+          "id": "LeadershipMakeADifference|secondary",
+          "skill": "Leadership",
+          "level": 225,
+          "perk": "Make a Difference",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10% shared experience for archers."
+        },
+        {
+          "id": "MedicineBattleHardened|primary",
+          "skill": "Medicine",
+          "level": 250,
+          "perk": "Battle Hardened",
+          "effect_slot": "primary",
+          "role": "surgeon",
+          "bonus": 25,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle"
+          ],
+          "effect_tags": [],
+          "effect": "25 experience to wounded units at the end of the battle."
+        },
+        {
+          "id": "OneHandedTrainer|secondary",
+          "skill": "One Handed",
+          "level": 100,
+          "perk": "Trainer",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience to melee troops in your party after every battle."
+        },
+        {
+          "id": "OneHandedCorpsACorps|primary",
+          "skill": "One Handed",
+          "level": 150,
+          "perk": "Corps-a-corps",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10% of the total experience gained as a bonus to infantry after battles."
+        },
+        {
+          "id": "OneHandedMilitaryTradition|primary",
+          "skill": "One Handed",
+          "level": 150,
+          "perk": "Military Tradition",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "2 daily experience to infantry in your party."
+        },
+        {
+          "id": "OneHandedLeadByExample|primary",
+          "skill": "One Handed",
+          "level": 175,
+          "perk": "Lead by example",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience to troops in your party after battle."
+        },
+        {
+          "id": "PolearmGuards|secondary",
+          "skill": "Polearm",
+          "level": 150,
+          "perk": "Guards",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition",
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison",
+            "mounts"
+          ],
+          "effect": "20% experience gain to garrisoned cavalry in the governed settlement."
+        },
+        {
+          "id": "PolearmDrills|secondary",
+          "skill": "Polearm",
+          "level": 200,
+          "perk": "Drills",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "0.1 bonus daily experience to troops in your party."
+        },
+        {
+          "id": "RogueryNoRestForTheWicked|primary",
+          "skill": "Roguery",
+          "level": 25,
+          "perk": "No Rest for the Wicked",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "bandits"
+          ],
+          "effect": "20% experience gain for bandits in your party."
+        },
+        {
+          "id": "ScoutingForcedMarch|secondary",
+          "skill": "Scouting",
+          "level": 100,
+          "perk": "Forced March",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while traveling",
+            "morale threshold"
+          ],
+          "effect_tags": [],
+          "effect": "2 experience per day to all troops while traveling with party morale higher than 75."
+        },
+        {
+          "id": "ScoutingUnburdened|secondary",
+          "skill": "Scouting",
+          "level": 100,
+          "perk": "Unburdened",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while traveling"
+          ],
+          "effect_tags": [
+            "overburden"
+          ],
+          "effect": "2 experience per day to all troops when traveling while overburdened."
+        },
+        {
+          "id": "StewardDrillSergant|primary",
+          "skill": "Steward",
+          "level": 50,
+          "perk": "Drill Sergeant",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "2 daily experience to troops in your party."
+        },
+        {
+          "id": "StewardSevenVeterans|primary",
+          "skill": "Steward",
+          "level": 50,
+          "perk": "Seven Veterans",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": 4,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "4 daily experience for tier 4+ troops in your party."
+        },
+        {
+          "id": "StewardPaidInPromise|secondary",
+          "skill": "Steward",
+          "level": 100,
+          "perk": "Paid in Promise",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "Discarded armors are donated to troops for increased experience."
+        },
+        {
+          "id": "StewardForeseeableFuture|primary",
+          "skill": "Steward",
+          "level": 125,
+          "perk": "Giving Hands",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "Discarded weapons are donated to troops for increased experience."
+        },
+        {
+          "id": "ThrowingSaddlebags|secondary",
+          "skill": "Throwing",
+          "level": 125,
+          "perk": "Saddlebags",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 1,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "1 daily experience to infantry troops in your party."
+        },
+        {
+          "id": "ThrowingResourceful|secondary",
+          "skill": "Throwing",
+          "level": 200,
+          "perk": "Resourceful",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "10% experience from battles to troops in your party equipped with throwing weapons."
+        },
+        {
+          "id": "TwoHandedBaptisedInBlood|primary",
+          "skill": "Two Handed",
+          "level": 75,
+          "perk": "Baptised in Blood",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition",
+            "on kill"
+          ],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "5 experience to infantry in your party for each enemy you kill with a two handed weapon."
+        },
+        {
+          "id": "TwoHandedBaptisedInBlood|secondary",
+          "skill": "Two Handed",
+          "level": 75,
+          "perk": "Baptised in Blood",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience to melee troops in your party after every battle."
+        },
+        {
+          "id": "TwoHandedProjectileDeflection|secondary",
+          "skill": "Two Handed",
+          "level": 150,
+          "perk": "Projectile Deflection",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison"
+          ],
+          "effect": "10% experience to garrison troops in the governed settlement."
+        }
+      ]
+    },
+    "smithing": {
+      "title": "Smithing And Crafting Perks",
+      "description": "Smithing perk effects and crafting-bonus rows.",
+      "count": 23,
+      "rows": [
+        {
+          "id": "AthleticsStamina|primary",
+          "skill": "Athletics",
+          "level": 75,
+          "perk": "Stamina",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting stamina",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "50% crafting stamina recovery rate."
+        },
+        {
+          "id": "CharcoalYield|primary",
+          "skill": "Smithing",
+          "level": 25,
+          "perk": "Efficient Charcoal Maker",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting materials",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "You can use a more efficient method of charcoal production that produces three units of charcoal from two units of hardwood."
+        },
+        {
+          "id": "IronYield|primary",
+          "skill": "Smithing",
+          "level": 25,
+          "perk": "Efficient Iron Maker",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting materials",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "You can produce crude iron more efficiently by obtaining three units of crude iron from one unit of iron ore."
+        },
+        {
+          "id": "CuriousSmelter|primary",
+          "skill": "Smithing",
+          "level": 50,
+          "perk": "Curious Smelter",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 1,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting learning",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "100% learning rate of new part designs when smelting."
+        },
+        {
+          "id": "SteelMaker|primary",
+          "skill": "Smithing",
+          "level": 50,
+          "perk": "Steel Maker",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting materials",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "You can refine two units of iron into one unit of steel, and one unit of crude iron as by-product."
+        },
+        {
+          "id": "CuriousSmith|primary",
+          "skill": "Smithing",
+          "level": 75,
+          "perk": "Curious Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 1,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting learning",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "100% learning rate of new part designs when smithing."
+        },
+        {
+          "id": "SteelMaker2|primary",
+          "skill": "Smithing",
+          "level": 75,
+          "perk": "Steel Maker 2",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting materials",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "You can refine two units of steel into one unit of fine steel, and one unit of crude iron as by-product."
+        },
+        {
+          "id": "ExperiencedSmith|primary",
+          "skill": "Smithing",
+          "level": 100,
+          "perk": "Experienced Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting quality",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "10% greater chance of creating Fine weapons."
+        },
+        {
+          "id": "ExperiencedSmith|secondary",
+          "skill": "Smithing",
+          "level": 100,
+          "perk": "Experienced Smith",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "social",
+          "perk_subtype": "relationship",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "Successful crafting orders of notables increase your relation by 2 with them."
+        },
+        {
+          "id": "SteelMaker3|primary",
+          "skill": "Smithing",
+          "level": 100,
+          "perk": "Steel Maker 3",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting materials",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "You can refine two units of fine steel into one unit of Thamaskene steel,{newline}and one unit of crude iron as by-product."
+        },
+        {
+          "id": "SteelMaker3|secondary",
+          "skill": "Smithing",
+          "level": 100,
+          "perk": "Steel Maker 3",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 4,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "social",
+          "perk_subtype": "relationship",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "4 relationships with lords and ladies for successful crafting orders."
+        },
+        {
+          "id": "PracticalRefiner|primary",
+          "skill": "Smithing",
+          "level": 125,
+          "perk": "Practical Refiner",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting stamina",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-50% stamina spent while refining."
+        },
+        {
+          "id": "PracticalSmelter|primary",
+          "skill": "Smithing",
+          "level": 125,
+          "perk": "Practical Smelter",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting stamina",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-50% stamina spent while smelting."
+        },
+        {
+          "id": "StrongSmith|primary",
+          "skill": "Smithing",
+          "level": 150,
+          "perk": "Controlled Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 1,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "character growth",
+          "perk_subtype": "attribute point",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "1 Control attribute."
+        },
+        {
+          "id": "VigorousSmith|primary",
+          "skill": "Smithing",
+          "level": 150,
+          "perk": "Vigorous Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 1,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "character growth",
+          "perk_subtype": "attribute point",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "1 Vigor attribute."
+        },
+        {
+          "id": "ArtisanSmith|primary",
+          "skill": "Smithing",
+          "level": 175,
+          "perk": "Artisan Smith",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons",
+            "trade"
+          ],
+          "effect": "-50% trade penalty when selling smithing weapons."
+        },
+        {
+          "id": "PracticalSmith|primary",
+          "skill": "Smithing",
+          "level": 175,
+          "perk": "Practical Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting stamina",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-50% stamina spent while smithing."
+        },
+        {
+          "id": "MasterSmith|primary",
+          "skill": "Smithing",
+          "level": 200,
+          "perk": "Master Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.07500000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting quality",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "7.5% greater chance of creating masterwork weapons."
+        },
+        {
+          "id": "EnduringSmith|primary",
+          "skill": "Smithing",
+          "level": 225,
+          "perk": "Enduring Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 1,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "character growth",
+          "perk_subtype": "attribute point",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "1 Endurance attribute."
+        },
+        {
+          "id": "WeaponMasterSmith|primary",
+          "skill": "Smithing",
+          "level": 225,
+          "perk": "Fencer Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 1,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "character growth",
+          "perk_subtype": "focus point",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "1 Focus Point to One Handed and Two Handed."
+        },
+        {
+          "id": "CraftingSharpenedEdge|primary",
+          "skill": "Smithing",
+          "level": 250,
+          "perk": "Sharpened Edge",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.019999999552965164,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "personal combat",
+          "perk_subtype": "melee",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "2% swing damage of crafted weapons."
+        },
+        {
+          "id": "CraftingSharpenedTip|primary",
+          "skill": "Smithing",
+          "level": 250,
+          "perk": "Sharpened Tip",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.019999999552965164,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "personal combat",
+          "perk_subtype": "melee",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "2% thrust damage of crafted weapons."
+        },
+        {
+          "id": "LegendarySmith|primary",
+          "skill": "Smithing",
+          "level": 275,
+          "perk": "Legendary Smith",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "crafting bonus",
+          "perk_subtype": "crafting quality",
+          "trigger_conditions": [
+            "over skill cap"
+          ],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "5% greater chance of creating Legendary weapons, chance increases by 1% for every 5 skill points above 275."
+        }
+      ]
+    }
+  },
+  "stacks": {
+    "ai_skill": [
+      {
+        "key": "foot_polearm_shield_wall",
+        "title": "Foot Polearm Shield Wall",
+        "metric": "Polearm skill",
+        "total": 80.0,
+        "normal_high_ai_level_gain": 0.256,
+        "components": [
+          {
+            "id": "PolearmCleanThrust|secondary",
+            "skill": "Polearm",
+            "level": 75,
+            "perk": "Clean Thrust",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "on_foot, polearm_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "30 polearm skill to infantry in your formation.",
+            "missing": false,
+            "effective_bonus": 30
+          },
+          {
+            "id": "PolearmCounterweight|secondary",
+            "skill": "Polearm",
+            "level": 250,
+            "perk": "Counterweight",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 20,
+            "increment_type": "add",
+            "troop_usage": "polearm_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "20 polearm skill to troops in your formation.",
+            "missing": false,
+            "effective_bonus": 20
+          },
+          {
+            "id": "PolearmPhalanx|primary",
+            "skill": "Polearm",
+            "level": 175,
+            "perk": "Phalanx",
+            "effect_slot": "primary",
+            "role": "party leader",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "30 melee weapon skills to troops in your party while in shield wall formation.",
+            "missing": false,
+            "effective_bonus": 30
+          }
+        ],
+        "note": "Strongest clean melee-AI skill stack found so far."
+      },
+      {
+        "key": "foot_one_handed_shield_wall",
+        "title": "Foot One-Handed Shield Wall",
+        "metric": "One Handed skill",
+        "total": 60.0,
+        "normal_high_ai_level_gain": 0.19199999999999998,
+        "components": [
+          {
+            "id": "OneHandedWrappedHandles|secondary",
+            "skill": "One Handed",
+            "level": 25,
+            "perk": "Wrapped Handles",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "one_handed_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "30 one handed skill to infantry troops in your formation.",
+            "missing": false,
+            "effective_bonus": 30
+          },
+          {
+            "id": "PolearmPhalanx|primary",
+            "skill": "Polearm",
+            "level": 175,
+            "perk": "Phalanx",
+            "effect_slot": "primary",
+            "role": "party leader",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "30 melee weapon skills to troops in your party while in shield wall formation.",
+            "missing": false,
+            "effective_bonus": 30
+          }
+        ],
+        "note": "Feeds melee reactions and shield AI."
+      },
+      {
+        "key": "foot_two_handed_shield_wall",
+        "title": "Foot Two-Handed Shield Wall",
+        "metric": "Two Handed skill",
+        "total": 60.0,
+        "normal_high_ai_level_gain": 0.19199999999999998,
+        "components": [
+          {
+            "id": "TwoHandedStrongGrip|secondary",
+            "skill": "Two Handed",
+            "level": 25,
+            "perk": "Strong Grip",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "on_foot, two_handed_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "30 two handed skill to infantry troops in your formation.",
+            "missing": false,
+            "effective_bonus": 30
+          },
+          {
+            "id": "PolearmPhalanx|primary",
+            "skill": "Polearm",
+            "level": 175,
+            "perk": "Phalanx",
+            "effect_slot": "primary",
+            "role": "party leader",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "30 melee weapon skills to troops in your party while in shield wall formation.",
+            "missing": false,
+            "effective_bonus": 30
+          }
+        ],
+        "note": "Offensive melee-AI stack; no shield-specific defensive payoff."
+      },
+      {
+        "key": "horse_archers",
+        "title": "Horse Archers",
+        "metric": "Bow skill",
+        "total": 50.0,
+        "normal_high_ai_level_gain": 0.15999999999999998,
+        "components": [
+          {
+            "id": "BowDeadAim|secondary",
+            "skill": "Bow",
+            "level": 25,
+            "perk": "Dead Aim",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 20,
+            "increment_type": "add",
+            "troop_usage": "bow_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "20 Bow skill to troops in your formation.",
+            "missing": false,
+            "effective_bonus": 20
+          },
+          {
+            "id": "BowHorseMaster|secondary",
+            "skill": "Bow",
+            "level": 225,
+            "perk": "Horse Master",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "mounted, bow_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [
+              "weapons",
+              "mounts"
+            ],
+            "effect": "30 bow skill to horse archers in your formation",
+            "missing": false,
+            "effective_bonus": 30
+          }
+        ],
+        "note": "Improves ranged AI plus bow damage and accuracy."
+      },
+      {
+        "key": "throwing_infantry",
+        "title": "Throwing Infantry",
+        "metric": "Throwing skill",
+        "total": 65.0,
+        "normal_high_ai_level_gain": 0.208,
+        "components": [
+          {
+            "id": "ThrowingFlexibleFighter|secondary",
+            "skill": "Throwing",
+            "level": 50,
+            "perk": "Flexible Fighter",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 15,
+            "increment_type": "add",
+            "troop_usage": "on_foot",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "15 Control skills of infantry, 15 Vigor skills of archers in your formation.",
+            "missing": false,
+            "effective_bonus": 15
+          },
+          {
+            "id": "AthleticsStrongArms|secondary",
+            "skill": "Athletics",
+            "level": 225,
+            "perk": "Strong Arms",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 20,
+            "increment_type": "add",
+            "troop_usage": "thrown_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "20 throwing skill to troops in your formation.",
+            "missing": false,
+            "effective_bonus": 20
+          },
+          {
+            "id": "ThrowingRunningThrow|secondary",
+            "skill": "Throwing",
+            "level": 100,
+            "perk": "Running Throw",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 30,
+            "increment_type": "add",
+            "troop_usage": "thrown_user",
+            "perk_type": "troop combat",
+            "perk_subtype": "skill bonus",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "30 throwing skill to troops in your formation.",
+            "missing": false,
+            "effective_bonus": 30
+          }
+        ],
+        "note": "Strong javelin-infantry stack; Flexible Fighter is category-sensitive."
+      }
+    ],
+    "hit_points": [
+      {
+        "key": "any_regular_troop_hp",
+        "title": "Any Regular Troop HP",
+        "metric": "flat HP",
+        "total": 90.0,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "MedicineMinisterOfHealth|primary",
+            "skill": "Medicine",
+            "level": 275,
+            "perk": "Minister of Health",
+            "effect_slot": "primary",
+            "role": "personal",
+            "bonus": 1,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "over skill cap"
+            ],
+            "effect_tags": [],
+            "effect": "1 hit point to troops for every skill point above 250.",
+            "missing": false,
+            "effective_bonus": 80,
+            "note": "Medicine 330"
+          },
+          {
+            "id": "PolearmHardyFrontline|primary",
+            "skill": "Polearm",
+            "level": 200,
+            "perk": "Hardy Frontline",
+            "effect_slot": "primary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 hit points to troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "TwoHandedThickHides|secondary",
+            "skill": "Two Handed",
+            "level": 200,
+            "perk": "Thick Hides",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 hit points to troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          }
+        ],
+        "note": "Baseline broad troop HP stack."
+      },
+      {
+        "key": "foot_infantry_hp",
+        "title": "Foot Infantry HP",
+        "metric": "flat HP",
+        "total": 108.0,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "MedicineMinisterOfHealth|primary",
+            "skill": "Medicine",
+            "level": 275,
+            "perk": "Minister of Health",
+            "effect_slot": "primary",
+            "role": "personal",
+            "bonus": 1,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "over skill cap"
+            ],
+            "effect_tags": [],
+            "effect": "1 hit point to troops for every skill point above 250.",
+            "missing": false,
+            "effective_bonus": 80,
+            "note": "Medicine 330"
+          },
+          {
+            "id": "PolearmHardyFrontline|primary",
+            "skill": "Polearm",
+            "level": 200,
+            "perk": "Hardy Frontline",
+            "effect_slot": "primary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 hit points to troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "TwoHandedThickHides|secondary",
+            "skill": "Two Handed",
+            "level": 200,
+            "perk": "Thick Hides",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 hit points to troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "AthleticsWellBuilt|secondary",
+            "skill": "Athletics",
+            "level": 25,
+            "perk": "Well Built",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "5 hit points to foot troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "OneHandedUnwaveringDefense|secondary",
+            "skill": "One Handed",
+            "level": 225,
+            "perk": "Unwavering Defense",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 10,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "10 hit points to infantry in your party.",
+            "missing": false,
+            "effective_bonus": 10
+          },
+          {
+            "id": "PolearmHardKnock|secondary",
+            "skill": "Polearm",
+            "level": 100,
+            "perk": "Hard Knock",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 3,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "3 hit points to infantry in your party.",
+            "missing": false,
+            "effective_bonus": 3
+          }
+        ],
+        "note": "Largest flat regular troop HP stack from the current guide set."
+      },
+      {
+        "key": "foot_ranged_hp",
+        "title": "Foot Ranged HP",
+        "metric": "flat HP",
+        "total": 100.0,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "MedicineMinisterOfHealth|primary",
+            "skill": "Medicine",
+            "level": 275,
+            "perk": "Minister of Health",
+            "effect_slot": "primary",
+            "role": "personal",
+            "bonus": 1,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "over skill cap"
+            ],
+            "effect_tags": [],
+            "effect": "1 hit point to troops for every skill point above 250.",
+            "missing": false,
+            "effective_bonus": 80,
+            "note": "Medicine 330"
+          },
+          {
+            "id": "PolearmHardyFrontline|primary",
+            "skill": "Polearm",
+            "level": 200,
+            "perk": "Hardy Frontline",
+            "effect_slot": "primary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 hit points to troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "TwoHandedThickHides|secondary",
+            "skill": "Two Handed",
+            "level": 200,
+            "perk": "Thick Hides",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 hit points to troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "AthleticsWellBuilt|secondary",
+            "skill": "Athletics",
+            "level": 25,
+            "perk": "Well Built",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "5 hit points to foot troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "CrossbowBoltenGuard|secondary",
+            "skill": "Crossbow",
+            "level": 250,
+            "perk": "Picked Shots",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "5 hit points to ranged troops in your party.",
+            "missing": false,
+            "effective_bonus": 5
+          }
+        ],
+        "note": "Uses Picked Shots, whose string id is CrossbowBoltenGuard in the extracted data."
+      },
+      {
+        "key": "troop_mount_hp",
+        "title": "Troop Mount HP",
+        "metric": "mixed mount HP",
+        "total": null,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "MedicineSledges|secondary",
+            "skill": "Medicine",
+            "level": 75,
+            "perk": "Sledges",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 15,
+            "increment_type": "add",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "mounts"
+            ],
+            "effect": "15 hit points to mounts in your party.",
+            "missing": false,
+            "effective_bonus": 15
+          },
+          {
+            "id": "RidingVeterinary|secondary",
+            "skill": "Riding",
+            "level": 50,
+            "perk": "Veterinary",
+            "effect_slot": "secondary",
+            "role": "party leader",
+            "bonus": 0.10000000149011612,
+            "increment_type": "add_factor",
+            "troop_usage": "all",
+            "perk_type": "troop combat",
+            "perk_subtype": "hit points",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "mounts"
+            ],
+            "effect": "10% hit points to mounts of troops in your party.",
+            "missing": false,
+            "effective_bonus": 0.10000000149011612
+          }
+        ],
+        "note": "Flat mount HP and percentage mount HP are kept as separate component types."
+      }
+    ],
+    "armor": [
+      {
+        "key": "any_troop_armor",
+        "title": "Any Troop Armor",
+        "metric": "armor per equipped armor piece",
+        "total": 5.0,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "EngineeringMetallurgy|secondary",
+            "skill": "Engineering",
+            "level": 225,
+            "perk": "Metallurgy",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "armor increase",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 armor to all equipped armor pieces of troops in your formation.",
+            "missing": false,
+            "effective_bonus": 5
+          }
+        ],
+        "note": "Broad captain armor layer."
+      },
+      {
+        "key": "foot_troop_armor",
+        "title": "Foot Troop Armor",
+        "metric": "armor per equipped armor piece",
+        "total": 10.0,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "EngineeringMetallurgy|secondary",
+            "skill": "Engineering",
+            "level": 225,
+            "perk": "Metallurgy",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "armor increase",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 armor to all equipped armor pieces of troops in your formation.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "AthleticsIgnorePain|secondary",
+            "skill": "Athletics",
+            "level": 250,
+            "perk": "Ignore Pain",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "on_foot",
+            "perk_type": "troop combat",
+            "perk_subtype": "armor increase",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "5 armor to all equipped armor pieces of foot troops in your formation.",
+            "missing": false,
+            "effective_bonus": 5
+          }
+        ],
+        "note": "Best foot-troop armor stack in the current guide set."
+      },
+      {
+        "key": "mounted_rider_armor",
+        "title": "Mounted Rider Armor",
+        "metric": "armor per equipped armor piece",
+        "total": 10.0,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "EngineeringMetallurgy|secondary",
+            "skill": "Engineering",
+            "level": 225,
+            "perk": "Metallurgy",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "armor increase",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "5 armor to all equipped armor pieces of troops in your formation.",
+            "missing": false,
+            "effective_bonus": 5
+          },
+          {
+            "id": "RidingDauntlessSteed|secondary",
+            "skill": "Riding",
+            "level": 250,
+            "perk": "Dauntless Steed",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 5,
+            "increment_type": "add",
+            "troop_usage": "mounted",
+            "perk_type": "troop combat",
+            "perk_subtype": "armor increase",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [
+              "mounts"
+            ],
+            "effect": "5 armor to all equipped armor pieces of mounted troops in your formation.",
+            "missing": false,
+            "effective_bonus": 5
+          }
+        ],
+        "note": "Best rider armor stack for mounted troops."
+      },
+      {
+        "key": "troop_mount_armor",
+        "title": "Troop Mount Armor",
+        "metric": "mount armor",
+        "total": 10.0,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "RidingToughSteed|secondary",
+            "skill": "Riding",
+            "level": 250,
+            "perk": "Tough Steed",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": 10,
+            "increment_type": "add",
+            "troop_usage": "mounted",
+            "perk_type": "troop combat",
+            "perk_subtype": "armor increase",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "mounts"
+            ],
+            "effect": "10 armor to mounts of troops in your formation.",
+            "missing": false,
+            "effective_bonus": 10
+          }
+        ],
+        "note": "Mount armor, not rider armor."
+      }
+    ],
+    "damage_reduction": [
+      {
+        "key": "melee_infantry_vs_projectiles",
+        "title": "Melee Infantry Vs Projectiles",
+        "metric": "listed damage taken factors",
+        "total": -0.0800000000745058,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "ThrowingSkirmisher|secondary",
+            "skill": "Throwing",
+            "level": 125,
+            "perk": "Skirmisher",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.029999999329447746,
+            "increment_type": "add_factor",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "ranged",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-3% damage taken by ranged attacks to troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.029999999329447746
+          },
+          {
+            "id": "TacticsEliteReserves|secondary",
+            "skill": "Tactics",
+            "level": 200,
+            "perk": "Elite Reserves",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.05000000074505806,
+            "increment_type": "add_factor",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "damage resistance",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-5% damage taken by troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.05000000074505806
+          }
+        ],
+        "note": "Does not include Skirmish Phase Master because that is ranged-troop scoped."
+      },
+      {
+        "key": "bow_ranged_vs_projectiles",
+        "title": "Bow Ranged Troops Vs Projectiles",
+        "metric": "listed damage taken factors",
+        "total": -0.18000000156462193,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "BowSkirmishPhaseMaster|secondary",
+            "skill": "Bow",
+            "level": 175,
+            "perk": "Skirmish Phase Master",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.10000000149011612,
+            "increment_type": "add_factor",
+            "troop_usage": "ranged",
+            "perk_type": "troop combat",
+            "perk_subtype": "ranged",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "-10% damage taken from projectiles by ranged troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.10000000149011612
+          },
+          {
+            "id": "ThrowingSkirmisher|secondary",
+            "skill": "Throwing",
+            "level": 125,
+            "perk": "Skirmisher",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.029999999329447746,
+            "increment_type": "add_factor",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "ranged",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-3% damage taken by ranged attacks to troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.029999999329447746
+          },
+          {
+            "id": "TacticsEliteReserves|secondary",
+            "skill": "Tactics",
+            "level": 200,
+            "perk": "Elite Reserves",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.05000000074505806,
+            "increment_type": "add_factor",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "damage resistance",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-5% damage taken by troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.05000000074505806
+          }
+        ],
+        "note": "Counter Fire is not included because the live damage code is crossbow-current-weapon gated."
+      },
+      {
+        "key": "crossbow_vs_projectiles",
+        "title": "Crossbow Troops Vs Projectiles",
+        "metric": "listed damage taken factors",
+        "total": -0.21000000089406967,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "BowSkirmishPhaseMaster|secondary",
+            "skill": "Bow",
+            "level": 175,
+            "perk": "Skirmish Phase Master",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.10000000149011612,
+            "increment_type": "add_factor",
+            "troop_usage": "ranged",
+            "perk_type": "troop combat",
+            "perk_subtype": "ranged",
+            "trigger_conditions": [
+              "party composition"
+            ],
+            "effect_tags": [],
+            "effect": "-10% damage taken from projectiles by ranged troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.10000000149011612
+          },
+          {
+            "id": "CrossbowCounterFire|secondary",
+            "skill": "Crossbow",
+            "level": 175,
+            "perk": "Counter Fire",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.029999999329447746,
+            "increment_type": "add_factor",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "ranged",
+            "trigger_conditions": [],
+            "effect_tags": [
+              "weapons"
+            ],
+            "effect": "-3% damage taken from projectiles by your troops.",
+            "missing": false,
+            "effective_bonus": -0.029999999329447746
+          },
+          {
+            "id": "ThrowingSkirmisher|secondary",
+            "skill": "Throwing",
+            "level": 125,
+            "perk": "Skirmisher",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.029999999329447746,
+            "increment_type": "add_factor",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "ranged",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-3% damage taken by ranged attacks to troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.029999999329447746
+          },
+          {
+            "id": "TacticsEliteReserves|secondary",
+            "skill": "Tactics",
+            "level": 200,
+            "perk": "Elite Reserves",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.05000000074505806,
+            "increment_type": "add_factor",
+            "troop_usage": "none",
+            "perk_type": "troop combat",
+            "perk_subtype": "damage resistance",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-5% damage taken by troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.05000000074505806
+          }
+        ],
+        "note": "Assumes the victim is holding a crossbow for Counter Fire."
+      },
+      {
+        "key": "charge_damage_to_formation",
+        "title": "Charge Damage To Formation",
+        "metric": "listed charge damage factors",
+        "total": -0.6000000238418579,
+        "normal_high_ai_level_gain": null,
+        "components": [
+          {
+            "id": "AthleticsBraced|secondary",
+            "skill": "Athletics",
+            "level": 125,
+            "perk": "Braced",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.30000001192092896,
+            "increment_type": "add_factor",
+            "troop_usage": "on_foot",
+            "perk_type": "troop combat",
+            "perk_subtype": "charge",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-30% charge damage taken by troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.30000001192092896
+          },
+          {
+            "id": "PolearmSureFooted|secondary",
+            "skill": "Polearm",
+            "level": 225,
+            "perk": "Sure Footed",
+            "effect_slot": "secondary",
+            "role": "captain",
+            "bonus": -0.30000001192092896,
+            "increment_type": "add_factor",
+            "troop_usage": "on_foot",
+            "perk_type": "troop combat",
+            "perk_subtype": "charge",
+            "trigger_conditions": [],
+            "effect_tags": [],
+            "effect": "-30% charge damage taken by troops in your formation.",
+            "missing": false,
+            "effective_bonus": -0.30000001192092896
+          }
+        ],
+        "note": "Charge-specific layer."
+      }
+    ]
+  }
+}

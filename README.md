@@ -89,6 +89,22 @@ python .\src\bannerlord_perk_analyzer\extract_character_creation.py --game-root 
 
 This writes `Data/generated/character-creation-options.json` and `Data/generated/reports/character-creation-options.md`, including family/background, childhood, education, youth, adulthood, sandbox age, story-mode escape choices, campaign family mechanical stats, and the HeroCreator initialization flow that applies to family members.
 
+Generate guide-facing stat extracts from the current perk export:
+
+```text
+python .\src\bannerlord_perk_analyzer\extract_guide_stats.py
+```
+
+This writes `Data/generated/guide-stat-extracts.json` and `Data/generated/reports/guide-stat-extracts.md`, collecting the perk rows, direct weapon skill constants, AI stack definitions, survivability stacks, and smithing formulas used by the manual guide notes.
+
+Generate perk investment cost analysis:
+
+```text
+python .\src\bannerlord_perk_analyzer\analyze_perk_investment.py
+```
+
+This writes `Data/generated/perk-investment-costs.json` and `Data/generated/reports/perk-investment-costs.md`, assigning each perk tier a low/medium/high investment category, additive allocation cost, level gate, above-focus-only summary, shared-attribute examples, and Endurance-stretch comparison for expensive targets.
+
 For focused IL debugging, call the extractor directly:
 
 ```text
