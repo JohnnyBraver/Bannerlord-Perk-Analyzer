@@ -1,6 +1,6 @@
 # Bannerlord Guide Stat Extracts
 
-Generated: 2026-06-02T22:16:59.133427+03:00
+Generated: 2026-06-02T22:27:24.517877+03:00
 
 This report collects the perk rows, formulas, and stack definitions behind the manual guide notes. It is meant to make guide updates repeatable: refresh the perk export, re-run this script, and compare the generated stat tables before editing prose.
 
