@@ -133,7 +133,7 @@ def main() -> None:
     parser_xp.add_argument(
         "--keep-temp",
         action="store_true",
-        help="Keep per-scan temporary JSON files under Data/generated/xp-formula-scan-temp."
+        help="Keep per-scan temporary JSON files under Data/intermediate/xp-formula-scan-temp."
     )
     parser_xp.add_argument(
         "--skip-scan",
@@ -185,13 +185,13 @@ def main() -> None:
         "--json-output",
         type=Path,
         default=None,
-        help="Path to save guide stat JSON. Defaults to Data/generated/guide-stat-extracts.json."
+        help="Path to save guide stat JSON. Defaults to Data/export/guide-stat-extracts.json."
     )
     parser_stats.add_argument(
         "--markdown-output",
         type=Path,
         default=None,
-        help="Path to save guide stat markdown. Defaults to Data/generated/reports/guide-stat-extracts.md."
+        help="Path to save guide stat markdown. Defaults to Docs/reports/guide-stat-extracts.md."
     )
 
     args = parser.parse_args()
@@ -221,9 +221,9 @@ def main() -> None:
     elif args.command == "extract-xp":
         # 1. Run XP awards extraction
         print("=== Running XP Awards Extraction ===")
-        json_output_awards = workspace / "Data" / "generated" / "xp-award-methods.json"
-        markdown_output_awards = workspace / "Data" / "generated" / "reports" / "xp-awards.md"
-        il_output_awards = workspace / "Data" / "generated" / "reports" / "xp-award-il.md"
+        json_output_awards = workspace / "Data" / "raw" / "xp-award-methods.json"
+        markdown_output_awards = workspace / "Docs" / "reports" / "xp-awards.md"
+        il_output_awards = workspace / "Docs" / "reports" / "xp-award-il.md"
         extract_xp_awards(
             workspace=workspace,
             game_root=args.game_root,
@@ -238,9 +238,9 @@ def main() -> None:
 
         # 2. Run XP formulas extraction
         print("\n=== Running XP Formulas Extraction ===")
-        json_output_formulas = workspace / "Data" / "generated" / "xp-formula-methods.json"
-        markdown_output_formulas = workspace / "Data" / "generated" / "reports" / "xp-formulas.md"
-        insights_output_formulas = workspace / "Data" / "generated" / "reports" / "xp-insights.md"
+        json_output_formulas = workspace / "Data" / "raw" / "xp-formula-methods.json"
+        markdown_output_formulas = workspace / "Docs" / "reports" / "xp-formulas.md"
+        insights_output_formulas = workspace / "Docs" / "reports" / "xp-insights.md"
         extract_xp_formulas(
             workspace=workspace,
             game_root=args.game_root,
@@ -253,8 +253,8 @@ def main() -> None:
 
         # 3. Run Skill XP sources extraction
         print("\n=== Running Skill XP Sources Extraction ===")
-        json_output_sources = workspace / "Data" / "generated" / "skill-xp-source-methods.json"
-        markdown_output_sources = workspace / "Data" / "generated" / "reports" / "skill-xp-sources.md"
+        json_output_sources = workspace / "Data" / "raw" / "skill-xp-source-methods.json"
+        markdown_output_sources = workspace / "Docs" / "reports" / "skill-xp-sources.md"
         extract_skill_xp_sources(
             workspace=workspace,
             game_root=args.game_root,
@@ -264,8 +264,8 @@ def main() -> None:
         )
 
     elif args.command == "extract-creation":
-        json_output = workspace / "Data" / "generated" / "character-creation-options.json"
-        markdown_output = workspace / "Data" / "generated" / "reports" / "character-creation-options.md"
+        json_output = workspace / "Data" / "raw" / "character-creation-options.json"
+        markdown_output = workspace / "Docs" / "reports" / "character-creation-options.md"
         extract_character_creation(
             workspace=workspace,
             game_root=args.game_root,
@@ -276,8 +276,8 @@ def main() -> None:
 
     elif args.command == "stats":
         perk_export_path = args.perk_export or workspace / "Data" / "export" / "perk-effects.json"
-        json_output = args.json_output or workspace / "Data" / "generated" / "guide-stat-extracts.json"
-        markdown_output = args.markdown_output or workspace / "Data" / "generated" / "reports" / "guide-stat-extracts.md"
+        json_output = args.json_output or workspace / "Data" / "export" / "guide-stat-extracts.json"
+        markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "guide-stat-extracts.md"
         extract_guide_stats(
             workspace=workspace,
             perk_export_path=perk_export_path.resolve(),

@@ -16,7 +16,7 @@ def main() -> None:
     parser.add_argument("--workspace", type=Path, default=default_workspace())
     args = parser.parse_args()
 
-    path = args.workspace.resolve() / "Docs" / "notes" / "perk-limits.md"
+    path = args.workspace.resolve() / "Docs" / "reports" / "perk-limits.md"
     path.write_text(perk_limits_markdown(), encoding="utf-8", newline="\n")
     print(f"Wrote {path}")
 

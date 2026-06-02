@@ -104,11 +104,11 @@ def override_key(override: dict[str, Any]) -> str:
 
 
 def validate(workspace: Path) -> None:
-    markdown_root = workspace / "Data" / "generated" / "perk-effects"
+    markdown_root = workspace / "Docs" / "reference"
     override_path = workspace / "Data" / "curated" / "perk-effect-overrides.json"
     raw_perks_path = workspace / "Data" / "raw" / "perks.json"
-    generated_path = workspace / "Data" / "generated" / "classified-perk-effects.json"
-    postprocessed_path = workspace / "Data" / "generated" / "postprocessed-perk-effects.json"
+    generated_path = workspace / "Data" / "intermediate" / "classified-perk-effects.json"
+    postprocessed_path = workspace / "Data" / "intermediate" / "postprocessed-perk-effects.json"
     export_path = workspace / "Data" / "export" / "perk-effects.json"
     tag_index_export_path = workspace / "Data" / "export" / "tag-index.json"
 

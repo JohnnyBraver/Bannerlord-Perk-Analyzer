@@ -466,8 +466,8 @@ def main() -> None:
 
     workspace = args.workspace.resolve()
     perk_export_path = args.perk_export or workspace / "Data" / "export" / "perk-effects.json"
-    json_output = args.json_output or workspace / "Data" / "generated" / "guide-stat-extracts.json"
-    markdown_output = args.markdown_output or workspace / "Data" / "generated" / "reports" / "guide-stat-extracts.md"
+    json_output = args.json_output or workspace / "Data" / "export" / "guide-stat-extracts.json"
+    markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "guide-stat-extracts.md"
     extract_guide_stats(
         workspace=workspace,
         perk_export_path=perk_export_path.resolve(),

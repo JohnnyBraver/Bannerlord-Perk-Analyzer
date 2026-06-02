@@ -135,7 +135,7 @@ def load_skill_info(workspace: Path) -> dict[str, SkillInfo]:
 
 
 def load_character_creation_options(workspace: Path) -> list[dict[str, Any]]:
-    path = workspace / "Data" / "generated" / "character-creation-options.json"
+    path = workspace / "Data" / "raw" / "character-creation-options.json"
     if not path.exists():
         raise ValueError(
             "Character creation options are not generated yet. "

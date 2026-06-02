@@ -1,6 +1,6 @@
 # Perk Investment Costs
 
-Generated: 2026-05-31T20:49:49.583422+03:00
+Generated: 2026-06-02T22:39:33.068006+03:00
 
 This report assigns a point-budget cost to every perk tier and starts the pragmatic review of perks above the focus-only line.
 
@@ -227,5 +227,5 @@ Single-skill targets rarely justify Endurance detours on additive cost alone. Th
 
 ## Outputs
 
-- JSON: `Data\generated\perk-investment-costs.json`
-- Report: `Data\generated\reports\perk-investment-costs.md`
+- JSON: `Data\intermediate\perk-investment-costs.json`
+- Report: `Docs\reports\perk-investment-costs.md`

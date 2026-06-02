@@ -79,9 +79,9 @@ def main() -> None:
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()
-    json_output = args.json_output or workspace / "Data" / "generated" / "xp-award-methods.json"
-    markdown_output = args.markdown_output or workspace / "Data" / "generated" / "reports" / "xp-awards.md"
-    il_output = args.il_output or workspace / "Data" / "generated" / "reports" / "xp-award-il.md"
+    json_output = args.json_output or workspace / "Data" / "raw" / "xp-award-methods.json"
+    markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "xp-awards.md"
+    il_output = args.il_output or workspace / "Docs" / "reports" / "xp-award-il.md"
     extract_xp_awards(
         workspace=workspace,
         game_root=args.game_root,

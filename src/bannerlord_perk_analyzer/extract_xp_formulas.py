@@ -782,7 +782,7 @@ def extract_xp_formulas(
     keep_temp: bool,
 ) -> None:
     resolved_game_root = resolve_game_root(game_root)
-    temp_parent = workspace / "Data" / "generated"
+    temp_parent = workspace / "Data" / "intermediate"
     temp_parent.mkdir(parents=True, exist_ok=True)
     temp_dir = Path(tempfile.mkdtemp(prefix=".xp_formula_scan_", dir=temp_parent))
     try:
@@ -827,9 +827,9 @@ def main() -> None:
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()
-    json_output = args.json_output or workspace / "Data" / "generated" / "xp-formula-methods.json"
-    markdown_output = args.markdown_output or workspace / "Data" / "generated" / "reports" / "xp-formulas.md"
-    insights_output = args.insights_output or workspace / "Data" / "generated" / "reports" / "xp-insights.md"
+    json_output = args.json_output or workspace / "Data" / "raw" / "xp-formula-methods.json"
+    markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "xp-formulas.md"
+    insights_output = args.insights_output or workspace / "Docs" / "reports" / "xp-insights.md"
     extract_xp_formulas(
         workspace=workspace,
         game_root=args.game_root,

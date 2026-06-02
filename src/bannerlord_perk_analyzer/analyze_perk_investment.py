@@ -713,8 +713,8 @@ def main() -> None:
     workspace = args.workspace.resolve()
     raw_perks_path = args.raw_perks or workspace / "Data" / "raw" / "perks.json"
     perk_export_path = args.perk_export or workspace / "Data" / "export" / "perk-effects.json"
-    json_output = args.json_output or workspace / "Data" / "generated" / "perk-investment-costs.json"
-    markdown_output = args.markdown_output or workspace / "Data" / "generated" / "reports" / "perk-investment-costs.md"
+    json_output = args.json_output or workspace / "Data" / "intermediate" / "perk-investment-costs.json"
+    markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "perk-investment-costs.md"
     analyze_perk_investment(
         workspace=workspace,
         raw_perks_path=raw_perks_path.resolve(),

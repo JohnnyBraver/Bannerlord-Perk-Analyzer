@@ -79,7 +79,7 @@ def prune_machine_field(override: dict[str, Any], row: dict[str, Any], field: st
 
 
 def prune_overrides(workspace: Path, dry_run: bool = False) -> tuple[int, int, int]:
-    generated_path = workspace / "Data" / "generated" / "classified-perk-effects.json"
+    generated_path = workspace / "Data" / "intermediate" / "classified-perk-effects.json"
     override_path = workspace / "Data" / "curated" / "perk-effect-overrides.json"
 
     generated_rows = read_json(generated_path)

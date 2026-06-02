@@ -385,8 +385,8 @@ def main() -> None:
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()
-    json_output = args.json_output or workspace / "Data" / "generated" / "skill-xp-source-methods.json"
-    markdown_output = args.markdown_output or workspace / "Data" / "generated" / "reports" / "skill-xp-sources.md"
+    json_output = args.json_output or workspace / "Data" / "raw" / "skill-xp-source-methods.json"
+    markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "skill-xp-sources.md"
     extract_skill_xp_sources(
         workspace=workspace,
         game_root=args.game_root,

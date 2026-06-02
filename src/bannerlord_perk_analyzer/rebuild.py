@@ -146,7 +146,7 @@ def classify_perks(raw_perks: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def rebuild(workspace: Path, game_root: Path | None, skip_extract: bool = False) -> None:
     raw_path = workspace / "Data" / "raw" / "perks.json"
-    generated_path = workspace / "Data" / "generated" / "classified-perk-effects.json"
+    generated_path = workspace / "Data" / "intermediate" / "classified-perk-effects.json"
 
     if not skip_extract:
         resolved_game_root = resolve_game_root(game_root)

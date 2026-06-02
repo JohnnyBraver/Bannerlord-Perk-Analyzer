@@ -504,13 +504,13 @@ def summarize_overrides(overrides_by_key: dict[str, dict[str, Any]]) -> dict[str
 
 
 def postprocess(workspace: Path) -> None:
-    generated_path = workspace / "Data" / "generated" / "classified-perk-effects.json"
-    postprocessed_path = workspace / "Data" / "generated" / "postprocessed-perk-effects.json"
+    generated_path = workspace / "Data" / "intermediate" / "classified-perk-effects.json"
+    postprocessed_path = workspace / "Data" / "intermediate" / "postprocessed-perk-effects.json"
     overrides_path = workspace / "Data" / "curated" / "perk-effect-overrides.json"
     export_path = workspace / "Data" / "export" / "perk-effects.json"
     tag_index_export_path = workspace / "Data" / "export" / "tag-index.json"
-    markdown_root = workspace / "Data" / "generated" / "perk-effects"
-    reports_root = workspace / "Data" / "generated" / "reports"
+    markdown_root = workspace / "Docs" / "reference"
+    reports_root = workspace / "Docs" / "reports"
 
     generated_rows = read_json(generated_path)
     overrides_by_key = load_overrides(overrides_path)

@@ -788,8 +788,8 @@ def main() -> None:
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()
-    json_output = args.json_output or workspace / "Data" / "generated" / "character-creation-options.json"
-    markdown_output = args.markdown_output or workspace / "Data" / "generated" / "reports" / "character-creation-options.md"
+    json_output = args.json_output or workspace / "Data" / "raw" / "character-creation-options.json"
+    markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "character-creation-options.md"
     extract_character_creation(
         workspace=workspace,
         game_root=args.game_root,
