@@ -2,16 +2,16 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import subprocess
 from pathlib import Path
 from typing import Any
 
 try:
     from .postprocess import default_workspace
+    from .utils import resolve_game_root, run_extractor
     from .xp_reports import write_xp_il, write_xp_markdown
 except ImportError:
     from postprocess import default_workspace
+    from utils import resolve_game_root, run_extractor
     from xp_reports import write_xp_il, write_xp_markdown
 
 
@@ -31,20 +31,8 @@ def extract_xp_awards(
     include_contracts: bool,
     include_il: bool,
 ) -> None:
-    env_game_root = os.environ.get("BANNERLORD_GAME_ROOT")
-    if game_root is None and not env_game_root:
-        raise SystemExit("Bannerlord game root is required. Pass --game-root or set BANNERLORD_GAME_ROOT.")
-    resolved_game_root = game_root or Path(str(env_game_root))
-    project = workspace / "tools" / "BannerlordExtractor" / "BannerlordExtractor.csproj"
-    if not project.exists():
-        raise SystemExit(f"Extractor project is missing: {project}")
-
-    command = [
-        "dotnet",
-        "run",
-        "--project",
-        str(project),
-        "--",
+    resolved_game_root = resolve_game_root(game_root)
+    extractor_args = [
         "xp-methods",
         "--game-root",
         str(resolved_game_root.resolve()),
@@ -52,15 +40,15 @@ def extract_xp_awards(
         str(json_output),
     ]
     for assembly in assemblies:
-        command.extend(["--assembly", assembly])
+        extractor_args.extend(["--assembly", assembly])
     if deep_scan_callers:
-        command.append("--deep-scan-callers")
+        extractor_args.append("--deep-scan-callers")
     if include_contracts:
-        command.append("--include-contracts")
+        extractor_args.append("--include-contracts")
     if include_il:
-        command.append("--include-il")
+        extractor_args.append("--include-il")
 
-    subprocess.run(command, check=True)
+    run_extractor(workspace, extractor_args)
     payload = read_json(json_output)
     write_xp_markdown(
         payload,

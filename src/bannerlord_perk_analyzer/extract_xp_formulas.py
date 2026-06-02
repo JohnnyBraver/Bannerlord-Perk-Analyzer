@@ -2,10 +2,8 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import shutil
-import subprocess
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,9 +11,11 @@ from typing import Any
 
 try:
     from .postprocess import default_workspace
+    from .utils import resolve_game_root, run_extractor
     from .xp_reports import display_path, table_escape
 except ImportError:
     from postprocess import default_workspace
+    from utils import resolve_game_root, run_extractor
     from xp_reports import display_path, table_escape
 
 
@@ -155,13 +155,6 @@ def write_json(path: Path, value: Any) -> None:
         handle.write("\n")
 
 
-def resolve_game_root(game_root: Path | None) -> Path:
-    env_game_root = os.environ.get("BANNERLORD_GAME_ROOT")
-    if game_root is None and not env_game_root:
-        raise SystemExit("Bannerlord game root is required. Pass --game-root or set BANNERLORD_GAME_ROOT.")
-    return (game_root or Path(str(env_game_root))).resolve()
-
-
 def run_find_methods(
     workspace: Path,
     game_root: Path,
@@ -169,17 +162,8 @@ def run_find_methods(
     include_il: bool,
     temp_dir: Path,
 ) -> dict[str, Any]:
-    project = workspace / "tools" / "BannerlordExtractor" / "BannerlordExtractor.csproj"
-    if not project.exists():
-        raise SystemExit(f"Extractor project is missing: {project}")
-
     output = temp_dir / f"{scan.key}.json"
-    command = [
-        "dotnet",
-        "run",
-        "--project",
-        str(project),
-        "--",
+    command_args = [
         "find-methods",
         "--game-root",
         str(game_root),
@@ -187,13 +171,13 @@ def run_find_methods(
         str(output),
     ]
     for assembly in scan.assemblies:
-        command.extend(["--assembly", assembly])
+        command_args.extend(["--assembly", assembly])
     for query in scan.queries:
-        command.extend(["--query", query])
+        command_args.extend(["--query", query])
     if include_il:
-        command.append("--include-il")
+        command_args.append("--include-il")
 
-    subprocess.run(command, check=True)
+    run_extractor(workspace, command_args)
     payload = read_json(output)
     payload["scan_key"] = scan.key
     payload["scan_title"] = scan.title
