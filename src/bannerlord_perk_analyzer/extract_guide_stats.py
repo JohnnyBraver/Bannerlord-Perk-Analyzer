@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import re
+import sys
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import datetime
@@ -18,119 +20,6 @@ except ImportError:
 
 
 NORMAL_AI_FACTOR = 0.96 / 300.0
-
-
-DIRECT_WEAPON_EFFECTS = [
-    {
-        "skill": "One Handed",
-        "effects": "weapon speed, weapon damage",
-        "per_skill": {"speed_pct": 0.07, "damage_pct": 0.15},
-    },
-    {
-        "skill": "Two Handed",
-        "effects": "weapon speed, weapon damage",
-        "per_skill": {"speed_pct": 0.06, "damage_pct": 0.16},
-    },
-    {
-        "skill": "Polearm",
-        "effects": "weapon speed, weapon damage",
-        "per_skill": {"speed_pct": 0.06, "damage_pct": 0.07},
-    },
-    {
-        "skill": "Bow",
-        "effects": "damage, accuracy",
-        "per_skill": {"damage_pct": 0.11, "accuracy_effect_pct": 0.09},
-    },
-    {
-        "skill": "Crossbow",
-        "effects": "reload speed, accuracy",
-        "per_skill": {"reload_pct": 0.07, "accuracy_effect_pct": 0.05},
-    },
-    {
-        "skill": "Throwing",
-        "effects": "ready speed, damage, accuracy",
-        "per_skill": {"ready_speed_pct": 0.07, "damage_pct": 0.06, "accuracy_effect_pct": 0.06},
-    },
-]
-
-
-AI_BEHAVIOR_FORMULAS = [
-    {
-        "key": "ai_level",
-        "track": "base",
-        "formula": "clamp(effectiveSkill / 300 * difficultyFactor * AILevelMultiplier, 0, 1)",
-        "normal_high_difficulty": "difficultyFactor = 0.96",
-    },
-    {"key": "AiShootFreq", "track": "ranged", "formula": "0.3 + 0.7 * currentAI", "shape": "linear"},
-    {
-        "key": "AiWaitBeforeShootFactor",
-        "track": "ranged",
-        "formula": "1 - 0.5 * currentAI",
-        "shape": "linear reduction",
-    },
-    {
-        "key": "AIBlockOnDecideAbility",
-        "track": "melee",
-        "formula": "lerp(0.5, 0.99, sqrt(meleeAI))",
-        "shape": "diminishing",
-    },
-    {
-        "key": "AIParryOnDecideAbility",
-        "track": "melee",
-        "formula": "lerp(0.5, 0.95, meleeAI)",
-        "shape": "linear",
-    },
-    {
-        "key": "AIDecideOnRealizeEnemyBlockingAttackAbility",
-        "track": "melee",
-        "formula": "clamp(meleeAI^2.5 - 0.1, 0, 1)",
-        "shape": "high-skill weighted",
-    },
-    {
-        "key": "AIRealizeBlockingFromIncorrectSideAbility",
-        "track": "melee",
-        "formula": "clamp(meleeAI^2.5 - 0.01, 0, 1)",
-        "shape": "high-skill weighted",
-    },
-    {
-        "key": "AiRandomizedDefendDirectionChance",
-        "track": "melee",
-        "formula": "1 - meleeAI^3",
-        "shape": "high-skill mistake reduction",
-    },
-    {
-        "key": "AiUseShieldAgainstEnemyMissileProbability",
-        "track": "shield",
-        "formula": "0.1 + 0.6 * meleeAI + 0.2 * (meleeAI + defensiveness)",
-        "shape": "linear plus defensiveness",
-    },
-]
-
-
-SMITHING_FORMULAS = [
-    {"key": "refining_xp", "formula": "round(0.3 * outputMaterialValue * outputCount)"},
-    {"key": "smelting_xp", "formula": "round(0.02 * itemValue)"},
-    {"key": "crafting_order_xp", "formula": "round(0.1 * itemValue)"},
-    {"key": "free_build_xp", "formula": "round(0.02 * itemValue)"},
-    {"key": "crafting_order_base_experience", "formula": "0.25 * theoreticalMaxItemMarketValue(requestedDesignItem)"},
-]
-
-
-SURVIVAL_FORMULAS = [
-    {
-        "key": "regular_troop_death_chance",
-        "formula": "deathChance = 1 / ((1 + medicine * 0.01 * eventMultiplier + troopLevel * 0.02 + additiveBonuses) * (1 + factorBonuses))",
-        "notes": [
-            "Player map event eventMultiplier is 1.0.",
-            "Non-player map event eventMultiplier is 0.25.",
-            "Medicine is capped at 330 for player-facing skill.",
-        ],
-    },
-    {
-        "key": "minister_of_health_max_hp",
-        "formula": "maxBonus = max(0, medicineSkill - 250), capped by max skill 330 => +80 HP",
-    },
-]
 
 
 @dataclass(frozen=True)
@@ -156,175 +45,6 @@ class GuideBucket:
     title: str
     description: str
     predicate: Callable[[dict[str, Any]], bool]
-
-
-AI_SKILL_STACKS = [
-    GuideStack(
-        key="foot_polearm_shield_wall",
-        title="Foot Polearm Shield Wall",
-        metric="Polearm skill",
-        components=(
-            PerkRef("PolearmCleanThrust", "secondary"),
-            PerkRef("PolearmCounterweight", "secondary"),
-            PerkRef("PolearmPhalanx", "primary"),
-        ),
-        note="Strongest clean melee-AI skill stack found so far.",
-    ),
-    GuideStack(
-        key="foot_one_handed_shield_wall",
-        title="Foot One-Handed Shield Wall",
-        metric="One Handed skill",
-        components=(PerkRef("OneHandedWrappedHandles", "secondary"), PerkRef("PolearmPhalanx", "primary")),
-        note="Feeds melee reactions and shield AI.",
-    ),
-    GuideStack(
-        key="foot_two_handed_shield_wall",
-        title="Foot Two-Handed Shield Wall",
-        metric="Two Handed skill",
-        components=(PerkRef("TwoHandedStrongGrip", "secondary"), PerkRef("PolearmPhalanx", "primary")),
-        note="Offensive melee-AI stack; no shield-specific defensive payoff.",
-    ),
-    GuideStack(
-        key="horse_archers",
-        title="Horse Archers",
-        metric="Bow skill",
-        components=(PerkRef("BowDeadAim", "secondary"), PerkRef("BowHorseMaster", "secondary")),
-        note="Improves ranged AI plus bow damage and accuracy.",
-    ),
-    GuideStack(
-        key="throwing_infantry",
-        title="Throwing Infantry",
-        metric="Throwing skill",
-        components=(
-            PerkRef("ThrowingFlexibleFighter", "secondary"),
-            PerkRef("AthleticsStrongArms", "secondary"),
-            PerkRef("ThrowingRunningThrow", "secondary"),
-        ),
-        note="Strong javelin-infantry stack; Flexible Fighter is category-sensitive.",
-    ),
-]
-
-
-HP_STACKS = [
-    GuideStack(
-        key="any_regular_troop_hp",
-        title="Any Regular Troop HP",
-        metric="flat HP",
-        components=(
-            PerkRef("MedicineMinisterOfHealth", "primary", effective_bonus=80, note="Medicine 330"),
-            PerkRef("PolearmHardyFrontline", "primary"),
-            PerkRef("TwoHandedThickHides", "secondary"),
-        ),
-        note="Baseline broad troop HP stack.",
-    ),
-    GuideStack(
-        key="foot_infantry_hp",
-        title="Foot Infantry HP",
-        metric="flat HP",
-        components=(
-            PerkRef("MedicineMinisterOfHealth", "primary", effective_bonus=80, note="Medicine 330"),
-            PerkRef("PolearmHardyFrontline", "primary"),
-            PerkRef("TwoHandedThickHides", "secondary"),
-            PerkRef("AthleticsWellBuilt", "secondary"),
-            PerkRef("OneHandedUnwaveringDefense", "secondary"),
-            PerkRef("PolearmHardKnock", "secondary"),
-        ),
-        note="Largest flat regular troop HP stack from the current guide set.",
-    ),
-    GuideStack(
-        key="foot_ranged_hp",
-        title="Foot Ranged HP",
-        metric="flat HP",
-        components=(
-            PerkRef("MedicineMinisterOfHealth", "primary", effective_bonus=80, note="Medicine 330"),
-            PerkRef("PolearmHardyFrontline", "primary"),
-            PerkRef("TwoHandedThickHides", "secondary"),
-            PerkRef("AthleticsWellBuilt", "secondary"),
-            PerkRef("CrossbowBoltenGuard", "secondary"),
-        ),
-        note="Uses Picked Shots, whose string id is CrossbowBoltenGuard in the extracted data.",
-    ),
-    GuideStack(
-        key="troop_mount_hp",
-        title="Troop Mount HP",
-        metric="mixed mount HP",
-        components=(PerkRef("MedicineSledges", "secondary"), PerkRef("RidingVeterinary", "secondary")),
-        note="Flat mount HP and percentage mount HP are kept as separate component types.",
-    ),
-]
-
-
-ARMOR_STACKS = [
-    GuideStack(
-        key="any_troop_armor",
-        title="Any Troop Armor",
-        metric="armor per equipped armor piece",
-        components=(PerkRef("EngineeringMetallurgy", "secondary"),),
-        note="Broad captain armor layer.",
-    ),
-    GuideStack(
-        key="foot_troop_armor",
-        title="Foot Troop Armor",
-        metric="armor per equipped armor piece",
-        components=(PerkRef("EngineeringMetallurgy", "secondary"), PerkRef("AthleticsIgnorePain", "secondary")),
-        note="Best foot-troop armor stack in the current guide set.",
-    ),
-    GuideStack(
-        key="mounted_rider_armor",
-        title="Mounted Rider Armor",
-        metric="armor per equipped armor piece",
-        components=(PerkRef("EngineeringMetallurgy", "secondary"), PerkRef("RidingDauntlessSteed", "secondary")),
-        note="Best rider armor stack for mounted troops.",
-    ),
-    GuideStack(
-        key="troop_mount_armor",
-        title="Troop Mount Armor",
-        metric="mount armor",
-        components=(PerkRef("RidingToughSteed", "secondary"),),
-        note="Mount armor, not rider armor.",
-    ),
-]
-
-
-RESISTANCE_STACKS = [
-    GuideStack(
-        key="melee_infantry_vs_projectiles",
-        title="Melee Infantry Vs Projectiles",
-        metric="listed damage taken factors",
-        components=(PerkRef("ThrowingSkirmisher", "secondary"), PerkRef("TacticsEliteReserves", "secondary")),
-        note="Does not include Skirmish Phase Master because that is ranged-troop scoped.",
-    ),
-    GuideStack(
-        key="bow_ranged_vs_projectiles",
-        title="Bow Ranged Troops Vs Projectiles",
-        metric="listed damage taken factors",
-        components=(
-            PerkRef("BowSkirmishPhaseMaster", "secondary"),
-            PerkRef("ThrowingSkirmisher", "secondary"),
-            PerkRef("TacticsEliteReserves", "secondary"),
-        ),
-        note="Counter Fire is not included because the live damage code is crossbow-current-weapon gated.",
-    ),
-    GuideStack(
-        key="crossbow_vs_projectiles",
-        title="Crossbow Troops Vs Projectiles",
-        metric="listed damage taken factors",
-        components=(
-            PerkRef("BowSkirmishPhaseMaster", "secondary"),
-            PerkRef("CrossbowCounterFire", "secondary"),
-            PerkRef("ThrowingSkirmisher", "secondary"),
-            PerkRef("TacticsEliteReserves", "secondary"),
-        ),
-        note="Assumes the victim is holding a crossbow for Counter Fire.",
-    ),
-    GuideStack(
-        key="charge_damage_to_formation",
-        title="Charge Damage To Formation",
-        metric="listed charge damage factors",
-        components=(PerkRef("AthleticsBraced", "secondary"), PerkRef("PolearmSureFooted", "secondary")),
-        note="Charge-specific layer.",
-    ),
-]
 
 
 def read_json(path: Path) -> Any:
@@ -412,58 +132,6 @@ def compact_perk_row(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def guide_buckets() -> list[GuideBucket]:
-    return [
-        GuideBucket(
-            key="troop_ai_skill_bonuses",
-            title="Troop AI Skill Bonus Perks",
-            description="Perks that add effective skills to troops and can feed AI formulas when the troop uses that skill.",
-            predicate=lambda row: row_subtype(row) == "skill bonus" and has_troop_scope(row),
-        ),
-        GuideBucket(
-            key="troop_survival_hit_points",
-            title="Troop Hit Point Perks",
-            description="Troop- or mount-facing hit point perks used by the survivability guide.",
-            predicate=lambda row: row_subtype(row) == "hit points" and is_troop_facing(row),
-        ),
-        GuideBucket(
-            key="troop_survival_armor",
-            title="Troop Armor Perks",
-            description="Troop- or mount-facing armor perks used by the survivability guide.",
-            predicate=lambda row: row_subtype(row) == "armor increase" and is_troop_facing(row),
-        ),
-        GuideBucket(
-            key="troop_survival_damage_reduction",
-            title="Troop Damage Reduction And Shield Perks",
-            description="Damage-taken, charge, projectile-protection, and shield durability perks.",
-            predicate=lambda row: (
-                row_subtype(row)
-                in {
-                    "damage resistance",
-                    "ranged",
-                    "charge",
-                    "projectile protection",
-                    "shield durability",
-                }
-                and is_troop_facing(row)
-                and is_defensive_survival_effect(row)
-            ),
-        ),
-        GuideBucket(
-            key="troop_xp",
-            title="Troop XP Perks",
-            description="Perks that directly mention troop XP or experience gains.",
-            predicate=lambda row: row_subtype(row) == "troop xp",
-        ),
-        GuideBucket(
-            key="smithing",
-            title="Smithing And Crafting Perks",
-            description="Smithing perk effects and crafting-bonus rows.",
-            predicate=lambda row: row.get("skill") == "Smithing" or row_type(row) == "crafting bonus",
-        ),
-    ]
-
-
 def sort_perk_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sorted(
         rows,
@@ -538,12 +206,62 @@ def direct_effect_delta_text(effect: dict[str, Any], skill_bonus: int) -> str:
     return ", ".join(parts)
 
 
+def load_plugins() -> list[Any]:
+    plugins_dir = Path(__file__).resolve().parent / "guide_extractors"
+    plugins = []
+    if not plugins_dir.exists():
+        return plugins
+    for p in sorted(plugins_dir.glob("*.py")):
+        if p.name == "__init__.py":
+            continue
+        module_name = f"guide_extractors.{p.stem}"
+        spec = importlib.util.spec_from_file_location(module_name, p)
+        if spec and spec.loader:
+            module = importlib.util.module_from_spec(spec)
+            sys.modules[module_name] = module
+            spec.loader.exec_module(module)
+            plugins.append(module)
+    return plugins
+
+
 def build_payload(workspace: Path, perk_export_path: Path) -> dict[str, Any]:
     rows = read_json(perk_export_path)
     index = {row_key(row): row for row in rows}
 
+    plugins = load_plugins()
+
+    direct_weapon_effects = []
+    ai_behavior_formulas = []
+    survival_formulas = []
+    smithing_formulas = []
+    guide_buckets_list = []
+    
+    stacks_def = {
+        "ai_skill": [],
+        "hit_points": [],
+        "armor": [],
+        "damage_reduction": [],
+    }
+
+    for plugin in plugins:
+        if hasattr(plugin, "get_weapon_effects"):
+            direct_weapon_effects.extend(plugin.get_weapon_effects())
+        if hasattr(plugin, "get_behavior_formulas"):
+            ai_behavior_formulas.extend(plugin.get_behavior_formulas())
+        if hasattr(plugin, "get_survival_formulas"):
+            survival_formulas.extend(plugin.get_survival_formulas())
+        if hasattr(plugin, "get_smithing_formulas"):
+            smithing_formulas.extend(plugin.get_smithing_formulas())
+        if hasattr(plugin, "get_buckets"):
+            guide_buckets_list.extend(plugin.get_buckets())
+        if hasattr(plugin, "get_stacks"):
+            plugin_stacks = plugin.get_stacks()
+            for key, val in plugin_stacks.items():
+                if key in stacks_def:
+                    stacks_def[key].extend(val)
+
     buckets: dict[str, Any] = {}
-    for bucket in guide_buckets():
+    for bucket in guide_buckets_list:
         bucket_rows = [compact_perk_row(row) for row in rows if bucket.predicate(row)]
         buckets[bucket.key] = {
             "title": bucket.title,
@@ -555,16 +273,16 @@ def build_payload(workspace: Path, perk_export_path: Path) -> dict[str, Any]:
     return {
         "generated_at": datetime.now().astimezone().isoformat(),
         "inputs": {"perk_export": display_path(perk_export_path, workspace)},
-        "direct_weapon_effects": DIRECT_WEAPON_EFFECTS,
-        "ai_behavior_formulas": AI_BEHAVIOR_FORMULAS,
-        "survival_formulas": SURVIVAL_FORMULAS,
-        "smithing_formulas": SMITHING_FORMULAS,
+        "direct_weapon_effects": direct_weapon_effects,
+        "ai_behavior_formulas": ai_behavior_formulas,
+        "survival_formulas": survival_formulas,
+        "smithing_formulas": smithing_formulas,
         "buckets": buckets,
         "stacks": {
-            "ai_skill": [build_stack(index, definition) for definition in AI_SKILL_STACKS],
-            "hit_points": [build_stack(index, definition) for definition in HP_STACKS],
-            "armor": [build_stack(index, definition) for definition in ARMOR_STACKS],
-            "damage_reduction": [build_stack(index, definition) for definition in RESISTANCE_STACKS],
+            "ai_skill": [build_stack(index, definition) for definition in stacks_def["ai_skill"]],
+            "hit_points": [build_stack(index, definition) for definition in stacks_def["hit_points"]],
+            "armor": [build_stack(index, definition) for definition in stacks_def["armor"]],
+            "damage_reduction": [build_stack(index, definition) for definition in stacks_def["damage_reduction"]],
         },
     }
 

@@ -1,0 +1,1 @@
+# Guide extractors plugin package.
