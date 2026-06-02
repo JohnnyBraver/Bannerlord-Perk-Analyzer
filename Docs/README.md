@@ -12,6 +12,7 @@
 - `notes/party-management.md` summarizes party speed, troop XP, carrying capacity, food, morale, party size, prisoners, and recruitment perks.
 - `notes/village-raiding.md` explains village raid pulse loot, production weights by village type, common drop rates, hearth scaling, and looting perks.
 - `notes/trade-economy.md` explains shop price layers, trade penalty, Trade XP, and economy-facing perk lanes.
+- `notes/settlement-supply-chain.md` explains town native production, village delivery, consumption, demand, and market price pressure.
 - `notes/settlement-economy.md` explains taxes, tariffs, village production, hearth growth, prosperity income, and economy-facing governor perks.
 - `notes/settlement-development.md` explains loyalty, construction, food pressure, project effects, hearth recovery, and the growth/stability layer between economy and defense.
 - `notes/settlement-defense.md` explains security, militia, garrison strength, siege food, wall durability, bombardment, and defense-facing governor perks.

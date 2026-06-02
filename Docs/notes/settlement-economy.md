@@ -2,7 +2,7 @@
 
 This note covers the money and production side of settlements: taxes, tariffs, village production, hearth growth, prosperity income, and economy-facing governor perks. It deliberately points workshop-specific details to `settlement-workshops.md` so towns do not become one giant unreadable bucket.
 
-Read this together with `settlement-development.md`: loyalty, security, food, and construction are not pure economy effects, but they control how much prosperity can actually turn into money.
+Read this together with `settlement-development.md`: loyalty, security, food, and construction are not pure economy effects, but they control how much prosperity can actually turn into money. For the inventory side of the economy, `settlement-supply-chain.md` covers village delivery, hidden artisans, town consumption, demand, and price pressure.
 
 ## Main Takeaways
 

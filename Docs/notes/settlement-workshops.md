@@ -1,6 +1,6 @@
 # Workshop Appendix
 
-This appendix covers workshop-specific settlement economy. It is separate from `settlement-economy.md` because workshops have their own ownership limits, production model, warehouse XP, bankruptcy handling, and perk hooks.
+This appendix covers workshop-specific settlement economy. It is separate from `settlement-economy.md` because workshops have their own ownership limits, production model, warehouse XP, bankruptcy handling, and perk hooks. For the broader market loop around hidden artisans, villages, demand, and consumption, see `settlement-supply-chain.md`.
 
 ## Main Takeaways
 
