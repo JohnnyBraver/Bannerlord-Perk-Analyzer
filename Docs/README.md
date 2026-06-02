@@ -10,6 +10,7 @@
 - `notes/personal-combat.md` summarizes player-facing combat perks, weapon-skill effects, and high-tier personal combat payoffs.
 - `notes/personal-noncombat.md` summarizes personal economy, social, utility, unique, and character-growth perks that are not primarily live-battle combat effects.
 - `notes/party-management.md` summarizes party speed, troop XP, carrying capacity, food, morale, party size, prisoners, and recruitment perks.
+- `notes/village-raiding.md` explains village raid pulse loot, production weights by village type, common drop rates, hearth scaling, and looting perks.
 - `notes/trade-economy.md` explains shop price layers, trade penalty, Trade XP, and economy-facing perk lanes.
 - `notes/settlement-economy.md` explains taxes, tariffs, village production, hearth growth, prosperity income, and economy-facing governor perks.
 - `notes/settlement-development.md` explains loyalty, construction, food pressure, project effects, hearth recovery, and the growth/stability layer between economy and defense.
