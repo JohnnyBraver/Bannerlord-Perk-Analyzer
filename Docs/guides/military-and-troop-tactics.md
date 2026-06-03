@@ -54,6 +54,21 @@ The following table shows the maximum potential speed for a 100-man party on fla
 >
 > [!TIP]
 > **Food Variety Morale Scaling via `Gourmet`**: Party morale is heavily boosted by carrying diverse food types. The Steward perk `Gourmet` (Level 175) doubles the morale bonus gained from food variety, making it easy to maintain party morale above $75$ to sustain the `Forced March` map speed bonus.
+>
+> [!NOTE]
+> **Steward XP Formula & Food Logistics**:
+> Passive Steward XP gained while acting as the **Quartermaster** is directly driven by party food consumption. The exact in-game logic calculates XP as:
+> $$\text{Steward XP} = \text{Round}(\text{Daily Consumption} \times 100) \times \frac{\text{Food Variety} - 2}{3}$$
+>
+> This reveals four critical optimization insights:
+> * **Starvation Penalty**: If your party is starving (`wasStarving == true`), no Steward XP is gained whatsoever.
+> * **Variety Floor**: You must carry **at least 4 food types** in your inventory to trigger XP. Carrying 3 or fewer food types yields **0 XP**.
+> * **Upkeep Trade-Off**: Because XP scales directly with your daily consumption rate, any perk that reduces food upkeep (such as *Warrior's Diet* or *Master of Planning*) will **slow down** your Steward leveling speed.
+> * **Variety Multiplier**: There are exactly **9 consumable food types** in the game (Grain, Fish, Meat, Butter, Cheese, Grapes, Olives, Dates, and Beer; *Wine and Oil do not count as food for consumption or variety*). This limits the variety scaling factor to the following multipliers:
+>   * **4 food types**: $\approx 0.67\times$ XP multiplier
+>   * **5 food types**: $1.00\times$ XP multiplier (Baseline)
+>   * **7 food types**: $\approx 1.67\times$ XP multiplier
+>   * **9 food types**: $\approx 2.33\times$ XP multiplier (Maximum leveling speed)
 
 #### Mixed Formations Speed Grid
 Below is the speed scaling for a 100-man mixed party (assuming every foot soldier is covered by a spare mount, and the party leader has both `Strong` and `Nomadic Traditions`):
