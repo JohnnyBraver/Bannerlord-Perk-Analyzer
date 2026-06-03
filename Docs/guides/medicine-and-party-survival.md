@@ -38,13 +38,27 @@ The following table models the survival rates of a level 20 troop in the player'
 
 ---
 
-## 2. Direct Death & Wound Perks
+## 2. Medicine and Surgery Perks
 
-These perks directly modify the surgery equation or apply medicine benefits to combat outcomes:
+The Medicine skill tree contains several passive and active perks that govern troop survival, healing rates, and character longevity:
 
+### Surgery & Troop Survival Perks
 * **Medicine (Level 75) - `Doctor's Oath`**: Applies your Medicine survival bonus to enemy casualties, increasing the number of wounded enemies available for recruitment or ransom. Operates at $1.0\times$ in player battles and $0.1\times$ in simulated battles.
 * **Medicine (Level 125) - `Siege Medic`**: Grants a flat $50\%$ chance for troops to be wounded instead of killed during siege bombardment events.
+* **Medicine (Level 125) - `Veterinarian`**: Reduces troop mount loss by $-50\%$ when a mounted troop is killed in battle (mount is recovered and recycled).
 * **Medicine (Level 200) - `Physician of People`**: Multiplies the survival denominator by $1.3$ (acting as a $+30\%$ factor bonus) for Tier 1 and Tier 2 troops in your party.
+
+### Healing Rate & Utility Perks
+* **Medicine (Level 25) - `Self Medication`**: $+10\%$ personal healing rate and $+5$ max HP to the surgeon.
+* **Medicine (Level 50) - `Triage Tent`**: $+15\%$ healing rate to the party while stationary on the campaign map.
+* **Medicine (Level 100) - `Best Medicine`**: $+15\%$ healing rate to the party while moving on the campaign map, and increases hero healing by $+10\%$.
+* **Medicine (Level 100) - `Good Lodging`**: $+15\%$ healing rate to the party when resting inside a settlement.
+* **Medicine (Level 150) - `Bush Doctor`**: $+20\%$ healing rate in forest terrain, and reduces campaign map speed penalties from wounded troops by $-10\%$.
+* **Medicine (Level 175) - `Health Advice`**: $+10\%$ healing rate to heroes in the party.
+* **Medicine (Level 175) - `Perfect Health`**: $+10\%$ healing rate to regular troops in the party.
+* **Medicine (Level 200) - `Clean Infrastructure`**: $+15\%$ party healing rate when inside territory owned by your own faction.
+* **Medicine (Level 225) - `Cheat Death`**: Grants a one-time cheat death buffer, preventing the player character's death from combat execution or old age.
+* **Medicine (Level 225) - `Fortitude Tonic`**: Adds $+5$ flat hit points to all heroes in your party.
 
 ---
 

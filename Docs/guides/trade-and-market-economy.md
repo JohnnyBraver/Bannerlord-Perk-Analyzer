@@ -83,6 +83,7 @@ Assume a Tier 5 sword with a base value of $1,000$ gold and a flat $1.0$ local M
 | :--- | ---: | :--- | :--- | :--- |
 | **Trade** | 25 | `Appraiser` | Party Leader | $-15\%$ price penalty when selling equipment. |
 | **Trade** | 25 | `Whole Seller` | Party Leader | $-15\%$ price penalty when selling trade goods. |
+| **Trade** | 50 | `Market Dealer` | Quartermaster | $-15\%$ trade penalty when buying and selling in town markets. |
 | **Trade** | 75 | `Distributed Goods` | Quartermaster | $-15\%$ price penalty when buying from villages. |
 | **Trade** | 75 | `Local Connection` | Quartermaster | $-15\%$ price penalty when selling animals. |
 | **Trade** | 175 | `Insurance Plans` | Quartermaster | $-25\%$ price penalty when buying food items. |
@@ -109,6 +110,14 @@ Certain economic perks target specific transaction types outside the standard sh
 | **Wages** | `Mercenary Connections`, `Picked Shots` | Reduces recurring party/garrison wages. | Party Finance Model |
 | **Recruitment Cost**| `Great Investor`, `Head Hunter` | Lowers hiring and upgrading expenses. | Troop Recruitment Model |
 | **Settlement Revenue**| `Toll Gates`, `Traveling Rumors` | Adds gold from visiting caravans/parties. | Fief Finance Model |
+
+### Key Non-Trade Economic Perks
+* **Steward (Level 25) - `Frugal`**: Reduces party wages by $-5\%$ (Quartermaster).
+* **Steward (Level 75) - `Stiff Upper Lip`**: Reduces party wages by $-5\%$, and governor security $+0.5$/day.
+* **Trade (Level 225) - `Sword For Barter`**: Reduces mercenary hiring cost by $-20\%$ and peace/treaty barter cost by $-10\%$.
+* **Trade (Level 250) - `Silver Tongue`**: Reduces caravan wages by $-25\%$ and barter penalties by $-20\%$.
+* **Trade (Level 250) - `Spring of Gold`**: Generates a $+0.1\%$ daily interest on your current gold reserves (up to $+1,000$ gold per day).
+* **Trade (Level 275) - `Trickle Down`**: Caravan trade transaction values are boosted by $+10\%$ (Caravan Leader perk).
 
 ---
 

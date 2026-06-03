@@ -23,14 +23,18 @@ $$\text{Smithing Crafting Order XP} = \text{Round}(0.10 \times \text{Crafted Ite
 > [!NOTE]
 > Crafting orders yield five times more experience than Free Build mode for a weapon of the same market value. However, orders are subject to target constraints; failing to meet the order requirements applies a multiplier penalty that degrades the final XP yield.
 
-### The Charcoal Refining Strategy
-Early skill leveling is heavily accelerated by the Smithing level 25 perk `Efficient Charcoal Maker`:
-* **Base charcoal recipe**: 2 Hardwood $\rightarrow$ 2 Charcoal.
-* **Perk charcoal recipe**: 2 Hardwood $\rightarrow$ 3 Charcoal.
-* **Refining XP yield with perk**:
-$$\text{Charcoal Refining XP} = \text{Round}(0.3 \times \text{Charcoal Value} \times 3)$$
+### The Charcoal and Iron Refining Strategy
+Early skill leveling is heavily accelerated by the Smithing level 25 perks:
+* **Efficient Charcoal Maker**: 2 Hardwood $\rightarrow$ 3 Charcoal (instead of 2).
+* **Efficient Iron Maker**: 1 Crude Iron + 1 Charcoal $\rightarrow$ 3 Iron (instead of 2).
 
-Because the refining XP formula only checks the gross output count and value, and does not subtract the input hardwood value, `Efficient Charcoal Maker` increases refining XP by $+50\%$. This makes charcoal refining the cheapest and most repeatable method to grind Smithing skill before you have unlocked high-tier weapon parts.
+Because the refining XP formula only checks the gross output count and value, and does not subtract the input material value, both perks increase refining XP by $+50\%$. This makes refining the cheapest and most repeatable method to grind Smithing skill before you have unlocked high-tier weapon parts.
+
+### Steel Refinement Progression
+To craft high-tier weapons, you must refine raw iron into advanced steel alloys. This is unlocked sequentially via the Steel Maker perks:
+* **Steel Maker** (Level 50): 2 Iron + 1 Charcoal $\rightarrow$ 1 Steel + 1 Crude Iron.
+* **Steel Maker 2** (Level 75): 2 Steel + 1 Charcoal $\rightarrow$ 1 Fine Steel + 1 Crude Iron.
+* **Steel Maker 3** (Level 100): 2 Fine Steel + 1 Charcoal $\rightarrow$ 1 Thamaskene Steel + 1 Crude Iron.
 
 ---
 
@@ -73,9 +77,12 @@ A weapon design's difficulty is calculated as a weighted average of its selected
 
 $$\text{Design Difficulty} = \text{Round}\left(\frac{100 \cdot D_0 + 20 \cdot D_1 + 60 \cdot D_2 + 20 \cdot D_3}{200}\right)$$
 
-* **Stamina Cost**: Crafting weapons drains character stamina:
-$$\text{Stamina Cost} = 10 + 5 \times \text{Item Tier}$$
-* **Practical Smith Perk**: Reduces all stamina consumption by $50\%$.
+* **Stamina Cost**: Crafting, smelting, and refining drain character stamina:
+$$\text{Stamina Cost} = 10 + 5 \times \text{Item Tier} \quad (\text{Crafting})$$
+* **Stamina Reduction Perks**:
+  * **Practical Smith** (Level 50): Halves stamina consumption for crafting.
+  * **Practical Smelter** (Level 125): Halves stamina consumption for smelting.
+  * **Practical Refiner** (Level 125): Halves stamina consumption for refining.
 
 ---
 
@@ -118,7 +125,18 @@ The value model rates different damage types unequally:
 
 ---
 
-## 5. Optimized Crafting Strategy
+## 5. Weapon Quality Crafting Perks
+
+As your Smithing skill exceeds a design's difficulty, you gain chances to craft superior quality weapons (Fine, Masterwork, and Legendary) with boosted stats. These chances are enhanced by the following perks:
+* **Experienced Smith** (Level 100): $+10\%$ chance to craft a **Fine** weapon.
+* **Master Smith** (Level 200): $+10\%$ chance to craft a **Masterwork** weapon.
+* **Legendary Smith** (Level 275): $+5\%$ chance to craft a **Legendary** weapon. This chance scales by $+1\%$ for every 10 skill points above 275.
+* **Sharpened Edge** (Level 250): Crafted swing weapons deal $+2\%$ swing damage.
+* **Sharpened Tip** (Level 250): Crafted thrust weapons deal $+2\%$ thrust damage.
+
+---
+
+## 6. Optimized Crafting Strategy
 
 * **High Damage + Speed Priority**: Damage is the primary driver of item value, but it is heavily scaled by attack speed. A slightly slower weapon with high damage is often less valuable than a faster weapon with moderate damage.
 * **Reach Multiplier**: Weapon length acts as a multiplier to the final mode tier. Ensure you maximize the size slider of your blades and poles when crafting for profit, provided it does not catastrophically degrade swing/thrust speed.

@@ -49,9 +49,17 @@ Food acts as the ultimate hard cap on settlement growth. Prosperity and garrison
 | **Leadership** | 75 | `Heroic Leader` | $+1$ daily loyalty | Early, highly efficient loyalty driver. |
 | **Medicine** | 200 | `Physician of People` | $+1$ daily loyalty | Excellent dual-utility perk (loyalty and healing). |
 | **Riding** | 50 | `Well Strapped` | $+0.5$ daily loyalty | Cheap early stabilizer if governor has Riding skill. |
+| **Engineering** | 50 | `Dungeon Architect` | $+1$ daily loyalty | Decent loyalty stabilizer if using an engineer governor. |
+| **Charm** | 100 | `In Bloom` / `Young And Respectful` | $+0.5$ daily loyalty | Small loyalty booster. |
+| **Engineering** | 25 | `Scaffolds` | $+10\%$ town project construction speed | Speeds up initial building projects. |
 | **Engineering** | 75 | `Carpenters` | $+12\%$ construction speed | Speeds up initial town improvements. |
+| **Engineering** | 75 | `Military Planner` | $-10\%$ military project costs | Saves time/gold on barracks/walls. |
 | **Engineering** | 150 | `Stonecutters` | $+30\%$ military build speed | Fast-tracks walls, barracks, and fortifications. |
+| **Engineering** | 175 | `Battlements` | $+20\%$ wall construction speed | Accelerates wall defenses. |
+| **Engineering** | 250 | `Architectural Commissions` | $+20\%$ gold boost project speed | Improves gold-to-construction conversion. |
+| **Steward** | 150 | `Relocation` | $+20\%$ project building speed | Accelerates city project development. |
 | **Steward** | 200 | `Contractors` | $+10\%$ project effects | Increases the output efficiency of completed buildings. |
+| **Steward** | 200 | `Forced Labor` | $+20\%$ building speed from prisoners | Utilizes captive labor for faster construction. |
 | **Athletics** | 175 | `Energetic` | $+20\%$ village hearth growth | Accelerates bound village production and tax yields. |
 | **Medicine** | 150 | `Pristine Streets` | $+1$ daily prosperity | Simple, steady town-value scaling. |
 | **Medicine** | 250 | `Helping Hands` | $-50\%$ starvation prosperity loss | Crucial safety net for high-prosperity settlements. |
@@ -89,6 +97,8 @@ While prosperity scales tax base and construction power, it introduces security 
 * **Trade (Level 150) - `Content Trades`**: $+10\%$ tariff income.
 * **Trade (Level 200) - `Granary Accountant`**: $+20\%$ production to food villages (grain, olives, fish, dates).
 * **Trade (Level 200) - `Tradeyard Foreman`**: $+20\%$ production to raw material villages (clay, iron, silk, silver).
+* **Engineering (Level 50) - `Siegeworks`**: $+10\%$ tariff revenue.
+* **Engineering (Level 225) - `Improved Tools`**: $+10\%$ production speed to bound villages.
 * **Athletics (Level 200) - `Steady`**: $+10\%$ production to mines, lumber camps, and clay pits.
 
 ---
@@ -117,7 +127,17 @@ $$\text{Daily Security Drift} = \frac{-(\text{Security} - 50)}{15}$$
 | **Polearm** | 200 | `Drills` | $+100\%$ veteran militia rate | Crucial quality multiplier for garrisoned defenders. |
 | **Leadership** | 25 | `Raise The Meek` | $+3$ daily XP to garrison | Passively trains defenders. |
 | **Athletics** | 225 | `Strong Legs` | $-20\%$ food use under siege | Significantly extends survival time when blockaded. |
+| **Bow** | 150 | `Hunter Clan` | $+30\%$ garrison size limit | Increases maximum garrison capacity. |
+| **Steward** | 175 | `Sound Reserves` | $+20\%$ garrison size limit | Increases maximum garrison capacity. |
+| **Engineering** | 25 | `Torsion Engines` | $+20\%$ siege engine build speed | Accelerates defensive engine construction. |
+| **Engineering** | 100 | `Dreadful Besieger` | $+20\%$ damage to enemy engines | Multiplies defensive engine impact. |
+| **Engineering** | 100 | `Wall Breaker` | $+20\%$ wall damage during sieges | Increases damage output. |
+| **Engineering** | 125 | `Salvager` | $+20\%$ salvage yield | Enhances scrap recovery during sieges. |
+| **Engineering** | 150 | `Siege Engineer` | $-30\%$ siege build times | Reduces defensive build prep times. |
+| **Engineering** | 175 | `Camp Building` | $+20\%$ camp prep build speed | Speeds up initial defenses. |
 | **Engineering** | 200 | `Engineering Guilds` | $+25\%$ wall hit points | Directly improves siege defense resilience. |
+| **Engineering** | 200 | `Apprenticeship` | $+10\%$ troop training rate | Speeds up garrison experience growth. |
+| **Engineering** | 250 | `Clockwork` | $-10\%$ garrison wage | Great for cost-effective garrison upkeep. |
 | **Tactics** | 175 | `Make Them Pay` | $+25\%$ damage to siege engines | Boosts bombardment defense. |
 
 ---
@@ -187,6 +207,8 @@ $$\text{Warehouse Trade XP} = 0.1 \times \text{Production Base Value}$$
 
 ### Workshop-Specific Perks
 * **Steward (Level 75) - `Sweatshops`**: $+20\%$ production speed to owned workshops (Personal perk).
+* **Smithing (Level 100) - `Experienced Smith`**: $+10\%$ production speed to owned workshops (Personal perk).
+* **Trade (Level 50) - `Market Dealer`**: Reduces workshop input material costs by $-10\%$ (Clan Leader perk).
 * **Trade (Level 150) - `Mercenary Connections`**: $+25\%$ workshop production speed (Governor perk).
 * **Trade (Level 125) - `Artisan Community`**: $+1$ daily renown for every profiting workshop (Clan Leader perk).
 * **Trade (Level 175) - `Rapid Development`**: $5,000$ gold payout if a workshop's town is captured by an enemy.
@@ -212,3 +234,10 @@ Alleys serve as a highly effective tool for leveling up companions in Roguery an
 | **Daily Operation Drip** | 40 XP | Main Hero |
 | **Daily Assigned Leader Drip** | 200 XP | Assigned Companion |
 | **Defending an Alley Attack** | 6,000 XP | Main Hero |
+
+### Alley-Specific Perks
+* **Roguery (Level 50) - `Two Faced`**: Alley takeover troop requirement reduced by $3$ (minimum $2$).
+* **Roguery (Level 75) - `Know-How`**: Alley daily economic returns increased by $+20\%$.
+* **Roguery (Level 125) - `Scarface`**: Defending an alley attack yields double Roguery experience.
+* **Roguery (Level 150) - `Partners in Crime`**: Alley defense forces have $+20\%$ combat effectiveness.
+* **Roguery (Level 175) - `One of the Family`**: Companion assigned as alley leader gains $+20\%$ experience drip.

@@ -164,6 +164,7 @@ At the baseline of **2 Attribute and 1 Focus Point**, any skill will reach a lim
 4. **Scouting (Level 50)**:
    - **Level 25**: `Day Traveler` ($+2\%$ daytime map speed).
    - **Level 50**: `Pathfinder` ($+2\%$ daytime map speed; chance to gain relations with local notables when entering towns).
+   - **Level 50**: `Water Diviner` ($+5\%$ map speed on marshes and river crossings).
 5. **Leadership (Level 50)**:
    - **Level 25**: `Combat Tips` ($+2$ daily experience to all troops in your party).
    - **Level 50**: `Raise The Meek` ($+30\%$ prisoner recruitment speed; doubles training rate for Tier 1-3 troops).
@@ -199,21 +200,44 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 #### One Handed
 * **Level 25** - `Wrapped Handles`: $+20\%$ handling (weapon swing recovery). Highly noticeable.
 * **Level 50** - `Shield Bearer`: Removes the movement speed penalty from equipped shields.
+* **Level 50** - `Swift Strike`: $+5\%$ one-handed attack speed.
 * **Level 150** - `Duelist`: $+20\%$ melee damage when fighting without a shield. Great for high-damage dueling.
+* **Level 200** - `Fleet of Foot`: $+5\%$ combat movement speed when holding a one-handed weapon.
+* **Level 225** - `Deadly Purpose`: $+10\%$ one-handed weapon damage.
 * **Level 250** - `Chink in the Armor`: $+10\%$ melee armor penetration. Strongly improves damage against heavy units.
+* **Level 250** - `Prestige`: $+50\%$ renown from battles where you personally fight.
 * **Level 275** - `Way of the Sword`: At 330 skill, yields $+16\%$ attack speed and $+40\%$ One Handed damage.
 
 #### Two Handed
 * **Level 25** - `Strong Grip`: $+10\%$ weapon handling.
+* **Level 25** - `Wood Chopper`: $+15\%$ damage to shields.
+* **Level 50** - `Head Basher`: $+10\%$ blunt damage with two-handed weapons.
+* **Level 50** - `On the Edge`: $+5\%$ two-handed weapon swing speed.
+* **Level 75** - `Show of Strength`: Melee strikes have a $+30\%$ chance to knock down foot soldiers.
 * **Level 100** - `Projectile Deflection`: Allows blocking arrows and bolts with two-handed swords. Defining defensive tool.
+* **Level 100** - `Beast Slayer`: $+50\%$ damage against mounts.
 * **Level 125** - `Berserker`: Deal $+20\%$ damage when below $50\%$ health.
+* **Level 125** - `Confidence`: $+10\%$ damage when your character HP is above $90\%$.
+* **Level 175** - `Hope`: $+1$ daily influence per town under own clan control / $+10\%$ party morale.
+* **Level 200** - `Reckless Charge`: $+20\%$ damage when charging on foot.
 * **Level 225** - `Vandal`: Triple damage to wooden structures (shields/gates) and $+10\%$ armor penetration.
+* **Level 225** - `Blade Master`: $+10\%$ two-handed weapon speed.
 * **Level 250** - `Way Of The Great Axe`: *Note: the scaling formula only starts above 250.* At 330 skill, yields $+16\%$ speed and $+40\%$ damage.
 
 #### Polearm
+* **Level 25** - `Pikeman`: $+50\%$ damage against mounts.
 * **Level 50** - `Clean Thrust`: $+10\%$ thrust damage. Paired with `Guards` ($+50\%$ headshot damage) makes spear thrusts lethal.
+* **Level 50** - `Keep at Bay`: Polearm thrusts have a chance to push back enemies.
 * **Level 75** - `Swift Swing`: $+5\%$ swing speed. Mandatory for swingable polearms (glaives/menavlions).
+* **Level 100** - `Footwork`: $+5\%$ combat speed while holding a polearm.
+* **Level 125** - `Steed Killer`: Dismounts enemies on successful thrust attacks.
+* **Level 150** - `Skewer`: $30\%$ chance to keep couch lance active after hitting.
+* **Level 175** - `Phalanx`: Infantry in your formation have $+5\%$ melee speed.
+* **Level 175** - `Standard Bearer`: Increases party morale in battles.
 * **Level 200** - `Lancer`: $+20\%$ speed-damage bonus while mounted.
+* **Level 250** - `Counterweight`: $+10\%$ swing damage.
+* **Level 250** - `Sharpen the Tip`: $+10\%$ thrust damage.
+* **Level 275** - `Way of the Spear`: Pushes limits of polearm combat stats.
 
 ---
 
@@ -222,22 +246,53 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 #### Bow
 * **Level 25** - `Bow Control`: Reduces movement accuracy penalty by $30\%$.
 * **Level 50** - `Dead Aim`: $+30\%$ headshot damage.
+* **Level 50** - `Bodkin`: $+20\%$ armor penetration with bows.
+* **Level 50** - `Nocking Point`: $+10\%$ bow reload speed.
+* **Level 75** - `Quick Adjustments`: Removes the accuracy penalty from turning.
 * **Level 100** - `Rapid Fire`: $+25\%$ reload speed. Clear DPS increase.
+* **Level 125** - `Strong bows`: Bow shots deal $+8\%$ more damage.
+* **Level 150** - `Discipline`: Under command of the captain, archers have $+10\%$ accuracy.
+* **Level 175** - `Eagle Eye`: Zoom factor increased by $+50\%$.
+* **Level 200** - `Renowned Archer`: Battle renown increased by $+20\%$.
 * **Level 225** - `Horse Master`: Allows utilizing all bows on horseback (otherwise restricted).
+* **Level 225** - `Deep Quivers`: Adds $+3$ arrows per quiver.
+* **Level 250** - `Quick Draw`: Bow draw speed increased by $+25\%$.
+* **Level 250** - `Ranger's Swiftness`: Combat movement speed increased by $+10\%$ when holding a bow.
 * **Level 275** - `Deadshot`: Starts scaling at 200 skill. At 330 skill, yields $+26\%$ reload speed and $+65\%$ bow damage.
 
 #### Crossbow
 * **Level 25** - `Piercer`: Ignores enemy armor below 20. Highly lethal early game.
 * **Level 50** - `Wind Winder`: $+25\%$ reload speed.
+* **Level 50** - `Unhorser`: Crossbow shots deal $+40\%$ damage against mounts.
+* **Level 75** - `Donkey's Swiftness`: Combat movement speed increased by $+5\%$ when holding a crossbow.
+* **Level 75** - `Sheriff`: Earn $+10\%$ renown from battles.
+* **Level 100** - `Peasant Leader`: High tier troops have $+5\%$ damage in autocalc.
 * **Level 125** - `Mounted Crossbowman`: Allows reloading all crossbows on horseback.
+* **Level 125** - `Fletcher`: Adds $+4$ bolts per quiver.
+* **Level 125** - `Puncture`: Crossbow shots ignore target armor below 10.
+* **Level 150** - `Deft Hands`: Reload speed $+15\%$ while moving.
+* **Level 150** - `Loose and Move`: Accuracy penalty while moving reduced by $-30\%$.
+* **Level 200** - `Long Shots`: Range-based damage decay reduced by $-50\%$.
 * **Level 225** - `Pavise`: $75\%$ chance to block projectiles from behind with an equipped shield on your back while reloading.
+* **Level 225** - `Hammer Bolts`: Crossbow hits have a $+25\%$ chance to stagger enemies.
+* **Level 250** - `Terror`: Increases enemy morale loss from your kills by $+10\%$.
 * **Level 275** - `Mighty Pull`: At 330 skill, yields $+26\%$ reload speed and $+65\%$ crossbow damage.
 
 #### Throwing
 * **Level 25** - `Shield Breaker`: $+40\%$ damage to shields.
+* **Level 50** - `Flexible Fighter`: $+10\%$ damage with throwing weapons on foot.
+* **Level 75** - `Mounted Skirmisher`: Accuracy penalty while mounted reduced by $-20\%$.
 * **Level 100** - `Well Prepared`: $+2$ throwing weapons per quiver.
+* **Level 100** - `Knock Off`: Throwing hits have a chance to disarm shields.
+* **Level 100** - `Running Throw`: Throwing damage scales with running speed (up to $+15\%$).
+* **Level 150** - `Last Hit`: $+20\%$ damage when target is below $50\%$ health.
+* **Level 175** - `Slinging Competitions`: Renown from battles $+10\%$.
+* **Level 200** - `Splinters`: Throwing axes and knives deal $+100\%$ damage to shields.
 * **Level 225** - `Impale`: Javelins break and penetrate shields, hitting the defender. Extremely powerful.
+* **Level 225** - `Long Reach`: Throwing weapon range increased by $+20\%$.
+* **Level 225** - `Perfect Technique`: Throwing velocity increased by $+15\%$.
 * **Level 250** - `Weak Spot`: $+30\%$ armor penetration.
+* **Level 275** - `Unstoppable Force`: Throwing hits knock back foot soldiers.
 
 ---
 
@@ -245,14 +300,30 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 
 #### Athletics
 * **Level 25** - `Morning Exercise`: $+3\%$ combat movement speed.
+* **Level 50** - `Fury`: $+10\%$ attack speed when HP is below $50\%$.
 * **Level 75** - `Powerful`: $+4\%$ melee weapon damage.
+* **Level 75** - `Imposing Stature`: Persuasion chance $+10\%$.
+* **Level 100** - `Sprint`: $+10\%$ combat running speed.
+* **Level 125** - `Surging Blow`: Melee damage $+5\%$ when on foot.
+* **Level 150** - `A Good Days Rest`: Town resting recovery speed $+20\%$.
 * **Level 175** - `Ignore Pain`: $+10\%$ armor while on foot.
+* **Level 225** - `Strong Arms`: Throwing weapons deal $+10\%$ damage.
+* **Level 250** - `Spartan`: Reduces campaign party wages by $-5\%$.
 * **Level 275** - `Mighty Blow`: At 330 skill, yields $+80$ personal HP, making you exceptionally durable.
 
 #### Riding
 * **Level 25** - `Full Speed`: $+20\%$ charge damage.
+* **Level 100** - `Sagittarius`: Mounted ranged accuracy penalty reduced by $-15\%$.
+* **Level 125** - `Relief Force`: Speed on campaign map when traveling with mount $+3\%$.
+* **Level 150** - `Horse Archer`: Mounted bow damage $+10\%$.
+* **Level 175** - `Breeder`: Pack animals/mounts reproduce slowly in your inventory.
 * **Level 200** - `Mounted Warrior`: $+5\%$ mounted melee damage.
+* **Level 200** - `Annoying Buzz`: Horse archers in your formation have $+10\%$ accuracy.
+* **Level 200** - `Thunderous Charge`: Mount charge damage increased by $+30\%$.
+* **Level 225** - `Cavalry Tactics`: Cavalry in your formation have $+5\%$ mount speed.
+* **Level 225** - `Mounted Patrols`: Prisoner escape chance reduced by $-50\%$.
 * **Level 250** - `Tough Steed` & `Dauntless Steed`: Provides $+20\%$ mount HP and $+50\%$ mount stagger resistance.
+* **Level 275** - `The Way Of The Saddle`: Mount maneuverability and speed scaling.
 
 ---
 
@@ -286,6 +357,7 @@ These perks are highly prized because they grant permanent points that can resha
 * **Level 150 (Roguery)** - `Smuggler Connections`: Allows trading with town merchants and markets even while in disguise inside enemy settlements.
 
 #### Charm and Persuasion
+* **Level 25** - `Virile`: $+20\%$ pregnancy chance to hero couples.
 * **Level 50** - `Oratory`: Adds $+2$ renown and $+1$ influence for every issue/quest resolved.
 * **Level 200** - `Moral Leader` & `Natural Leader`: Reduces the number of successful arguments required during persuasion checks.
 * **Level 250** - `Camaraderie`: Doubles relation gains when aiding allied lords in combat.

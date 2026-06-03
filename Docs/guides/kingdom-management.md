@@ -31,6 +31,17 @@ When a proposal goes to vote, clans can back their stance at three strength tier
 > [!TIP]
 > The perk `Good Natured` (Charm 175) refunds spent influence if a proposal you supported fails to pass. This provides significant political safety when attempting to sway hostile councils.
 
+### Influence and Relation Perks
+Several Charm perks assist in building influence and managing lord relations during council sessions:
+* **Charm (Level 25) - `Self Promoter`**: Earn $+1$ influence per tournament win.
+* **Charm (Level 50) - `Warlord`**: Earn $+30\%$ influence from combat victories.
+* **Charm (Level 75) - `Forgivable Grievances`**: Prevents relations decay with other lords when voting against them in council decisions.
+* **Charm (Level 75) - `Meaningful Favors`**: Generates $+1$ relation per day with a random clan leader of your faction if your influence exceeds theirs.
+* **Charm (Level 150) - `Effort For The People`**: Reduces overall influence vote cost by $-10\%$ during kingdom proposals.
+* **Charm (Level 175) - `Tribute`**: Generates $+10\%$ influence from owned fief tariffs.
+* **Charm (Level 225) - `Public Speaker`**: Generates $+10\%$ influence from owned town taxes.
+* **Charm (Level 225) - `Parade`**: Visiting a town you own gives $+5$ loyalty to that town (once per town visit).
+
 ### Ruler Overrides
 The ruler can overrule any council vote by spending influence proportional to the support gap.
 * **Cost formula**: The cost scales quadratically based on the percentage support gap between the ruler's choice and the popular choice.
@@ -94,7 +105,11 @@ $$\text{Daily Influence Award} = \frac{\text{Party Strength} + 20}{200} \text{ (
 | `Call To Arms` | $-15\%$ summoning cost and called parties move faster. | Improves tactical response times. |
 | `Encirclement` | $-10\%$ influence cost to boost army cohesion. | Extends army duration in long campaigns. |
 | `Horde Leader` | Army leader loses $5\%$ less cohesion daily. | Reduces influence drain while sieging. |
+| `Authority` | Army daily cohesion decay rate reduced by $-20\%$. | Leadership Level 75 army stabilizer. |
 | `Royal Commissions` | Ruler army cost $-30\%$, Vassal army cost $+10\%$. | Restricts army-leading capabilities to the crown. |
+| `Master of Planning` | Army daily cohesion decay rate reduced by $-5\%$ when traveling. | Steward Level 250 army stabilizer. |
+| `Master of Warcraft` | Army daily cohesion decay rate reduced by $-5\%$ when sieging. | Steward Level 250 army siege stabilizer. |
+| `Ultimate Leader` | Party size $+1$ for every Leadership level $>250$. | Late-game Leadership party-limit multiplier. |
 
 ---
 

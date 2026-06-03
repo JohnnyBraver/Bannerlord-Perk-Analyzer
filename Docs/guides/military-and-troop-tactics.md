@@ -50,7 +50,10 @@ The following table shows the maximum potential speed for a 100-man party on fla
 > Fully supported infantry (with spare mounts and the `Strong` and `Nomadic Traditions` perks) is only $4.2\%$ slower than a pure cavalry party on clean terrain. In bad weather or dense forests, this gap closes completely or even reverses.
 
 > [!TIP]
-> **Tracking Mount Coverage via `Logistician`**: Having many different types of ridable mounts in your inventory can make manual tracking extremely difficult. The Steward perk `Logistician` provides an exact signal. Since its morale bonus is active only when you have strictly more riding mounts than foot troops ($\text{Mounts} > \text{Foot Troops}$), having even a single mount over your foot troop count is sufficient to trigger the tooltip, making it trivial to verify that you have $100\%$ mount coverage.
+> **Strategic Comparison of Mount Coverage via `Logistician`**: Having many different types of ridable mounts in your inventory can make manual tracking extremely difficult. The Steward perk `Logistician` provides an exact signal. Since its morale bonus is active only when you have strictly more riding mounts than foot troops ($\text{Mounts} > \text{Foot Troops}$), having even a single mount over your foot troop count is sufficient to trigger the tooltip, making it trivial to verify that you have $100\%$ mount coverage.
+>
+> [!TIP]
+> **Food Variety Morale Scaling via `Gourmet`**: Party morale is heavily boosted by carrying diverse food types. The Steward perk `Gourmet` (Level 175) doubles the morale bonus gained from food variety, making it easy to maintain party morale above $75$ to sustain the `Forced March` map speed bonus.
 
 #### Mixed Formations Speed Grid
 Below is the speed scaling for a 100-man mixed party (assuming every foot soldier is covered by a spare mount, and the party leader has both `Strong` and `Nomadic Traditions`):
@@ -71,20 +74,30 @@ Below is the speed scaling for a 100-man mixed party (assuming every foot soldie
 
 | Skill | Level | Perk | Role | Effect | Practical Application |
 | :--- | ---: | :--- | :--- | :--- | :--- |
-| **Scouting** | 25 | `Day Traveler` | Scout | $+2\%$ Daytime travel speed | Best for general, proactive search and trade routes. |
-| **Scouting** | 25 | `Night Runner` | Scout | $+5\%$ Nighttime travel speed | Great for escaping or catching enemies under cover of darkness. |
-| **Scouting** | 50 | `Pathfinder` | Scout | $+2\%$ Speed on steppes/plains | Maximizes speed in open field areas (Khuzait/Imperial heartlands). |
-| **Scouting** | 75 | `Desert Born` | Scout | $+5\%$ Speed on deserts/dunes | Essential for Aserai campaigns. |
-| **Scouting** | 75 | `Forest Kin` | Scout | $-50\%$ Forest speed penalty | Requires $\ge 75\%$ infantry. Pivotal for Battanian forest combat. |
-| **Scouting** | 100 | `Forced March` | Scout | $+2.5\%$ Speed when morale $> 75$ | Highly compatible with high food variety and frequent victories. |
-| **Scouting** | 100 | `Unburdened` | Scout | $-20\%$ Overburden speed penalty | Keeps you moving when hauling heavy cargo. |
-| **Scouting** | 125 | `Tracker` | Scout | $+2\%$ Speed when tracking hostile | Helps chase down specific targets. |
-| **Scouting** | 275 | `Uncanny Insight` | Scout | $+0.1\%$ Speed per skill point $> 200$ | $+7.5\%$ at 275 skill, $+13\%$ at 330 skill. Massive late-game scaling. |
-| **Medicine** | 75 | `Sledges` | Surgeon | $-50\%$ Speed penalty from wounded | Critical post-battle recovery perk to escape enemy follow-up groups. |
+| **Scouting** | 25 | `Day Traveler` | Scout | $+2$ Daytime travel speed | Best for general, proactive search and trade routes. |
+| **Scouting** | 25 | `Night Runner` | Scout | $+5$ Nighttime travel speed | Great for escaping or catching enemies under cover of darkness. |
+| **Scouting** | 50 | `Pathfinder` | Scout | $+2$ Speed on steppes/plains | Maximizes speed in open field areas. |
+| **Scouting** | 75 | `Desert Born` | Scout | $+5$ Speed on deserts/dunes | Essential for Aserai campaigns. |
+| **Scouting** | 75 | `Forest Kin` | Scout | $-50$ Forest speed penalty | Requires $\ge 75\%$ infantry. Pivotal for Battanian forest combat. |
+| **Scouting** | 100 | `Forced March` | Scout | $+2.5$ Speed when morale $> 75$ | Highly compatible with high food variety and frequent victories. |
+| **Scouting** | 100 | `Unburdened` | Scout | $-20$ Overburden speed penalty | Keeps you moving when hauling heavy cargo. |
+| **Scouting** | 125 | `Tracker` | Scout | $+2$ Speed when tracking hostile | Helps chase down specific targets. |
+| **Scouting** | 150 | `Mounted Scouts` | Scout | $+2$ Speed if $\ge 50\%$ party is mounted | Synergizes with cavalry/horse archer builds. |
+| **Scouting** | 150 | `Patrols` | Scout | $-15$ speed penalty from prisoners | Allows hauling large captive populations without slowing down. |
+| **Scouting** | 175 | `Foragers` | Scout | $-20$ speed penalty from wounded | Critical for maintaining mobility after heavy casualties. |
+| **Scouting** | 175 | `Beast Whisperer` | Scout | $+10\%$ cargo capacity per pack animal | Logistics enabler for massive baggage trains. |
+| **Scouting** | 200 | `Village Network` | Scout | $+4$ speed inside own territory | Enhances home defense and border patrol speed. |
+| **Scouting** | 225 | `Keen Sight` | Scout | $-10$ speed penalty from forest/swamp | Broad terrain penalty dampener. |
+| **Scouting** | 225 | `Vantage Point` | Scout | $+2$ speed in hills / $+20\%$ spotting | Hills speed-booster and vision enhancer. |
+| **Scouting** | 250 | `Rearguard` | Scout | $+2$ speed when chased | Helps escape overwhelming forces. |
+| **Scouting** | 250 | `Vanguard` | Scout | $+2$ speed when chasing enemies | Prevents target lords from slipping away on map. |
+| **Scouting** | 275 | `Uncanny Insight` | Scout | $+0.1\%$ Speed per point $> 200$ | Massive late-game scaling. |
+| **Medicine** | 75 | `Sledges` | Surgeon | $-50\%$ Speed penalty from wounded | Critical post-battle recovery tool. |
+| **Steward** | 150 | `Aid Corps` | Quartermaster | $-20\%$ speed penalty from wounded | Speeds up recovery and maintains party velocity after battles. |
 | **Athletics** | 200 | `Strong` | Party Leader | $+5\%$ Speed by foot troops | Strong choice for infantry-heavy builds. |
 | **Riding** | 75 | `Nomadic Traditions` | Party Leader | $+30\%$ Mounted footmen bonus | Mandatory if you run infantry with spare mounts. |
 | **Riding** | 100 | `Sweeping Wind` | Party Leader | $+2\%$ Flat travel speed | Simple, unconditional speed boost. |
-| **Riding** | 175 | `Shepherd` | Party Leader | $-50\%$ Herding speed penalty | Indispensable for livestock traders or capturing horse herds. |
+| **Riding** | 175 | `Shepherd` | Party Leader | $-50\%$ Herding speed penalty | Indispensable for livestock traders. |
 
 ---
 
@@ -164,6 +177,7 @@ These perks increase the XP gained during live combat or simulation:
 * **Crossbow (Level 175) - `Mounted Crossbowman`**: $+5\%$ XP to ranged troops.
 * **Throwing (Level 200) - `Resourceful`**: $+10\%$ battle XP to troops equipped with throwing weapons.
 * **Roguery (Level 25) - `No Rest for the Wicked`**: $+20\%$ XP gain for bandit troops.
+* **Roguery (Level 100) - `Promises`**: $+20\%$ battle XP to bandit troops.
 * **Leadership (Level 200) - `Trusted Commander`**: $+20\%$ XP when sending troops to confront the enemy (autoresolve).
 * **Medicine (Level 250) - `Battle Hardened`**: $+25$ XP to wounded units at battle end. (**BUGGED/NO-OP**: This perk's battle-end effect is never called in the game logic).
 
@@ -402,6 +416,21 @@ Because of this weight formula, cheap items dominate the common loot pool:
 | **Linen** | 245 | 0.407 | 2.23% | 0.0056 |
 | **Tools** | 250 | 0.398 | 2.18% | 0.0055 |
 
+### Roguery and Raiding Perks
+Several Roguery perks directly enhance your looting efficiency, troop bribery, crime rating management, and combat capabilities:
+* **Roguery (Level 25) - `Sweet Talker`**: $+20\%$ bribe effectiveness when bypassing gate guards.
+* **Roguery (Level 50) - `Deep Pockets`**: Earn $+10\%$ more gold from raiding and battle loot.
+* **Roguery (Level 75) - `In Best Light`**: Earn $+20\%$ more renown from battles.
+* **Roguery (Level 100) - `Manhunter`**: Deal $+50\%$ damage against bandit troops in simulated battles.
+* **Roguery (Level 125) - `White Lies`**: Your criminal rating with factions decays $+20\%$ faster.
+* **Roguery (Level 175) - `Salt the Earth`**: Raiding speed increased by $+20\%$, and doubles hearth damage done to the raided village.
+* **Roguery (Level 200) - `Carver`**: $+10\%$ damage with daggers or civilian weapons in combat.
+* **Roguery (Level 225) - `Dirty Fighting`**: Kick stagger duration increased by $+20\%$.
+* **Roguery (Level 225) - `Arms Dealer`**: Weapon and armor loot sale prices increased by $+20\%$.
+* **Roguery (Level 250) - `Dash and Slash`**: Melee damage increased by $+10\%$ when moving at maximum combat speed.
+* **Roguery (Level 250) - `Fleet Footed`**: $-50\%$ fall damage, and $+5\%$ general combat movement speed.
+* **Roguery (Level 275) - `Rogue Extraordinaire`**: Earn $+1$ gold daily per recruit in your party, and $+20\%$ loot items from all battle/raid sources.
+
 ### Production Weights by Village Type
 The values below represent the production weights used in Lane 2. The number in parentheses shows the progress generated per clean $0.05$ pulse at $400$ village hearth:
 
@@ -464,3 +493,39 @@ Higher hearths act as a direct multiplier for raid gold, production progress, an
 | **cattle_farm** | 15 | 104 | 339 | 652 |
 | **wheat_farm** | 49 | 101 | 267 | 825 |
 | **salt_mine** | 12 | 130 | 277 | 722 |
+
+---
+
+## 7. Command, Tactics & Leadership Directory
+
+The following directory outlines the commander, battle management, and lord recruitment perks that shape faction warfare.
+
+### Battle Command & Formations (Tactics)
+* **Tactics (Level 25) - `Tight Formations`**: Reduces damage taken from area attacks (e.g. rocks/arrows) while in close formations by $-15\%$. (Captain)
+* **Tactics (Level 50) - `Decisive Battle`**: $+10\%$ simulated battle resolution strength. (Party Leader)
+* **Tactics (Level 50) - `Extended Skirmish`**: Ranged troops shoot at $+10\%$ greater distance during initial skirmish phase. (Captain)
+* **Tactics (Level 75) - `Small Unit Tactics`**: $+5\%$ movement speed to foot troops if total party count is under 50. (Party Leader)
+* **Tactics (Level 100) - `Coaching`**: Troops in your formation gain $+10\%$ melee attack speed. (Captain)
+* **Tactics (Level 100) - `Law Keeper`**: $+15\%$ simulated battle strength against bandits. (Party Leader)
+* **Tactics (Level 125) - `Improviser`**: Removes movement speed penalties on unfavorable battle terrain. (Party Leader)
+* **Tactics (Level 125) - `Swift Regroup`**: Reduces troop rally/flee timer recovery speed. (Captain)
+* **Tactics (Level 150) - `On The March`**: Party campaign map speed $+2\%$ when traveling in army. (Army Member)
+* **Tactics (Level 175) - `Pick Them Off The Walls`**: $+20\%$ damage to enemy troops during siege defense. (Captain)
+* **Tactics (Level 225) - `Besieged`**: Reduces siege engine reload time by $-10\%$ during offensive sieges. (Party Leader)
+* **Tactics (Level 225) - `Pre Battle Maneuvers`**: Allows repositioning troops inside the deployment zone prior to battle. (Party Leader)
+* **Tactics (Level 250) - `Counter Offensive`**: $+10\%$ melee damage for 10 seconds after successfully blocking an attack. (Captain)
+* **Tactics (Level 275) - `Tactical Mastery`**: Increases initial battle simulation power of all troops by $+10\%$. (Party Leader)
+
+### Leadership, Morale & Recruitment (Leadership)
+* **Leadership (Level 50) - `Fervent Attacker`**: $+10$ battle morale to your troops when attacking. (Party Leader)
+* **Leadership (Level 50) - `Stout Defender`**: $+10$ battle morale to your troops when defending. (Party Leader)
+* **Leadership (Level 100) - `Loyalty and Honor`**: Vassal relations decay slower, and $+10\%$ party morale. (Clan Leader)
+* **Leadership (Level 125) - `Leader of the Masses`**: $+10\%$ party size per owned town. (Clan Leader)
+* **Leadership (Level 125) - `Presence`**: Passive daily security $+0.5$ when waiting in town. (Personal)
+* **Leadership (Level 150) - `Citizen Militia`**: Militia recruitment rate $+20\%$, and militia starts with higher tier troops. (Governor)
+* **Leadership (Level 150) - `Veteran's Respect`**: Allows converting bandit troops into standard faction soldiers. (Party Leader)
+* **Leadership (Level 175) - `Uplifting Spirit`**: $+10\%$ party recruitment slots in villages. (Party Leader)
+* **Leadership (Level 225) - `Great Leader`**: Doubles influence gained from battles. (Personal)
+* **Leadership (Level 225) - `Make a Difference`**: $+20\%$ battle XP gained by companion heroes in the party. (Personal)
+* **Leadership (Level 250) - `Talent Magnet`**: High tier prisoner recruitment speed doubled. (Party Leader)
+* **Leadership (Level 250) - `We Pledge our Swords`**: $+10\%$ renown from battles. (Party Leader)
