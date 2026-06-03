@@ -117,8 +117,12 @@ The table below displays the maximum skill level attainable for any combination 
 | **6** | 74 (50) | 114 (80) | 154 (110) | 194 (140) | 234 (170) | 274 (200) |
 | **7** | 88 (60) | 128 (90) | 168 (120) | 208 (150) | 248 (180) | **288 (210)** |
 | **8** | 102 (70) | 142 (100) | 182 (130) | 222 (160) | 262 (190) | **302 (220)** |
-| **9** | 116 (80) | 156 (110) | 196 (140) | 236 (170) | 276 (200) | **316 (230)** |
-| **10** | 130 (90) | 170 (120) | 210 (150) | 250 (180) | 290 (210) | **330 (240)** |
+| **9** | 116 (80) | 156 (110) | 196 (140) | 236 (170) | **276 (200)** | **316 (230)** |
+| **10** | 130 (90) | 170 (120) | 210 (150) | 250 (180) | **290 (210)** | **330 (240)** |
+
+* **Bold cells** indicate build combinations capable of unlocking the final level 275 perk tier ($\text{Limit} \ge 275$).
+
+
 
 ### Minimum Target Splits
 To reach specific perk tiers with the minimum point waste, use these optimized splits:
