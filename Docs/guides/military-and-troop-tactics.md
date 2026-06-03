@@ -118,22 +118,22 @@ $$\text{Shared XP Added to Stack} = \text{Floor}\left(\text{Max}\left(1, \text{R
 > **Strategic Trade-offs of Delayed Promotions**:
 > Because a troop stack that has accumulated enough experience to upgrade ceases to absorb Shared XP, you can strategically delay promotions to control where experience is distributed:
 > * **XP Channeling to Lower Tiers**: If you leave higher-tier units (e.g., Tier 4 troops ready for Tier 5) unupgraded, their stack capacity remains $0$, and they consume $0\%$ of incoming Shared XP. This diverts $100\%$ of battle victory and item donation XP to your lower-tier Recruits and Tier 1–2 troops.
-> * **Siphon Re-opening**: Conversely, if you want your higher-tier troops to keep advancing toward elite status, you must upgrade them promptly to open up new capacity (e.g., promoting them to Tier 5 immediately creates a new siphon capacity of $1,700$ XP per troop, letting them absorb Shared XP again).
+> * **Siphon Re-opening**: Conversely, if you want your higher-tier troops to keep advancing toward elite status, you must upgrade them promptly to open up new capacity (e.g., promoting them to Tier 5 makes them Tier 5, which immediately creates a new siphon capacity of $1,700$ XP per troop to progress toward Tier 6, letting them absorb Shared XP again).
 > * **Milking Tier-Restricted Perks**: Passive training perks like `Raise The Meek` only benefit Tier 1–2 troops ($+4$ XP/day). Keeping Tier 2 units ready to upgrade but unupgraded allows them to continue receiving this high daily bonus. Upgrading them immediately to Tier 3 would stop this passive XP drip.
 > * **Stack-Size Daily XP Scaling**: Passive training perks add XP to the stack based on its total count ($\text{Perk Value} \times \text{Troop Count}$), regardless of upgrade status. Keeping ready recruits in the stack keeps the multiplier high, allowing the remaining recruits to reach readiness much faster.
 
 ### Upgrade Costs
-The experience required to upgrade a troop to the next tier:
+The experience required to upgrade a troop from their current tier to the next tier:
 
-| Target Tier Step | XP Cost |
-| :---: | ---: |
-| **Tier 1 or lower** | 100 |
-| **Tier 2** | 300 |
-| **Tier 3** | 550 |
-| **Tier 4** | 900 |
-| **Tier 5** | 1,300 |
-| **Tier 6** | 1,700 |
-| **Tier 7 (Elite Mod)** | 2,100 |
+| Promotion / Upgrade Path | XP Cost |
+| :--- | ---: |
+| **Tier 0 → Tier 1** (e.g., Recruit or lower) | 100 |
+| **Tier 1 → Tier 2** (e.g., Recruit to standard soldier) | 300 |
+| **Tier 2 → Tier 3** | 550 |
+| **Tier 3 → Tier 4** | 900 |
+| **Tier 4 → Tier 5** | 1,300 |
+| **Tier 5 → Tier 6** (Max vanilla tier) | 1,700 |
+| **Tier 6 → Tier 7** (Elite Mod / Custom) | 2,100 |
 
 ### Daily Passive Training Perks
 These perks drip-feed experience to your troops at the end of each campaign day. The daily XP is calculated **per troop** in each matching stack (i.e. $\text{Daily XP Added to Stack} = \text{Perk Value} \times \text{Troop Count in Stack}$), meaning larger stacks gain XP much faster as a whole:
