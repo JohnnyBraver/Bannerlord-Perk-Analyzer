@@ -122,38 +122,38 @@ The table below displays the maximum skill level attainable for any combination 
 
 * **Bold cells** indicate build combinations capable of unlocking the final level 275 perk tier ($\text{Limit} \ge 275$).
 
-
-
 ### Minimum Target Splits
 To reach specific perk tiers with the minimum point waste, use these optimized splits:
-- **Level 25**: 2 Attribute + 1 Focus (Limit 58)
-- **Level 50**: 2 Attribute + 1 Focus (Limit 58)
-- **Level 75**: 2 Attribute + 2 Focus (Limit 98)
-- **Level 100**: 2 Attribute + 3 Focus (Limit 138)
-- **Level 125**: 2 Attribute + 3 Focus (Limit 138)
-- **Level 150**: 2 Attribute + 4 Focus (Limit 178)
-- **Level 175**: 2 Attribute + 4 Focus (Limit 178)
-- **Level 200**: 2 Attribute + 5 Focus (Limit 218)
-- **Level 225**: 3 Attribute + 5 Focus (Limit 232)
-- **Level 250**: 5 Attribute + 5 Focus (Limit 260)
-- **Level 275**: 7 Attribute + 5 Focus (Limit 288)
-- **Level 330**: 10 Attribute + 5 Focus (Limit 330)
+- **Level 25**: 2 Attribute + 1 Focus
+- **Level 50**: 2 Attribute + 1 Focus
+- **Level 75**: 2 Attribute + 2 Focus
+- **Level 100**: 2 Attribute + 3 Focus
+- **Level 125**: 2 Attribute + 3 Focus
+- **Level 150**: 2 Attribute + 4 Focus
+- **Level 175**: 2 Attribute + 4 Focus
+- **Level 200**: 2 Attribute + 5 Focus
+- **Level 225**: 3 Attribute + 5 Focus
+- **Level 250**: 5 Attribute + 5 Focus
+- **Level 275**: 7 Attribute + 5 Focus
+- **Level 300**: 8 Attribute + 5 Focus
+- **Level 330**: 10 Attribute + 5 Focus
 
 ### Alternative Splits (Attribute and Focus Trade-offs)
 In multi-skill builds, you may have high attributes that allow you to reach your target perk level with fewer focus points. Below are all combinations that satisfy each skill target tier:
 
-* **Level 25**: 2 Attribute + 1 Focus (Limit 58) | 3 Attribute + 0 Focus (Limit 32)
-* **Level 50**: 2 Attribute + 1 Focus (Limit 58) | 5 Attribute + 0 Focus (Limit 60)
-* **Level 75**: 2 Attribute + 2 Focus (Limit 98) | 4 Attribute + 1 Focus (Limit 86) | 7 Attribute + 0 Focus (Limit 88)
-* **Level 100**: 2 Attribute + 3 Focus (Limit 138) | 3 Attribute + 2 Focus (Limit 112) | 5 Attribute + 1 Focus (Limit 100) | 8 Attribute + 0 Focus (Limit 102)
-* **Level 125**: 2 Attribute + 3 Focus (Limit 138) | 4 Attribute + 2 Focus (Limit 126) | 7 Attribute + 1 Focus (Limit 128) | 10 Attribute + 0 Focus (Limit 130)
-* **Level 150**: 2 Attribute + 4 Focus (Limit 178) | 3 Attribute + 3 Focus (Limit 152) | 6 Attribute + 2 Focus (Limit 154) | 9 Attribute + 1 Focus (Limit 156)
-* **Level 175**: 2 Attribute + 4 Focus (Limit 178) | 5 Attribute + 3 Focus (Limit 180) | 8 Attribute + 2 Focus (Limit 182)
-* **Level 200**: 2 Attribute + 5 Focus (Limit 218) | 4 Attribute + 4 Focus (Limit 206) | 7 Attribute + 3 Focus (Limit 208) | 10 Attribute + 2 Focus (Limit 210)
-* **Level 225**: 3 Attribute + 5 Focus (Limit 232) | 6 Attribute + 4 Focus (Limit 234) | 9 Attribute + 3 Focus (Limit 236)
-* **Level 250**: 5 Attribute + 5 Focus (Limit 260) | 8 Attribute + 4 Focus (Limit 262) | 10 Attribute + 3 Focus (Limit 250)
-* **Level 275**: 7 Attribute + 5 Focus (Limit 288) | 9 Attribute + 4 Focus (Limit 276)
-* **Level 330**: 10 Attribute + 5 Focus (Limit 330)
+* **Level 25**: 2 Attribute + 1 Focus | 3 Attribute + 0 Focus
+* **Level 50**: 2 Attribute + 1 Focus | 5 Attribute + 0 Focus
+* **Level 75**: 2 Attribute + 2 Focus | 4 Attribute + 1 Focus | 7 Attribute + 0 Focus
+* **Level 100**: 2 Attribute + 3 Focus | 3 Attribute + 2 Focus | 5 Attribute + 1 Focus | 8 Attribute + 0 Focus
+* **Level 125**: 2 Attribute + 3 Focus | 4 Attribute + 2 Focus | 7 Attribute + 1 Focus | 10 Attribute + 0 Focus
+* **Level 150**: 2 Attribute + 4 Focus | 3 Attribute + 3 Focus | 6 Attribute + 2 Focus | 9 Attribute + 1 Focus
+* **Level 175**: 2 Attribute + 4 Focus | 5 Attribute + 3 Focus | 8 Attribute + 2 Focus
+* **Level 200**: 2 Attribute + 5 Focus | 4 Attribute + 4 Focus | 7 Attribute + 3 Focus | 10 Attribute + 2 Focus
+* **Level 225**: 3 Attribute + 5 Focus | 6 Attribute + 4 Focus | 9 Attribute + 3 Focus
+* **Level 250**: 5 Attribute + 5 Focus | 8 Attribute + 4 Focus | 10 Attribute + 3 Focus
+* **Level 275**: 7 Attribute + 5 Focus | 9 Attribute + 4 Focus
+* **Level 300**: 8 Attribute + 5 Focus
+* **Level 330**: 10 Attribute + 5 Focus
 
 ### Player Point Budget & Cost Model
 Every character level up gives you 1 Focus Point. Every 4 character levels give you 1 Attribute Point. 
