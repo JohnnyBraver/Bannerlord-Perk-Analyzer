@@ -41,7 +41,7 @@ Here are sample thresholds for main character levels:
 | **62** | 2,027,685,990 | 337,998,478 |
 
 > [!TIP]
-> Since main levels are driven by raw XP before learning rates are applied, big raw-XP events—such as high-damage melee hits, long-distance headshots, and expensive crafting items—are the fastest ways to level up your main character.
+> Since main levels are driven by raw XP before learning rates are applied, big raw-XP eventsג€”such as high-damage melee hits, long-distance headshots, and expensive crafting itemsג€”are the fastest ways to level up your main character.
 
 ---
 
@@ -150,7 +150,7 @@ $$\text{Peak Learning Range} = 10 \times (\text{Attribute} - 1) + 30 \times \tex
 * **Peak Learning Range**: The skill level where the over-limit penalty begins. Past this point, your learning rate starts decaying.
 
 ### The Skill Limit Grid
-The table below displays the maximum skill level attainable for any combination of Attribute (1–10) and Focus Points (0–5). The format is **Limit (Peak Learning Range)**:
+The table below displays the maximum skill level attainable for any combination of Attribute (1ג€“10) and Focus Points (0ג€“5). The format is **Limit (Peak Learning Range)**:
 
 | Attribute | Focus 0 | Focus 1 | Focus 2 | Focus 3 | Focus 4 | Focus 5 |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -410,7 +410,9 @@ These perks are highly prized because they grant permanent points that can resha
 | **Smithing** | 225 | `Fencer Smith` | $+1$ Focus Point | Grants 1 focus point split between One Handed and Two Handed. |
 
 > [!TIP]
-> **Respec Stretch**: You can temporarily allocate points to reach the Smithing 150/225 or Athletics 175/200 thresholds, take the permanent attribute perk, and later respec your focus points at an Arena Master. The permanent attribute points will remain.
+> **Arena Perk Rotation Trick**: In vanilla Bannerlord, the Arena Master allows you to respec *perk choices* of a skill for a gold fee, but does not allow resetting focus or attribute points. You can exploit this to rotate your physical attribute bonuses:
+> 1. Early on, select the **Endurance** options (`Durable` in Athletics, `Enduring Smith` in Smithing) to temporarily boost your Endurance limit and accelerate leveling both skills.
+> 2. Once Smithing and Athletics are maxed out, visit an Arena Master to respec those skills. Rotate the selections to **Vigor** (`Strong` / `Vigorous Smith`) or **Control** (`Steady` / `Controlled Smith`) to permanently boost your physical combat attributes. This allows physical attributes to reach $5$ without ever investing hard attribute points in Vigor or Control.
 
 ---
 
@@ -428,43 +430,62 @@ These perks are highly prized because they grant permanent points that can resha
 * **Level 250** - `Camaraderie`: Doubles relation gains when aiding allied lords in combat.
 * **Level 275** - `Immortal Charm`: Passive $+5$ influence per day.
 
----
+## 8. Optimized Starting Selections (The General's Path)
 
-## 8. Optimized Starting Selections
+When starting a new character, aligning your culture, background choices, and starting skills ensures you hit your target caps with **zero wasted attribute or focus points**.
 
-When starting a new character, you want to align your culture, background choices, and starting skills to hit your target limits with **zero wasted attribute or focus points**. Below are two optimized starting builds for Battanian characters.
-
-### Build A: The Intelligent Commander (Vigor & Intelligence)
-* **Goal**: Maximize leadership, trade, steward, and combat spear/axe capabilities with $0$ wasted points.
-* **Point Allocation**:
-  - **Vigor**: 5 (Melee combat focus)
-  - **Control**: 2
-  - **Endurance**: 3
-  - **Cunning**: 2
-  - **Social**: 2
-  - **Intelligence**: 6 (High steward/medicine capability)
-* **Background Selection Steps**:
-  1. *Parents*: Tribespeople (Vigor +1, One Handed +10, Polearm +10, Athletics +10)
-  2. *Childhood*: Skill with Horses (Riding +10, Medicine +10)
-  3. *Education*: Repaired Projects (Engineering +1, Crossbow +10, Tactics +10)
-  4. *Youth*: Guard with Garrison (Two Handed +10, Leadership +10)
-  5. *Adulthood*: Defeated Enemy (Vigor +1, One Handed +10, Tactics +10)
-  6. *Escape Choice*: Underage/Young sibling enabler.
+Calradia's two most optimized commanding starting paths - one optimized for **Intelligence** and the other for **Cunning** - both naturally converge by level 28 into the ultimate General's attribute distribution:
+$$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \text{ } 2 \text{ } 7$$
+*(The $(5)$ represents the physical attributes boosted by Smithing and Athletics perks, rotated via the Arena Perk Rotation Trick).*
 
 ---
 
-### Build B: The Cunning Ranger (Control & Cunning)
-* **Goal**: Focus on scout speed, roguery, ranged bow accuracy, and athletics.
-* **Point Allocation**:
+### Build A: The Intelligence-Optimized Commander
+* **Goal**: Start with maximized Intelligence and develop into the ultimate commanding general. The main draw here is rushing **Medicine** (INT) early to secure high troop survival rates, catching up Cunning (**Scouting**) later via level-up points.
+* **Starting Attributes** (Level 1):
   - **Vigor**: 2
-  - **Control**: 6 (High bow/throwing capability)
+  - **Control**: 3
   - **Endurance**: 3
-  - **Cunning**: 5 (High scouting/tactics capability)
+  - **Cunning**: 4
   - **Social**: 2
-  - **Intelligence**: 2
-* **Background Selection Steps**:
-  1. *Parents*: Foresters (Control +1, Bow +10, Throwing +10, Scouting +10)
-  2. *Childhood*: Attention to Detail (Tactics +10, Scouting +10)
-  3. *Education*: Repaired Projects (Engineering +1, Crossbow +10, Tactics +10)
-  4. *Youth*: Hearth Guard (Vigor +1, One Handed +10, Leadership +10)
-  5. *Adulthood*: Defeated Enemy (Vigor +1, One Handed +10, Tactics +10)
+  - **Intelligence**: 4 (starts at 4, gains +1 from education/childhood choice)
+* **Background Selection Steps** (Battanian Culture):
+  1. *Parents*: Foresters (+1 Control, Bow +10, Throwing +10, Scouting +10)
+  2. *Childhood*: Working in Shop (+1 Intelligence, Trade +10, Engineering +10)
+  3. *Education*: Gathered Herbs (+1 Intelligence, Medicine +10, Scouting +10)
+  4. *Youth*: Went with Scouts (+1 Cunning, Scouting +10, Riding +10)
+  5. *Adulthood*: Subdued Outlaw (+1 Cunning, Roguery +10, Bow +10)
+  6. *Escape Choice*: Fast Horse (+1 Endurance, Riding +10)
+* **Level-Up Progression (to Level 28)**:
+  * Spend your 7 level-up attribute points as follows: **+1 Vigor**, **+3 Cunning**, and **+3 Intelligence**.
+  * Final base stats before rotation: VIG 3, CTR 3, END 3, CNG 7, SOC 2, INT 7.
+* **Rotation Strategy**:
+  1. Early on, set Athletics 175 to `Durable` (+1 END) and Smithing 225 to `Enduring Smith` (+1 END) to raise Endurance to $5$.
+  2. Max out both skills to their target caps.
+  3. Visit an Arena Master to respec those perk choices. Rotate selections to Vigor (`Strong` and `Vigorous Smith`) and Control (`Steady` and `Controlled Smith`) to raise Vigor, Control, and Endurance to $5$.
+
+---
+
+### Build B: The Cunning-Optimized Commander
+* **Goal**: Start with maximized Cunning and develop into the ultimate commanding general. The main draw here is rushing **Scouting** (CNG) early to secure high campaign-map movement speed, catching up Intelligence (**Medicine**) later via level-up points.
+* **Starting Attributes** (Level 1):
+  - **Vigor**: 2
+  - **Control**: 3
+  - **Endurance**: 3
+  - **Cunning**: 5
+  - **Social**: 2
+  - **Intelligence**: 3
+* **Background Selection Steps** (Battanian Culture):
+  1. *Parents*: Foresters (+1 Control, Bow +10, Throwing +10, Scouting +10)
+  2. *Childhood*: Attention to Detail (+1 Cunning, Scouting +10, Tactics +10)
+  3. *Education*: Repaired Projects (+1 Intelligence, Engineering +10, Crossbow +10)
+  4. *Youth*: Went with Scouts (+1 Cunning, Scouting +10, Riding +10)
+  5. *Adulthood*: Subdued Outlaw (+1 Cunning, Roguery +10, Bow +10)
+  6. *Escape Choice*: Fast Horse (+1 Endurance, Riding +10)
+* **Level-Up Progression (to Level 28)**:
+  * Spend your 7 level-up attribute points as follows: **+1 Vigor**, **+2 Cunning**, and **+4 Intelligence**.
+  * Final base stats before rotation: VIG 3, CTR 3, END 3, CNG 7, SOC 2, INT 7.
+* **Rotation Strategy**:
+  1. Early on, set Athletics 175 to `Durable` (+1 END) and Smithing 225 to `Enduring Smith` (+1 END) to raise Endurance to $5$.
+  2. Max out both skills to their target caps.
+  3. Visit an Arena Master to respec those perk choices. Rotate selections to Vigor (`Strong` and `Vigorous Smith`) and Control (`Steady` and `Controlled Smith`) to raise Vigor, Control, and Endurance to $5$.
