@@ -140,22 +140,20 @@ To reach specific perk tiers with the minimum point waste, use these optimized s
 - **Level 330**: 10 Attribute + 5 Focus (Limit 330)
 
 ### Alternative Splits (Attribute and Focus Trade-offs)
-In multi-skill builds, you may have high attributes that allow you to reach your target perk level with fewer focus points. Below are the breakpoints where increasing attribute points reduces the required focus points:
+In multi-skill builds, you may have high attributes that allow you to reach your target perk level with fewer focus points. Below are all combinations that satisfy each skill target tier:
 
-| Target Skill Level | Min Focus Required (Focus 5) | Focus-Saving Option A (Focus 4) | Focus-Saving Option B (Focus 3) | Focus-Saving Option C (Focus 1 or 2) | Focus-Saving Option D (Focus 0) |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| **25** | — | — | — | 2 Att + 1 Foc (Limit 58) | 3 Att + 0 Foc (Limit 32) |
-| **50** | — | — | — | 2 Att + 1 Foc (Limit 58) | 5 Att + 0 Foc (Limit 60) |
-| **75** | — | — | — | 2 Att + 2 Foc (Limit 98)<br>4 Att + 1 Foc (Limit 86) | — |
-| **100** | — | — | — | 2 Att + 3 Foc (Limit 138)<br>3 Att + 2 Foc (Limit 112)<br>6 Att + 1 Foc (Limit 114) | — |
-| **125** | — | — | — | 2 Att + 3 Foc (Limit 138)<br>4 Att + 2 Foc (Limit 126)<br>7 Att + 1 Foc (Limit 128) | — |
-| **150** | — | 2 Att + 4 Foc (Limit 178) | 3 Att + 3 Foc (Limit 152) | 6 Att + 2 Foc (Limit 154)<br>9 Att + 1 Foc (Limit 156) | — |
-| **175** | — | 2 Att + 4 Foc (Limit 178) | 5 Att + 3 Foc (Limit 180) | 8 Att + 2 Foc (Limit 182) | — |
-| **200** | 2 Att + 5 Foc (Limit 218) | 4 Att + 4 Foc (Limit 206) | 7 Att + 3 Foc (Limit 208) | 10 Att + 2 Foc (Limit 210) | — |
-| **225** | 3 Att + 5 Foc (Limit 232) | 6 Att + 4 Foc (Limit 234) | 9 Att + 3 Foc (Limit 236)<br>10 Att + 3 Foc (Limit 250) | — | — |
-| **250** | 5 Att + 5 Foc (Limit 260) | 8 Att + 4 Foc (Limit 262) | 10 Att + 3 Foc (Limit 250) | — | — |
-| **275** | 7 Att + 5 Foc (Limit 288) | 9 Att + 4 Foc (Limit 276)<br>10 Att + 4 Foc (Limit 290) | — | — | — |
-| **330** | 10 Att + 5 Foc (Limit 330) | — | — | — | — |
+* **Level 25**: 2 Attribute + 1 Focus (Limit 58) | 3 Attribute + 0 Focus (Limit 32)
+* **Level 50**: 2 Attribute + 1 Focus (Limit 58) | 5 Attribute + 0 Focus (Limit 60)
+* **Level 75**: 2 Attribute + 2 Focus (Limit 98) | 4 Attribute + 1 Focus (Limit 86) | 7 Attribute + 0 Focus (Limit 88)
+* **Level 100**: 2 Attribute + 3 Focus (Limit 138) | 3 Attribute + 2 Focus (Limit 112) | 5 Attribute + 1 Focus (Limit 100) | 8 Attribute + 0 Focus (Limit 102)
+* **Level 125**: 2 Attribute + 3 Focus (Limit 138) | 4 Attribute + 2 Focus (Limit 126) | 7 Attribute + 1 Focus (Limit 128) | 10 Attribute + 0 Focus (Limit 130)
+* **Level 150**: 2 Attribute + 4 Focus (Limit 178) | 3 Attribute + 3 Focus (Limit 152) | 6 Attribute + 2 Focus (Limit 154) | 9 Attribute + 1 Focus (Limit 156)
+* **Level 175**: 2 Attribute + 4 Focus (Limit 178) | 5 Attribute + 3 Focus (Limit 180) | 8 Attribute + 2 Focus (Limit 182)
+* **Level 200**: 2 Attribute + 5 Focus (Limit 218) | 4 Attribute + 4 Focus (Limit 206) | 7 Attribute + 3 Focus (Limit 208) | 10 Attribute + 2 Focus (Limit 210)
+* **Level 225**: 3 Attribute + 5 Focus (Limit 232) | 6 Attribute + 4 Focus (Limit 234) | 9 Attribute + 3 Focus (Limit 236)
+* **Level 250**: 5 Attribute + 5 Focus (Limit 260) | 8 Attribute + 4 Focus (Limit 262) | 10 Attribute + 3 Focus (Limit 250)
+* **Level 275**: 7 Attribute + 5 Focus (Limit 288) | 9 Attribute + 4 Focus (Limit 276)
+* **Level 330**: 10 Attribute + 5 Focus (Limit 330)
 
 ### Player Point Budget & Cost Model
 Every character level up gives you 1 Focus Point. Every 4 character levels give you 1 Attribute Point. 
