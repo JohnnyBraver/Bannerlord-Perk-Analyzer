@@ -87,12 +87,57 @@ $$\text{Riding XP} = \text{Base XP} \times (1 + \text{Horse Difficulty} \times 0
   - Smelting and Free Build: $\text{XP} = 0.02 \times \text{Item Market Value}$
   - Crafting Orders: $\text{XP} = 0.10 \times \text{Item Market Value}$ (Five times faster)
   - Refining: $\text{XP} = 0.30 \times \text{Produced Material Value} \times \text{Count}$
-* **Healing (Medicine)**: Flat $+5$ XP per healing tick in town or camp.
-* **Troop Training (Steward/Leadership)**: Daily flat values from perks.
+* **Troop Training (Steward/Leadership)**: Daily flat values from training perks.
 
 ---
 
-## 3. Learning Limits and Point Budgets
+## 3. Passive and Semi-Passive XP Channels
+
+Passive and semi-passive XP channels run continuously in the background as you travel, rest, or manage your clan's assets. Because character level XP is gained by accumulating skill levels, optimizing these channels is the most effective way to accelerate your hero's main level progression.
+
+### Stewardship - Food Consumption
+Steward XP is awarded daily to the party's assigned **Quartermaster** based on food consumption and variety.
+$$\text{Steward XP} = \text{Round}(\text{Daily Food Consumption} \times 100) \times \frac{\text{Food Variety} - 2}{3}$$
+* **Prerequisites**: The party must have an active Quartermaster, must not be starving, and must carry **strictly more than 3 unique food types** ($\text{Food Variety} > 3$). If variety is 3 or less, Steward XP is $0$.
+* **Upkeep Discounts (The Upkeep Trap)**: Perks that reduce party food consumption (such as Steward 25 `Frugal` or other consumption discounts) reduce the daily food consumption rate. Consequently, **food upkeep reductions directly slow down Steward XP gain**.
+* **Calradic Diet**: There are exactly 9 unique consumable food items in Bannerlord: *Grain, Fish, Meat, Butter, Cheese, Grapes, Olives, Dates, and Beer*. Stacking all 9 types applies a $2.33\times$ multiplier to the XP pulse, while carrying only 4 types reduces the multiplier to $0.67\times$.
+
+### Stewardship - Town/Castle Governance
+Companions or family members assigned as governors of town or castle fiefs earn Steward XP daily.
+$$\text{Steward XP} = \text{Prosperity Change} \times 30$$
+* **Prosperity Constraint**: Steward XP is only awarded when the settlement's daily prosperity growth is positive ($\Delta P > 0$). Negative or stagnant growth yields $0$ Steward XP.
+* **Governor Restriction**: **The player character cannot govern settlements**. Therefore, this governance XP pathway is only available for training companions and family members.
+
+### Scouting - Campaign Map Traversal
+Scouting XP is awarded in periodic pulses as your party moves across the campaign map.
+$$\text{Scouting XP} = \text{Speed} \times \left(1.0 + \text{PartySize}^{0.66}\right) \times \text{TerrainMultiplier}$$
+* **Prerequisites**: Party movement speed must be strictly greater than $1.0$, and the calculated XP pulse must be **$\ge 5.0$** to be awarded. Pulses below $5.0$ are discarded.
+* **Terrain Multiplier**:
+  - **0.25** for difficult terrains (Forest, Snow, Desert, Mountain).
+  - **0.15** for normal terrains (Plains, Steppes).
+* **The Small Party Penalty**: Because of the $5.0$ XP minimum threshold, tiny parties (especially solo heroes) on clean terrain often receive **zero Scouting XP** because their pulse values fail to reach $5.0$. Larger parties scale the pulse value, making Scouting much easier to train. Caravan parties have their final Scouting XP halved ($0.5\times$).
+
+### Medicine - Passive Healing (Town Resting)
+Passive healing of wounded troops in your party yields Medicine XP.
+* **The Town Resting Multiplier**: Waiting inside a **Town** (non-castle settlement) multiplies the passive healing Medicine XP by **$2.0\times$**. Resting in castles or in the open field (by camping/waiting) awards only the base $1.0\times$ rate.
+
+### Medicine - Doctor's Oath (Combat Wounding)
+The Medicine 75 perk `Doctor's Oath` applies your Surgeon survival calculations to enemy casualties as well as your own.
+* **XP Harvesting**: Because you wound rather than kill a massive portion of enemy armies, you heal them post-battle. Every check triggers `OnSurgeryApplied`, awarding:
+  - **$+10 \times \text{Troop Tier}$** XP per enemy saved (wounded).
+  - **$+5 \times \text{Troop Tier}$** XP per enemy killed.
+  This turns combat into a massive accelerator for Medicine XP.
+
+### Athletics - Campaign Foot Travel
+Traveling on the campaign map on foot (without a mount equipped in your character's active horse slot) awards passive Athletics XP:
+$$\text{Athletics XP} = 1 + \text{RoundRandomized}(\text{Speed} \times 0.2)$$
+
+### Riding - Campaign Map Quirk
+* **The Riding Quirk**: **Riding on the campaign map while mounted awards $0$ Riding XP**. Unlike Athletics, there is no map travel XP hook in the Riding code; Riding XP can only be earned in active combat missions or tournaments (by hitting targets while mounted or moving at high speed).
+
+---
+
+## 4. Learning Limits and Point Budgets
 
 Attributes and focus points determine where your learning rate falls to zero.
 
@@ -165,7 +210,7 @@ $$\text{Weighted Cost} = \text{Focus Points Spent} + (\text{Purchased Attribute 
 
 ---
 
-## 4. Early Splash Perks (Low Investment)
+## 5. Early Splash Perks (Low Investment)
 
 At the baseline of **2 Attribute and 1 Focus Point**, any skill will reach a limit of **58**. This is a highly efficient way to grab the first two perk tiers (level 25 and 50) of multiple skills.
 
@@ -197,7 +242,7 @@ At the baseline of **2 Attribute and 1 Focus Point**, any skill will reach a lim
 
 ---
 
-## 5. Personal Combat Perks
+## 6. Personal Combat Perks
 
 Personal combat perks improve the main hero's combat performance in live battle. 
 
@@ -347,7 +392,7 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 
 ---
 
-## 6. Personal Non-Combat Perks
+## 7. Personal Non-Combat Perks
 
 These perks are focused on character attribute growth, economic trade benefits, and diplomacy utilities.
 
@@ -385,7 +430,7 @@ These perks are highly prized because they grant permanent points that can resha
 
 ---
 
-## 7. Optimized Starting Selections
+## 8. Optimized Starting Selections
 
 When starting a new character, you want to align your culture, background choices, and starting skills to hit your target limits with **zero wasted attribute or focus points**. Below are two optimized starting builds for Battanian characters.
 

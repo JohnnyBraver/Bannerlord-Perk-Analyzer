@@ -30,6 +30,7 @@ internal static class Program
                 "xp-methods" => ExtractXpMethods(options),
                 "dump-il" => DumpIl(options),
                 "find-methods" => FindMethods(options),
+                "print-enum" => PrintEnum(options),
                 _ => Fail($"Unknown command: {command}"),
             };
         }
@@ -49,6 +50,22 @@ internal static class Program
         Console.WriteLine("  xp-methods --game-root <path> --json-output <json> [--assembly <name>] [--include-il] [--deep-scan-callers] [--include-contracts]");
         Console.WriteLine("  dump-il --game-root <path> --assembly <name> --type <full type> --method <name> [--output <txt>]");
         Console.WriteLine("  find-methods --game-root <path> --query <text> [--assembly <name>] [--all-game-assemblies] [--include-il] [--output <json>]");
+        Console.WriteLine("  print-enum --game-root <path>");
+    }
+
+    private static int PrintEnum(CliOptions options)
+    {
+        var gameRoot = options.RequiredPath("game-root");
+        var bin = ResolveGameBin(gameRoot);
+        var campaignDll = Path.Combine(bin, "TaleWorlds.CampaignSystem.dll");
+        AddAssemblyResolver(ResolveAssemblySearchDirs(gameRoot));
+        var campaignAsm = Assembly.LoadFrom(campaignDll);
+        var enumType = campaignAsm.GetType("TaleWorlds.CampaignSystem.Occupation", throwOnError: true);
+        foreach (var val in Enum.GetValues(enumType))
+        {
+            Console.WriteLine($"{(int)val}: {val}");
+        }
+        return 0;
     }
 
     private static int Fail(string message)

@@ -51,24 +51,10 @@ The following table shows the maximum potential speed for a 100-man party on fla
 
 > [!TIP]
 > **Strategic Comparison of Mount Coverage via `Logistician`**: Having many different types of ridable mounts in your inventory can make manual tracking extremely difficult. The Steward perk `Logistician` provides an exact signal. Since its morale bonus is active only when you have strictly more riding mounts than foot troops ($\text{Mounts} > \text{Foot Troops}$), having even a single mount over your foot troop count is sufficient to trigger the tooltip, making it trivial to verify that you have $100\%$ mount coverage.
->
+
 > [!TIP]
 > **Food Variety Morale Scaling via `Gourmet`**: Party morale is heavily boosted by carrying diverse food types. The Steward perk `Gourmet` (Level 175) doubles the morale bonus gained from food variety, making it easy to maintain party morale above $75$ to sustain the `Forced March` map speed bonus.
->
-> [!NOTE]
-> **Steward XP Formula & Food Logistics**:
-> Passive Steward XP gained while acting as the **Quartermaster** is directly driven by party food consumption. The exact in-game logic calculates XP as:
-> $$\text{Steward XP} = \text{Round}(\text{Daily Consumption} \times 100) \times \frac{\text{Food Variety} - 2}{3}$$
->
-> This reveals four critical optimization insights:
-> * **Starvation Penalty**: If your party is starving (`wasStarving == true`), no Steward XP is gained whatsoever.
-> * **Variety Floor**: You must carry **at least 4 food types** in your inventory to trigger XP. Carrying 3 or fewer food types yields **0 XP**.
-> * **Upkeep Trade-Off**: Because XP scales directly with your daily consumption rate, any perk that reduces food upkeep (such as *Warrior's Diet* or *Master of Planning*) will **slow down** your Steward leveling speed.
-> * **Variety Multiplier**: There are exactly **9 consumable food types** in the game (Grain, Fish, Meat, Butter, Cheese, Grapes, Olives, Dates, and Beer; *Wine and Oil do not count as food for consumption or variety*). This limits the variety scaling factor to the following multipliers:
->   * **4 food types**: $\approx 0.67\times$ XP multiplier
->   * **5 food types**: $1.00\times$ XP multiplier (Baseline)
->   * **7 food types**: $\approx 1.67\times$ XP multiplier
->   * **9 food types**: $\approx 2.33\times$ XP multiplier (Maximum leveling speed)
+
 
 #### Mixed Formations Speed Grid
 Below is the speed scaling for a 100-man mixed party (assuming every foot soldier is covered by a spare mount, and the party leader has both `Strong` and `Nomadic Traditions`):
@@ -202,7 +188,89 @@ These perks increase the XP gained during live combat or simulation:
 * **Two Handed (Level 75) - `Baptised in Blood`**: Adds $+5$ XP **per troop** to every non-hero infantry stack in the party (effectively $5 \times \text{stack size}$ total XP added to each stack's pool) for each player kill made with a two-handed weapon. Great for active combat players.
 * **Leadership (Level 100) - `Famous Commander`**: Newly recruited troops arrive with $+200$ XP **per troop** pre-loaded into their stack.
 
+### Prisoner Logistics: Selling vs. Donating (XP & Value Dynamics)
+
+Capturing enemy combatants presents a choice: selling them to ransom brokers in taverns or donating them to friendly castle/town dungeons. This decision involves trade-offs between wealth generation, direct skill XP, and political capital (influence).
+
+#### 1. XP and Influence Pathways
+* **Selling Prisoners**: This is the **only direct source** of Roguery XP. The base XP scales strictly with the prisoner's tier and quantity, completely independent of their gold value:
+  $$\text{Base Roguery XP} = 2 \times \sum (\text{Troop Tier} \times \text{Quantity})$$
+* **Donating Prisoners**: Awards immediate Kingdom Influence and indirect Charm XP (gained only when the donation triggers a clan relation increase with the fief owner). The influence reward scales sublinearly (diminishing returns) with the prisoner's gold ransom value:
+  $$\text{Influence Gain} = 0.2 \times (\text{Ransom Value})^{0.4}$$
+
+#### 2. Regular Troop Ransom Value Formula
+A regular troop's ransom value is directly proportional ($25\%$) to their computed recruitment cost ($R$). 
+$$\text{Base Ransom Value} = \lfloor R \times 0.25 \rfloor$$
+The recruitment cost ($R$) used in ransom calculations is governed by the following formula:
+$$R = (\text{Base} \times \text{OccupationMultiplier}) + \text{MountSurcharge}$$
+
+* **Level-Based Base Cost**:
+  * **Level 1–5**: $10$ gold (Tier 0)
+  * **Level 6–10**: $20$ gold (Tier 1)
+  * **Level 11–15**: $50$ gold (Tier 2)
+  * **Level 16–20**: $100$ gold (Tier 3)
+  * **Level 21–25**: $200$ gold (Tier 4)
+  * **Level 26–30**: $400$ gold (Tier 5)
+  * **Level 31–35**: $600$ gold (Tier 6)
+* **Occupation Multiplier**:
+  * **$3.0\times$** for **Mercenaries**, **Gangsters**, and **Caravan Guards**.
+  * **$1.0\times$** for all standard faction troops.
+* **Mount Surcharge (Horse Surcharge)**:
+  * **$+150$ gold** for Tiers 1–4 (Level $< 26$) if the troop is equipped with a mount.
+  * **$+500$ gold** for Tiers 5–6 (Level $\ge 26$) if the troop is equipped with a mount.
+  * **$+0$ gold** for dismounted troops.
+
+#### 3. Hero Ransom Value Formula
+Hero ransom values scale with the hero's level, status, clan wealth, and kingdom holdings:
+$$\text{Base Ransom Value} = (\text{RecruitmentCost} + \text{HeroBaseValue} + \text{HeroWealthValue}) \times \text{kingdomMultiplier}$$
+* **HeroBaseValue**: Evaluates political status based on their clan tier and role:
+  $$\text{HeroBaseValue} = (\text{Clan Tier} + 2) \times 200 \times \text{RoleMultiplier}$$
+  * $\text{RoleMultiplier} = 6.0$ for a Kingdom Ruler (e.g., King/Emperor)
+  * $\text{RoleMultiplier} = 2.5$ for a Clan Leader
+  * $\text{RoleMultiplier} = 1.0$ for standard family/clan members
+* **HeroWealthValue**: Scales with the hero's personal purse:
+  $$\text{HeroWealthValue} = 6.0 \times \sqrt{\max(0, \text{Hero Gold})}$$
+* **Kingdom Multiplier**: Scales with the total fief holdings of their faction:
+  * **$0.5\times$** if the hero has no kingdom (e.g., landless clan/minor faction)
+  * **$1.0\times$** if the faction is not a kingdom
+  * **$\frac{\text{Fief Count} + 1}{9}$** if the faction is a kingdom and has $< 8$ fiefs (ranges from $0.11$ to $0.89$)
+  * **$1.0 + 0.1 \times \sqrt{\text{Fief Count} - 8}$** if the kingdom has $\ge 8$ fiefs
+
+#### 4. Ransom Perks and Sea Traversal Quirks
+Ransom transactions are augmented by the following Roguery perks, which feature specific penalties when the party is currently at sea (traveling over water):
+* **`Manhunter` (Roguery 100)**: $+20\%$ ransom value for regular troops.
+  * *Quirk*: **No-op when at sea**. The $+20\%$ bonus is completely disabled while traveling on water.
+* **`Ransom Broker` (Roguery 200)**: $+25\%$ ransom value for heroes.
+  * *Quirk*: **Halved when at sea**. The $+25\%$ bonus drops to $+12.5\%$ while traveling on water.
+
+#### 5. Troop Ransom Value Comparison (Base vs. Mounted)
+Because the mount surcharge (+150 or +500 gold) is so massive relative to a troop's base level cost, **mounted units sell for significantly more than foot units of the same tier—and frequently sell for more than foot units 1 or 2 tiers higher**:
+
+| Troop Tier | Base Cost | Surcharge | Total Cost ($R$) | Base Ransom Value | Manhunter Ransom ($+20\%$) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **T1 Foot** | 20 | +0 | 20 | **5 gold** | **6 gold** |
+| **T1 Mounted** | 20 | +150 | 170 | **42 gold** | **50 gold** |
+| **T2 Foot** | 50 | +0 | 50 | **12 gold** | **14 gold** |
+| **T2 Mounted** | 50 | +150 | 200 | **50 gold** | **60 gold** |
+| **T3 Foot** | 100 | +0 | 100 | **25 gold** | **30 gold** |
+| **T3 Mounted** | 100 | +150 | 250 | **62 gold** | **74 gold** |
+| **T4 Foot** | 200 | +0 | 200 | **50 gold** | **60 gold** |
+| **T4 Mounted** | 200 | +150 | 350 | **87 gold** | **104 gold** |
+| **T5 Foot** | 400 | +0 | 400 | **100 gold** | **120 gold** |
+| **T5 Mounted** | 400 | +500 | 900 | **225 gold** | **270 gold** |
+| **T6 Foot** | 600 | +0 | 600 | **150 gold** | **180 gold** |
+| **T6 Mounted** | 600 | +500 | 1100 | **275 gold** | **330 gold** |
+
+*Note: Mercenary troop counterparts (e.g., caravan guards or mercenary cavalry) multiply their base cost by $3.0\times$ before the surcharge is added. For example, a T5 Mounted Mercenary has a total cost of $(400 \times 3) + 500 = 1700$ gold, yielding a base ransom of **425 gold**.*
+
+#### 6. Strategic Prisoner Optimization
+To optimize your economy and character progression, apply these three rules:
+1. **Always Sell High-Tier Mounted Prisoners**: T5 and T6 mounted units (selling for 225–275 base gold) represent huge cash opportunities. Converting them into influence is economically inefficient because they convert at a poor Gold-to-Influence ratio ($\approx 128:1$).
+2. **Donate Low-to-Mid Tier Foot Prisoners**: T3 and T4 foot units (selling for 25–50 gold) yield excellent influence returns relative to their market value. They convert at a highly favorable Gold-to-Influence ratio ($\approx 35\text{ to }50$ gold per 1.0 Influence), making them the cheapest source of Influence in the game.
+3. **Keep Regular Troops for Roguery XP**: Since Roguery XP scales strictly on Troop Tier and is identical for foot and mounted units, you gain the same Roguery progress from a T3 foot unit (25 gold) as you do from a T3 mounted unit (62 gold). Keep your high-value mounts for gold and burn your lower-value foot units for XP/influence.
+
 ---
+
 
 ## 3. Troop Combat AI and Skill Scaling
 
@@ -246,7 +314,7 @@ The AI level is mapped to different combat behaviors through curves (linear, roo
 | `AISetNoDefendTimerAfterHitting` | $\text{Lerp}(0.1, 0.99, \text{meleeAI}^2)$ | Power curve. Elite troops chain defense into offense smoothly. |
 
 #### Case Study: Recruit vs. Elite Polearm AI Scaling
-Because different AI behaviors use different curves, a skill buff (e.g. $+80$ Polearm) has very different effects on a recruit than an elite unit:
+Because different AI behaviors use different curves, a skill buff has very different effects on a recruit than an elite unit. We model this using a **$+50$ Polearm skill buff**, which is the maximum in-game buff achievable by stacking the Polearm captain perks *Clean Thrust* ($+30$ Polearm) and *Counterweight* ($+20$ Polearm):
 
 * **Imperial Recruit**: Base Polearm 20 (Base AI 0.064)
 * **Elite Menavliaton**: Base Polearm 130 (Base AI 0.416)
@@ -254,12 +322,12 @@ Because different AI behaviors use different curves, a skill buff (e.g. $+80$ Po
 | Unit State | AI Level | Block-On-Decide (Root Curve) | Realize Enemy Blocking (Power Curve) |
 | :--- | :---: | :---: | :---: |
 | **Imperial Recruit** | 0.064 | 0.624 | 0.000 |
-| **Recruit +80 Polearm Buff** | 0.320 | **0.777** ($+15.3\%$) | 0.000 (No Change) |
+| **Recruit +50 Polearm Buff** | 0.224 | **0.732** ($+10.8\%$) | 0.000 (No Change) |
 | **Elite Menavliaton** | 0.416 | 0.816 | 0.012 |
-| **Elite Menavliaton +80 Buff** | 0.672 | 0.902 ($+8.6\%$) | **0.270** ($+25.8\%$) |
+| **Elite Menavliaton +50 Buff** | 0.576 | **0.872** ($+5.6\%$) | **0.152** ($+14.0\%$ flat / $12.7\times$ relative increase) |
 
 > [!NOTE]
-> The recruit gains massive defensive blocking capability from the Polearm buff, but gains no offensive tactical awareness. The Elite Menavliaton gains a moderate blocking boost, but their ability to read and counter enemy blocks scales exponentially by $+25.8\%$.
+> The recruit gains a solid defensive blocking boost from the $+50$ skill buff, but gains no offensive block-reading capability. The Elite Menavliaton gains a smaller defensive block percentage increase (due to root-curve diminishing returns), but their ability to read and counter enemy blocks leaps from a negligible $1.2\%$ to $15.2\%$ (a flat $+14.0\%$ increase, which is a massive $12.7\times$ relative improvement).
 
 ### Shield and Defensive AI
 
@@ -333,45 +401,7 @@ Despite the Imperial Elite Menavliaton using a long, high-damage weapon (the **M
 
 ---
 
-## 5. Troop Category Counting & Formation Bitmasks
-
-Perk tooltips that affect "infantry," "cavalry," or "ranged" are controlled by binary masks rather than direct string matching.
-
-### Troop Usage Flags
-The engine checks unit equipment and flags using a bitmask layout:
-
-| Value (Bit) | Flag | Applied Matching |
-| ---: | :--- | :--- |
-| **0** | `None` | No filters. |
-| **1** | `OnFoot` | Foot troops (infantry and foot archers). |
-| **2** | `Mounted` | Cavalry and horse archers. |
-| **4** | `Melee` | Melee weapon equipped. |
-| **8** | `Ranged` | Bow, crossbow, or throwing equipped. |
-| **16** | `OneHandedUser` | One-handed weapon equipped. |
-| **32** | `ShieldUser` | Shield equipped. |
-| **64** | `TwoHandedUser` | Two-handed weapon equipped. |
-| **128** | `PolearmUser` | Polearm equipped. |
-| **256** | `BowUser` | Bow equipped. |
-| **512** | `ThrownUser` | Throwing weapons equipped. |
-| **1024** | `CrossbowUser` | Crossbow equipped. |
-| **65535** | `Undefined` | Virtually matches `all` by perk helpers. |
-
-### Formation Class Masks
-Default troop classifications use combined masks. A perk must match **all** flags in the mask to apply to the unit:
-
-| Formation Class | Combined Flags | Numeric Mask | Matches |
-| :--- | :--- | ---: | :--- |
-| **Infantry** | `OnFoot` + `Melee` + `OneHandedUser`/`ShieldUser`/`TwoHandedUser`/`PolearmUser` | 245 | Foot Melee Only |
-| **Ranged** | `OnFoot` + `Ranged` + `BowUser`/`ThrownUser`/`CrossbowUser` | 1,801 | Foot Archers/Throwers Only |
-| **Cavalry** | `Mounted` + `Melee` + `OneHandedUser`/`ShieldUser`/`TwoHandedUser`/`PolearmUser` | 246 | Mounted Melee Only |
-| **HorseArcher** | `Mounted` + `Ranged` + `BowUser`/`ThrownUser`/`CrossbowUser` | 1,802 | Mounted Archers Only |
-
-> [!WARNING]
-> While a `TroopUsageFlags.Ranged` perk applies to both foot archers and horse archers, a live-battle query using `QueryLibrary.IsRanged` only returns true for foot archers. Take close note of whether a perk is applied on the campaign map (via usage flags) or in live combat (via live-agent queries).
-
----
-
-## 6. Village Raiding and Loot Pulses
+## 5. Village Raiding and Loot Pulses
 
 Village raiding is structured as a damage accumulator loop that yields loot at set intervals.
 
@@ -511,7 +541,7 @@ Higher hearths act as a direct multiplier for raid gold, production progress, an
 
 ---
 
-## 7. Command, Tactics & Leadership Directory
+## 6. Command, Tactics & Leadership Directory
 
 The following directory outlines the commander, battle management, and lord recruitment perks that shape faction warfare.
 
