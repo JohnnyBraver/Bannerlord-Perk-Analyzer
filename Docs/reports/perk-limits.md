@@ -50,3 +50,38 @@ These are the non-dominated attribute/focus splits for each perk tier. A split i
 ## Player Point Budget
 
 Every player level grants 1 focus point. Every 4 player levels grant 1 attribute point. For point-budget planning, the minimum level-ups needed for a build are `max(total focus points spent, total attribute points spent * 4)`.
+
+## Final Perk Level Distribution
+Below is the distribution of the highest level perk in each skill. We track how this distribution shifts under two exclusion filters:
+1. **Strict Exclusion**: Excludes perks that scale the exact same passive attribute that the skill natively scales (e.g. One Handed speed/damage).
+2. **Broad Exclusion**: Excludes any final perk that acts as a linear passive scaling extension of any basic stat (e.g. Medicine scaling troop HP).
+
+### Distribution Summary Table
+| Final Perk Level | Raw (No Exclusions) | Strict Exclusion | Broad Exclusion (Passive Scale) |
+| :--- | :---: | :---: | :---: |
+| Level 225 | 0 skills | 1 skills | 1 skills |
+| Level 250 | 1 skills | 10 skills | 14 skills |
+| Level 275 | 16 skills | 6 skills | 2 skills |
+| Level 300 | 1 skills | 1 skills | 1 skills |
+
+### Skill-by-Skill Active Cap Table
+| Skill | Raw Final Perk | Level | Base Passive Leveling Effect | Strict Exclude | Broad Exclude | Active Cap Level | New Last Perk(s) |
+| :--- | :--- | :---: | :--- | :---: | :---: | :---: | :--- |
+| Athletics | Mighty Blow | 275 | Increases running speed (+0.06% per level) | Keep | Exclude | **250** | Ignore Pain / Spartan |
+| Bow | Deadshot | 275 | Increases damage (+0.11% per level) and accuracy (+0.09% per level) | Exclude | Exclude | **250** | Quick Draw / Ranger's Swiftness |
+| Charm | Immortal Charm | 275 | Increases relation gain speed (+0.5% per level) | Keep | Keep | **275** | Immortal Charm |
+| Crossbow | Mighty Pull | 275 | Increases reload speed (+0.07% per level) and accuracy (+0.09% per level) | Exclude | Exclude | **250** | Picked Shots / Terror |
+| Engineering | Masterwork | 275 | Increases siege engine build speed (+0.9% per level) and wall repair speed (+0.9% per level) | Exclude | Exclude | **250** | Architectural Commissions / Clockwork |
+| Leadership | Ultimate Leader | 275 | Increases party morale (+0.05% per level) and troop XP gain (+0.1% per level) | Keep | Exclude | **250** | Talent Magnet / We Pledge our Swords |
+| Medicine | Minister of Health | 275 | Increases recovery rate of sick/wounded (+10% per level) and casualty survival (+0.08% per level) | Keep | Exclude | **250** | Battle Hardened / Helping Hands |
+| One Handed | Way of the Sword | 275 | Increases attack speed and damage (+0.07% speed, +0.15% damage per level) | Exclude | Exclude | **250** | Chink in the Armor / Prestige |
+| Polearm | Way of the Spear | 275 | Increases attack speed and damage (+0.07% speed, +0.15% damage per level) | Exclude | Exclude | **250** | Counterweight / Sharpen the Tip |
+| Riding | The Way Of The Saddle | 275 | Increases mount speed (+0.2% per level) and mount maneuverability (+0.04% per level) | Exclude | Exclude | **250** | Dauntless Steed / Tough Steed |
+| Roguery | Rogue Extraordinaire | 275 | Increases loot amount (+0.25% per level) and raid speed (+0.25% per level) | Exclude | Exclude | **250** | Dash and Slash / Fleet Footed |
+| Scouting | Uncanny Insight | 275 | Increases track detection, tracking details, and party map speed (+0.07% map speed per level) | Exclude | Exclude | **250** | Rearguard / Vanguard |
+| Smithing | Legendary Smith | 275 | Increases learning rate of parts and stamina recovery speed (+0.5% per level) | Keep | Keep | **275** | Legendary Smith |
+| Steward | Price of Loyalty | 275 | Increases party size limit (+0.25 party size per level) | Keep | Exclude | **250** | Master of Planning / Master of Warcraft |
+| Tactics | Tactical Mastery | 275 | Increases battle simulation advantage (+0.1% per level) | Exclude | Exclude | **250** | Counter Offensive / Gens d'armes |
+| Throwing | Unstoppable Force | 275 | Increases damage (+0.13% per level) and accuracy (+0.06% per level) | Exclude | Exclude | **250** | Impale / Weak Spot |
+| Trade | Everything Has a Price | 300 | Reduces trade penalty (+0.4% per level) | Keep | Keep | **300** | Everything Has a Price |
+| Two Handed | Way Of The Great Axe | 250 | Increases attack speed and damage (+0.07% speed, +0.15% damage per level) | Exclude | Exclude | **225** | Blade Master / Vandal |

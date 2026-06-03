@@ -6,6 +6,11 @@ import re
 from pathlib import Path
 from typing import Any
 
+try:
+    from .perk_limits import check_perk_filters
+except ImportError:
+    from perk_limits import check_perk_filters
+
 
 EXPECTED_WRONG = {
     "BowTrainer|primary",
@@ -113,6 +118,10 @@ def validate(workspace: Path) -> None:
     tag_index_export_path = workspace / "Data" / "export" / "tag-index.json"
 
     errors: list[str] = []
+    
+    # Run the perk filter classification consistency validation
+    errors.extend(check_perk_filters(workspace))
+
     markdown_rows = read_markdown_rows(markdown_root)
     markdown_by_key: dict[str, dict[str, Any]] = {}
     for row in markdown_rows:
