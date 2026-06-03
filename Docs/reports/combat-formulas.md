@@ -1,0 +1,2763 @@
+# Bannerlord Combat Damage and Physics Formula Methods
+
+This report catalogues the C# methods matched during the combat physics and damage formulas scan.
+- **Scan Date:** 2026-06-03T09:53:55.733012+03:00
+- **Source File:** [Data\raw\combat-formula-methods.json](combat-formula-methods.json)
+
+## Summary of Scans
+
+| Scan area | Assemblies | Matches | Queries |
+| :--- | :--- | :---: | :--- |
+| **Melee Combat Damage and Armor Mitigation** | bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll, Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll | 11 | `computeblowdamage, computerawdamage, getbluntdamagefactorbydamagetype, calculateadjustedarmorforblow` |
+| **Shield Damage, Blocks, and Perks Reductions** | bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll, Modules\SandBox\bin\Win64_Shipping_Client\SandBox.dll | 15 | `applydamagereductions, applydamageamplifications, calculateshielddamage, computeblowdamageonshield` |
+
+## Catalog of Matched Methods
+
+This catalog lists the details and numeric constants extracted from each assembly method.
+
+### ApplyDamageAmplifications (SandBox)
+
+- **Full Name:** `SandBox.GameComponents.SandboxAgentApplyDamageModel.ApplyDamageAmplifications`
+- **Signature:** `System.Single SandBox.GameComponents.SandboxAgentApplyDamageModel.ApplyDamageAmplifications(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** -1, 0, 0.5, 0.9, 1, 3, 4, 5, 6, 8, 12, 21
+- **Referenced Members:**
+  - `Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)`
+  - `Helpers.PerkHelper.AddEpicPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Core.SkillObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32, System.Boolean)`
+  - `Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)`
+  - `Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)`
+  - `TaleWorlds.CampaignSystem.Campaign.get_Current()`
+  - `TaleWorlds.CampaignSystem.Campaign.get_Models()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_Powerful()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_StrongArms()`
+  - ... (132 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.1
+IL_0001: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerFormation
+IL_0006: stloc.0
+IL_0007: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_000c: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_0011: ldloc.0
+IL_0012: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_0017: stloc.1
+IL_0018: ldarg.1
+IL_0019: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMount
+IL_001e: brtrue.s       8
+IL_0020: ldarg.1
+IL_0021: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_0026: br.s           11
+IL_0028: ldarg.1
+IL_0029: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_002e: callvirt       TaleWorlds.MountAndBlade.Agent.get_RiderAgent()
+IL_0033: stloc.2
+IL_0034: ldarg.1
+IL_0035: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMount
+IL_003a: brtrue.s       8
+IL_003c: ldarg.1
+IL_003d: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgentCharacter
+IL_0042: br.s           6
+IL_0044: ldarg.1
+IL_0045: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerRiderAgentCharacter
+IL_004a: isinst         TaleWorlds.CampaignSystem.CharacterObject
+IL_004f: stloc.3
+IL_0050: ldarg.1
+IL_0051: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerCaptainCharacter
+IL_0056: isinst         TaleWorlds.CampaignSystem.CharacterObject
+IL_005b: stloc.s        4
+IL_005d: ldarg.1
+IL_005e: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentHuman
+IL_0063: brfalse.s      11
+IL_0065: ldarg.1
+IL_0066: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveMountAgent
+IL_006b: ldc.i4.0
+IL_006c: ceq
+IL_006e: br.s           1
+IL_0070: ldc.i4.0
+IL_0071: stloc.s        5
+IL_0073: ldarg.1
+IL_0074: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveMountAgent
+IL_0079: brtrue.s       8
+IL_007b: ldarg.1
+IL_007c: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveRiderAgent
+IL_0081: br.s           1
+IL_0083: ldc.i4.1
+IL_0084: stloc.s        6
+IL_0086: ldarg.1
+IL_0087: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_008c: brtrue.s       8
+IL_008e: ldarg.1
+IL_008f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentCharacter
+IL_0094: br.s           6
+IL_0096: ldarg.1
+IL_0097: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimRiderAgentCharacter
+IL_009c: isinst         TaleWorlds.CampaignSystem.CharacterObject
+IL_00a1: stloc.s        7
+IL_00a3: ldarg.1
+IL_00a4: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentHuman
+IL_00a9: brfalse.s      11
+IL_00ab: ldarg.1
+IL_00ac: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveMountAgent
+IL_00b1: ldc.i4.0
+IL_00b2: ceq
+IL_00b4: br.s           1
+IL_00b6: ldc.i4.0
+IL_00b7: stloc.s        8
+IL_00b9: ldarg.1
+IL_00ba: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveMountAgent
+IL_00bf: brtrue.s       8
+IL_00c1: ldarg.1
+IL_00c2: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveRiderAgent
+IL_00c7: br.s           1
+IL_00c9: ldc.i4.1
+IL_00ca: stloc.s        9
+IL_00cc: ldarg.1
+IL_00cd: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimFormation
+IL_00d2: stloc.s        10
+IL_00d4: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_00d9: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_00de: ldloc.s        10
+IL_00e0: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_00e5: stloc.s        11
+IL_00e7: ldarg.2
+IL_00e8: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_00ed: stloc.s        16
+IL_00ef: ldloca.s       16
+IL_00f1: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_AttackBlockedWithShield()
+IL_00f6: brtrue.s       17
+IL_00f8: ldarg.2
+IL_00f9: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_00fe: stloc.s        16
+IL_0100: ldloca.s       16
+IL_0102: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CollidedWithShieldOnBack()
+IL_0107: br.s           1
+IL_0109: ldc.i4.1
+IL_010a: stloc.s        12
+IL_010c: ldloca.s       13
+IL_010e: ldarg.3
+IL_010f: ldc.i4.0
+IL_0110: ldnull
+IL_0111: call           TaleWorlds.CampaignSystem.ExplainedNumber..ctor(System.Single, System.Boolean, TaleWorlds.Localization.TextObject)
+IL_0116: ldarg.1
+IL_0117: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_011c: stloc.s        14
+IL_011e: ldloca.s       14
+IL_0120: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_0125: stloc.s        15
+IL_0127: ldloc.3
+IL_0128: brfalse        2189
+IL_012d: ldloc.s        15
+IL_012f: brfalse        1741
+IL_0134: ldloc.s        15
+IL_0136: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsMeleeWeapon()
+IL_013b: brfalse        955
+IL_0140: ldloc.s        15
+IL_0142: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_0147: call           TaleWorlds.Core.DefaultSkills.get_OneHanded()
+IL_014c: bne.un         179
+IL_0151: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_DeadlyPurpose()
+IL_0156: ldloc.3
+IL_0157: ldc.i4.1
+IL_0158: ldloca.s       13
+IL_015a: ldc.i4.0
+IL_015b: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0160: ldloc.s        6
+IL_0162: brfalse.s      15
+IL_0164: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_Cavalry()
+IL_0169: ldloc.3
+IL_016a: ldc.i4.1
+IL_016b: ldloca.s       13
+IL_016d: ldc.i4.0
+IL_016e: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0173: ldarg.1
+IL_0174: ldfld          TaleWorlds.MountAndBlade.AttackInformation.OffHandItem
+IL_0179: stloc.s        17
+IL_017b: ldloca.s       17
+IL_017d: call           TaleWorlds.MountAndBlade.MissionWeapon.get_IsEmpty()
+IL_0182: brfalse.s      15
+IL_0184: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_Duelist()
+IL_0189: ldloc.3
+IL_018a: ldc.i4.1
+IL_018b: ldloca.s       13
+IL_018d: ldc.i4.0
+IL_018e: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0193: ldloc.s        15
+IL_0195: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_019a: ldc.i4.6
+IL_019b: beq.s          10
+IL_019d: ldloc.s        15
+IL_019f: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_01a4: ldc.i4.4
+IL_01a5: bne.un.s       15
+IL_01a7: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_ToBeBlunt()
+IL_01ac: ldloc.3
+IL_01ad: ldc.i4.1
+IL_01ae: ldloca.s       13
+IL_01b0: ldc.i4.0
+IL_01b1: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_01b6: ldloc.s        12
+IL_01b8: brfalse.s      15
+IL_01ba: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_Prestige()
+IL_01bf: ldloc.3
+IL_01c0: ldc.i4.1
+IL_01c1: ldloca.s       13
+IL_01c3: ldc.i4.0
+IL_01c4: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_01c9: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Roguery.get_Carver()
+IL_01ce: ldloc.s        4
+IL_01d0: ldloca.s       13
+IL_01d2: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_01d7: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_WayOfTheSword()
+IL_01dc: ldloc.3
+IL_01dd: call           TaleWorlds.Core.DefaultSkills.get_OneHanded()
+IL_01e2: ldc.i4.0
+IL_01e3: ldloca.s       13
+IL_01e5: call           TaleWorlds.CampaignSystem.Campaign.get_Current()
+IL_01ea: callvirt       TaleWorlds.CampaignSystem.Campaign.get_Models()
+IL_01ef: callvirt       TaleWorlds.CampaignSystem.GameModels.get_CharacterDevelopmentModel()
+IL_01f4: callvirt       TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.get_MaxSkillRequiredForEpicPerkBonus()
+IL_01f9: ldc.i4.0
+IL_01fa: call           Helpers.PerkHelper.AddEpicPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Core.SkillObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32, System.Boolean)
+IL_01ff: br             528
+IL_0204: ldloc.s        15
+IL_0206: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_020b: call           TaleWorlds.Core.DefaultSkills.get_TwoHanded()
+IL_0210: bne.un         266
+IL_0215: ldloc.s        12
+IL_0217: brfalse.s      58
+IL_0219: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_WoodChopper()
+IL_021e: ldloc.3
+IL_021f: ldc.i4.1
+IL_0220: ldloca.s       13
+IL_0222: ldc.i4.0
+IL_0223: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0228: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_WoodChopper()
+IL_022d: ldloc.s        4
+IL_022f: ldloca.s       13
+IL_0231: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0236: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_ShieldBreaker()
+IL_023b: ldloc.3
+IL_023c: ldc.i4.1
+IL_023d: ldloca.s       13
+IL_023f: ldc.i4.0
+IL_0240: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0245: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_ShieldBreaker()
+IL_024a: ldloc.s        4
+IL_024c: ldloca.s       13
+IL_024e: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0253: ldloc.s        15
+IL_0255: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_025a: ldc.i4.5
+IL_025b: beq.s          10
+IL_025d: ldloc.s        15
+IL_025f: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_0264: ldc.i4.8
+IL_0265: bne.un.s       15
+IL_0267: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_HeadBasher()
+IL_026c: ldloc.3
+IL_026d: ldc.i4.1
+IL_026e: ldloca.s       13
+IL_0270: ldc.i4.0
+IL_0271: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0276: ldarg.1
+IL_0277: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_027c: brfalse.s      29
+IL_027e: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_BeastSlayer()
+IL_0283: ldloc.3
+IL_0284: ldc.i4.1
+IL_0285: ldloca.s       13
+IL_0287: ldc.i4.0
+IL_0288: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_028d: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_BeastSlayer()
+IL_0292: ldloc.s        4
+IL_0294: ldloca.s       13
+IL_0296: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_029b: ldarg.1
+IL_029c: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerHitPointRate
+IL_02a1: ldc.r4         0.5
+IL_02a6: bge.un.s       17
+IL_02a8: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_Berserker()
+IL_02ad: ldloc.3
+IL_02ae: ldc.i4.1
+IL_02af: ldloca.s       13
+IL_02b1: ldc.i4.0
+IL_02b2: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_02b7: br.s           28
+IL_02b9: ldarg.1
+IL_02ba: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerHitPointRate
+IL_02bf: ldc.r4         0.9
+IL_02c4: ble.un.s       15
+IL_02c6: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_Confidence()
+IL_02cb: ldloc.3
+IL_02cc: ldc.i4.1
+IL_02cd: ldloca.s       13
+IL_02cf: ldc.i4.0
+IL_02d0: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_02d5: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_BladeMaster()
+IL_02da: ldloc.3
+IL_02db: ldc.i4.1
+IL_02dc: ldloca.s       13
+IL_02de: ldc.i4.0
+IL_02df: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_02e4: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Roguery.get_DashAndSlash()
+IL_02e9: ldloc.s        4
+IL_02eb: ldloca.s       13
+IL_02ed: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_02f2: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_WayOfTheGreatAxe()
+IL_02f7: ldloc.3
+IL_02f8: call           TaleWorlds.Core.DefaultSkills.get_TwoHanded()
+IL_02fd: ldc.i4.0
+IL_02fe: ldloca.s       13
+IL_0300: call           TaleWorlds.CampaignSystem.Campaign.get_Current()
+IL_0305: callvirt       TaleWorlds.CampaignSystem.Campaign.get_Models()
+IL_030a: callvirt       TaleWorlds.CampaignSystem.GameModels.get_CharacterDevelopmentModel()
+IL_030f: callvirt       TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.get_MaxSkillRequiredForEpicPerkBonus()
+IL_0314: ldc.i4.0
+IL_0315: call           Helpers.PerkHelper.AddEpicPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Core.SkillObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32, System.Boolean)
+IL_031a: br             245
+IL_031f: ldloc.s        15
+IL_0321: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_0326: call           TaleWorlds.Core.DefaultSkills.get_Polearm()
+IL_032b: bne.un         204
+IL_0330: ldloc.s        6
+IL_0332: brfalse.s      17
+IL_0334: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_Cavalry()
+IL_0339: ldloc.3
+IL_033a: ldc.i4.1
+IL_033b: ldloca.s       13
+IL_033d: ldc.i4.0
+IL_033e: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0343: br.s           15
+IL_0345: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_Pikeman()
+IL_034a: ldloc.3
+IL_034b: ldc.i4.1
+IL_034c: ldloca.s       13
+IL_034e: ldc.i4.0
+IL_034f: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0354: ldarg.2
+IL_0355: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_035a: stloc.s        16
+IL_035c: ldloca.s       16
+IL_035e: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_StrikeType()
+IL_0363: ldc.i4.1
+IL_0364: bne.un.s       30
+IL_0366: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_CleanThrust()
+IL_036b: ldloc.3
+IL_036c: ldc.i4.1
+IL_036d: ldloca.s       13
+IL_036f: ldc.i4.0
+IL_0370: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0375: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_SharpenTheTip()
+IL_037a: ldloc.3
+IL_037b: ldc.i4.1
+IL_037c: ldloca.s       13
+IL_037e: ldc.i4.0
+IL_037f: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0384: ldarg.1
+IL_0385: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_038a: brfalse.s      33
+IL_038c: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_SteedKiller()
+IL_0391: ldloc.3
+IL_0392: ldc.i4.1
+IL_0393: ldloca.s       13
+IL_0395: ldc.i4.0
+IL_0396: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_039b: ldloc.s        5
+IL_039d: brfalse.s      14
+IL_039f: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_SteedKiller()
+IL_03a4: ldloc.s        4
+IL_03a6: ldloca.s       13
+IL_03a8: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_03ad: ldarg.1
+IL_03ae: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsHeadShot
+IL_03b3: brfalse.s      15
+IL_03b5: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_Guards()
+IL_03ba: ldloc.3
+IL_03bb: ldc.i4.1
+IL_03bc: ldloca.s       13
+IL_03be: ldc.i4.0
+IL_03bf: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_03c4: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_Phalanx()
+IL_03c9: ldloc.s        4
+IL_03cb: ldloca.s       13
+IL_03cd: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_03d2: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_WayOfTheSpear()
+IL_03d7: ldloc.3
+IL_03d8: call           TaleWorlds.Core.DefaultSkills.get_Polearm()
+IL_03dd: ldc.i4.0
+IL_03de: ldloca.s       13
+IL_03e0: call           TaleWorlds.CampaignSystem.Campaign.get_Current()
+IL_03e5: callvirt       TaleWorlds.CampaignSystem.Campaign.get_Models()
+IL_03ea: callvirt       TaleWorlds.CampaignSystem.GameModels.get_CharacterDevelopmentModel()
+IL_03ef: callvirt       TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.get_MaxSkillRequiredForEpicPerkBonus()
+IL_03f4: ldc.i4.0
+IL_03f5: call           Helpers.PerkHelper.AddEpicPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Core.SkillObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32, System.Boolean)
+IL_03fa: br.s           24
+IL_03fc: ldloc.s        15
+IL_03fe: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsShield()
+IL_0403: brfalse.s      15
+IL_0405: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_Basher()
+IL_040a: ldloc.3
+IL_040b: ldc.i4.1
+IL_040c: ldloca.s       13
+IL_040e: ldc.i4.0
+IL_040f: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0414: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_Powerful()
+IL_0419: ldloc.3
+IL_041a: ldc.i4.1
+IL_041b: ldloca.s       13
+IL_041d: ldc.i4.0
+IL_041e: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0423: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_Powerful()
+IL_0428: ldloc.s        4
+IL_042a: ldloca.s       13
+IL_042c: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0431: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Engineering.get_ImprovedTools()
+IL_0436: ldloc.s        4
+IL_0438: ldloca.s       13
+IL_043a: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_043f: ldloca.s       14
+IL_0441: call           TaleWorlds.MountAndBlade.MissionWeapon.get_Item()
+IL_0446: brfalse.s      18
+IL_0448: ldloca.s       14
+IL_044a: call           TaleWorlds.MountAndBlade.MissionWeapon.get_Item()
+IL_044f: callvirt       TaleWorlds.Core.ItemObject.get_ItemType()
+IL_0454: ldc.i4.s       12
+IL_0456: ceq
+IL_0458: br.s           1
+IL_045a: ldc.i4.0
+IL_045b: brfalse.s      15
+IL_045d: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_FlexibleFighter()
+IL_0462: ldloc.3
+IL_0463: ldc.i4.1
+IL_0464: ldloca.s       13
+IL_0466: ldc.i4.0
+IL_0467: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_046c: ldloc.s        6
+IL_046e: brfalse.s      45
+IL_0470: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_MountedWarrior()
+IL_0475: ldloc.3
+IL_0476: ldc.i4.1
+IL_0477: ldloca.s       13
+IL_0479: ldc.i4.0
+IL_047a: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_047f: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_MountedWarrior()
+IL_0484: ldloc.s        4
+IL_0486: ldloca.s       13
+IL_0488: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_048d: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_Cavalry()
+IL_0492: ldloc.s        4
+IL_0494: ldloca.s       13
+IL_0496: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_049b: br.s           46
+IL_049d: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_DeadlyPurpose()
+IL_04a2: ldloc.s        4
+IL_04a4: ldloca.s       13
+IL_04a6: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_04ab: ldarg.2
+IL_04ac: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_04b1: stloc.s        16
+IL_04b3: ldloca.s       16
+IL_04b5: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_StrikeType()
+IL_04ba: ldc.i4.1
+IL_04bb: bne.un.s       14
+IL_04bd: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_SharpenTheTip()
+IL_04c2: ldloc.s        4
+IL_04c4: ldloca.s       13
+IL_04c6: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_04cb: ldloc.1
+IL_04cc: brfalse        778
+IL_04d1: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedMeleeDamage()
+IL_04d6: ldloc.1
+IL_04d7: ldloca.s       13
+IL_04d9: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_04de: ldarg.1
+IL_04df: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveMountAgent
+IL_04e4: brfalse        754
+IL_04e9: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedMeleeDamageAgainstMountedTroops()
+IL_04ee: ldloc.1
+IL_04ef: ldloca.s       13
+IL_04f1: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_04f6: br             736
+IL_04fb: ldloc.s        15
+IL_04fd: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsConsumable()
+IL_0502: brfalse        724
+IL_0507: ldloc.s        15
+IL_0509: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_050e: call           TaleWorlds.Core.DefaultSkills.get_Bow()
+IL_0513: bne.un         164
+IL_0518: ldarg.2
+IL_0519: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_051e: stloc.s        16
+IL_0520: ldloca.s       16
+IL_0522: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CollisionBoneIndex()
+IL_0527: ldc.i4.m1
+IL_0528: beq            143
+IL_052d: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_BowControl()
+IL_0532: ldloc.s        4
+IL_0534: ldloca.s       13
+IL_0536: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_053b: ldarg.1
+IL_053c: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsHeadShot
+IL_0541: brfalse.s      15
+IL_0543: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_DeadAim()
+IL_0548: ldloc.3
+IL_0549: ldc.i4.1
+IL_054a: ldloca.s       13
+IL_054c: ldc.i4.0
+IL_054d: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0552: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_StrongBows()
+IL_0557: ldloc.3
+IL_0558: ldc.i4.1
+IL_0559: ldloca.s       13
+IL_055b: ldc.i4.0
+IL_055c: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0561: ldloc.3
+IL_0562: callvirt       TaleWorlds.CampaignSystem.CharacterObject.get_Tier()
+IL_0567: ldc.i4.3
+IL_0568: blt.s          14
+IL_056a: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_StrongBows()
+IL_056f: ldloc.s        4
+IL_0571: ldloca.s       13
+IL_0573: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0578: ldarg.1
+IL_0579: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_057e: brfalse.s      15
+IL_0580: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_HunterClan()
+IL_0585: ldloc.3
+IL_0586: ldc.i4.1
+IL_0587: ldloca.s       13
+IL_0589: ldc.i4.0
+IL_058a: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_058f: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_Deadshot()
+IL_0594: ldloc.3
+IL_0595: call           TaleWorlds.Core.DefaultSkills.get_Bow()
+IL_059a: ldc.i4.0
+IL_059b: ldloca.s       13
+IL_059d: call           TaleWorlds.CampaignSystem.Campaign.get_Current()
+IL_05a2: callvirt       TaleWorlds.CampaignSystem.Campaign.get_Models()
+IL_05a7: callvirt       TaleWorlds.CampaignSystem.GameModels.get_CharacterDevelopmentModel()
+IL_05ac: callvirt       TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.get_MinSkillRequiredForEpicPerkBonus()
+IL_05b1: ldc.i4.0
+IL_05b2: call           Helpers.PerkHelper.AddEpicPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Core.SkillObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32, System.Boolean)
+IL_05b7: br             494
+IL_05bc: ldloc.s        15
+IL_05be: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_05c3: call           TaleWorlds.Core.DefaultSkills.get_Crossbow()
+IL_05c8: bne.un         187
+IL_05cd: ldarg.2
+IL_05ce: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_05d3: stloc.s        16
+IL_05d5: ldloca.s       16
+IL_05d7: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CollisionBoneIndex()
+IL_05dc: ldc.i4.m1
+IL_05dd: beq            166
+IL_05e2: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Engineering.get_TorsionEngines()
+IL_05e7: ldloc.3
+IL_05e8: ldc.i4.0
+IL_05e9: ldloca.s       13
+IL_05eb: ldc.i4.0
+IL_05ec: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_05f1: ldarg.1
+IL_05f2: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_05f7: brfalse.s      29
+IL_05f9: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Unhorser()
+IL_05fe: ldloc.3
+IL_05ff: ldc.i4.1
+IL_0600: ldloca.s       13
+IL_0602: ldc.i4.0
+IL_0603: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0608: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Unhorser()
+IL_060d: ldloc.s        4
+IL_060f: ldloca.s       13
+IL_0611: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0616: ldarg.1
+IL_0617: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsHeadShot
+IL_061c: brfalse.s      15
+IL_061e: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Sheriff()
+IL_0623: ldloc.3
+IL_0624: ldc.i4.1
+IL_0625: ldloca.s       13
+IL_0627: ldc.i4.0
+IL_0628: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_062d: ldloc.s        8
+IL_062f: brfalse.s      14
+IL_0631: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Sheriff()
+IL_0636: ldloc.s        4
+IL_0638: ldloca.s       13
+IL_063a: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_063f: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_HammerBolts()
+IL_0644: ldloc.s        4
+IL_0646: ldloca.s       13
+IL_0648: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_064d: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Engineering.get_DreadfulSieger()
+IL_0652: ldloc.s        4
+IL_0654: ldloca.s       13
+IL_0656: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_065b: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_MightyPull()
+IL_0660: ldloc.3
+IL_0661: call           TaleWorlds.Core.DefaultSkills.get_Crossbow()
+IL_0666: ldc.i4.0
+IL_0667: ldloca.s       13
+IL_0669: call           TaleWorlds.CampaignSystem.Campaign.get_Current()
+IL_066e: callvirt       TaleWorlds.CampaignSystem.Campaign.get_Models()
+IL_0673: callvirt       TaleWorlds.CampaignSystem.GameModels.get_CharacterDevelopmentModel()
+IL_0678: callvirt       TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.get_MinSkillRequiredForEpicPerkBonus()
+IL_067d: ldc.i4.0
+IL_067e: call           Helpers.PerkHelper.AddEpicPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Core.SkillObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32, System.Boolean)
+IL_0683: br             290
+IL_0688: ldloc.s        15
+IL_068a: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_068f: call           TaleWorlds.Core.DefaultSkills.get_Throwing()
+IL_0694: bne.un         273
+IL_0699: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_StrongArms()
+IL_069e: ldloc.3
+IL_069f: ldc.i4.1
+IL_06a0: ldloca.s       13
+IL_06a2: ldc.i4.0
+IL_06a3: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_06a8: ldloc.s        12
+IL_06aa: brfalse.s      69
+IL_06ac: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_ShieldBreaker()
+IL_06b1: ldloc.3
+IL_06b2: ldc.i4.1
+IL_06b3: ldloca.s       13
+IL_06b5: ldc.i4.0
+IL_06b6: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_06bb: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_ShieldBreaker()
+IL_06c0: ldloc.s        4
+IL_06c2: ldloca.s       13
+IL_06c4: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_06c9: ldloc.s        15
+IL_06cb: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_06d0: ldc.i4.s       21
+IL_06d2: bne.un.s       15
+IL_06d4: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_Splinters()
+IL_06d9: ldloc.3
+IL_06da: ldc.i4.1
+IL_06db: ldloca.s       13
+IL_06dd: ldc.i4.0
+IL_06de: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_06e3: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_Splinters()
+IL_06e8: ldloc.s        4
+IL_06ea: ldloca.s       13
+IL_06ec: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_06f1: ldarg.1
+IL_06f2: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_06f7: brfalse.s      29
+IL_06f9: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_Hunter()
+IL_06fe: ldloc.3
+IL_06ff: ldc.i4.1
+IL_0700: ldloca.s       13
+IL_0702: ldc.i4.0
+IL_0703: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0708: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_Hunter()
+IL_070d: ldloc.s        4
+IL_070f: ldloca.s       13
+IL_0711: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0716: ldloc.s        6
+IL_0718: brfalse.s      14
+IL_071a: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_MountedSkirmisher()
+IL_071f: ldloc.s        4
+IL_0721: ldloca.s       13
+IL_0723: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0728: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_Impale()
+IL_072d: ldloc.s        4
+IL_072f: ldloca.s       13
+IL_0731: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0736: ldloc.s        9
+IL_0738: brfalse.s      14
+IL_073a: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_KnockOff()
+IL_073f: ldloc.s        4
+IL_0741: ldloca.s       13
+IL_0743: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0748: ldarg.1
+IL_0749: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentHealth
+IL_074e: ldarg.1
+IL_074f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentMaxHealth
+IL_0754: ldc.r4         0.5
+IL_0759: mul
+IL_075a: bgt.un.s       15
+IL_075c: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_LastHit()
+IL_0761: ldloc.3
+IL_0762: ldc.i4.1
+IL_0763: ldloca.s       13
+IL_0765: ldc.i4.0
+IL_0766: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_076b: ldarg.1
+IL_076c: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsHeadShot
+IL_0771: brfalse.s      15
+IL_0773: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_HeadHunter()
+IL_0778: ldloc.3
+IL_0779: ldc.i4.1
+IL_077a: ldloca.s       13
+IL_077c: ldc.i4.0
+IL_077d: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0782: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_UnstoppableForce()
+IL_0787: ldloc.3
+IL_0788: call           TaleWorlds.Core.DefaultSkills.get_Throwing()
+IL_078d: ldc.i4.0
+IL_078e: ldloca.s       13
+IL_0790: call           TaleWorlds.CampaignSystem.Campaign.get_Current()
+IL_0795: callvirt       TaleWorlds.CampaignSystem.Campaign.get_Models()
+IL_079a: callvirt       TaleWorlds.CampaignSystem.GameModels.get_CharacterDevelopmentModel()
+IL_079f: callvirt       TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.get_MinSkillRequiredForEpicPerkBonus()
+IL_07a4: ldc.i4.0
+IL_07a5: call           Helpers.PerkHelper.AddEpicPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Core.SkillObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32, System.Boolean)
+IL_07aa: ldloc.s        6
+IL_07ac: brfalse.s      29
+IL_07ae: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_HorseArcher()
+IL_07b3: ldloc.3
+IL_07b4: ldc.i4.1
+IL_07b5: ldloca.s       13
+IL_07b7: ldc.i4.0
+IL_07b8: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_07bd: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_HorseArcher()
+IL_07c2: ldloc.s        4
+IL_07c4: ldloca.s       13
+IL_07c6: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_07cb: ldloc.1
+IL_07cc: brfalse.s      13
+IL_07ce: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedRangedDamage()
+IL_07d3: ldloc.1
+IL_07d4: ldloca.s       13
+IL_07d6: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_07db: ldloca.s       14
+IL_07dd: call           TaleWorlds.MountAndBlade.MissionWeapon.get_Item()
+IL_07e2: brfalse.s      29
+IL_07e4: ldloca.s       14
+IL_07e6: call           TaleWorlds.MountAndBlade.MissionWeapon.get_Item()
+IL_07eb: callvirt       TaleWorlds.Core.ItemObject.get_IsCivilian()
+IL_07f0: brfalse.s      15
+IL_07f2: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Roguery.get_Carver()
+IL_07f7: ldloc.3
+IL_07f8: ldc.i4.1
+IL_07f9: ldloca.s       13
+IL_07fb: ldc.i4.0
+IL_07fc: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0801: ldarg.2
+IL_0802: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0807: stloc.s        16
+IL_0809: ldloca.s       16
+IL_080b: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsHorseCharge()
+IL_0810: brfalse        149
+IL_0815: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_FullSpeed()
+IL_081a: ldloc.3
+IL_081b: ldc.i4.1
+IL_081c: ldloca.s       13
+IL_081e: ldc.i4.0
+IL_081f: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0824: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_FullSpeed()
+IL_0829: ldloc.s        4
+IL_082b: ldloca.s       13
+IL_082d: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0832: ldloc.3
+IL_0833: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_TheWayOfTheSaddle()
+IL_0838: callvirt       TaleWorlds.CampaignSystem.CharacterObject.GetPerkValue(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)
+IL_083d: brfalse.s      73
+IL_083f: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0844: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_AgentStatCalculateModel()
+IL_0849: ldloc.2
+IL_084a: call           TaleWorlds.Core.DefaultSkills.get_Riding()
+IL_084f: callvirt       TaleWorlds.MountAndBlade.AgentStatCalculateModel.GetEffectiveSkill(TaleWorlds.MountAndBlade.Agent, TaleWorlds.Core.SkillObject)
+IL_0854: call           TaleWorlds.CampaignSystem.Campaign.get_Current()
+IL_0859: callvirt       TaleWorlds.CampaignSystem.Campaign.get_Models()
+IL_085e: callvirt       TaleWorlds.CampaignSystem.GameModels.get_CharacterDevelopmentModel()
+IL_0863: callvirt       TaleWorlds.CampaignSystem.ComponentInterfaces.CharacterDevelopmentModel.get_MaxSkillRequiredForEpicPerkBonus()
+IL_0868: sub
+IL_0869: ldc.i4.0
+IL_086a: call           TaleWorlds.Library.MathF.Max(System.Int32, System.Int32)
+IL_086f: conv.r4
+IL_0870: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Riding.get_TheWayOfTheSaddle()
+IL_0875: callvirt       TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject.get_PrimaryBonus()
+IL_087a: mul
+IL_087b: stloc.s        18
+IL_087d: ldloca.s       13
+IL_087f: ldloc.s        18
+IL_0881: ldnull
+IL_0882: ldnull
+IL_0883: call           TaleWorlds.CampaignSystem.ExplainedNumber.Add(System.Single, TaleWorlds.Localization.TextObject, TaleWorlds.Localization.TextObject)
+IL_0888: ldloc.1
+IL_0889: brfalse.s      13
+IL_088b: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedChargeDamage()
+IL_0890: ldloc.1
+IL_0891: ldloca.s       13
+IL_0893: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0898: ldloc.s        11
+IL_089a: brfalse.s      14
+IL_089c: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedChargeDamage()
+IL_08a1: ldloc.s        11
+IL_08a3: ldloca.s       13
+IL_08a5: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_08aa: ldloc.s        5
+IL_08ac: brfalse.s      60
+IL_08ae: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_HeadBasher()
+IL_08b3: ldloc.s        4
+IL_08b5: ldloca.s       13
+IL_08b7: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_08bc: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_RecklessCharge()
+IL_08c1: ldloc.s        4
+IL_08c3: ldloca.s       13
+IL_08c5: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_08ca: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_Pikeman()
+IL_08cf: ldloc.s        4
+IL_08d1: ldloca.s       13
+IL_08d3: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_08d8: ldloc.s        9
+IL_08da: brfalse.s      14
+IL_08dc: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_Braced()
+IL_08e1: ldloc.s        4
+IL_08e3: ldloca.s       13
+IL_08e5: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_08ea: ldloc.s        6
+IL_08ec: brfalse.s      14
+IL_08ee: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_Cavalry()
+IL_08f3: ldloc.s        4
+IL_08f5: ldloca.s       13
+IL_08f7: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_08fc: ldloc.s        15
+IL_08fe: brtrue.s       43
+IL_0900: ldarg.2
+IL_0901: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0906: stloc.s        16
+IL_0908: ldloca.s       16
+IL_090a: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsAlternativeAttack()
+IL_090f: brfalse.s      26
+IL_0911: ldloc.3
+IL_0912: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_StrongLegs()
+IL_0917: callvirt       TaleWorlds.CampaignSystem.CharacterObject.GetPerkValue(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)
+IL_091c: brfalse.s      13
+IL_091e: ldloca.s       13
+IL_0920: ldc.r4         1
+IL_0925: ldnull
+IL_0926: call           TaleWorlds.CampaignSystem.ExplainedNumber.AddFactor(System.Single, TaleWorlds.Localization.TextObject)
+IL_092b: ldloc.s        12
+IL_092d: brfalse.s      14
+IL_092f: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Engineering.get_WallBreaker()
+IL_0934: ldloc.s        4
+IL_0936: ldloca.s       13
+IL_0938: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_093d: ldarg.2
+IL_093e: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0943: stloc.s        16
+IL_0945: ldloca.s       16
+IL_0947: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_EntityExists()
+IL_094c: brfalse.s      14
+IL_094e: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_Vandal()
+IL_0953: ldloc.s        4
+IL_0955: ldloca.s       13
+IL_0957: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_095c: ldloc.s        7
+IL_095e: brfalse.s      63
+IL_0960: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Tactics.get_Coaching()
+IL_0965: ldloc.s        4
+IL_0967: ldloca.s       13
+IL_0969: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_096e: ldloc.s        7
+IL_0970: callvirt       TaleWorlds.CampaignSystem.CharacterObject.get_Culture()
+IL_0975: callvirt       TaleWorlds.Core.BasicCultureObject.get_IsBandit()
+IL_097a: brfalse.s      14
+IL_097c: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Tactics.get_LawKeeper()
+IL_0981: ldloc.s        4
+IL_0983: ldloca.s       13
+IL_0985: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_098a: ldloc.s        6
+IL_098c: ldloc.s        8
+IL_098e: and
+IL_098f: brfalse.s      14
+IL_0991: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Tactics.get_Gensdarmes()
+IL_0996: ldloc.s        4
+IL_0998: ldloca.s       13
+IL_099a: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_099f: ldloc.3
+IL_09a0: callvirt       TaleWorlds.CampaignSystem.CharacterObject.get_Culture()
+IL_09a5: callvirt       TaleWorlds.Core.BasicCultureObject.get_IsBandit()
+IL_09aa: brfalse.s      14
+IL_09ac: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Roguery.get_PartnersInCrime()
+IL_09b1: ldloc.s        4
+IL_09b3: ldloca.s       13
+IL_09b5: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_09ba: ldloca.s       13
+IL_09bc: call           TaleWorlds.CampaignSystem.ExplainedNumber.get_ResultNumber()
+IL_09c1: ret
+```
+</details>
+
+### ApplyDamageReductions (SandBox)
+
+- **Full Name:** `SandBox.GameComponents.SandboxAgentApplyDamageModel.ApplyDamageReductions`
+- **Signature:** `System.Single SandBox.GameComponents.SandboxAgentApplyDamageModel.ApplyDamageReductions(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 1, 5, 17
+- **Referenced Members:**
+  - `Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)`
+  - `Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)`
+  - `Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)`
+  - `Helpers.SkillHelper.AddSkillBonusForSkillLevel(TaleWorlds.CampaignSystem.SkillEffect, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32)`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_Braced()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_StrongLegs()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_SkirmishPhaseMaster()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_CounterFire()`
+  - ... (51 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.1
+IL_0001: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerFormation
+IL_0006: stloc.0
+IL_0007: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_000c: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_0011: ldloc.0
+IL_0012: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_0017: pop
+IL_0018: ldarg.1
+IL_0019: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMount
+IL_001e: brtrue.s       8
+IL_0020: ldarg.1
+IL_0021: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_0026: br.s           11
+IL_0028: ldarg.1
+IL_0029: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_002e: callvirt       TaleWorlds.MountAndBlade.Agent.get_RiderAgent()
+IL_0033: stloc.1
+IL_0034: ldarg.1
+IL_0035: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMount
+IL_003a: pop
+IL_003b: ldarg.1
+IL_003c: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentHuman
+IL_0041: brfalse.s      11
+IL_0043: ldarg.1
+IL_0044: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveMountAgent
+IL_0049: ldc.i4.0
+IL_004a: ceq
+IL_004c: br.s           1
+IL_004e: ldc.i4.0
+IL_004f: pop
+IL_0050: ldarg.1
+IL_0051: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveMountAgent
+IL_0056: brtrue.s       8
+IL_0058: ldarg.1
+IL_0059: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveRiderAgent
+IL_005e: br.s           1
+IL_0060: ldc.i4.1
+IL_0061: pop
+IL_0062: ldarg.1
+IL_0063: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_0068: brtrue.s       8
+IL_006a: ldarg.1
+IL_006b: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentCharacter
+IL_0070: br.s           6
+IL_0072: ldarg.1
+IL_0073: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimRiderAgentCharacter
+IL_0078: isinst         TaleWorlds.CampaignSystem.CharacterObject
+IL_007d: stloc.2
+IL_007e: ldarg.1
+IL_007f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimCaptainCharacter
+IL_0084: isinst         TaleWorlds.CampaignSystem.CharacterObject
+IL_0089: stloc.3
+IL_008a: ldarg.1
+IL_008b: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentHuman
+IL_0090: brfalse.s      11
+IL_0092: ldarg.1
+IL_0093: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveMountAgent
+IL_0098: ldc.i4.0
+IL_0099: ceq
+IL_009b: br.s           1
+IL_009d: ldc.i4.0
+IL_009e: stloc.s        4
+IL_00a0: ldarg.1
+IL_00a1: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveMountAgent
+IL_00a6: brtrue.s       8
+IL_00a8: ldarg.1
+IL_00a9: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveRiderAgent
+IL_00ae: br.s           1
+IL_00b0: ldc.i4.1
+IL_00b1: pop
+IL_00b2: ldarg.1
+IL_00b3: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimFormation
+IL_00b8: stloc.s        5
+IL_00ba: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_00bf: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_00c4: ldloc.s        5
+IL_00c6: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_00cb: stloc.s        6
+IL_00cd: ldarg.1
+IL_00ce: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimMainHandWeapon
+IL_00d3: stloc.s        12
+IL_00d5: ldloca.s       12
+IL_00d7: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_00dc: pop
+IL_00dd: ldarg.1
+IL_00de: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimMainHandWeapon
+IL_00e3: stloc.s        12
+IL_00e5: ldloca.s       12
+IL_00e7: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_00ec: stloc.s        7
+IL_00ee: ldarg.2
+IL_00ef: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_00f4: stloc.s        13
+IL_00f6: ldloca.s       13
+IL_00f8: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_AttackBlockedWithShield()
+IL_00fd: brtrue.s       17
+IL_00ff: ldarg.2
+IL_0100: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0105: stloc.s        13
+IL_0107: ldloca.s       13
+IL_0109: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CollidedWithShieldOnBack()
+IL_010e: br.s           1
+IL_0110: ldc.i4.1
+IL_0111: stloc.s        8
+IL_0113: ldloca.s       9
+IL_0115: ldarg.3
+IL_0116: ldc.i4.0
+IL_0117: ldnull
+IL_0118: call           TaleWorlds.CampaignSystem.ExplainedNumber..ctor(System.Single, System.Boolean, TaleWorlds.Localization.TextObject)
+IL_011d: ldarg.1
+IL_011e: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_0123: stloc.s        10
+IL_0125: ldloca.s       10
+IL_0127: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_012c: stloc.s        11
+IL_012e: ldarg.1
+IL_012f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveMountAgent
+IL_0134: brfalse.s      60
+IL_0136: ldloc.s        11
+IL_0138: brfalse.s      16
+IL_013a: ldloc.s        11
+IL_013c: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_0141: call           TaleWorlds.Core.DefaultSkills.get_Crossbow()
+IL_0146: ceq
+IL_0148: br.s           1
+IL_014a: ldc.i4.0
+IL_014b: brtrue.s       37
+IL_014d: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0152: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_AgentStatCalculateModel()
+IL_0157: ldloc.1
+IL_0158: call           TaleWorlds.Core.DefaultSkills.get_Riding()
+IL_015d: callvirt       TaleWorlds.MountAndBlade.AgentStatCalculateModel.GetEffectiveSkill(TaleWorlds.MountAndBlade.Agent, TaleWorlds.Core.SkillObject)
+IL_0162: stloc.s        14
+IL_0164: call           TaleWorlds.CampaignSystem.DefaultSkillEffects.get_MountedWeaponDamagePenalty()
+IL_0169: ldloca.s       9
+IL_016b: ldloc.s        14
+IL_016d: call           Helpers.SkillHelper.AddSkillBonusForSkillLevel(TaleWorlds.CampaignSystem.SkillEffect, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Int32)
+IL_0172: ldloc.2
+IL_0173: brfalse        439
+IL_0178: ldloc.s        11
+IL_017a: brfalse        226
+IL_017f: ldloc.s        11
+IL_0181: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsConsumable()
+IL_0186: brfalse        143
+IL_018b: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_SkirmishPhaseMaster()
+IL_0190: ldloc.2
+IL_0191: ldc.i4.1
+IL_0192: ldloca.s       9
+IL_0194: ldc.i4.0
+IL_0195: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_019a: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_Skirmisher()
+IL_019f: ldloc.3
+IL_01a0: ldloca.s       9
+IL_01a2: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_01a7: ldloc.2
+IL_01a8: callvirt       TaleWorlds.Core.BasicCharacterObject.get_IsRanged()
+IL_01ad: brfalse.s      13
+IL_01af: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_SkirmishPhaseMaster()
+IL_01b4: ldloc.3
+IL_01b5: ldloca.s       9
+IL_01b7: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_01bc: ldloc.s        7
+IL_01be: brfalse.s      70
+IL_01c0: ldloc.s        7
+IL_01c2: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_01c7: ldc.i4.s       17
+IL_01c9: bne.un.s       30
+IL_01cb: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_CounterFire()
+IL_01d0: ldloc.2
+IL_01d1: ldc.i4.1
+IL_01d2: ldloca.s       9
+IL_01d4: ldc.i4.0
+IL_01d5: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_01da: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_CounterFire()
+IL_01df: ldloc.3
+IL_01e0: ldloca.s       9
+IL_01e2: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_01e7: br.s           29
+IL_01e9: ldloc.s        7
+IL_01eb: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_01f0: call           TaleWorlds.Core.DefaultSkills.get_Throwing()
+IL_01f5: bne.un.s       15
+IL_01f7: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_Skirmisher()
+IL_01fc: ldloc.2
+IL_01fd: ldc.i4.1
+IL_01fe: ldloca.s       9
+IL_0200: ldc.i4.0
+IL_0201: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0206: ldloc.s        6
+IL_0208: brfalse.s      87
+IL_020a: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedRangedAttackDamage()
+IL_020f: ldloc.s        6
+IL_0211: ldloca.s       9
+IL_0213: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0218: br.s           71
+IL_021a: ldloc.s        11
+IL_021c: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsMeleeWeapon()
+IL_0221: brfalse.s      62
+IL_0223: ldloc.3
+IL_0224: brfalse.s      41
+IL_0226: ldarg.1
+IL_0227: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimFormation
+IL_022c: dup
+IL_022d: brtrue.s       4
+IL_022f: pop
+IL_0230: ldc.i4.0
+IL_0231: br.s           13
+IL_0233: call           TaleWorlds.MountAndBlade.Formation.get_ArrangementOrder()
+IL_0238: ldfld          TaleWorlds.MountAndBlade.ArrangementOrder.OrderEnum
+IL_023d: ldc.i4.5
+IL_023e: ceq
+IL_0240: brfalse.s      13
+IL_0242: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_Basher()
+IL_0247: ldloc.3
+IL_0248: ldloca.s       9
+IL_024a: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_024f: ldloc.s        6
+IL_0251: brfalse.s      14
+IL_0253: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedMeleeAttackDamage()
+IL_0258: ldloc.s        6
+IL_025a: ldloca.s       9
+IL_025c: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0261: ldloc.s        8
+IL_0263: brfalse.s      81
+IL_0265: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_SteelCoreShields()
+IL_026a: ldloc.2
+IL_026b: ldc.i4.1
+IL_026c: ldloca.s       9
+IL_026e: ldc.i4.0
+IL_026f: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0274: ldloc.s        4
+IL_0276: brfalse.s      13
+IL_0278: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_SteelCoreShields()
+IL_027d: ldloc.3
+IL_027e: ldloca.s       9
+IL_0280: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0285: ldarg.2
+IL_0286: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_028b: stloc.s        13
+IL_028d: ldloca.s       13
+IL_028f: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_AttackBlockedWithShield()
+IL_0294: brfalse.s      32
+IL_0296: ldarg.2
+IL_0297: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_029c: stloc.s        13
+IL_029e: ldloca.s       13
+IL_02a0: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CorrectSideShieldBlock()
+IL_02a5: brtrue.s       15
+IL_02a7: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_ShieldWall()
+IL_02ac: ldloc.2
+IL_02ad: ldc.i4.1
+IL_02ae: ldloca.s       9
+IL_02b0: ldc.i4.0
+IL_02b1: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_02b6: ldarg.2
+IL_02b7: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_02bc: stloc.s        13
+IL_02be: ldloca.s       13
+IL_02c0: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsHorseCharge()
+IL_02c5: brfalse.s      59
+IL_02c7: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_SureFooted()
+IL_02cc: ldloc.2
+IL_02cd: ldc.i4.1
+IL_02ce: ldloca.s       9
+IL_02d0: ldc.i4.0
+IL_02d1: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_02d6: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_Braced()
+IL_02db: ldloc.2
+IL_02dc: ldc.i4.1
+IL_02dd: ldloca.s       9
+IL_02df: ldc.i4.0
+IL_02e0: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_02e5: ldloc.3
+IL_02e6: brfalse.s      26
+IL_02e8: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Polearm.get_SureFooted()
+IL_02ed: ldloc.3
+IL_02ee: ldloca.s       9
+IL_02f0: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_02f5: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_Braced()
+IL_02fa: ldloc.3
+IL_02fb: ldloca.s       9
+IL_02fd: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0302: ldarg.2
+IL_0303: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0308: stloc.s        13
+IL_030a: ldloca.s       13
+IL_030c: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsFallDamage()
+IL_0311: brfalse.s      15
+IL_0313: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Athletics.get_StrongLegs()
+IL_0318: ldloc.2
+IL_0319: ldc.i4.1
+IL_031a: ldloca.s       9
+IL_031c: ldc.i4.0
+IL_031d: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0322: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Tactics.get_EliteReserves()
+IL_0327: ldloc.3
+IL_0328: ldloca.s       9
+IL_032a: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_032f: ldloca.s       9
+IL_0331: call           TaleWorlds.CampaignSystem.ExplainedNumber.get_ResultNumber()
+IL_0336: ret
+```
+</details>
+
+### CalculateShieldDamage (SandBox)
+
+- **Full Name:** `SandBox.GameComponents.SandboxAgentApplyDamageModel.CalculateShieldDamage`
+- **Signature:** `System.Single SandBox.GameComponents.SandboxAgentApplyDamageModel.CalculateShieldDamage(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0
+- **Referenced Members:**
+  - `Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)`
+  - `TaleWorlds.CampaignSystem.ExplainedNumber..ctor(System.Single, System.Boolean, TaleWorlds.Localization.TextObject)`
+  - `TaleWorlds.CampaignSystem.ExplainedNumber.get_ResultNumber()`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_DecreasedShieldDamage()`
+  - `TaleWorlds.MountAndBlade.AttackInformation.VictimFormation`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)`
+  - `TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()`
+  - `TaleWorlds.MountAndBlade.MissionGameModels.get_Current()`
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.1
+IL_0001: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimFormation
+IL_0006: stloc.0
+IL_0007: ldloca.s       1
+IL_0009: ldarg.2
+IL_000a: ldc.i4.0
+IL_000b: ldnull
+IL_000c: call           TaleWorlds.CampaignSystem.ExplainedNumber..ctor(System.Single, System.Boolean, TaleWorlds.Localization.TextObject)
+IL_0011: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0016: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_001b: ldloc.0
+IL_001c: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_0021: stloc.2
+IL_0022: ldloc.2
+IL_0023: brfalse.s      13
+IL_0025: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedShieldDamage()
+IL_002a: ldloc.2
+IL_002b: ldloca.s       1
+IL_002d: call           Helpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0032: ldloca.s       1
+IL_0034: call           TaleWorlds.CampaignSystem.ExplainedNumber.get_ResultNumber()
+IL_0039: ret
+```
+</details>
+
+### CalculateAdjustedArmorForBlow (SandBox)
+
+- **Full Name:** `SandBox.GameComponents.SandboxStrikeMagnitudeModel.CalculateAdjustedArmorForBlow`
+- **Signature:** `System.Single SandBox.GameComponents.SandboxStrikeMagnitudeModel.CalculateAdjustedArmorForBlow(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseArmor, TaleWorlds.Core.BasicCharacterObject attackerCharacter, TaleWorlds.Core.BasicCharacterObject attackerCaptainCharacter, TaleWorlds.Core.BasicCharacterObject victimCharacter, TaleWorlds.Core.BasicCharacterObject victimCaptainCharacter, TaleWorlds.Core.WeaponComponentData weaponComponent)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 1, 14
+- **Referenced Members:**
+  - `Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)`
+  - `Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_Bodkin()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Piercer()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Puncture()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_ChinkInTheArmor()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_SlingingCompetitions()`
+  - `TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_WeakSpot()`
+  - ... (19 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+IL_0002: ldarg.3
+IL_0003: stloc.1
+IL_0004: ldarg.s        4
+IL_0006: isinst         TaleWorlds.CampaignSystem.CharacterObject
+IL_000b: stloc.2
+IL_000c: ldarg.s        5
+IL_000e: isinst         TaleWorlds.CampaignSystem.CharacterObject
+IL_0013: stloc.3
+IL_0014: ldarg.s        4
+IL_0016: ldloc.3
+IL_0017: bne.un.s       2
+IL_0019: ldnull
+IL_001a: stloc.3
+IL_001b: ldloc.1
+IL_001c: ldc.r4         0
+IL_0021: ble.un         426
+IL_0026: ldloc.2
+IL_0027: brfalse        420
+IL_002c: ldarg.s        8
+IL_002e: brfalse.s      87
+IL_0030: ldarg.s        8
+IL_0032: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_0037: call           TaleWorlds.Core.DefaultSkills.get_Crossbow()
+IL_003c: bne.un.s       30
+IL_003e: ldarg.3
+IL_003f: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Piercer()
+IL_0044: callvirt       TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject.get_PrimaryBonus()
+IL_0049: bge.un.s       17
+IL_004b: ldloc.2
+IL_004c: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Piercer()
+IL_0051: callvirt       TaleWorlds.CampaignSystem.CharacterObject.GetPerkValue(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)
+IL_0056: brfalse.s      4
+IL_0058: ldc.i4.1
+IL_0059: stloc.0
+IL_005a: br.s           43
+IL_005c: ldarg.s        8
+IL_005e: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_0063: ldc.i4.s       14
+IL_0065: bne.un.s       32
+IL_0067: ldarg.2
+IL_0068: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_006d: stloc.s        4
+IL_006f: ldloca.s       4
+IL_0071: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_VictimHitBodyPart()
+IL_0076: brtrue.s       15
+IL_0078: ldloc.2
+IL_0079: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_SlingingCompetitions()
+IL_007e: callvirt       TaleWorlds.CampaignSystem.CharacterObject.GetPerkValue(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)
+IL_0083: brfalse.s      2
+IL_0085: ldc.i4.1
+IL_0086: stloc.0
+IL_0087: ldloc.0
+IL_0088: brfalse.s      11
+IL_008a: ldc.r4         0
+IL_008f: stloc.1
+IL_0090: br             315
+IL_0095: ldloca.s       5
+IL_0097: ldarg.3
+IL_0098: ldc.i4.0
+IL_0099: ldnull
+IL_009a: call           TaleWorlds.CampaignSystem.ExplainedNumber..ctor(System.Single, System.Boolean, TaleWorlds.Localization.TextObject)
+IL_009f: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+TwoHanded.get_Vandal()
+IL_00a4: ldloc.2
+IL_00a5: ldc.i4.1
+IL_00a6: ldloca.s       5
+IL_00a8: ldc.i4.0
+IL_00a9: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_00ae: ldarg.s        8
+IL_00b0: brfalse        173
+IL_00b5: ldarg.s        8
+IL_00b7: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_00bc: call           TaleWorlds.Core.DefaultSkills.get_OneHanded()
+IL_00c1: bne.un.s       20
+IL_00c3: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+OneHanded.get_ChinkInTheArmor()
+IL_00c8: ldloc.2
+IL_00c9: ldc.i4.1
+IL_00ca: ldloca.s       5
+IL_00cc: ldc.i4.0
+IL_00cd: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_00d2: br             139
+IL_00d7: ldarg.s        8
+IL_00d9: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_00de: call           TaleWorlds.Core.DefaultSkills.get_Bow()
+IL_00e3: bne.un.s       33
+IL_00e5: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_Bodkin()
+IL_00ea: ldloc.2
+IL_00eb: ldc.i4.1
+IL_00ec: ldloca.s       5
+IL_00ee: ldc.i4.0
+IL_00ef: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_00f4: ldloc.3
+IL_00f5: brfalse.s      107
+IL_00f7: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Bow.get_Bodkin()
+IL_00fc: ldloc.3
+IL_00fd: ldloca.s       5
+IL_00ff: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0104: br.s           92
+IL_0106: ldarg.s        8
+IL_0108: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_010d: call           TaleWorlds.Core.DefaultSkills.get_Crossbow()
+IL_0112: bne.un.s       33
+IL_0114: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Puncture()
+IL_0119: ldloc.2
+IL_011a: ldc.i4.1
+IL_011b: ldloca.s       5
+IL_011d: ldc.i4.0
+IL_011e: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0123: ldloc.3
+IL_0124: brfalse.s      60
+IL_0126: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Crossbow.get_Puncture()
+IL_012b: ldloc.3
+IL_012c: ldloca.s       5
+IL_012e: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0133: br.s           45
+IL_0135: ldarg.s        8
+IL_0137: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_013c: call           TaleWorlds.Core.DefaultSkills.get_Throwing()
+IL_0141: bne.un.s       31
+IL_0143: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_WeakSpot()
+IL_0148: ldloc.2
+IL_0149: ldc.i4.1
+IL_014a: ldloca.s       5
+IL_014c: ldc.i4.0
+IL_014d: call           Helpers.PerkHelper.AddPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, System.Boolean, TaleWorlds.CampaignSystem.ExplainedNumber&, System.Boolean)
+IL_0152: ldloc.3
+IL_0153: brfalse.s      13
+IL_0155: call           TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultPerks+Throwing.get_WeakSpot()
+IL_015a: ldloc.3
+IL_015b: ldloca.s       5
+IL_015d: call           Helpers.PerkHelper.AddPerkBonusFromCaptain(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.ExplainedNumber&)
+IL_0162: ldloca.s       5
+IL_0164: call           TaleWorlds.CampaignSystem.ExplainedNumber.get_ResultNumber()
+IL_0169: ldarg.3
+IL_016a: sub
+IL_016b: stloc.s        6
+IL_016d: ldc.r4         0
+IL_0172: ldarg.3
+IL_0173: ldloc.s        6
+IL_0175: sub
+IL_0176: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_017b: stloc.1
+IL_017c: ldarg.s        8
+IL_017e: brfalse.s      80
+IL_0180: ldarg.s        8
+IL_0182: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_0187: call           TaleWorlds.Core.DefaultSkills.get_Bow()
+IL_018c: bne.un.s       27
+IL_018e: ldloc.1
+IL_018f: ldc.r4         1
+IL_0194: ldarg.1
+IL_0195: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_019a: callvirt       TaleWorlds.MountAndBlade.Agent.get_AgentDrivenProperties()
+IL_019f: callvirt       TaleWorlds.MountAndBlade.AgentDrivenProperties.get_ArmorPenetrationMultiplierBow()
+IL_01a4: sub
+IL_01a5: mul
+IL_01a6: stloc.1
+IL_01a7: br.s           39
+IL_01a9: ldarg.s        8
+IL_01ab: callvirt       TaleWorlds.Core.WeaponComponentData.get_RelevantSkill()
+IL_01b0: call           TaleWorlds.Core.DefaultSkills.get_Crossbow()
+IL_01b5: bne.un.s       25
+IL_01b7: ldloc.1
+IL_01b8: ldc.r4         1
+IL_01bd: ldarg.1
+IL_01be: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_01c3: callvirt       TaleWorlds.MountAndBlade.Agent.get_AgentDrivenProperties()
+IL_01c8: callvirt       TaleWorlds.MountAndBlade.AgentDrivenProperties.get_ArmorPenetrationMultiplierCrossbow()
+IL_01cd: sub
+IL_01ce: mul
+IL_01cf: stloc.1
+IL_01d0: ldloc.1
+IL_01d1: ret
+```
+</details>
+
+### ComputeRawDamage (SandBox)
+
+- **Full Name:** `SandBox.GameComponents.SandboxStrikeMagnitudeModel.ComputeRawDamage`
+- **Signature:** `System.Single SandBox.GameComponents.SandboxStrikeMagnitudeModel.ComputeRawDamage(TaleWorlds.Core.DamageTypes damageType, System.Single magnitude, System.Single armorEffectiveness, System.Single absorbedDamageRatio)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 0.2, 0.33, 0.5, 1, 50, 259
+- **String Literals:** `C:\BuildAgent\work\mb3\Source\Bannerlord\SandBox\GameComponents\SandboxStrikeMagnitudeModel.cs, ComputeRawDamage, Given damage type is invalid.`
+- **Referenced Members:**
+  - `TaleWorlds.Library.Debug.FailedAssert(System.String, System.String, System.String, System.Int32)`
+  - `TaleWorlds.Library.MathF.Max(System.Single, System.Single)`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.GetBluntDamageFactorByDamageType(TaleWorlds.Core.DamageTypes)`
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.GetBluntDamageFactorByDamageType(TaleWorlds.Core.DamageTypes)
+IL_0007: stloc.0
+IL_0008: ldc.r4         50
+IL_000d: ldc.r4         50
+IL_0012: ldarg.3
+IL_0013: add
+IL_0014: div
+IL_0015: stloc.1
+IL_0016: ldarg.2
+IL_0017: ldloc.1
+IL_0018: mul
+IL_0019: stloc.2
+IL_001a: ldloc.0
+IL_001b: ldloc.2
+IL_001c: mul
+IL_001d: stloc.3
+IL_001e: ldarg.1
+IL_001f: switch         2, 25, 48
+IL_0030: br.s           69
+IL_0032: ldc.r4         0
+IL_0037: ldloc.2
+IL_0038: ldarg.3
+IL_0039: ldc.r4         0.5
+IL_003e: mul
+IL_003f: sub
+IL_0040: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_0045: stloc.s        4
+IL_0047: br.s           77
+IL_0049: ldc.r4         0
+IL_004e: ldloc.2
+IL_004f: ldarg.3
+IL_0050: ldc.r4         0.33
+IL_0055: mul
+IL_0056: sub
+IL_0057: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_005c: stloc.s        4
+IL_005e: br.s           54
+IL_0060: ldc.r4         0
+IL_0065: ldloc.2
+IL_0066: ldarg.3
+IL_0067: ldc.r4         0.2
+IL_006c: mul
+IL_006d: sub
+IL_006e: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_0073: stloc.s        4
+IL_0075: br.s           31
+IL_0077: ldstr          Given damage type is invalid.
+IL_007c: ldstr          C:\BuildAgent\work\mb3\Source\Bannerlord\SandBox\GameComponents\SandboxStrikeMagnitudeModel.cs
+IL_0081: ldstr          ComputeRawDamage
+IL_0086: ldc.i4         259
+IL_008b: call           TaleWorlds.Library.Debug.FailedAssert(System.String, System.String, System.String, System.Int32)
+IL_0090: ldc.r4         0
+IL_0095: ret
+IL_0096: ldloc.3
+IL_0097: ldc.r4         1
+IL_009c: ldloc.0
+IL_009d: sub
+IL_009e: ldloc.s        4
+IL_00a0: mul
+IL_00a1: add
+IL_00a2: stloc.3
+IL_00a3: ldloc.3
+IL_00a4: ldarg.s        4
+IL_00a6: mul
+IL_00a7: stloc.3
+IL_00a8: ldloc.3
+IL_00a9: ret
+```
+</details>
+
+### GetBluntDamageFactorByDamageType (SandBox)
+
+- **Full Name:** `SandBox.GameComponents.SandboxStrikeMagnitudeModel.GetBluntDamageFactorByDamageType`
+- **Signature:** `System.Single SandBox.GameComponents.SandboxStrikeMagnitudeModel.GetBluntDamageFactorByDamageType(TaleWorlds.Core.DamageTypes damageType)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 0.1, 0.25, 0.6
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldc.r4         0
+IL_0005: stloc.0
+IL_0006: ldarg.1
+IL_0007: switch         10, 18, 2
+IL_0018: br.s           22
+IL_001a: ldc.r4         0.6
+IL_001f: stloc.0
+IL_0020: br.s           14
+IL_0022: ldc.r4         0.1
+IL_0027: stloc.0
+IL_0028: br.s           6
+IL_002a: ldc.r4         0.25
+IL_002f: stloc.0
+IL_0030: ldloc.0
+IL_0031: ret
+```
+</details>
+
+### ApplyDamageAmplifications (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageAmplifications`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageAmplifications(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+### ApplyDamageReductions (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageReductions`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageReductions(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+### CalculateDamage (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.CalculateDamage`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.CalculateDamage(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0
+- **Referenced Members:**
+  - `TaleWorlds.Library.MathF.Max(System.Single, System.Single)`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageAmplifications(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageReductions(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageScaling(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyGeneralDamageModifiers(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.IsDamageIgnored(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&)`
+  - `TaleWorlds.MountAndBlade.MissionGameModels.get_AgentApplyDamageModel()`
+  - `TaleWorlds.MountAndBlade.MissionGameModels.get_Current()`
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0005: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_AgentApplyDamageModel()
+IL_000a: stloc.0
+IL_000b: ldloc.0
+IL_000c: ldarg.1
+IL_000d: ldarg.2
+IL_000e: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.IsDamageIgnored(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&)
+IL_0013: brfalse.s      6
+IL_0015: ldc.r4         0
+IL_001a: ret
+IL_001b: ldloc.0
+IL_001c: ldarg.1
+IL_001d: ldarg.2
+IL_001e: ldarg.3
+IL_001f: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageAmplifications(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)
+IL_0024: stloc.1
+IL_0025: ldloc.0
+IL_0026: ldarg.1
+IL_0027: ldarg.2
+IL_0028: ldloc.1
+IL_0029: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageScaling(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)
+IL_002e: stloc.1
+IL_002f: ldloc.0
+IL_0030: ldarg.1
+IL_0031: ldarg.2
+IL_0032: ldloc.1
+IL_0033: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyDamageReductions(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)
+IL_0038: stloc.1
+IL_0039: ldloc.0
+IL_003a: ldarg.1
+IL_003b: ldarg.2
+IL_003c: ldloc.1
+IL_003d: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.ApplyGeneralDamageModifiers(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single)
+IL_0042: stloc.1
+IL_0043: ldc.r4         0
+IL_0048: ldloc.1
+IL_0049: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_004e: ret
+```
+</details>
+
+### CalculateShieldDamage (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.CalculateShieldDamage`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.CalculateShieldDamage(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+### CalculateAdjustedArmorForBlow (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.CalculateAdjustedArmorForBlow`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.CalculateAdjustedArmorForBlow(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseArmor, TaleWorlds.Core.BasicCharacterObject attackerCharacter, TaleWorlds.Core.BasicCharacterObject attackerCaptainCharacter, TaleWorlds.Core.BasicCharacterObject victimCharacter, TaleWorlds.Core.BasicCharacterObject victimCaptainCharacter, TaleWorlds.Core.WeaponComponentData weaponComponent)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.3
+IL_0001: ret
+```
+</details>
+
+### ComputeRawDamage (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.ComputeRawDamage`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.ComputeRawDamage(TaleWorlds.Core.DamageTypes damageType, System.Single magnitude, System.Single armorEffectiveness, System.Single absorbedDamageRatio)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+### GetBluntDamageFactorByDamageType (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.GetBluntDamageFactorByDamageType`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.GetBluntDamageFactorByDamageType(TaleWorlds.Core.DamageTypes damageType)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+### ApplyDamageAmplifications (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.CustomAgentApplyDamageModel.ApplyDamageAmplifications`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.CustomAgentApplyDamageModel.ApplyDamageAmplifications(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+- **Referenced Members:**
+  - `MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_DecreasedChargeDamage()`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_IncreasedChargeDamage()`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_IncreasedMeleeDamage()`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_IncreasedMeleeDamageAgainstMountedTroops()`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_IncreasedRangedDamage()`
+  - `TaleWorlds.Core.WeaponComponentData.get_IsConsumable()`
+  - `TaleWorlds.Core.WeaponComponentData.get_IsMeleeWeapon()`
+  - ... (16 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.1
+IL_0001: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMount
+IL_0006: brtrue.s       8
+IL_0008: ldarg.1
+IL_0009: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgentCharacter
+IL_000e: br.s           6
+IL_0010: ldarg.1
+IL_0011: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerRiderAgentCharacter
+IL_0016: ldarg.1
+IL_0017: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerFormation
+IL_001c: stloc.0
+IL_001d: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0022: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_0027: ldloc.0
+IL_0028: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_002d: stloc.1
+IL_002e: ldarg.1
+IL_002f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_0034: pop
+IL_0035: ldarg.1
+IL_0036: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimFormation
+IL_003b: stloc.2
+IL_003c: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0041: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_0046: ldloc.2
+IL_0047: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_004c: stloc.3
+IL_004d: ldloca.s       4
+IL_004f: ldarg.3
+IL_0050: call           TaleWorlds.MountAndBlade.FactoredNumber..ctor(System.Single)
+IL_0055: ldarg.1
+IL_0056: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_005b: stloc.s        5
+IL_005d: ldloca.s       5
+IL_005f: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_0064: stloc.s        6
+IL_0066: brfalse.s      126
+IL_0068: ldloc.s        6
+IL_006a: brfalse.s      73
+IL_006c: ldloc.s        6
+IL_006e: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsMeleeWeapon()
+IL_0073: brfalse.s      39
+IL_0075: ldloc.1
+IL_0076: brfalse.s      61
+IL_0078: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedMeleeDamage()
+IL_007d: ldloc.1
+IL_007e: ldloca.s       4
+IL_0080: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_0085: ldarg.1
+IL_0086: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveMountAgent
+IL_008b: brfalse.s      40
+IL_008d: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedMeleeDamageAgainstMountedTroops()
+IL_0092: ldloc.1
+IL_0093: ldloca.s       4
+IL_0095: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_009a: br.s           25
+IL_009c: ldloc.s        6
+IL_009e: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsConsumable()
+IL_00a3: brfalse.s      16
+IL_00a5: ldloc.1
+IL_00a6: brfalse.s      13
+IL_00a8: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedRangedDamage()
+IL_00ad: ldloc.1
+IL_00ae: ldloca.s       4
+IL_00b0: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_00b5: ldarg.2
+IL_00b6: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_00bb: stloc.s        7
+IL_00bd: ldloca.s       7
+IL_00bf: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsHorseCharge()
+IL_00c4: brfalse.s      32
+IL_00c6: ldloc.1
+IL_00c7: brfalse.s      13
+IL_00c9: call           TaleWorlds.Core.DefaultBannerEffects.get_IncreasedChargeDamage()
+IL_00ce: ldloc.1
+IL_00cf: ldloca.s       4
+IL_00d1: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_00d6: ldloc.3
+IL_00d7: brfalse.s      13
+IL_00d9: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedChargeDamage()
+IL_00de: ldloc.3
+IL_00df: ldloca.s       4
+IL_00e1: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_00e6: ldloca.s       4
+IL_00e8: call           TaleWorlds.MountAndBlade.FactoredNumber.get_ResultNumber()
+IL_00ed: ret
+```
+</details>
+
+### ApplyDamageReductions (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.CustomAgentApplyDamageModel.ApplyDamageReductions`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.CustomAgentApplyDamageModel.ApplyDamageReductions(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** -0.15, 12, 13
+- **Referenced Members:**
+  - `MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_DecreasedMeleeAttackDamage()`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_DecreasedRangedAttackDamage()`
+  - `TaleWorlds.Core.WeaponComponentData.get_IsConsumable()`
+  - `TaleWorlds.Core.WeaponComponentData.get_IsMeleeWeapon()`
+  - `TaleWorlds.Core.WeaponComponentData.get_WeaponClass()`
+  - `TaleWorlds.MountAndBlade.Agent.get_IsAIControlled()`
+  - `TaleWorlds.MountAndBlade.Agent.get_RiderAgent()`
+  - ... (16 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.1
+IL_0001: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_0006: brtrue.s       8
+IL_0008: ldarg.1
+IL_0009: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentCharacter
+IL_000e: br.s           6
+IL_0010: ldarg.1
+IL_0011: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimRiderAgentCharacter
+IL_0016: ldarg.1
+IL_0017: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimFormation
+IL_001c: stloc.0
+IL_001d: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0022: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_0027: ldloc.0
+IL_0028: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_002d: stloc.1
+IL_002e: ldarg.1
+IL_002f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMount
+IL_0034: brtrue.s       8
+IL_0036: ldarg.1
+IL_0037: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_003c: br.s           11
+IL_003e: ldarg.1
+IL_003f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_0044: callvirt       TaleWorlds.MountAndBlade.Agent.get_RiderAgent()
+IL_0049: stloc.2
+IL_004a: ldloca.s       3
+IL_004c: ldarg.3
+IL_004d: call           TaleWorlds.MountAndBlade.FactoredNumber..ctor(System.Single)
+IL_0052: ldarg.1
+IL_0053: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_0058: stloc.s        4
+IL_005a: ldloca.s       4
+IL_005c: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_0061: stloc.s        5
+IL_0063: brfalse.s      113
+IL_0065: ldloc.s        5
+IL_0067: brfalse.s      109
+IL_0069: ldloc.s        5
+IL_006b: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsConsumable()
+IL_0070: brfalse.s      75
+IL_0072: ldloc.1
+IL_0073: brfalse.s      13
+IL_0075: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedRangedAttackDamage()
+IL_007a: ldloc.1
+IL_007b: ldloca.s       3
+IL_007d: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_0082: call           TaleWorlds.MountAndBlade.Mission.get_Current()
+IL_0087: callvirt       TaleWorlds.MountAndBlade.Mission.get_IsNavalBattle()
+IL_008c: brfalse.s      72
+IL_008e: ldloc.2
+IL_008f: brfalse.s      69
+IL_0091: ldloc.2
+IL_0092: callvirt       TaleWorlds.MountAndBlade.Agent.get_IsAIControlled()
+IL_0097: brfalse.s      61
+IL_0099: ldloc.s        5
+IL_009b: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_00a0: ldc.i4.s       13
+IL_00a2: beq.s          11
+IL_00a4: ldloc.s        5
+IL_00a6: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_00ab: ldc.i4.s       12
+IL_00ad: bne.un.s       39
+IL_00af: ldloca.s       3
+IL_00b1: ldc.r4         -0.15
+IL_00b6: call           TaleWorlds.MountAndBlade.FactoredNumber.AddFactor(System.Single)
+IL_00bb: br.s           25
+IL_00bd: ldloc.s        5
+IL_00bf: callvirt       TaleWorlds.Core.WeaponComponentData.get_IsMeleeWeapon()
+IL_00c4: brfalse.s      16
+IL_00c6: ldloc.1
+IL_00c7: brfalse.s      13
+IL_00c9: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedMeleeAttackDamage()
+IL_00ce: ldloc.1
+IL_00cf: ldloca.s       3
+IL_00d1: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_00d6: ldloca.s       3
+IL_00d8: call           TaleWorlds.MountAndBlade.FactoredNumber.get_ResultNumber()
+IL_00dd: ret
+```
+</details>
+
+### CalculateShieldDamage (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.CustomAgentApplyDamageModel.CalculateShieldDamage`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.CustomAgentApplyDamageModel.CalculateShieldDamage(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 1.25
+- **Referenced Members:**
+  - `MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)`
+  - `System.Math.Max(System.Single, System.Single)`
+  - `TaleWorlds.Core.DefaultBannerEffects.get_DecreasedShieldDamage()`
+  - `TaleWorlds.MountAndBlade.AttackInformation.VictimFormation`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)`
+  - `TaleWorlds.MountAndBlade.FactoredNumber..ctor(System.Single)`
+  - `TaleWorlds.MountAndBlade.FactoredNumber.get_ResultNumber()`
+  - `TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()`
+  - ... (1 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.2
+IL_0001: ldc.r4         1.25
+IL_0006: mul
+IL_0007: starg.s        2
+IL_0009: ldloca.s       0
+IL_000b: ldarg.2
+IL_000c: call           TaleWorlds.MountAndBlade.FactoredNumber..ctor(System.Single)
+IL_0011: ldarg.1
+IL_0012: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimFormation
+IL_0017: stloc.1
+IL_0018: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_001d: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_BattleBannerBearersModel()
+IL_0022: ldloc.1
+IL_0023: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.BattleBannerBearersModel.GetActiveBanner(TaleWorlds.MountAndBlade.Formation)
+IL_0028: stloc.2
+IL_0029: ldloc.2
+IL_002a: brfalse.s      13
+IL_002c: call           TaleWorlds.Core.DefaultBannerEffects.get_DecreasedShieldDamage()
+IL_0031: ldloc.2
+IL_0032: ldloca.s       0
+IL_0034: call           MBHelpers.BannerHelper.AddBannerBonusForBanner(TaleWorlds.Core.BannerEffect, TaleWorlds.Core.BannerComponent, TaleWorlds.MountAndBlade.FactoredNumber&)
+IL_0039: ldc.r4         0
+IL_003e: ldloca.s       0
+IL_0040: call           TaleWorlds.MountAndBlade.FactoredNumber.get_ResultNumber()
+IL_0045: call           System.Math.Max(System.Single, System.Single)
+IL_004a: ret
+```
+</details>
+
+### ComputeRawDamage (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.DefaultStrikeMagnitudeModel.ComputeRawDamage`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.DefaultStrikeMagnitudeModel.ComputeRawDamage(TaleWorlds.Core.DamageTypes damageType, System.Single magnitude, System.Single armorEffectiveness, System.Single absorbedDamageRatio)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 0.2, 0.33, 0.5, 1, 50, 70
+- **String Literals:** `C:\BuildAgent\work\mb3\Source\Bannerlord\TaleWorlds.MountAndBlade\ComponentInterfaces\DefaultStrikeMagnitudeModel.cs, ComputeRawDamage, Given damage type is invalid.`
+- **Referenced Members:**
+  - `TaleWorlds.Library.Debug.FailedAssert(System.String, System.String, System.String, System.Int32)`
+  - `TaleWorlds.Library.MathF.Max(System.Single, System.Single)`
+  - `TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.GetBluntDamageFactorByDamageType(TaleWorlds.Core.DamageTypes)`
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.GetBluntDamageFactorByDamageType(TaleWorlds.Core.DamageTypes)
+IL_0007: stloc.0
+IL_0008: ldc.r4         50
+IL_000d: ldc.r4         50
+IL_0012: ldarg.3
+IL_0013: add
+IL_0014: div
+IL_0015: stloc.1
+IL_0016: ldarg.2
+IL_0017: ldloc.1
+IL_0018: mul
+IL_0019: stloc.2
+IL_001a: ldloc.0
+IL_001b: ldloc.2
+IL_001c: mul
+IL_001d: stloc.3
+IL_001e: ldarg.1
+IL_001f: switch         2, 25, 48
+IL_0030: br.s           69
+IL_0032: ldc.r4         0
+IL_0037: ldloc.2
+IL_0038: ldarg.3
+IL_0039: ldc.r4         0.5
+IL_003e: mul
+IL_003f: sub
+IL_0040: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_0045: stloc.s        4
+IL_0047: br.s           74
+IL_0049: ldc.r4         0
+IL_004e: ldloc.2
+IL_004f: ldarg.3
+IL_0050: ldc.r4         0.33
+IL_0055: mul
+IL_0056: sub
+IL_0057: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_005c: stloc.s        4
+IL_005e: br.s           51
+IL_0060: ldc.r4         0
+IL_0065: ldloc.2
+IL_0066: ldarg.3
+IL_0067: ldc.r4         0.2
+IL_006c: mul
+IL_006d: sub
+IL_006e: call           TaleWorlds.Library.MathF.Max(System.Single, System.Single)
+IL_0073: stloc.s        4
+IL_0075: br.s           28
+IL_0077: ldstr          Given damage type is invalid.
+IL_007c: ldstr          C:\BuildAgent\work\mb3\Source\Bannerlord\TaleWorlds.MountAndBlade\ComponentInterfaces\DefaultStrikeMagnitudeModel.cs
+IL_0081: ldstr          ComputeRawDamage
+IL_0086: ldc.i4.s       70
+IL_0088: call           TaleWorlds.Library.Debug.FailedAssert(System.String, System.String, System.String, System.Int32)
+IL_008d: ldc.r4         0
+IL_0092: ret
+IL_0093: ldloc.3
+IL_0094: ldc.r4         1
+IL_0099: ldloc.0
+IL_009a: sub
+IL_009b: ldloc.s        4
+IL_009d: mul
+IL_009e: add
+IL_009f: stloc.3
+IL_00a0: ldloc.3
+IL_00a1: ldarg.s        4
+IL_00a3: mul
+IL_00a4: stloc.3
+IL_00a5: ldloc.3
+IL_00a6: ret
+```
+</details>
+
+### GetBluntDamageFactorByDamageType (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.DefaultStrikeMagnitudeModel.GetBluntDamageFactorByDamageType`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.DefaultStrikeMagnitudeModel.GetBluntDamageFactorByDamageType(TaleWorlds.Core.DamageTypes damageType)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 0.1, 0.25, 0.6
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldc.r4         0
+IL_0005: stloc.0
+IL_0006: ldarg.1
+IL_0007: switch         10, 18, 2
+IL_0018: br.s           22
+IL_001a: ldc.r4         0.6
+IL_001f: stloc.0
+IL_0020: br.s           14
+IL_0022: ldc.r4         0.1
+IL_0027: stloc.0
+IL_0028: br.s           6
+IL_002a: ldc.r4         0.25
+IL_002f: stloc.0
+IL_0030: ldloc.0
+IL_0031: ret
+```
+</details>
+
+### ComputeBlowDamage (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.ComputeBlowDamage`
+- **Signature:** `System.Void TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.ComputeBlowDamage(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& attackCollisionData, TaleWorlds.Core.WeaponComponentData attackerWeapon, TaleWorlds.Core.DamageTypes damageType, System.Single magnitude, System.Int32 speedBonus, System.Boolean cancelDamage, System.Int32& inflictedDamage, System.Int32& absorbedByArmor, System.Boolean& isSneakAttack)`
+- **Visibility:** `private`
+- **Numeric Constants:** 0, 1, 10, 2000
+- **Referenced Members:**
+  - `TaleWorlds.Library.MBMath.ClampInt(System.Int32, System.Int32, System.Int32)`
+  - `TaleWorlds.Library.MathF.Ceiling(System.Single)`
+  - `TaleWorlds.MountAndBlade.AgentStatCalculateModel.GetSneakAttackMultiplier(TaleWorlds.MountAndBlade.Agent, TaleWorlds.Core.WeaponComponentData)`
+  - `TaleWorlds.MountAndBlade.AttackCollisionData`
+  - `TaleWorlds.MountAndBlade.AttackCollisionData.get_AttackBlockedWithShield()`
+  - `TaleWorlds.MountAndBlade.AttackCollisionData.get_CollidedWithShieldOnBack()`
+  - `TaleWorlds.MountAndBlade.AttackCollisionData.get_IsFallDamage()`
+  - `TaleWorlds.MountAndBlade.AttackInformation.ArmorAmountFloat`
+  - ... (17 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.s        9
+IL_0002: ldc.i4.0
+IL_0003: stind.i1
+IL_0004: ldarg.0
+IL_0005: ldfld          TaleWorlds.MountAndBlade.AttackInformation.ArmorAmountFloat
+IL_000a: stloc.0
+IL_000b: ldarg.0
+IL_000c: ldfld          TaleWorlds.MountAndBlade.AttackInformation.ShieldOnBack
+IL_0011: stloc.1
+IL_0012: ldarg.0
+IL_0013: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentFlags
+IL_0018: stloc.2
+IL_0019: ldarg.0
+IL_001a: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentAbsorbedDamageRatio
+IL_001f: ldarg.0
+IL_0020: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DamageMultiplierOfBone
+IL_0025: stloc.3
+IL_0026: ldarg.0
+IL_0027: ldfld          TaleWorlds.MountAndBlade.AttackInformation.CombatDifficultyMultiplier
+IL_002c: stloc.s        4
+IL_002e: ldarg.1
+IL_002f: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0034: stloc.s        16
+IL_0036: ldloca.s       16
+IL_0038: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_AttackBlockedWithShield()
+IL_003d: stloc.s        5
+IL_003f: ldarg.1
+IL_0040: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0045: stloc.s        16
+IL_0047: ldloca.s       16
+IL_0049: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CollidedWithShieldOnBack()
+IL_004e: ldarg.1
+IL_004f: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0054: stloc.s        16
+IL_0056: ldloca.s       16
+IL_0058: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsFallDamage()
+IL_005d: stloc.s        6
+IL_005f: ldarg.0
+IL_0060: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgentCharacter
+IL_0065: stloc.s        7
+IL_0067: ldarg.0
+IL_0068: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerCaptainCharacter
+IL_006d: stloc.s        8
+IL_006f: ldarg.0
+IL_0070: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentCharacter
+IL_0075: stloc.s        9
+IL_0077: ldarg.0
+IL_0078: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimCaptainCharacter
+IL_007d: stloc.s        10
+IL_007f: ldc.r4         0
+IL_0084: stloc.s        11
+IL_0086: ldloc.s        6
+IL_0088: brtrue.s       29
+IL_008a: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_008f: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_StrikeMagnitudeModel()
+IL_0094: ldarg.0
+IL_0095: ldarg.1
+IL_0096: ldloc.0
+IL_0097: ldloc.s        7
+IL_0099: ldloc.s        8
+IL_009b: ldloc.s        9
+IL_009d: ldloc.s        10
+IL_009f: ldarg.2
+IL_00a0: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.CalculateAdjustedArmorForBlow(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, System.Single, TaleWorlds.Core.BasicCharacterObject, TaleWorlds.Core.BasicCharacterObject, TaleWorlds.Core.BasicCharacterObject, TaleWorlds.Core.BasicCharacterObject, TaleWorlds.Core.WeaponComponentData)
+IL_00a5: stloc.s        11
+IL_00a7: brfalse.s      13
+IL_00a9: ldloc.1
+IL_00aa: brfalse.s      10
+IL_00ac: ldloc.s        11
+IL_00ae: ldc.r4         10
+IL_00b3: add
+IL_00b4: stloc.s        11
+IL_00b6: stloc.s        12
+IL_00b8: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_00bd: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_StrikeMagnitudeModel()
+IL_00c2: ldarg.3
+IL_00c3: ldarg.s        4
+IL_00c5: ldloc.s        11
+IL_00c7: ldloc.s        12
+IL_00c9: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.ComputeRawDamage(TaleWorlds.Core.DamageTypes, System.Single, System.Single, System.Single)
+IL_00ce: stloc.s        13
+IL_00d0: ldc.r4         1
+IL_00d5: stloc.s        14
+IL_00d7: ldloc.s        5
+IL_00d9: brtrue.s       71
+IL_00db: ldloc.s        6
+IL_00dd: brtrue.s       67
+IL_00df: ldloc.s        14
+IL_00e1: ldloc.3
+IL_00e2: mul
+IL_00e3: stloc.s        14
+IL_00e5: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_00ea: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_AgentApplyDamageModel()
+IL_00ef: ldarg.0
+IL_00f0: ldarg.2
+IL_00f1: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.CanWeaponDealSneakAttack(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.Core.WeaponComponentData)
+IL_00f6: brfalse.s      35
+IL_00f8: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_00fd: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_AgentStatCalculateModel()
+IL_0102: ldarg.0
+IL_0103: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgent
+IL_0108: ldarg.2
+IL_0109: callvirt       TaleWorlds.MountAndBlade.AgentStatCalculateModel.GetSneakAttackMultiplier(TaleWorlds.MountAndBlade.Agent, TaleWorlds.Core.WeaponComponentData)
+IL_010e: stloc.s        17
+IL_0110: ldloc.s        14
+IL_0112: ldloc.s        17
+IL_0114: mul
+IL_0115: stloc.s        14
+IL_0117: ldarg.s        9
+IL_0119: ldc.i4.1
+IL_011a: stind.i1
+IL_011b: ldloc.s        14
+IL_011d: ldloc.s        4
+IL_011f: mul
+IL_0120: stloc.s        14
+IL_0122: ldloc.s        13
+IL_0124: ldloc.s        14
+IL_0126: mul
+IL_0127: stloc.s        13
+IL_0129: ldarg.s        7
+IL_012b: ldloc.s        13
+IL_012d: call           TaleWorlds.Library.MathF.Ceiling(System.Single)
+IL_0132: ldc.i4.0
+IL_0133: ldc.i4         2000
+IL_0138: call           TaleWorlds.Library.MBMath.ClampInt(System.Int32, System.Int32, System.Int32)
+IL_013d: stind.i4
+IL_013e: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0143: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_StrikeMagnitudeModel()
+IL_0148: ldarg.3
+IL_0149: ldarg.s        4
+IL_014b: ldc.r4         0
+IL_0150: ldloc.s        12
+IL_0152: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.ComputeRawDamage(TaleWorlds.Core.DamageTypes, System.Single, System.Single, System.Single)
+IL_0157: ldloc.s        14
+IL_0159: mul
+IL_015a: call           TaleWorlds.Library.MathF.Ceiling(System.Single)
+IL_015f: ldc.i4.0
+IL_0160: ldc.i4         2000
+IL_0165: call           TaleWorlds.Library.MBMath.ClampInt(System.Int32, System.Int32, System.Int32)
+IL_016a: stloc.s        15
+IL_016c: ldarg.s        8
+IL_016e: ldloc.s        15
+IL_0170: ldarg.s        7
+IL_0172: ldind.i4
+IL_0173: sub
+IL_0174: stind.i4
+IL_0175: ret
+```
+</details>
+
+### ComputeBlowDamageOnShield (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.ComputeBlowDamageOnShield`
+- **Signature:** `System.Void TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.ComputeBlowDamageOnShield(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& attackCollisionData, TaleWorlds.Core.WeaponComponentData attackerWeapon, System.Single blowMagnitude, System.Int32& inflictedDamage)`
+- **Visibility:** `private`
+- **Numeric Constants:** 0, 0.15, 0.3, 0.5, 0.7, 1, 2, 21, 23, 54, 55, 65536, 131072, 268435456, 1073741824
+- **Referenced Members:**
+  - `TaleWorlds.Core.ManagedParameters.GetManagedParameter(TaleWorlds.Core.ManagedParametersEnum)`
+  - `TaleWorlds.Core.ManagedParameters.get_Instance()`
+  - `TaleWorlds.Core.WeaponComponentData.WeaponFlags`
+  - `TaleWorlds.Core.WeaponComponentData.get_WeaponClass()`
+  - `TaleWorlds.Library.Extensions.HasAnyFlag(TaleWorlds.Core.WeaponFlags, TaleWorlds.Core.WeaponFlags)`
+  - `TaleWorlds.MountAndBlade.AttackCollisionData`
+  - `TaleWorlds.MountAndBlade.AttackCollisionData.get_CorrectSideShieldBlock()`
+  - `TaleWorlds.MountAndBlade.AttackCollisionData.get_DamageType()`
+  - ... (11 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.s        4
+IL_0002: ldc.i4.0
+IL_0003: stind.i4
+IL_0004: ldarg.0
+IL_0005: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimShield
+IL_000a: stloc.0
+IL_000b: ldloca.s       0
+IL_000d: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_0012: ldfld          TaleWorlds.Core.WeaponComponentData.WeaponFlags
+IL_0017: ldc.i4         268435456
+IL_001c: conv.i8
+IL_001d: call           TaleWorlds.Library.Extensions.HasAnyFlag(TaleWorlds.Core.WeaponFlags, TaleWorlds.Core.WeaponFlags)
+IL_0022: brfalse        375
+IL_0027: ldarg.0
+IL_0028: ldfld          TaleWorlds.MountAndBlade.AttackInformation.CanGiveDamageToAgentShield
+IL_002d: brfalse        364
+IL_0032: ldarg.1
+IL_0033: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0038: stloc.s        5
+IL_003a: ldloca.s       5
+IL_003c: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_DamageType()
+IL_0041: stloc.1
+IL_0042: ldloca.s       0
+IL_0044: call           TaleWorlds.MountAndBlade.MissionWeapon.GetGetModifiedArmorForCurrentUsage()
+IL_0049: stloc.2
+IL_004a: ldc.r4         1
+IL_004f: stloc.3
+IL_0050: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0055: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_StrikeMagnitudeModel()
+IL_005a: ldloc.1
+IL_005b: ldarg.3
+IL_005c: ldloc.2
+IL_005d: conv.r4
+IL_005e: ldloc.3
+IL_005f: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.StrikeMagnitudeCalculationModel.ComputeRawDamage(TaleWorlds.Core.DamageTypes, System.Single, System.Single, System.Single)
+IL_0064: stloc.s        4
+IL_0066: ldarg.1
+IL_0067: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_006c: stloc.s        5
+IL_006e: ldloca.s       5
+IL_0070: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsMissile()
+IL_0075: brfalse.s      109
+IL_0077: ldarg.2
+IL_0078: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_007d: ldc.i4.s       21
+IL_007f: bne.un.s       15
+IL_0081: ldloc.s        4
+IL_0083: ldc.r4         0.3
+IL_0088: mul
+IL_0089: stloc.s        4
+IL_008b: br             144
+IL_0090: ldarg.2
+IL_0091: callvirt       TaleWorlds.Core.WeaponComponentData.get_WeaponClass()
+IL_0096: ldc.i4.s       23
+IL_0098: bne.un.s       12
+IL_009a: ldloc.s        4
+IL_009c: ldc.r4         0.5
+IL_00a1: mul
+IL_00a2: stloc.s        4
+IL_00a4: br.s           122
+IL_00a6: ldarg.2
+IL_00a7: ldfld          TaleWorlds.Core.WeaponComponentData.WeaponFlags
+IL_00ac: ldc.i4         131072
+IL_00b1: conv.i8
+IL_00b2: call           TaleWorlds.Library.Extensions.HasAnyFlag(TaleWorlds.Core.WeaponFlags, TaleWorlds.Core.WeaponFlags)
+IL_00b7: brfalse.s      31
+IL_00b9: ldarg.2
+IL_00ba: ldfld          TaleWorlds.Core.WeaponComponentData.WeaponFlags
+IL_00bf: ldc.i4         1073741824
+IL_00c4: conv.i8
+IL_00c5: call           TaleWorlds.Library.Extensions.HasAnyFlag(TaleWorlds.Core.WeaponFlags, TaleWorlds.Core.WeaponFlags)
+IL_00ca: brfalse.s      12
+IL_00cc: ldloc.s        4
+IL_00ce: ldc.r4         0.5
+IL_00d3: mul
+IL_00d4: stloc.s        4
+IL_00d6: br.s           72
+IL_00d8: ldloc.s        4
+IL_00da: ldc.r4         0.15
+IL_00df: mul
+IL_00e0: stloc.s        4
+IL_00e2: br.s           60
+IL_00e4: ldarg.1
+IL_00e5: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_00ea: stloc.s        5
+IL_00ec: ldloca.s       5
+IL_00ee: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_DamageType()
+IL_00f3: stloc.s        6
+IL_00f5: ldloc.s        6
+IL_00f7: switch         14, 2, 14
+IL_0108: br.s           22
+IL_010a: ldloc.s        4
+IL_010c: ldc.r4         0.5
+IL_0111: mul
+IL_0112: stloc.s        4
+IL_0114: br.s           10
+IL_0116: ldloc.s        4
+IL_0118: ldc.r4         0.7
+IL_011d: mul
+IL_011e: stloc.s        4
+IL_0120: ldarg.2
+IL_0121: brfalse.s      29
+IL_0123: ldarg.2
+IL_0124: ldfld          TaleWorlds.Core.WeaponComponentData.WeaponFlags
+IL_0129: ldc.i4         65536
+IL_012e: conv.i8
+IL_012f: call           TaleWorlds.Library.Extensions.HasAnyFlag(TaleWorlds.Core.WeaponFlags, TaleWorlds.Core.WeaponFlags)
+IL_0134: brfalse.s      10
+IL_0136: ldloc.s        4
+IL_0138: ldc.r4         2
+IL_013d: mul
+IL_013e: stloc.s        4
+IL_0140: ldloc.s        4
+IL_0142: ldc.r4         0
+IL_0147: ble.un.s       85
+IL_0149: ldarg.0
+IL_014a: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentLeftStance
+IL_014f: brtrue.s       17
+IL_0151: ldloc.s        4
+IL_0153: call           TaleWorlds.Core.ManagedParameters.get_Instance()
+IL_0158: ldc.i4.s       54
+IL_015a: callvirt       TaleWorlds.Core.ManagedParameters.GetManagedParameter(TaleWorlds.Core.ManagedParametersEnum)
+IL_015f: mul
+IL_0160: stloc.s        4
+IL_0162: ldarg.1
+IL_0163: ldobj          TaleWorlds.MountAndBlade.AttackCollisionData
+IL_0168: stloc.s        5
+IL_016a: ldloca.s       5
+IL_016c: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CorrectSideShieldBlock()
+IL_0171: brfalse.s      17
+IL_0173: ldloc.s        4
+IL_0175: call           TaleWorlds.Core.ManagedParameters.get_Instance()
+IL_017a: ldc.i4.s       55
+IL_017c: callvirt       TaleWorlds.Core.ManagedParameters.GetManagedParameter(TaleWorlds.Core.ManagedParametersEnum)
+IL_0181: mul
+IL_0182: stloc.s        4
+IL_0184: call           TaleWorlds.MountAndBlade.MissionGameModels.get_Current()
+IL_0189: callvirt       TaleWorlds.MountAndBlade.MissionGameModels.get_AgentApplyDamageModel()
+IL_018e: ldarg.0
+IL_018f: ldloc.s        4
+IL_0191: callvirt       TaleWorlds.MountAndBlade.ComponentInterfaces.AgentApplyDamageModel.CalculateShieldDamage(TaleWorlds.MountAndBlade.AttackInformation&, System.Single)
+IL_0196: stloc.s        4
+IL_0198: ldarg.s        4
+IL_019a: ldloc.s        4
+IL_019c: conv.i4
+IL_019d: stind.i4
+IL_019e: ret
+```
+</details>
+
+### GetAttackCollisionResults (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.GetAttackCollisionResults`
+- **Signature:** `System.Void TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.GetAttackCollisionResults(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, System.Boolean crushedThrough, System.Single momentumRemaining, System.Boolean cancelDamage, TaleWorlds.MountAndBlade.AttackCollisionData& attackCollisionData, TaleWorlds.MountAndBlade.CombatLogData& combatLog, System.Int32& speedBonus)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0, 1, 2, 2000
+- **Referenced Members:**
+  - `TaleWorlds.Engine.PhysicsMaterial.GetFlags()`
+  - `TaleWorlds.Engine.PhysicsMaterial.GetFromIndex(System.Int32)`
+  - `TaleWorlds.Library.Extensions.HasAnyFlag(TaleWorlds.Engine.PhysicsMaterialFlags, TaleWorlds.Engine.PhysicsMaterialFlags)`
+  - `TaleWorlds.Library.MBMath.ClampInt(System.Int32, System.Int32, System.Int32)`
+  - `TaleWorlds.Library.Vec2.ToVec3(System.Single)`
+  - `TaleWorlds.Library.Vec2.get_Length()`
+  - `TaleWorlds.Library.Vec2.op_Subtraction(TaleWorlds.Library.Vec2, TaleWorlds.Library.Vec2)`
+  - `TaleWorlds.Library.Vec3.get_Length()`
+  - ... (61 more)
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldc.r4         0
+IL_0005: stloc.0
+IL_0006: ldarg.s        4
+IL_0008: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsMissile()
+IL_000d: brfalse.s      29
+IL_000f: ldarg.s        4
+IL_0011: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_MissileStartingPosition()
+IL_0016: ldarg.s        4
+IL_0018: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_CollisionGlobalPosition()
+IL_001d: call           TaleWorlds.Library.Vec3.op_Subtraction(TaleWorlds.Library.Vec3, TaleWorlds.Library.Vec3)
+IL_0022: stloc.s        6
+IL_0024: ldloca.s       6
+IL_0026: call           TaleWorlds.Library.Vec3.get_Length()
+IL_002b: stloc.0
+IL_002c: ldarg.s        5
+IL_002e: ldarg.0
+IL_002f: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentSameWithAttackerAgent
+IL_0034: ldarg.0
+IL_0035: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentHuman
+IL_003a: ldarg.0
+IL_003b: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMine
+IL_0040: ldarg.0
+IL_0041: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveRiderAgent
+IL_0046: ldarg.0
+IL_0047: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentRiderAgentMine
+IL_004c: ldarg.0
+IL_004d: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentMount
+IL_0052: ldarg.0
+IL_0053: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentHuman
+IL_0058: ldarg.0
+IL_0059: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMine
+IL_005e: ldc.i4.0
+IL_005f: ldarg.0
+IL_0060: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveRiderAgent
+IL_0065: ldarg.0
+IL_0066: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentRiderAgentMine
+IL_006b: ldarg.0
+IL_006c: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentMount
+IL_0071: ldnull
+IL_0072: ldarg.0
+IL_0073: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimRiderAgentSameAsAttackerAgent
+IL_0078: ldc.i4.0
+IL_0079: ldc.i4.0
+IL_007a: ldloc.0
+IL_007b: newobj         TaleWorlds.MountAndBlade.CombatLogData..ctor(System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, System.Boolean, TaleWorlds.MountAndBlade.MissionObject, System.Boolean, System.Boolean, System.Boolean, System.Single)
+IL_0080: stobj          TaleWorlds.MountAndBlade.CombatLogData
+IL_0085: ldarg.s        4
+IL_0087: ldarg.0
+IL_0088: ldfld          TaleWorlds.MountAndBlade.AttackInformation.WeaponAttachBoneIndex
+IL_008d: call           TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.IsCollisionBoneDifferentThanWeaponAttachBone(TaleWorlds.MountAndBlade.AttackCollisionData&, System.Int32)
+IL_0092: stloc.1
+IL_0093: ldarg.0
+IL_0094: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesAttackerHaveMountAgent
+IL_0099: ldarg.0
+IL_009a: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgentMovementVelocity
+IL_009f: ldarg.0
+IL_00a0: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerAgentMountMovementDirection
+IL_00a5: ldarg.0
+IL_00a6: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerMovementDirectionAsAngle
+IL_00ab: call           TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.GetAgentVelocityContribution(System.Boolean, TaleWorlds.Library.Vec2, TaleWorlds.Library.Vec2, System.Single)
+IL_00b0: stloc.2
+IL_00b1: ldarg.0
+IL_00b2: ldfld          TaleWorlds.MountAndBlade.AttackInformation.DoesVictimHaveMountAgent
+IL_00b7: ldarg.0
+IL_00b8: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentMovementVelocity
+IL_00bd: ldarg.0
+IL_00be: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimAgentMountMovementDirection
+IL_00c3: ldarg.0
+IL_00c4: ldfld          TaleWorlds.MountAndBlade.AttackInformation.VictimMovementDirectionAsAngle
+IL_00c9: call           TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.GetAgentVelocityContribution(System.Boolean, TaleWorlds.Library.Vec2, TaleWorlds.Library.Vec2, System.Single)
+IL_00ce: stloc.3
+IL_00cf: ldarg.s        4
+IL_00d1: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsColliderAgent()
+IL_00d6: brfalse.s      81
+IL_00d8: ldarg.s        5
+IL_00da: ldarg.s        4
+IL_00dc: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsMissile()
+IL_00e1: stfld          TaleWorlds.MountAndBlade.CombatLogData.IsRangedAttack
+IL_00e6: ldarg.s        5
+IL_00e8: ldarg.s        4
+IL_00ea: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsMissile()
+IL_00ef: brtrue.s       18
+IL_00f1: ldloc.2
+IL_00f2: ldloc.3
+IL_00f3: call           TaleWorlds.Library.Vec2.op_Subtraction(TaleWorlds.Library.Vec2, TaleWorlds.Library.Vec2)
+IL_00f8: stloc.s        7
+IL_00fa: ldloca.s       7
+IL_00fc: call           TaleWorlds.Library.Vec2.get_Length()
+IL_0101: br.s           33
+IL_0103: ldloca.s       3
+IL_0105: ldc.r4         0
+IL_010a: call           TaleWorlds.Library.Vec2.ToVec3(System.Single)
+IL_010f: ldarg.s        4
+IL_0111: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_MissileVelocity()
+IL_0116: call           TaleWorlds.Library.Vec3.op_Subtraction(TaleWorlds.Library.Vec3, TaleWorlds.Library.Vec3)
+IL_011b: stloc.s        6
+IL_011d: ldloca.s       6
+IL_011f: call           TaleWorlds.Library.Vec3.get_Length()
+IL_0124: stfld          TaleWorlds.MountAndBlade.CombatLogData.HitSpeed
+IL_0129: ldarg.s        4
+IL_012b: ldarg.0
+IL_012c: ldarg.2
+IL_012d: ldarg.3
+IL_012e: ldloc.1
+IL_012f: ldloc.2
+IL_0130: ldloc.3
+IL_0131: ldarg.s        4
+IL_0133: ldflda         TaleWorlds.MountAndBlade.AttackCollisionData.BaseMagnitude
+IL_0138: ldloca.s       4
+IL_013a: ldarg.s        4
+IL_013c: ldflda         TaleWorlds.MountAndBlade.AttackCollisionData.MovementSpeedDamageModifier
+IL_0141: ldarg.s        6
+IL_0143: call           TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.ComputeBlowMagnitude(TaleWorlds.MountAndBlade.AttackCollisionData&, TaleWorlds.MountAndBlade.AttackInformation&, System.Single, System.Boolean, System.Boolean, TaleWorlds.Library.Vec2, TaleWorlds.Library.Vec2, System.Single&, System.Single&, System.Single&, System.Int32&)
+IL_0148: ldarg.0
+IL_0149: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_014e: stloc.s        8
+IL_0150: ldloca.s       8
+IL_0152: call           TaleWorlds.MountAndBlade.MissionWeapon.get_IsEmpty()
+IL_0157: ldloc.1
+IL_0158: or
+IL_0159: brtrue.s       27
+IL_015b: ldarg.s        4
+IL_015d: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsAlternativeAttack()
+IL_0162: brtrue.s       18
+IL_0164: ldarg.s        4
+IL_0166: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsFallDamage()
+IL_016b: brtrue.s       9
+IL_016d: ldarg.s        4
+IL_016f: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsHorseCharge()
+IL_0174: br.s           1
+IL_0176: ldc.i4.1
+IL_0177: brtrue.s       9
+IL_0179: ldarg.s        4
+IL_017b: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_DamageType()
+IL_0180: br.s           1
+IL_0182: ldc.i4.2
+IL_0183: stloc.s        5
+IL_0185: ldarg.s        5
+IL_0187: ldloc.s        5
+IL_0189: stfld          TaleWorlds.MountAndBlade.CombatLogData.DamageType
+IL_018e: ldarg.s        4
+IL_0190: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsColliderAgent()
+IL_0195: brtrue.s       119
+IL_0197: ldarg.s        4
+IL_0199: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_EntityExists()
+IL_019e: brfalse.s      110
+IL_01a0: ldarg.s        4
+IL_01a2: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_PhysicsMaterialIndex()
+IL_01a7: call           TaleWorlds.Engine.PhysicsMaterial.GetFromIndex(System.Int32)
+IL_01ac: stloc.s        9
+IL_01ae: ldloca.s       9
+IL_01b0: call           TaleWorlds.Engine.PhysicsMaterial.GetFlags()
+IL_01b5: ldc.i4.2
+IL_01b6: call           TaleWorlds.Library.Extensions.HasAnyFlag(TaleWorlds.Engine.PhysicsMaterialFlags, TaleWorlds.Engine.PhysicsMaterialFlags)
+IL_01bb: stloc.s        10
+IL_01bd: ldarg.s        4
+IL_01bf: ldflda         TaleWorlds.MountAndBlade.AttackCollisionData.BaseMagnitude
+IL_01c4: dup
+IL_01c5: ldind.r4
+IL_01c6: ldarg.0
+IL_01c7: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsAttackerAgentDoingPassiveAttack
+IL_01cc: ldarg.0
+IL_01cd: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_01d2: stloc.s        8
+IL_01d4: ldloca.s       8
+IL_01d6: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_01db: ldloc.s        5
+IL_01dd: ldloc.s        10
+IL_01df: call           TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.GetEntityDamageMultiplier(System.Boolean, TaleWorlds.Core.WeaponComponentData, TaleWorlds.Core.DamageTypes, System.Boolean)
+IL_01e4: mul
+IL_01e5: stind.r4
+IL_01e6: ldarg.s        4
+IL_01e8: ldarg.s        4
+IL_01ea: ldfld          TaleWorlds.MountAndBlade.AttackCollisionData.BaseMagnitude
+IL_01ef: conv.i4
+IL_01f0: ldc.i4.0
+IL_01f1: ldc.i4         2000
+IL_01f6: call           TaleWorlds.Library.MBMath.ClampInt(System.Int32, System.Int32, System.Int32)
+IL_01fb: stfld          TaleWorlds.MountAndBlade.AttackCollisionData.InflictedDamage
+IL_0200: ldarg.s        5
+IL_0202: ldarg.s        4
+IL_0204: ldfld          TaleWorlds.MountAndBlade.AttackCollisionData.InflictedDamage
+IL_0209: stfld          TaleWorlds.MountAndBlade.CombatLogData.InflictedDamage
+IL_020e: ldarg.s        4
+IL_0210: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsColliderAgent()
+IL_0215: brfalse        225
+IL_021a: ldarg.0
+IL_021b: ldfld          TaleWorlds.MountAndBlade.AttackInformation.IsVictimAgentNull
+IL_0220: brtrue         214
+IL_0225: ldarg.s        4
+IL_0227: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_IsAlternativeAttack()
+IL_022c: brfalse.s      9
+IL_022e: ldarg.s        4
+IL_0230: ldfld          TaleWorlds.MountAndBlade.AttackCollisionData.BaseMagnitude
+IL_0235: stloc.s        4
+IL_0237: ldarg.s        4
+IL_0239: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_AttackBlockedWithShield()
+IL_023e: brfalse.s      53
+IL_0240: ldarg.0
+IL_0241: ldarg.s        4
+IL_0243: ldarg.0
+IL_0244: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_0249: stloc.s        8
+IL_024b: ldloca.s       8
+IL_024d: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_0252: ldarg.s        4
+IL_0254: ldfld          TaleWorlds.MountAndBlade.AttackCollisionData.BaseMagnitude
+IL_0259: ldarg.s        4
+IL_025b: ldflda         TaleWorlds.MountAndBlade.AttackCollisionData.InflictedDamage
+IL_0260: call           TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.ComputeBlowDamageOnShield(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, TaleWorlds.Core.WeaponComponentData, System.Single, System.Int32&)
+IL_0265: ldarg.s        4
+IL_0267: ldarg.s        4
+IL_0269: ldfld          TaleWorlds.MountAndBlade.AttackCollisionData.InflictedDamage
+IL_026e: stfld          TaleWorlds.MountAndBlade.AttackCollisionData.AbsorbedByArmor
+IL_0273: br.s           92
+IL_0275: ldarg.s        4
+IL_0277: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_MissileBlockedWithWeapon()
+IL_027c: brfalse.s      18
+IL_027e: ldarg.s        4
+IL_0280: ldc.i4.0
+IL_0281: stfld          TaleWorlds.MountAndBlade.AttackCollisionData.InflictedDamage
+IL_0286: ldarg.s        4
+IL_0288: ldc.i4.0
+IL_0289: stfld          TaleWorlds.MountAndBlade.AttackCollisionData.AbsorbedByArmor
+IL_028e: br.s           65
+IL_0290: ldarg.0
+IL_0291: ldarg.s        4
+IL_0293: ldarg.0
+IL_0294: ldfld          TaleWorlds.MountAndBlade.AttackInformation.AttackerWeapon
+IL_0299: stloc.s        8
+IL_029b: ldloca.s       8
+IL_029d: call           TaleWorlds.MountAndBlade.MissionWeapon.get_CurrentUsageItem()
+IL_02a2: ldloc.s        5
+IL_02a4: ldloc.s        4
+IL_02a6: ldarg.s        6
+IL_02a8: ldind.i4
+IL_02a9: ldarg.3
+IL_02aa: ldarg.s        4
+IL_02ac: ldflda         TaleWorlds.MountAndBlade.AttackCollisionData.InflictedDamage
+IL_02b1: ldarg.s        4
+IL_02b3: ldflda         TaleWorlds.MountAndBlade.AttackCollisionData.AbsorbedByArmor
+IL_02b8: ldloca.s       11
+IL_02ba: call           TaleWorlds.MountAndBlade.MissionCombatMechanicsHelper.ComputeBlowDamage(TaleWorlds.MountAndBlade.AttackInformation&, TaleWorlds.MountAndBlade.AttackCollisionData&, TaleWorlds.Core.WeaponComponentData, TaleWorlds.Core.DamageTypes, System.Single, System.Int32, System.Boolean, System.Int32&, System.Int32&, System.Boolean&)
+IL_02bf: ldarg.s        4
+IL_02c1: ldloc.s        11
+IL_02c3: stfld          TaleWorlds.MountAndBlade.AttackCollisionData.IsSneakAttack
+IL_02c8: ldarg.s        5
+IL_02ca: ldloc.s        11
+IL_02cc: stfld          TaleWorlds.MountAndBlade.CombatLogData.IsSneakAttack
+IL_02d1: ldarg.s        5
+IL_02d3: ldarg.s        4
+IL_02d5: ldfld          TaleWorlds.MountAndBlade.AttackCollisionData.InflictedDamage
+IL_02da: stfld          TaleWorlds.MountAndBlade.CombatLogData.InflictedDamage
+IL_02df: ldarg.s        5
+IL_02e1: ldarg.s        4
+IL_02e3: ldfld          TaleWorlds.MountAndBlade.AttackCollisionData.AbsorbedByArmor
+IL_02e8: stfld          TaleWorlds.MountAndBlade.CombatLogData.AbsorbedDamage
+IL_02ed: ldarg.s        5
+IL_02ef: ldarg.s        4
+IL_02f1: call           TaleWorlds.MountAndBlade.AttackCollisionData.get_AttackProgress()
+IL_02f6: call           TaleWorlds.MountAndBlade.CombatLogData.set_AttackProgress(System.Single)
+IL_02fb: ret
+```
+</details>
+
+### ApplyDamageAmplifications (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.MultiplayerAgentApplyDamageModel.ApplyDamageAmplifications`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.MultiplayerAgentApplyDamageModel.ApplyDamageAmplifications(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.3
+IL_0001: ret
+```
+</details>
+
+### ApplyDamageReductions (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.MultiplayerAgentApplyDamageModel.ApplyDamageReductions`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.MultiplayerAgentApplyDamageModel.ApplyDamageReductions(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, TaleWorlds.MountAndBlade.AttackCollisionData& collisionData, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.3
+IL_0001: ret
+```
+</details>
+
+### CalculateShieldDamage (TaleWorlds.MountAndBlade)
+
+- **Full Name:** `TaleWorlds.MountAndBlade.MultiplayerAgentApplyDamageModel.CalculateShieldDamage`
+- **Signature:** `System.Single TaleWorlds.MountAndBlade.MultiplayerAgentApplyDamageModel.CalculateShieldDamage(TaleWorlds.MountAndBlade.AttackInformation& attackInformation, System.Single baseDamage)`
+- **Visibility:** `public`
+- **Numeric Constants:** 0.75, 1.25, 4
+- **Referenced Members:**
+  - `TaleWorlds.MountAndBlade.Mission.GetMissionBehavior()`
+  - `TaleWorlds.MountAndBlade.Mission.get_Current()`
+  - `TaleWorlds.MountAndBlade.MissionMultiplayerGameModeBase.GetMissionType()`
+
+<details>
+<summary>View IL Instructions</summary>
+
+```il
+IL_0000: ldarg.2
+IL_0001: ldc.r4         1.25
+IL_0006: mul
+IL_0007: starg.s        2
+IL_0009: call           TaleWorlds.MountAndBlade.Mission.get_Current()
+IL_000e: callvirt       TaleWorlds.MountAndBlade.Mission.GetMissionBehavior()
+IL_0013: stloc.0
+IL_0014: ldloc.0
+IL_0015: brfalse.s      17
+IL_0017: ldloc.0
+IL_0018: callvirt       TaleWorlds.MountAndBlade.MissionMultiplayerGameModeBase.GetMissionType()
+IL_001d: ldc.i4.4
+IL_001e: bne.un.s       8
+IL_0020: ldarg.2
+IL_0021: ldc.r4         0.75
+IL_0026: mul
+IL_0027: ret
+IL_0028: ldarg.2
+IL_0029: ret
+```
+</details>
+

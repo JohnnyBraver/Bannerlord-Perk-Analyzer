@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "src" / "bannerlord_per
 
 try:
     from bannerlord_perk_analyzer.extract_character_creation import extract_character_creation
+    from bannerlord_perk_analyzer.extract_combat_formulas import extract_combat_formulas
     from bannerlord_perk_analyzer.extract_guide_stats import extract_guide_stats
     from bannerlord_perk_analyzer.extract_skill_xp_sources import extract_skill_xp_sources
     from bannerlord_perk_analyzer.extract_xp_awards import extract_xp_awards
@@ -158,10 +159,32 @@ def main() -> None:
         default=None,
         help="Bannerlord game root directory. Overrides BANNERLORD_GAME_ROOT env var."
     )
-    parser_creation.add_argument(
-        "--skip-scan",
+    # Extract-combat subcommand
+    parser_combat = subparsers.add_parser(
+        "extract-combat",
+        help="Run the combat damage, armor mitigation, and shield formulas extractions."
+    )
+    parser_combat.add_argument(
+        "--workspace",
+        type=Path,
+        default=default_workspace(),
+        help="Path to workspace directory"
+    )
+    parser_combat.add_argument(
+        "--game-root",
+        type=Path,
+        default=None,
+        help="Bannerlord game root directory. Overrides BANNERLORD_GAME_ROOT env var."
+    )
+    parser_combat.add_argument(
+        "--no-il",
         action="store_true",
-        help="Skip fresh C# scanning and reuse existing JSON output to regenerate reports."
+        help="Do not keep IL instructions in the formula scan output."
+    )
+    parser_combat.add_argument(
+        "--keep-temp",
+        action="store_true",
+        help="Keep per-scan temporary JSON files under Data/intermediate/combat-formula-scan-temp."
     )
 
     # Stats subcommand
@@ -272,6 +295,20 @@ def main() -> None:
             json_output=json_output,
             markdown_output=markdown_output,
             skip_scan=args.skip_scan,
+        )
+
+    elif args.command == "extract-combat":
+        json_output = workspace / "Data" / "raw" / "combat-formula-methods.json"
+        markdown_output = workspace / "Docs" / "reports" / "combat-formulas.md"
+        insights_output = workspace / "Docs" / "reports" / "combat-insights.md"
+        extract_combat_formulas(
+            workspace=workspace,
+            game_root=args.game_root,
+            json_output=json_output,
+            markdown_output=markdown_output,
+            insights_output=insights_output,
+            include_il=not args.no_il,
+            keep_temp=args.keep_temp,
         )
 
     elif args.command == "stats":

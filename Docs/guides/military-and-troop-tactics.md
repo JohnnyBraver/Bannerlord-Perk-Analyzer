@@ -49,6 +49,9 @@ The following table shows the maximum potential speed for a 100-man party on fla
 > [!TIP]
 > Fully supported infantry (with spare mounts and the `Strong` and `Nomadic Traditions` perks) is only $4.2\%$ slower than a pure cavalry party on clean terrain. In bad weather or dense forests, this gap closes completely or even reverses.
 
+> [!TIP]
+> **Tracking Mount Coverage via `Logistician`**: Having many different types of ridable mounts in your inventory can make manual tracking extremely difficult. The Steward perk `Logistician` provides an exact signal. Since its morale bonus is active only when you have strictly more riding mounts than foot troops ($\text{Mounts} > \text{Foot Troops}$), having even a single mount over your foot troop count is sufficient to trigger the tooltip, making it trivial to verify that you have $100\%$ mount coverage.
+
 #### Mixed Formations Speed Grid
 Below is the speed scaling for a 100-man mixed party (assuming every foot soldier is covered by a spare mount, and the party leader has both `Strong` and `Nomadic Traditions`):
 
@@ -111,8 +114,13 @@ Shared XP (from battle victories, quests, or donation perks) is distributed dyna
 $$\text{Shared XP Capacity} = \text{Remaining XP needed by stacks that can still upgrade}$$
 $$\text{Shared XP Added to Stack} = \text{Floor}\left(\text{Max}\left(1, \text{Remaining Shared XP} \times \frac{\text{Stack Capacity}}{\text{Remaining Capacity}}\right)\right)$$
 
-> [!IMPORTANT]
-> A troop stack that has accumulated enough experience to upgrade ceases to absorb shared XP. If you leave upgrade-ready units in your party without promoting them, you are choking your party's shared XP capacity. Upgrading troops promptly ensures that all incoming shared XP is directed to units that still need it.
+> [!NOTE]
+> **Strategic Trade-offs of Delayed Promotions**:
+> Because a troop stack that has accumulated enough experience to upgrade ceases to absorb Shared XP, you can strategically delay promotions to control where experience is distributed:
+> * **XP Channeling to Lower Tiers**: If you leave higher-tier units (e.g., Tier 4 troops ready for Tier 5) unupgraded, their stack capacity remains $0$, and they consume $0\%$ of incoming Shared XP. This diverts $100\%$ of battle victory and item donation XP to your lower-tier Recruits and Tier 1–2 troops.
+> * **Siphon Re-opening**: Conversely, if you want your higher-tier troops to keep advancing toward elite status, you must upgrade them promptly to open up new capacity (e.g., promoting them to Tier 5 immediately creates a new siphon capacity of $1,700$ XP per troop, letting them absorb Shared XP again).
+> * **Milking Tier-Restricted Perks**: Passive training perks like `Raise The Meek` only benefit Tier 1–2 troops ($+4$ XP/day). Keeping Tier 2 units ready to upgrade but unupgraded allows them to continue receiving this high daily bonus. Upgrading them immediately to Tier 3 would stop this passive XP drip.
+> * **Stack-Size Daily XP Scaling**: Passive training perks add XP to the stack based on its total count ($\text{Perk Value} \times \text{Troop Count}$), regardless of upgrade status. Keeping ready recruits in the stack keeps the multiplier high, allowing the remaining recruits to reach readiness much faster.
 
 ### Upgrade Costs
 The experience required to upgrade a troop to the next tier:
@@ -128,7 +136,7 @@ The experience required to upgrade a troop to the next tier:
 | **Tier 7 (Elite Mod)** | 2,100 |
 
 ### Daily Passive Training Perks
-These perks drip-feed experience to your troops at the end of each campaign day:
+These perks drip-feed experience to your troops at the end of each campaign day. The daily XP is calculated **per troop** in each matching stack (i.e. $\text{Daily XP Added to Stack} = \text{Perk Value} \times \text{Troop Count in Stack}$), meaning larger stacks gain XP much faster as a whole:
 
 | Skill | Level | Perk | Role | Effect | Best Target |
 | :--- | ---: | :--- | :--- | :--- | :--- |
@@ -157,13 +165,13 @@ These perks increase the XP gained during live combat or simulation:
 * **Throwing (Level 200) - `Resourceful`**: $+10\%$ battle XP to troops equipped with throwing weapons.
 * **Roguery (Level 25) - `No Rest for the Wicked`**: $+20\%$ XP gain for bandit troops.
 * **Leadership (Level 200) - `Trusted Commander`**: $+20\%$ XP when sending troops to confront the enemy (autoresolve).
-* **Medicine (Level 250) - `Battle Hardened`**: $+25$ XP to wounded units at battle end.
+* **Medicine (Level 250) - `Battle Hardened`**: $+25$ XP to wounded units at battle end. (**BUGGED/NO-OP**: This perk's battle-end effect is never called in the game logic).
 
 ### Donation and Special Training Perks
-* **Steward (Level 100) - `Paid in Promise`**: Discarded/donated armor yields troop XP.
-* **Steward (Level 125) - `Giving Hands`**: Discarded/donated weapons yield troop XP.
-* **Two Handed (Level 75) - `Baptised in Blood`**: Adds $+5$ XP to every infantry stack in the party for each player kill made with a two-handed weapon. Great for active combat players.
-* **Leadership (Level 100) - `Famous Commander`**: Newly recruited troops arrive with $+200$ XP pre-loaded.
+* **Steward (Level 100) - `Paid in Promise`**: Discarded/donated armor yields **Shared XP** distributed across eligible party stacks.
+* **Steward (Level 125) - `Giving Hands`**: Discarded/donated weapons yield **Shared XP** distributed across eligible party stacks.
+* **Two Handed (Level 75) - `Baptised in Blood`**: Adds $+5$ XP **per troop** to every non-hero infantry stack in the party (effectively $5 \times \text{stack size}$ total XP added to each stack's pool) for each player kill made with a two-handed weapon. Great for active combat players.
+* **Leadership (Level 100) - `Famous Commander`**: Newly recruited troops arrive with $+200$ XP **per troop** pre-loaded into their stack.
 
 ---
 
@@ -241,7 +249,62 @@ Ranged AI governs fire rate and shooting error based on the equipped missile ski
 
 ---
 
-## 4. Troop Category Counting & Formation Bitmasks
+## 4. Combat Physics and Damage Formulas
+
+Melee combat damage in Bannerlord does not use simple linear subtraction. Instead, the game's core collision engine (`DefaultStrikeMagnitudeModel.ComputeRawDamage`) processes incoming kinetic energy (strike magnitude) against local armor using a multi-step formula that accounts for flat armor "soak" and dynamic damage-type scaling.
+
+### The Armor Mitigation Formula
+The final raw damage delivered by a strike is calculated as:
+$$\text{Final Raw Damage} = \Big[ C_{\text{blunt}} + (1 - B) \cdot C_{\text{nonBlunt}} \Big] \cdot R_{\text{absorb}}$$
+
+Where:
+* **Blunt Component ($C_{\text{blunt}}$):** Represents the concussive force transmitted directly through the armor.
+  $$C_{\text{blunt}} = B \cdot M \cdot \left(\frac{50}{50 + A}\right)$$
+* **Non-Blunt Component ($C_{\text{nonBlunt}}$):** Represents the cutting or piercing force that must overcome the armor's surface resistance before dealing damage.
+  $$C_{\text{nonBlunt}} = \max\left(0, M \cdot \left(\frac{50}{50 + A}\right) - k \cdot A\right)$$
+
+#### Equation Constants by Damage Type
+
+| Damage Type | Blunt Damage Factor ($B$) | Armor Soak Factor ($k$) | Key Characteristic |
+| :--- | :---: | :---: | :--- |
+| **Cut (Slash)** | $0.10$ | $0.50$ | High base damage, heavily mitigated by armor. |
+| **Pierce (Thrust)** | $0.25$ | $0.33$ | Moderate armor penetration, scales with velocity. |
+| **Blunt (Concussive)** | $0.60$ | $0.20$ | Extreme armor penetration, ignores most soak. |
+
+* **$M$ (Strike Magnitude):** The raw incoming blow magnitude (kinetic energy), scaled by weapon damage, combat skill, and physics speed bonuses.
+* **$A$ (Armor Effectiveness):** The target's local armor value at the hit location (e.g., helmet value for headshots).
+* **$R_{\text{absorb}}$ (Absorption Ratio):** Damage absorption modifier (typically $1.0$ for human torso hits, modified for mounts or shield strikes).
+
+---
+
+### Damage Type Scaling Grid (Magnitude $M = 100$)
+This table models the final damage dealt by a standard $100$-magnitude hit at different armor values ($A$) across all three damage types (assuming $R_{\text{absorb}} = 1.0$):
+
+| Armor Level ($A$) | Cut Damage (Dealt) | Pierce Damage (Dealt) | Blunt Damage (Dealt) |
+| :---: | :---: | :---: | :---: |
+| **0** (No Armor) | 100.00 | 100.00 | 100.00 |
+| **20** (Light Armor) | 62.43 | 66.48 | 69.83 |
+| **40** (Medium Armor) | 37.56 | 45.66 | 52.36 |
+| **60** (Heavy Armor) | 18.46 | 30.60 | 40.65 |
+| **80** (Super Heavy Armor) | 3.85 | 18.67 | 32.06 |
+
+> [!NOTE]
+> Against a heavily armored knight ($A = 80$), a **Cut** attack loses its entire non-blunt component to armor soak ($C_{\text{nonBlunt}} = 0$), leaving only the $10\%$ blunt impact component ($3.85$ damage). Conversely, a **Blunt** attack bypasses most of the soak, dealing **$32.06$ damage**—more than **8 times** the damage of Cut under the exact same magnitude!
+
+---
+
+### Case Study: Sturgian Heroic Line Breaker vs. Imperial Elite Menavliaton
+
+Despite the Imperial Elite Menavliaton using a long, high-damage weapon (the **Menavlion**, $120$ Cut swing) and the Sturgian Heroic Line Breaker using a short, lower-damage weapon (the **Northern Reinforced Two-Handed Mace**, $74$ Blunt swing), the Sturgian units consistently win in head-to-head brawls. This counter-intuitive outcome is explained by four distinct mechanics:
+
+1. **Armor Mitigation Mitigation:** Against standard heavy armor ($A = 45–50$), the Menavlion's Cut damage is heavily mitigated by soak ($k=0.5$), reducing a $126$-magnitude hit to **$\sim 35.25$ damage**. The Line Breaker's Mace, utilizing Blunt scaling ($k=0.2$, $B=0.6$), keeps its concussive components intact, dealing **$\sim 34.36$ damage** from an $81.4$-magnitude hit. Despite the Menavlion's $62\%$ base damage advantage, both units require exactly **3 hits** to kill each other.
+2. **Attack Frequency:** The Northern Reinforced Two-Handed Mace is a much faster weapon (**89 swing speed** vs. the Menavlion's **75–80**), allowing the Sturgian to hit first and more frequently in a duel.
+3. **Combat AI Level Difference:** The Line Breaker has **150 Two-Handed skill** (AI Level **0.480**), while the Menavliaton has **130 Polearm skill** (AI Level **0.416**). This higher AI Level allows the Sturgian to transition from blocking to attacking faster (`AISetNoDefendTimerAfterHitting` uses an $\text{AI}^2$ power curve) and make fewer defensive direction mistakes.
+4. **Length and Spacing:** The Menavlion's length (**163 cm**) is a massive liability in a tight infantry blob. When units press chest-to-chest, the Menavlion's blade collides behind or inside the enemy's collision box, triggering a "clash/bounce" animation that deals $0$ damage. The Sturgian Mace's short length (**102 cm**) is optimized for close quarters, swinging cleanly without bouncing.
+
+---
+
+## 5. Troop Category Counting & Formation Bitmasks
 
 Perk tooltips that affect "infantry," "cavalry," or "ranged" are controlled by binary masks rather than direct string matching.
 
@@ -262,7 +325,7 @@ The engine checks unit equipment and flags using a bitmask layout:
 | **256** | `BowUser` | Bow equipped. |
 | **512** | `ThrownUser` | Throwing weapons equipped. |
 | **1024** | `CrossbowUser` | Crossbow equipped. |
-| **65535** | `Undefined` | Interpreted as `all` by perk helpers. |
+| **65535** | `Undefined` | Virtually matches `all` by perk helpers. |
 
 ### Formation Class Masks
 Default troop classifications use combined masks. A perk must match **all** flags in the mask to apply to the unit:
@@ -279,7 +342,7 @@ Default troop classifications use combined masks. A perk must match **all** flag
 
 ---
 
-## 5. Village Raiding and Loot Pulses
+## 6. Village Raiding and Loot Pulses
 
 Village raiding is structured as a damage accumulator loop that yields loot at set intervals.
 
