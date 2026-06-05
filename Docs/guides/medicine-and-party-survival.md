@@ -36,6 +36,23 @@ The following table models the survival rates of a level 20 troop in the player'
 > [!TIP]
 > Surgeon Medicine is a denominator bonus. Going from 0 to 330 Medicine cuts your troop death rate from $71.4\%$ to $21.3\%$ (over a $70\%$ relative reduction in fatalities).
 
+### Troop Level Death Chance Scaling
+Because troop level directly increases the surgery denominator, lower-level units (such as Tier 1 recruits or low-tier militia) have a significantly higher death rate than elite Tier 5 and 6 units under the exact same Surgeon Medicine level.
+
+The table below shows the base death chances (before additional perk multipliers) for different troop levels:
+* **Level 6** (Approx. Tier 1 recruit)
+* **Level 16** (Approx. Tier 3 troop / basic militia)
+* **Level 26** (Approx. Tier 5 elite)
+* **Level 31** (Approx. Tier 6 noble elite)
+
+| Surgeon Medicine Skill | Level 6 (T1) Death % | Level 16 (T3) Death % | Level 26 (T5) Death % | Level 31 (T6) Death % |
+| :---: | :---: | :---: | :---: | :---: |
+| **0** | 89.3% | 75.8% | 65.8% | 61.7% |
+| **80** | 52.1% | 47.2% | 43.1% | 41.3% |
+| **150** | 38.2% | 35.5% | 33.1% | 32.1% |
+| **200** | 32.1% | 30.1% | 28.4% | 27.6% |
+| **300** | 24.3% | 23.1% | 22.1% | 21.6% |
+
 ---
 
 ## 2. Medicine and Surgery Perks
@@ -43,10 +60,10 @@ The following table models the survival rates of a level 20 troop in the player'
 The Medicine skill tree contains several passive and active perks that govern troop survival, healing rates, and character longevity:
 
 ### Surgery & Troop Survival Perks
-* **Medicine (Level 75) - `Doctor's Oath`**: Applies your Medicine survival bonus to enemy casualties, increasing the number of wounded enemies available for recruitment or ransom. Operates at $1.0\times$ in player battles and $0.1\times$ in simulated battles.
+* **Medicine (Level 75) - `Doctor's Oath`**: Applies your Medicine survival bonus to enemy casualties, increasing the number of wounded enemies available for recruitment or ransom. Operates at $1.0\times$ in player battles and $0.1\times$ in simulated battles. **Warning**: This can prevent siege garrison attrition (see Section 7).
 * **Medicine (Level 125) - `Siege Medic`**: Grants a flat $50\%$ chance for troops to be wounded instead of killed during siege bombardment events.
 * **Medicine (Level 125) - `Veterinarian`**: Reduces troop mount loss by $-50\%$ when a mounted troop is killed in battle (mount is recovered and recycled).
-* **Medicine (Level 200) - `Physician of People`**: Multiplies the survival denominator by $1.3$ (acting as a $+30\%$ factor bonus) for Tier 1 and Tier 2 troops in your party.
+* **Medicine (Level 200) - `Physician of People`**: Multiplies the survival denominator by $1.3$ (acting as a $+30\%$ factor bonus) for Tier 1 and Tier 2 troops **strictly in your party** (friendly only; does not apply to enemy casualties).
 
 ### Healing Rate & Utility Perks
 * **Medicine (Level 25) - `Self Medication`**: $+10\%$ personal healing rate and $+5$ max HP to the surgeon.
@@ -147,3 +164,25 @@ Damage resistance acts as a third pre-roll defense layer, applying percentage cu
 * **Cultivate a Surgeon Companion**: If your main hero does not invest in Intelligence, recruit and assign a high-Intelligence companion with the surgeon role immediately. The daily party survival rates depend entirely on the active surgeon's Medicine skill.
 * **Shield Wall Defense**: Standard shield walls do not receive baseline ranged body-hit damage reductions; their survival depends on shield block coverage. Combine `Arrow Catcher` and `Shieldwall` to maximize the protection area of your front-line infantry.
 * **Simulated vs. Live Battle Split**: Ensure you do not waste perk slots on simulation-only perks (such as Tactics `Loose Formations` or `Elite Reserves` party leader versions) if you personally command your field battles. Those perks do not apply to live combat.
+
+---
+
+## 7. The Doctor's Oath Siege Attrition Trap
+
+While **Doctor's Oath** (Medicine 75) is exceptionally powerful for farming high-tier prisoners and accelerating Roguery and Medicine experience, it contains a significant tactical drawback during siege campaigns.
+
+### The Mechanic
+When you assault a settlement in multiple sequential waves (a common tactic to whittle down a massive garrison), **Doctor's Oath** applies your surgeon's Medicine level to the defending enemy casualties. 
+
+Instead of being killed, a massive proportion of the defenders are processed as wounded. Because they are wounded inside a settlement, they recover rapidly (boosted by the settlement's natural healing rates and any active governor/project bonuses) and are fully ready to defend the walls again in the next assault phase. You are essentially fighting against your own surgeon's death-protection capabilities.
+
+### Physician of People Exclusion
+The Medicine 200 perk **Physician of People** ($+30\%$ survival rate factor for Tier 1/2 units) is restricted **strictly to the surgeon's own party**. 
+* Defending militia (which are low-level and would otherwise benefit from it) and recruits in the garrison **do not** receive this $+30\%$ bonus.
+* However, because low-tier militia are low level (typically Level 6 for Tier 1, Level 11 for Tier 2), their base death chance is naturally much higher (e.g. $32.1\%$ at 200 Medicine compared to $27.6\%$ for Tier 6 elites). This means militia will still die at higher rates than garrisoned elite troops during siege assaults.
+
+### Tactical Workaround
+If you plan to use repeated assaults to wear down a massive garrison via attrition:
+1. **Reassign Surgeon**: Temporarily open the Clan screen and assign a different companion (ideally one with $0$ Medicine skill) to the **Surgeon** role before launching the siege assault.
+2. **Execute Assault**: Perform the attack wave. Because the active surgeon has $0$ Medicine and no Doctor's Oath, downed defenders will die at extremely high rates (e.g. $75.8\%$ for basic Tier 3 units), permanently depleting the garrison.
+3. **Reassign Surgeon Back**: Once the siege is won or you need to recover your own party's health, reassign your high-Medicine surgeon back to the Surgeon role to restore your own troop survival bonuses.
