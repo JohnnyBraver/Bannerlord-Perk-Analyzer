@@ -423,7 +423,6 @@ These perks are highly prized because they grant permanent points that can resha
 * **Level 300 (Trade)** - `Everything Has a Price`: Allows trading fiefs and settlements directly in lord barters. Huge, but requires massive point investment.
 * **Level 150 (Roguery)** - `Smuggler Connections`: Allows trading with town merchants and markets even while in disguise inside enemy settlements.
 
-#### Charm and Persuasion
 * **Level 25** - `Virile`: $+20\%$ pregnancy chance to hero couples.
 * **Level 50** - `Oratory`: Adds $+2$ renown and $+1$ influence for every issue/quest resolved.
 * **Level 200** - `Moral Leader` & `Natural Leader`: Reduces the number of successful arguments required during persuasion checks.
@@ -436,56 +435,6 @@ When starting a new character, aligning your culture, background choices, and st
 
 Calradia's two most optimized commanding starting paths - one optimized for **Intelligence** and the other for **Cunning** - both naturally converge by level 28 into the ultimate General's attribute distribution:
 $$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \text{ } 2 \text{ } 7$$
-*(The $(5)$ represents the physical attributes boosted by Smithing and Athletics perks, rotated via the Arena Perk Rotation Trick).*
+*(The $(5)$ represents the physical attributes boosted by Smithing and Athletics perks, rotated via the Arena Perk Respec Trick).*
 
----
-
-### Build A: The Intelligence-Optimized Commander
-* **Goal**: Start with maximized Intelligence and develop into the ultimate commanding general. The main draw here is rushing **Medicine** (INT) early to secure high troop survival rates, catching up Cunning (**Scouting**) later via level-up points.
-* **Starting Attributes** (Level 1):
-  - **Vigor**: 2
-  - **Control**: 3
-  - **Endurance**: 3
-  - **Cunning**: 4
-  - **Social**: 2
-  - **Intelligence**: 4 (starts at 4, gains +1 from education/childhood choice)
-* **Background Selection Steps** (Battanian Culture):
-  1. *Parents*: Foresters (+1 Control, Bow +10, Throwing +10, Scouting +10)
-  2. *Childhood*: Working in Shop (+1 Intelligence, Trade +10, Engineering +10)
-  3. *Education*: Gathered Herbs (+1 Intelligence, Medicine +10, Scouting +10)
-  4. *Youth*: Went with Scouts (+1 Cunning, Scouting +10, Riding +10)
-  5. *Adulthood*: Subdued Outlaw (+1 Cunning, Roguery +10, Bow +10)
-  6. *Escape Choice*: Fast Horse (+1 Endurance, Riding +10)
-* **Level-Up Progression (to Level 28)**:
-  * Spend your 7 level-up attribute points as follows: **+1 Vigor**, **+3 Cunning**, and **+3 Intelligence**.
-  * Final base stats before rotation: VIG 3, CTR 3, END 3, CNG 7, SOC 2, INT 7.
-* **Rotation Strategy**:
-  1. Early on, set Athletics 175 to `Durable` (+1 END) and Smithing 225 to `Enduring Smith` (+1 END) to raise Endurance to $5$.
-  2. Max out both skills to their target caps.
-  3. Visit an Arena Master to respec those perk choices. Rotate selections to Vigor (`Strong` and `Vigorous Smith`) and Control (`Steady` and `Controlled Smith`) to raise Vigor, Control, and Endurance to $5$.
-
----
-
-### Build B: The Cunning-Optimized Commander
-* **Goal**: Start with maximized Cunning and develop into the ultimate commanding general. The main draw here is rushing **Scouting** (CNG) early to secure high campaign-map movement speed, catching up Intelligence (**Medicine**) later via level-up points.
-* **Starting Attributes** (Level 1):
-  - **Vigor**: 2
-  - **Control**: 3
-  - **Endurance**: 3
-  - **Cunning**: 5
-  - **Social**: 2
-  - **Intelligence**: 3
-* **Background Selection Steps** (Battanian Culture):
-  1. *Parents*: Foresters (+1 Control, Bow +10, Throwing +10, Scouting +10)
-  2. *Childhood*: Attention to Detail (+1 Cunning, Scouting +10, Tactics +10)
-  3. *Education*: Repaired Projects (+1 Intelligence, Engineering +10, Crossbow +10)
-  4. *Youth*: Went with Scouts (+1 Cunning, Scouting +10, Riding +10)
-  5. *Adulthood*: Subdued Outlaw (+1 Cunning, Roguery +10, Bow +10)
-  6. *Escape Choice*: Fast Horse (+1 Endurance, Riding +10)
-* **Level-Up Progression (to Level 28)**:
-  * Spend your 7 level-up attribute points as follows: **+1 Vigor**, **+2 Cunning**, and **+4 Intelligence**.
-  * Final base stats before rotation: VIG 3, CTR 3, END 3, CNG 7, SOC 2, INT 7.
-* **Rotation Strategy**:
-  1. Early on, set Athletics 175 to `Durable` (+1 END) and Smithing 225 to `Enduring Smith` (+1 END) to raise Endurance to $5$.
-  2. Max out both skills to their target caps.
-  3. Visit an Arena Master to respec those perk choices. Rotate selections to Vigor (`Strong` and `Vigorous Smith`) and Control (`Steady` and `Controlled Smith`) to raise Vigor, Control, and Endurance to $5$.
+For a complete guide detailing the exact starting background choice steps, progression tables, and the underlying mathematical proofs for physical attribute limits, focus point depletion, and riding speed thresholds, refer to the dedicated [Battanian Character Creation and Commander Progression Guide](file:///d:/Projects/Bannerlord/Docs/guides/battanian-starts.md).
