@@ -1,22 +1,14 @@
 # Docs
 
-- `notes/` keeps the manual planning and reference notes that used to live at the repository root.
-- `notes/xp-awards.md` summarizes the current XP award extraction findings.
-- `notes/smithing.md` summarizes smithing XP, part research, unlock thresholds, and practical craft/smelt optimization notes.
-- `notes/medicine-survival.md` summarizes troop-facing Medicine, casualty survival math, and cross-skill troop durability perks.
-- `notes/troop-category-counting.md` explains how foot, ranged, mounted, infantry, cavalry, and horse-archer perk filters are counted.
-- `notes/troop-ai-fighting-behavior.md` details the live-battle AI formulas fed by troop skills and the perk stacks that maximize them.
-- `notes/personal-combat.md` summarizes player-facing combat perks, weapon-skill effects, and high-tier personal combat payoffs.
-- `notes/personal-noncombat.md` summarizes personal economy, social, utility, unique, and character-growth perks that are not primarily live-battle combat effects.
-- `notes/party-management.md` summarizes party speed, troop XP, carrying capacity, food, morale, party size, prisoners, and recruitment perks.
-- `notes/village-raiding.md` explains village raid pulse loot, production weights by village type, common drop rates, hearth scaling, and looting perks.
-- `notes/trade-economy.md` explains shop price layers, trade penalty, Trade XP, and economy-facing perk lanes.
-- `notes/settlement-supply-chain.md` explains town native production, village delivery, consumption, demand, and market price pressure.
-- `notes/settlement-economy.md` explains taxes, tariffs, village production, hearth growth, prosperity income, and economy-facing governor perks.
-- `notes/settlement-development.md` explains loyalty, construction, food pressure, project effects, hearth recovery, and the growth/stability layer between economy and defense.
-- `notes/settlement-defense.md` explains security, militia, garrison strength, siege food, wall durability, bombardment, and defense-facing governor perks.
-- `notes/settlement-workshops.md` is the workshop appendix for ownership limits, production perks, warehouse Trade XP, and workshop follow-ups.
-- `notes/settlement-alleys.md` is the alley appendix for alley income, crime rating, troop limits, XP, and criminal-holding follow-ups.
-- `notes/kingdom-management.md` explains influence, policy voting, ruler overrides, army costs, diplomacy scoring, and clan politics.
-- `notes/kingdom-policies.md` is the policy appendix with every kingdom policy, major tradeoffs, and hidden A/O/E voting weights.
-- `notes/low-investment-perks.md` summarizes strong one-focus perk splashes for the level 25 and 50 perk tiers.
+- `guides/` contains the authored player-facing manuals:
+  - `hero-progression-and-builds.md`: character XP, skill learning, perk limits, low-investment splashes, and build templates.
+  - `commander-perks-and-build-optimization.md`: commander-focused perk priorities, investment bars, and banner package comparisons.
+  - `military-and-troop-tactics.md`: campaign movement, troop XP, combat AI scaling, damage formulas, village raids, and command perks.
+  - `medicine-and-party-survival.md`: casualty survival, Medicine scaling, troop hit points, armor, and damage resistance stacks.
+  - `fiefs-and-settlement-governance.md`: loyalty, construction, economy, defense, supply chains, workshops, and alleys.
+  - `trade-and-market-economy.md`: price formulation, trade penalty, market factors, Trade XP, and economy perks.
+  - `smithing-and-crafting.md`: smithing XP, part unlocks, stamina, materials, and crafted weapon payoffs.
+  - `kingdom-management.md`: influence, policies, army costs, ruler overrides, voting behavior, and diplomacy.
+  - `battanian-starts.md`: Battanian character creation choices and commander progression starts.
+- `reports/` contains generated or audit-oriented reports from the extraction and analysis scripts.
+- `reference/` contains generated perk reference markdown, including one file per skill and `master-perk-effects.md`.
