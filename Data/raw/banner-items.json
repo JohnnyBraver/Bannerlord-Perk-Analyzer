@@ -1,0 +1,1820 @@
+{
+  "generated_at": "2026-06-05T12:56:53.1104801+03:00",
+  "inputs": {
+    "game_root": "<local Bannerlord install>",
+    "core_assembly": "bin\\Win64_Shipping_Client\\TaleWorlds.Core.dll",
+    "banner_xml": [
+      "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml"
+    ]
+  },
+  "effect_definitions": [
+    {
+      "string_id": "DecreasedChargeDamage",
+      "field": "_decreasedChargeDamage",
+      "name_raw": "{=PkFT0D9a}Decreased Charge Damage",
+      "name": "Decreased Charge Damage",
+      "description_raw": "{=Z2xgnrDa}{BONUS_AMOUNT}% charge damage to mounted troops in your formation.",
+      "description": "{BONUS_AMOUNT}% charge damage to mounted troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.10000000149011612,
+          "bonus_percent": -10.000000149011612,
+          "display_bonus": "-10%",
+          "description": "-10% charge damage to mounted troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": -0.20000000298023224,
+          "bonus_percent": -20.000000298023224,
+          "display_bonus": "-20%",
+          "description": "-20% charge damage to mounted troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": -0.30000001192092896,
+          "bonus_percent": -30.000001192092896,
+          "display_bonus": "-30%",
+          "description": "-30% charge damage to mounted troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "DecreasedMeleeAttackDamage",
+      "field": "_decreasedMeleeAttackDamage",
+      "name_raw": "{=a3Vc59WV}Decreased Taken Melee Attack Damage",
+      "name": "Decreased Taken Melee Attack Damage",
+      "description_raw": "{=ORFrCYSn}{BONUS_AMOUNT}% damage by melee attacks to troops in your formation.",
+      "description": "{BONUS_AMOUNT}% damage by melee attacks to troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.05000000074505806,
+          "bonus_percent": -5.000000074505806,
+          "display_bonus": "-5%",
+          "description": "-5% damage by melee attacks to troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": -0.10000000149011612,
+          "bonus_percent": -10.000000149011612,
+          "display_bonus": "-10%",
+          "description": "-10% damage by melee attacks to troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": -0.15000000596046448,
+          "bonus_percent": -15.000000596046448,
+          "display_bonus": "-15%",
+          "description": "-15% damage by melee attacks to troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "DecreasedMoraleShock",
+      "field": "_decreasedMoraleShock",
+      "name_raw": "{=nOMT0Cw6}Decreased Morale Shock",
+      "name": "Decreased Morale Shock",
+      "description_raw": "{=W0agPHes}{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.10000000149011612,
+          "bonus_percent": -10.000000149011612,
+          "display_bonus": "-10%",
+          "description": "-10% morale penalty from casualties to troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": -0.20000000298023224,
+          "bonus_percent": -20.000000298023224,
+          "display_bonus": "-20%",
+          "description": "-20% morale penalty from casualties to troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": -0.30000001192092896,
+          "bonus_percent": -30.000001192092896,
+          "display_bonus": "-30%",
+          "description": "-30% morale penalty from casualties to troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "DecreasedRangedAccuracyPenalty",
+      "field": "_decreasedRangedAccuracyPenalty",
+      "name_raw": "{=MkBPRCuF}Decreased Ranged Accuracy Penalty",
+      "name": "Decreased Ranged Accuracy Penalty",
+      "description_raw": "{=Gu0Wxxul}{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "description": "{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.03999999910593033,
+          "bonus_percent": -3.999999910593033,
+          "display_bonus": "-4%",
+          "description": "-4% accuracy penalty for ranged troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": -0.05999999865889549,
+          "bonus_percent": -5.999999865889549,
+          "display_bonus": "-6%",
+          "description": "-6% accuracy penalty for ranged troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": -0.07999999821186066,
+          "bonus_percent": -7.999999821186066,
+          "display_bonus": "-8%",
+          "description": "-8% accuracy penalty for ranged troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "DecreasedRangedAttackDamage",
+      "field": "_decreasedRangedAttackDamage",
+      "name_raw": "{=p0JFbL7G}Decreased Taken Ranged Attack Damage",
+      "name": "Decreased Taken Ranged Attack Damage",
+      "description_raw": "{=W0agPHes}{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.05000000074505806,
+          "bonus_percent": -5.000000074505806,
+          "display_bonus": "-5%",
+          "description": "-5% morale penalty from casualties to troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": -0.10000000149011612,
+          "bonus_percent": -10.000000149011612,
+          "display_bonus": "-10%",
+          "description": "-10% morale penalty from casualties to troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": -0.15000000596046448,
+          "bonus_percent": -15.000000596046448,
+          "display_bonus": "-15%",
+          "description": "-15% morale penalty from casualties to troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "DecreasedShieldDamage",
+      "field": "_decreasedShieldDamage",
+      "name_raw": "{=T79exjaP}Decreased Taken Shield Damage",
+      "name": "Decreased Taken Shield Damage",
+      "description_raw": "{=klGEDUmw}{BONUS_AMOUNT}% damage to shields of troops in your formation.",
+      "description": "{BONUS_AMOUNT}% damage to shields of troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.15000000596046448,
+          "bonus_percent": -15.000000596046448,
+          "display_bonus": "-15%",
+          "description": "-15% damage to shields of troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": -0.25,
+          "bonus_percent": -25,
+          "display_bonus": "-25%",
+          "description": "-25% damage to shields of troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": -0.30000001192092896,
+          "bonus_percent": -30.000001192092896,
+          "display_bonus": "-30%",
+          "description": "-30% damage to shields of troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "IncreasedChargeDamage",
+      "field": "_increasedChargeDamage",
+      "name_raw": "{=O2oBC9sH}Increased Charge Damage",
+      "name": "Increased Charge Damage",
+      "description_raw": "{=Z2xgnrDa}{BONUS_AMOUNT}% charge damage to mounted troops in your formation.",
+      "description": "{BONUS_AMOUNT}% charge damage to mounted troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "description": "10% charge damage to mounted troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": 0.20000000298023224,
+          "bonus_percent": 20.000000298023224,
+          "display_bonus": "20%",
+          "description": "20% charge damage to mounted troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": 0.30000001192092896,
+          "bonus_percent": 30.000001192092896,
+          "display_bonus": "30%",
+          "description": "30% charge damage to mounted troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "IncreasedMeleeDamage",
+      "field": "_increasedMeleeDamage",
+      "name_raw": "{=unaWKloT}Increased Melee Damage",
+      "name": "Increased Melee Damage",
+      "description_raw": "{=8ZNOgT8Z}{BONUS_AMOUNT}% melee damage to troops in your formation.",
+      "description": "{BONUS_AMOUNT}% melee damage to troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.05000000074505806,
+          "bonus_percent": 5.000000074505806,
+          "display_bonus": "5%",
+          "description": "5% melee damage to troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "description": "10% melee damage to troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": 0.15000000596046448,
+          "bonus_percent": 15.000000596046448,
+          "display_bonus": "15%",
+          "description": "15% melee damage to troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "IncreasedMeleeDamageAgainstMountedTroops",
+      "field": "_increasedMeleeDamageAgainstMountedTroops",
+      "name_raw": "{=t0Qzb7CY}Increased Melee Damage Against Mounted Troops",
+      "name": "Increased Melee Damage Against Mounted Troops",
+      "description_raw": "{=sxGmF0tC}{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "description": "{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "description": "10% melee damage by troops in your formation against cavalry."
+        },
+        {
+          "level": 2,
+          "bonus": 0.20000000298023224,
+          "bonus_percent": 20.000000298023224,
+          "display_bonus": "20%",
+          "description": "20% melee damage by troops in your formation against cavalry."
+        },
+        {
+          "level": 3,
+          "bonus": 0.30000001192092896,
+          "bonus_percent": 30.000001192092896,
+          "display_bonus": "30%",
+          "description": "30% melee damage by troops in your formation against cavalry."
+        }
+      ]
+    },
+    {
+      "string_id": "IncreasedMoraleShockByMeleeTroops",
+      "field": "_increasedMoraleShockByMeleeTroops",
+      "name_raw": "{=nOMT0Cw6}Increased Morale Shock",
+      "name": "Increased Morale Shock",
+      "description_raw": "{=!}INCREASED MORALE SHOCK BY MELEE TROOPS DESCRIPTION",
+      "description": "INCREASED MORALE SHOCK BY MELEE TROOPS DESCRIPTION",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "description": "INCREASED MORALE SHOCK BY MELEE TROOPS DESCRIPTION"
+        },
+        {
+          "level": 2,
+          "bonus": 0.20000000298023224,
+          "bonus_percent": 20.000000298023224,
+          "display_bonus": "20%",
+          "description": "INCREASED MORALE SHOCK BY MELEE TROOPS DESCRIPTION"
+        },
+        {
+          "level": 3,
+          "bonus": 0.30000001192092896,
+          "bonus_percent": 30.000001192092896,
+          "display_bonus": "30%",
+          "description": "INCREASED MORALE SHOCK BY MELEE TROOPS DESCRIPTION"
+        }
+      ]
+    },
+    {
+      "string_id": "IncreasedMountMovementSpeed",
+      "field": "_increasedMountMovementSpeed",
+      "name_raw": "{=nMfxbc0Y}Increased Mount Movement Speed",
+      "name": "Increased Mount Movement Speed",
+      "description_raw": "{=g0l7W5xQ}{BONUS_AMOUNT}% movement speed to mounts in your formation.",
+      "description": "{BONUS_AMOUNT}% movement speed to mounts in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.05000000074505806,
+          "bonus_percent": 5.000000074505806,
+          "display_bonus": "5%",
+          "description": "5% movement speed to mounts in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": 0.07999999821186066,
+          "bonus_percent": 7.999999821186066,
+          "display_bonus": "8%",
+          "description": "8% movement speed to mounts in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "description": "10% movement speed to mounts in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "IncreasedRangedDamage",
+      "field": "_increasedRangedDamage",
+      "name_raw": "{=Ch5NpCd0}Increased Ranged Damage",
+      "name": "Increased Ranged Damage",
+      "description_raw": "{=labbKop6}{BONUS_AMOUNT}% ranged damage to troops in your formation.",
+      "description": "{BONUS_AMOUNT}% ranged damage to troops in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.03999999910593033,
+          "bonus_percent": 3.999999910593033,
+          "display_bonus": "4%",
+          "description": "4% ranged damage to troops in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": 0.05999999865889549,
+          "bonus_percent": 5.999999865889549,
+          "display_bonus": "6%",
+          "description": "6% ranged damage to troops in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": 0.07999999821186066,
+          "bonus_percent": 7.999999821186066,
+          "display_bonus": "8%",
+          "description": "8% ranged damage to troops in your formation."
+        }
+      ]
+    },
+    {
+      "string_id": "IncreasedTroopMovementSpeed",
+      "field": "_increasedTroopMovementSpeed",
+      "name_raw": "{=PbJAOKKZ}Increased Troop Movement Speed",
+      "name": "Increased Troop Movement Speed",
+      "description_raw": "{=nqWulUTP}{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "description": "{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "increment_type": "add_factor",
+      "increment_value": 1,
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.15000000596046448,
+          "bonus_percent": 15.000000596046448,
+          "display_bonus": "15%",
+          "description": "15% movement speed to infantry in your formation."
+        },
+        {
+          "level": 2,
+          "bonus": 0.25,
+          "bonus_percent": 25,
+          "display_bonus": "25%",
+          "description": "25% movement speed to infantry in your formation."
+        },
+        {
+          "level": 3,
+          "bonus": 0.30000001192092896,
+          "bonus_percent": 30.000001192092896,
+          "display_bonus": "30%",
+          "description": "30% movement speed to infantry in your formation."
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "stone_banner_t1",
+      "name_raw": "{=Cd6mr3q2}Stone Banner",
+      "name": "Stone Banner",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "DecreasedMeleeAttackDamage",
+      "effect_name": "Decreased Taken Melee Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% damage by melee attacks to troops in your formation.",
+      "bonus": -0.05000000074505806,
+      "bonus_percent": -5.000000074505806,
+      "display_bonus": "-5%",
+      "display_effect": "-5% damage by melee attacks to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_1_banner",
+      "prefab": "sturgia_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "iron_banner_t2",
+      "name_raw": "{=7mCYbhbp}Iron Banner",
+      "name": "Iron Banner",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "DecreasedMeleeAttackDamage",
+      "effect_name": "Decreased Taken Melee Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% damage by melee attacks to troops in your formation.",
+      "bonus": -0.10000000149011612,
+      "bonus_percent": -10.000000149011612,
+      "display_bonus": "-10%",
+      "display_effect": "-10% damage by melee attacks to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_2_banner",
+      "prefab": "sturgia_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "steel_banner_t3",
+      "name_raw": "{=6uSQnTob}Steel Banner",
+      "name": "Steel Banner",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "DecreasedMeleeAttackDamage",
+      "effect_name": "Decreased Taken Melee Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% damage by melee attacks to troops in your formation.",
+      "bonus": -0.15000000596046448,
+      "bonus_percent": -15.000000596046448,
+      "display_bonus": "-15%",
+      "display_effect": "-15% damage by melee attacks to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_3_banner",
+      "prefab": "sturgia_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "standard_of_duty_t1",
+      "name_raw": "{=xjgt7gpf}Standard of Duty",
+      "name": "Standard of Duty",
+      "culture": "empire",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "DecreasedMoraleShock",
+      "effect_name": "Decreased Morale Shock",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.10000000149011612,
+      "bonus_percent": -10.000000149011612,
+      "display_bonus": "-10%",
+      "display_effect": "-10% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "empire_tier_1_banner",
+      "prefab": "empire_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "standard_of_courage_t2",
+      "name_raw": "{=NrXBeKMl}Standard of Courage",
+      "name": "Standard of Courage",
+      "culture": "empire",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "DecreasedMoraleShock",
+      "effect_name": "Decreased Morale Shock",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.20000000298023224,
+      "bonus_percent": -20.000000298023224,
+      "display_bonus": "-20%",
+      "display_effect": "-20% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "empire_tier_2_banner",
+      "prefab": "empire_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "standard_of_discipline_t3",
+      "name_raw": "{=rZ4iW5vM}Standard of Discipline",
+      "name": "Standard of Discipline",
+      "culture": "empire",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "DecreasedMoraleShock",
+      "effect_name": "Decreased Morale Shock",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.30000001192092896,
+      "bonus_percent": -30.000001192092896,
+      "display_bonus": "-30%",
+      "display_effect": "-30% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "empire_tier_3_banner",
+      "prefab": "empire_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_faris_falcon_t1",
+      "name_raw": "{=5Hn58Ra0}Banner of Faris' Falcon",
+      "name": "Banner of Faris' Falcon",
+      "culture": "aserai",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "DecreasedRangedAccuracyPenalty",
+      "effect_name": "Decreased Ranged Accuracy Penalty",
+      "effect_description": "{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "bonus": -0.03999999910593033,
+      "bonus_percent": -3.999999910593033,
+      "display_bonus": "-4%",
+      "display_effect": "-4% accuracy penalty for ranged troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "banner_aserai_level1",
+      "prefab": "banner_aserai_level1",
+      "weight": 0.2
+    },
+    {
+      "id": "tug_of_wooden_arrow_t1",
+      "name_raw": "{=dioBqbxi}Tug of Wooden Arrow",
+      "name": "Tug of Wooden Arrow",
+      "culture": "khuzait",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "DecreasedRangedAccuracyPenalty",
+      "effect_name": "Decreased Ranged Accuracy Penalty",
+      "effect_description": "{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "bonus": -0.03999999910593033,
+      "bonus_percent": -3.999999910593033,
+      "display_bonus": "-4%",
+      "display_effect": "-4% accuracy penalty for ranged troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "khuzait_tier_1_banner",
+      "prefab": "khuzait_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_emirs_hawk_t2",
+      "name_raw": "{=EbEmIi5K}Banner of Emir's Hawk",
+      "name": "Banner of Emir's Hawk",
+      "culture": "aserai",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "DecreasedRangedAccuracyPenalty",
+      "effect_name": "Decreased Ranged Accuracy Penalty",
+      "effect_description": "{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "bonus": -0.05999999865889549,
+      "bonus_percent": -5.999999865889549,
+      "display_bonus": "-6%",
+      "display_effect": "-6% accuracy penalty for ranged troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "banner_aserai_level2",
+      "prefab": "banner_aserai_level2",
+      "weight": 0.2
+    },
+    {
+      "id": "tug_of_bone_arrow_t2",
+      "name_raw": "{=ppVcgN5l}Tug of Bone Arrow",
+      "name": "Tug of Bone Arrow",
+      "culture": "khuzait",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "DecreasedRangedAccuracyPenalty",
+      "effect_name": "Decreased Ranged Accuracy Penalty",
+      "effect_description": "{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "bonus": -0.05999999865889549,
+      "bonus_percent": -5.999999865889549,
+      "display_bonus": "-6%",
+      "display_effect": "-6% accuracy penalty for ranged troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "khuzait_tier_2_banner",
+      "prefab": "khuzait_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_sultans_eagle_t3",
+      "name_raw": "{=iR9jPgOg}Banner of Sultan's Eagle",
+      "name": "Banner of Sultan's Eagle",
+      "culture": "aserai",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "DecreasedRangedAccuracyPenalty",
+      "effect_name": "Decreased Ranged Accuracy Penalty",
+      "effect_description": "{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "bonus": -0.07999999821186066,
+      "bonus_percent": -7.999999821186066,
+      "display_bonus": "-8%",
+      "display_effect": "-8% accuracy penalty for ranged troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "banner_aserai_level3",
+      "prefab": "banner_aserai_level3",
+      "weight": 0.2
+    },
+    {
+      "id": "tug_of_whistling_arrow_t3",
+      "name_raw": "{=rUXo5AsE}Tug of Whistling Arrow",
+      "name": "Tug of Whistling Arrow",
+      "culture": "khuzait",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "DecreasedRangedAccuracyPenalty",
+      "effect_name": "Decreased Ranged Accuracy Penalty",
+      "effect_description": "{BONUS_AMOUNT}% accuracy penalty for ranged troops in your formation.",
+      "bonus": -0.07999999821186066,
+      "bonus_percent": -7.999999821186066,
+      "display_bonus": "-8%",
+      "display_effect": "-8% accuracy penalty for ranged troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "khuzait_tier_3_banner",
+      "prefab": "khuzait_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "close_shields_banner_t1",
+      "name_raw": "{=0heYJNpN}Close Shields Banner",
+      "name": "Close Shields Banner",
+      "culture": "sturgia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "DecreasedRangedAttackDamage",
+      "effect_name": "Decreased Taken Ranged Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.05000000074505806,
+      "bonus_percent": -5.000000074505806,
+      "display_bonus": "-5%",
+      "display_effect": "-5% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_1_banner",
+      "prefab": "sturgia_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "phalanx_standard_t1",
+      "name_raw": "{=ndfetbYO}Phalanx Standard",
+      "name": "Phalanx Standard",
+      "culture": "empire",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "DecreasedRangedAttackDamage",
+      "effect_name": "Decreased Taken Ranged Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.05000000074505806,
+      "bonus_percent": -5.000000074505806,
+      "display_bonus": "-5%",
+      "display_effect": "-5% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "empire_tier_1_banner",
+      "prefab": "empire_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "fulcum_standard_t2",
+      "name_raw": "{=UMW7oc9g}Fulcum Standard",
+      "name": "Fulcum Standard",
+      "culture": "empire",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "DecreasedRangedAttackDamage",
+      "effect_name": "Decreased Taken Ranged Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.10000000149011612,
+      "bonus_percent": -10.000000149011612,
+      "display_bonus": "-10%",
+      "display_effect": "-10% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "empire_tier_2_banner",
+      "prefab": "empire_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "shield_wall_banner_t2",
+      "name_raw": "{=fqvQNrqN}Shield Wall Banner",
+      "name": "Shield Wall Banner",
+      "culture": "sturgia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "DecreasedRangedAttackDamage",
+      "effect_name": "Decreased Taken Ranged Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.10000000149011612,
+      "bonus_percent": -10.000000149011612,
+      "display_bonus": "-10%",
+      "display_effect": "-10% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_2_banner",
+      "prefab": "sturgia_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "locked_shields_banner_t3",
+      "name_raw": "{=CEK9YjWK}Locked Shields Banner",
+      "name": "Locked Shields Banner",
+      "culture": "sturgia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "DecreasedRangedAttackDamage",
+      "effect_name": "Decreased Taken Ranged Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.15000000596046448,
+      "bonus_percent": -15.000000596046448,
+      "display_bonus": "-15%",
+      "display_effect": "-15% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_3_banner",
+      "prefab": "sturgia_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "testudo_standard_t3",
+      "name_raw": "{=LylVtFCG}Testudo Standard",
+      "name": "Testudo Standard",
+      "culture": "empire",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "DecreasedRangedAttackDamage",
+      "effect_name": "Decreased Taken Ranged Attack Damage",
+      "effect_description": "{BONUS_AMOUNT}% morale penalty from casualties to troops in your formation.",
+      "bonus": -0.15000000596046448,
+      "bonus_percent": -15.000000596046448,
+      "display_bonus": "-15%",
+      "display_effect": "-15% morale penalty from casualties to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "empire_tier_3_banner",
+      "prefab": "empire_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_oaken_shields_t1",
+      "name_raw": "{=VP7YhB8K}Banner of Oaken Shields",
+      "name": "Banner of Oaken Shields",
+      "culture": "sturgia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "DecreasedShieldDamage",
+      "effect_name": "Decreased Taken Shield Damage",
+      "effect_description": "{BONUS_AMOUNT}% damage to shields of troops in your formation.",
+      "bonus": -0.15000000596046448,
+      "bonus_percent": -15.000000596046448,
+      "display_bonus": "-15%",
+      "display_effect": "-15% damage to shields of troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_1_banner",
+      "prefab": "sturgia_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_iron_shields_t2",
+      "name_raw": "{=9SbsZJUZ}Banner of Iron Shields",
+      "name": "Banner of Iron Shields",
+      "culture": "sturgia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "DecreasedShieldDamage",
+      "effect_name": "Decreased Taken Shield Damage",
+      "effect_description": "{BONUS_AMOUNT}% damage to shields of troops in your formation.",
+      "bonus": -0.25,
+      "bonus_percent": -25,
+      "display_bonus": "-25%",
+      "display_effect": "-25% damage to shields of troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_2_banner",
+      "prefab": "sturgia_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_steel_shields_t3",
+      "name_raw": "{=atPgGfXo}Banner of Steel Shields",
+      "name": "Banner of Steel Shields",
+      "culture": "sturgia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "DecreasedShieldDamage",
+      "effect_name": "Decreased Taken Shield Damage",
+      "effect_description": "{BONUS_AMOUNT}% damage to shields of troops in your formation.",
+      "bonus": -0.30000001192092896,
+      "bonus_percent": -30.000001192092896,
+      "display_bonus": "-30%",
+      "display_effect": "-30% damage to shields of troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "sturgia_tier_3_banner",
+      "prefab": "sturgia_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_the_horseman_t1",
+      "name_raw": "{=ETLxYEwL}Banner of the Horseman",
+      "name": "Banner of the Horseman",
+      "culture": "vlandia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedChargeDamage",
+      "effect_name": "Increased Charge Damage",
+      "effect_description": "{BONUS_AMOUNT}% charge damage to mounted troops in your formation.",
+      "bonus": 0.10000000149011612,
+      "bonus_percent": 10.000000149011612,
+      "display_bonus": "10%",
+      "display_effect": "10% charge damage to mounted troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_1_banner",
+      "prefab": "vlandia_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_the_squire_t2",
+      "name_raw": "{=eIHsXeC4}Banner of the Squire",
+      "name": "Banner of the Squire",
+      "culture": "vlandia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedChargeDamage",
+      "effect_name": "Increased Charge Damage",
+      "effect_description": "{BONUS_AMOUNT}% charge damage to mounted troops in your formation.",
+      "bonus": 0.20000000298023224,
+      "bonus_percent": 20.000000298023224,
+      "display_bonus": "20%",
+      "display_effect": "20% charge damage to mounted troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_2_banner",
+      "prefab": "vlandia_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_the_knight_t3",
+      "name_raw": "{=QR6AaH9A}Banner of the Knight",
+      "name": "Banner of the Knight",
+      "culture": "vlandia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedChargeDamage",
+      "effect_name": "Increased Charge Damage",
+      "effect_description": "{BONUS_AMOUNT}% charge damage to mounted troops in your formation.",
+      "bonus": 0.30000001192092896,
+      "bonus_percent": 30.000001192092896,
+      "display_bonus": "30%",
+      "display_effect": "30% charge damage to mounted troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_3_banner",
+      "prefab": "vlandia_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "standard_of_fury_t1",
+      "name_raw": "{=xbrIp3qS}Standard of Fury",
+      "name": "Standard of Fury",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedMeleeDamage",
+      "effect_name": "Increased Melee Damage",
+      "effect_description": "{BONUS_AMOUNT}% melee damage to troops in your formation.",
+      "bonus": 0.05000000074505806,
+      "bonus_percent": 5.000000074505806,
+      "display_bonus": "5%",
+      "display_effect": "5% melee damage to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_1_banner",
+      "prefab": "battania_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "standard_of_rage_t2",
+      "name_raw": "{=bMI735CY}Standard of Rage",
+      "name": "Standard of Rage",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedMeleeDamage",
+      "effect_name": "Increased Melee Damage",
+      "effect_description": "{BONUS_AMOUNT}% melee damage to troops in your formation.",
+      "bonus": 0.10000000149011612,
+      "bonus_percent": 10.000000149011612,
+      "display_bonus": "10%",
+      "display_effect": "10% melee damage to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_2_banner",
+      "prefab": "battania_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "standard_of_wrath_t3",
+      "name_raw": "{=v652kWEt}Standard of Wrath",
+      "name": "Standard of Wrath",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedMeleeDamage",
+      "effect_name": "Increased Melee Damage",
+      "effect_description": "{BONUS_AMOUNT}% melee damage to troops in your formation.",
+      "bonus": 0.15000000596046448,
+      "bonus_percent": 15.000000596046448,
+      "display_bonus": "15%",
+      "display_effect": "15% melee damage to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_3_banner",
+      "prefab": "battania_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "deer_bane_flag_t1",
+      "name_raw": "{=xzzr0WR7}Deer Bane Flag",
+      "name": "Deer Bane Flag",
+      "culture": "battania",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedMeleeDamageAgainstMountedTroops",
+      "effect_name": "Increased Melee Damage Against Mounted Troops",
+      "effect_description": "{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "bonus": 0.10000000149011612,
+      "bonus_percent": 10.000000149011612,
+      "display_bonus": "10%",
+      "display_effect": "10% melee damage by troops in your formation against cavalry.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_1_banner",
+      "prefab": "battania_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "spear_bracing_banner_t1",
+      "name_raw": "{=w9bVJ78F}Spear Bracing Banner",
+      "name": "Spear Bracing Banner",
+      "culture": "vlandia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedMeleeDamageAgainstMountedTroops",
+      "effect_name": "Increased Melee Damage Against Mounted Troops",
+      "effect_description": "{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "bonus": 0.10000000149011612,
+      "bonus_percent": 10.000000149011612,
+      "display_bonus": "10%",
+      "display_effect": "10% melee damage by troops in your formation against cavalry.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_1_banner",
+      "prefab": "vlandia_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "boar_bane_flag_t2",
+      "name_raw": "{=HAZIchT3}Boar Bane Flag",
+      "name": "Boar Bane Flag",
+      "culture": "battania",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedMeleeDamageAgainstMountedTroops",
+      "effect_name": "Increased Melee Damage Against Mounted Troops",
+      "effect_description": "{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "bonus": 0.20000000298023224,
+      "bonus_percent": 20.000000298023224,
+      "display_bonus": "20%",
+      "display_effect": "20% melee damage by troops in your formation against cavalry.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_2_banner",
+      "prefab": "battania_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "spear_wall_banner_t2",
+      "name_raw": "{=AEFT6XBM}Spear Wall Banner",
+      "name": "Spear Wall Banner",
+      "culture": "vlandia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedMeleeDamageAgainstMountedTroops",
+      "effect_name": "Increased Melee Damage Against Mounted Troops",
+      "effect_description": "{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "bonus": 0.20000000298023224,
+      "bonus_percent": 20.000000298023224,
+      "display_bonus": "20%",
+      "display_effect": "20% melee damage by troops in your formation against cavalry.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_2_banner",
+      "prefab": "vlandia_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "horse_bane_flag_t3",
+      "name_raw": "{=CdBEdJqV}Horse Bane Flag",
+      "name": "Horse Bane Flag",
+      "culture": "battania",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedMeleeDamageAgainstMountedTroops",
+      "effect_name": "Increased Melee Damage Against Mounted Troops",
+      "effect_description": "{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "bonus": 0.30000001192092896,
+      "bonus_percent": 30.000001192092896,
+      "display_bonus": "30%",
+      "display_effect": "30% melee damage by troops in your formation against cavalry.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_3_banner",
+      "prefab": "battania_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "pike_wall_banner_t3",
+      "name_raw": "{=bFxReZW8}Pike Wall Banner",
+      "name": "Pike Wall Banner",
+      "culture": "vlandia",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedMeleeDamageAgainstMountedTroops",
+      "effect_name": "Increased Melee Damage Against Mounted Troops",
+      "effect_description": "{BONUS_AMOUNT}% melee damage by troops in your formation against cavalry.",
+      "bonus": 0.30000001192092896,
+      "bonus_percent": 30.000001192092896,
+      "display_bonus": "30%",
+      "display_effect": "30% melee damage by troops in your formation against cavalry.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_3_banner",
+      "prefab": "vlandia_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "tug_of_the_roaming_horse_t1",
+      "name_raw": "{=SlmJXyQD}Tug of the Roaming Horse",
+      "name": "Tug of the Roaming Horse",
+      "culture": "khuzait",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedMountMovementSpeed",
+      "effect_name": "Increased Mount Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to mounts in your formation.",
+      "bonus": 0.05000000074505806,
+      "bonus_percent": 5.000000074505806,
+      "display_bonus": "5%",
+      "display_effect": "5% movement speed to mounts in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "khuzait_tier_1_banner",
+      "prefab": "khuzait_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "tug_of_the_boundless_horde_t2",
+      "name_raw": "{=LbvihbBz}Tug of the Boundless Horde",
+      "name": "Tug of the Boundless Horde",
+      "culture": "khuzait",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedMountMovementSpeed",
+      "effect_name": "Increased Mount Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to mounts in your formation.",
+      "bonus": 0.07999999821186066,
+      "bonus_percent": 7.999999821186066,
+      "display_bonus": "8%",
+      "display_effect": "8% movement speed to mounts in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "khuzait_tier_2_banner",
+      "prefab": "khuzait_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "tug_of_the_endless_steppe_t3",
+      "name_raw": "{=jkEUOujE}Tug of the Endless Steppe",
+      "name": "Tug of the Endless Steppe",
+      "culture": "khuzait",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedMountMovementSpeed",
+      "effect_name": "Increased Mount Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to mounts in your formation.",
+      "bonus": 0.10000000149011612,
+      "bonus_percent": 10.000000149011612,
+      "display_bonus": "10%",
+      "display_effect": "10% movement speed to mounts in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "khuzait_tier_3_banner",
+      "prefab": "khuzait_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "archers_flag_t1",
+      "name_raw": "{=8yEr93Aw}Archer's Flag",
+      "name": "Archer's Flag",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedRangedDamage",
+      "effect_name": "Increased Ranged Damage",
+      "effect_description": "{BONUS_AMOUNT}% ranged damage to troops in your formation.",
+      "bonus": 0.03999999910593033,
+      "bonus_percent": 3.999999910593033,
+      "display_bonus": "4%",
+      "display_effect": "4% ranged damage to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_1_banner",
+      "prefab": "vlandia_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "bowmans_flag_t2",
+      "name_raw": "{=AfouAjT5}Bowman's Flag",
+      "name": "Bowman's Flag",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedRangedDamage",
+      "effect_name": "Increased Ranged Damage",
+      "effect_description": "{BONUS_AMOUNT}% ranged damage to troops in your formation.",
+      "bonus": 0.05999999865889549,
+      "bonus_percent": 5.999999865889549,
+      "display_bonus": "6%",
+      "display_effect": "6% ranged damage to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_2_banner",
+      "prefab": "vlandia_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "marksmans_flag_t3",
+      "name_raw": "{=caWWYP0J}Marksman's Flag",
+      "name": "Marksman's Flag",
+      "culture": "neutral_culture",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedRangedDamage",
+      "effect_name": "Increased Ranged Damage",
+      "effect_description": "{BONUS_AMOUNT}% ranged damage to troops in your formation.",
+      "bonus": 0.07999999821186066,
+      "bonus_percent": 7.999999821186066,
+      "display_bonus": "8%",
+      "display_effect": "8% ranged damage to troops in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "vlandia_tier_3_banner",
+      "prefab": "vlandia_tier_3_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_desert_winds_t1",
+      "name_raw": "{=79QBpG6D}Banner of Desert Winds",
+      "name": "Banner of Desert Winds",
+      "culture": "aserai",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedTroopMovementSpeed",
+      "effect_name": "Increased Troop Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "bonus": 0.15000000596046448,
+      "bonus_percent": 15.000000596046448,
+      "display_bonus": "15%",
+      "display_effect": "15% movement speed to infantry in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "banner_aserai_level1",
+      "prefab": "banner_aserai_level1",
+      "weight": 0.2
+    },
+    {
+      "id": "scouts_flag_t1",
+      "name_raw": "{=fUugSmen}Scout's Flag",
+      "name": "Scout's Flag",
+      "culture": "battania",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 1,
+      "effect": "IncreasedTroopMovementSpeed",
+      "effect_name": "Increased Troop Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "bonus": 0.15000000596046448,
+      "bonus_percent": 15.000000596046448,
+      "display_bonus": "15%",
+      "display_effect": "15% movement speed to infantry in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_1_banner",
+      "prefab": "battania_tier_1_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_shifting_sands_t2",
+      "name_raw": "{=p6FU9oQa}Banner of Shifting Sands",
+      "name": "Banner of Shifting Sands",
+      "culture": "aserai",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedTroopMovementSpeed",
+      "effect_name": "Increased Troop Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "bonus": 0.25,
+      "bonus_percent": 25,
+      "display_bonus": "25%",
+      "display_effect": "25% movement speed to infantry in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "banner_aserai_level2",
+      "prefab": "banner_aserai_level2",
+      "weight": 0.2
+    },
+    {
+      "id": "rangers_flag_t2",
+      "name_raw": "{=D3RYsPg5}Ranger's Flag",
+      "name": "Ranger's Flag",
+      "culture": "battania",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 2,
+      "effect": "IncreasedTroopMovementSpeed",
+      "effect_name": "Increased Troop Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "bonus": 0.25,
+      "bonus_percent": 25,
+      "display_bonus": "25%",
+      "display_effect": "25% movement speed to infantry in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_2_banner",
+      "prefab": "battania_tier_2_banner",
+      "weight": 0.2
+    },
+    {
+      "id": "banner_of_dust_devils_t3",
+      "name_raw": "{=e59hZ6Er}Banner of Dust Devils",
+      "name": "Banner of Dust Devils",
+      "culture": "aserai",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedTroopMovementSpeed",
+      "effect_name": "Increased Troop Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "bonus": 0.30000001192092896,
+      "bonus_percent": 30.000001192092896,
+      "display_bonus": "30%",
+      "display_effect": "30% movement speed to infantry in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "banner_aserai_level3",
+      "prefab": "banner_aserai_level3",
+      "weight": 0.2
+    },
+    {
+      "id": "striders_flag_t3",
+      "name_raw": "{=M3ZTF7rj}Strider's Flag",
+      "name": "Strider's Flag",
+      "culture": "battania",
+      "module": "SandBoxCore",
+      "source": "Modules\\SandBoxCore\\ModuleData\\items\\banners.xml",
+      "banner_level": 3,
+      "effect": "IncreasedTroopMovementSpeed",
+      "effect_name": "Increased Troop Movement Speed",
+      "effect_description": "{BONUS_AMOUNT}% movement speed to infantry in your formation.",
+      "bonus": 0.30000001192092896,
+      "bonus_percent": 30.000001192092896,
+      "display_bonus": "30%",
+      "display_effect": "30% movement speed to infantry in your formation.",
+      "weapon_class": "Banner",
+      "mesh": "battania_tier_3_banner",
+      "prefab": "battania_tier_3_banner",
+      "weight": 0.2
+    }
+  ],
+  "groups": [
+    {
+      "effect": "DecreasedMeleeAttackDamage",
+      "effect_name": "Decreased Taken Melee Attack Damage",
+      "items": [
+        "stone_banner_t1",
+        "iron_banner_t2",
+        "steel_banner_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.05000000074505806,
+          "bonus_percent": -5.000000074505806,
+          "display_bonus": "-5%",
+          "item_count": 1,
+          "items": [
+            "stone_banner_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": -0.10000000149011612,
+          "bonus_percent": -10.000000149011612,
+          "display_bonus": "-10%",
+          "item_count": 1,
+          "items": [
+            "iron_banner_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": -0.15000000596046448,
+          "bonus_percent": -15.000000596046448,
+          "display_bonus": "-15%",
+          "item_count": 1,
+          "items": [
+            "steel_banner_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "DecreasedMoraleShock",
+      "effect_name": "Decreased Morale Shock",
+      "items": [
+        "standard_of_duty_t1",
+        "standard_of_courage_t2",
+        "standard_of_discipline_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.10000000149011612,
+          "bonus_percent": -10.000000149011612,
+          "display_bonus": "-10%",
+          "item_count": 1,
+          "items": [
+            "standard_of_duty_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": -0.20000000298023224,
+          "bonus_percent": -20.000000298023224,
+          "display_bonus": "-20%",
+          "item_count": 1,
+          "items": [
+            "standard_of_courage_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": -0.30000001192092896,
+          "bonus_percent": -30.000001192092896,
+          "display_bonus": "-30%",
+          "item_count": 1,
+          "items": [
+            "standard_of_discipline_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "DecreasedRangedAccuracyPenalty",
+      "effect_name": "Decreased Ranged Accuracy Penalty",
+      "items": [
+        "banner_of_faris_falcon_t1",
+        "tug_of_wooden_arrow_t1",
+        "banner_of_emirs_hawk_t2",
+        "tug_of_bone_arrow_t2",
+        "banner_of_sultans_eagle_t3",
+        "tug_of_whistling_arrow_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.03999999910593033,
+          "bonus_percent": -3.999999910593033,
+          "display_bonus": "-4%",
+          "item_count": 2,
+          "items": [
+            "banner_of_faris_falcon_t1",
+            "tug_of_wooden_arrow_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": -0.05999999865889549,
+          "bonus_percent": -5.999999865889549,
+          "display_bonus": "-6%",
+          "item_count": 2,
+          "items": [
+            "banner_of_emirs_hawk_t2",
+            "tug_of_bone_arrow_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": -0.07999999821186066,
+          "bonus_percent": -7.999999821186066,
+          "display_bonus": "-8%",
+          "item_count": 2,
+          "items": [
+            "banner_of_sultans_eagle_t3",
+            "tug_of_whistling_arrow_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "DecreasedRangedAttackDamage",
+      "effect_name": "Decreased Taken Ranged Attack Damage",
+      "items": [
+        "close_shields_banner_t1",
+        "phalanx_standard_t1",
+        "fulcum_standard_t2",
+        "shield_wall_banner_t2",
+        "locked_shields_banner_t3",
+        "testudo_standard_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.05000000074505806,
+          "bonus_percent": -5.000000074505806,
+          "display_bonus": "-5%",
+          "item_count": 2,
+          "items": [
+            "close_shields_banner_t1",
+            "phalanx_standard_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": -0.10000000149011612,
+          "bonus_percent": -10.000000149011612,
+          "display_bonus": "-10%",
+          "item_count": 2,
+          "items": [
+            "fulcum_standard_t2",
+            "shield_wall_banner_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": -0.15000000596046448,
+          "bonus_percent": -15.000000596046448,
+          "display_bonus": "-15%",
+          "item_count": 2,
+          "items": [
+            "locked_shields_banner_t3",
+            "testudo_standard_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "DecreasedShieldDamage",
+      "effect_name": "Decreased Taken Shield Damage",
+      "items": [
+        "banner_of_oaken_shields_t1",
+        "banner_of_iron_shields_t2",
+        "banner_of_steel_shields_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": -0.15000000596046448,
+          "bonus_percent": -15.000000596046448,
+          "display_bonus": "-15%",
+          "item_count": 1,
+          "items": [
+            "banner_of_oaken_shields_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": -0.25,
+          "bonus_percent": -25,
+          "display_bonus": "-25%",
+          "item_count": 1,
+          "items": [
+            "banner_of_iron_shields_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": -0.30000001192092896,
+          "bonus_percent": -30.000001192092896,
+          "display_bonus": "-30%",
+          "item_count": 1,
+          "items": [
+            "banner_of_steel_shields_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "IncreasedChargeDamage",
+      "effect_name": "Increased Charge Damage",
+      "items": [
+        "banner_of_the_horseman_t1",
+        "banner_of_the_squire_t2",
+        "banner_of_the_knight_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "item_count": 1,
+          "items": [
+            "banner_of_the_horseman_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": 0.20000000298023224,
+          "bonus_percent": 20.000000298023224,
+          "display_bonus": "20%",
+          "item_count": 1,
+          "items": [
+            "banner_of_the_squire_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": 0.30000001192092896,
+          "bonus_percent": 30.000001192092896,
+          "display_bonus": "30%",
+          "item_count": 1,
+          "items": [
+            "banner_of_the_knight_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "IncreasedMeleeDamage",
+      "effect_name": "Increased Melee Damage",
+      "items": [
+        "standard_of_fury_t1",
+        "standard_of_rage_t2",
+        "standard_of_wrath_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.05000000074505806,
+          "bonus_percent": 5.000000074505806,
+          "display_bonus": "5%",
+          "item_count": 1,
+          "items": [
+            "standard_of_fury_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "item_count": 1,
+          "items": [
+            "standard_of_rage_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": 0.15000000596046448,
+          "bonus_percent": 15.000000596046448,
+          "display_bonus": "15%",
+          "item_count": 1,
+          "items": [
+            "standard_of_wrath_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "IncreasedMeleeDamageAgainstMountedTroops",
+      "effect_name": "Increased Melee Damage Against Mounted Troops",
+      "items": [
+        "deer_bane_flag_t1",
+        "spear_bracing_banner_t1",
+        "boar_bane_flag_t2",
+        "spear_wall_banner_t2",
+        "horse_bane_flag_t3",
+        "pike_wall_banner_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "item_count": 2,
+          "items": [
+            "deer_bane_flag_t1",
+            "spear_bracing_banner_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": 0.20000000298023224,
+          "bonus_percent": 20.000000298023224,
+          "display_bonus": "20%",
+          "item_count": 2,
+          "items": [
+            "boar_bane_flag_t2",
+            "spear_wall_banner_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": 0.30000001192092896,
+          "bonus_percent": 30.000001192092896,
+          "display_bonus": "30%",
+          "item_count": 2,
+          "items": [
+            "horse_bane_flag_t3",
+            "pike_wall_banner_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "IncreasedMountMovementSpeed",
+      "effect_name": "Increased Mount Movement Speed",
+      "items": [
+        "tug_of_the_roaming_horse_t1",
+        "tug_of_the_boundless_horde_t2",
+        "tug_of_the_endless_steppe_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.05000000074505806,
+          "bonus_percent": 5.000000074505806,
+          "display_bonus": "5%",
+          "item_count": 1,
+          "items": [
+            "tug_of_the_roaming_horse_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": 0.07999999821186066,
+          "bonus_percent": 7.999999821186066,
+          "display_bonus": "8%",
+          "item_count": 1,
+          "items": [
+            "tug_of_the_boundless_horde_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": 0.10000000149011612,
+          "bonus_percent": 10.000000149011612,
+          "display_bonus": "10%",
+          "item_count": 1,
+          "items": [
+            "tug_of_the_endless_steppe_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "IncreasedRangedDamage",
+      "effect_name": "Increased Ranged Damage",
+      "items": [
+        "archers_flag_t1",
+        "bowmans_flag_t2",
+        "marksmans_flag_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.03999999910593033,
+          "bonus_percent": 3.999999910593033,
+          "display_bonus": "4%",
+          "item_count": 1,
+          "items": [
+            "archers_flag_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": 0.05999999865889549,
+          "bonus_percent": 5.999999865889549,
+          "display_bonus": "6%",
+          "item_count": 1,
+          "items": [
+            "bowmans_flag_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": 0.07999999821186066,
+          "bonus_percent": 7.999999821186066,
+          "display_bonus": "8%",
+          "item_count": 1,
+          "items": [
+            "marksmans_flag_t3"
+          ]
+        }
+      ]
+    },
+    {
+      "effect": "IncreasedTroopMovementSpeed",
+      "effect_name": "Increased Troop Movement Speed",
+      "items": [
+        "banner_of_desert_winds_t1",
+        "scouts_flag_t1",
+        "banner_of_shifting_sands_t2",
+        "rangers_flag_t2",
+        "banner_of_dust_devils_t3",
+        "striders_flag_t3"
+      ],
+      "tiers": [
+        {
+          "level": 1,
+          "bonus": 0.15000000596046448,
+          "bonus_percent": 15.000000596046448,
+          "display_bonus": "15%",
+          "item_count": 2,
+          "items": [
+            "banner_of_desert_winds_t1",
+            "scouts_flag_t1"
+          ]
+        },
+        {
+          "level": 2,
+          "bonus": 0.25,
+          "bonus_percent": 25,
+          "display_bonus": "25%",
+          "item_count": 2,
+          "items": [
+            "banner_of_shifting_sands_t2",
+            "rangers_flag_t2"
+          ]
+        },
+        {
+          "level": 3,
+          "bonus": 0.30000001192092896,
+          "bonus_percent": 30.000001192092896,
+          "display_bonus": "30%",
+          "item_count": 2,
+          "items": [
+            "banner_of_dust_devils_t3",
+            "striders_flag_t3"
+          ]
+        }
+      ]
+    }
+  ]
+}

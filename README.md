@@ -90,6 +90,14 @@ python .\src\bannerlord_perk_analyzer\extract_character_creation.py --game-root 
 
 This writes `Data/raw/character-creation-options.json` and `Docs/reports/character-creation-options.md`, including family/background, childhood, education, youth, adulthood, sandbox age, story-mode escape choices, campaign family mechanical stats, and the HeroCreator initialization flow that applies to family members.
 
+Generate banner item/effect data:
+
+```text
+python .\cli.py extract-banners --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
+```
+
+This writes `Data/raw/banner-items.json`, `Data/raw/banner-effect-usages.json`, and `Docs/reports/banner-effects.md`, joining singleplayer banner item XML to `DefaultBannerEffects.InitializeAll` so each banner item has its effect id, tier, and actual numeric bonus. It also scans the local game assemblies for `DefaultBannerEffects` formula usage so the report can explain what each effect actually modifies. The command uses singleplayer `SandBoxCore` banners by default; pass `--include-mp` only if you explicitly want multiplayer banner XML too, or `--skip-usage-scan` if you only want to refresh item data.
+
 Generate guide-facing stat extracts from the current perk export:
 
 ```text
@@ -97,6 +105,14 @@ python .\src\bannerlord_perk_analyzer\extract_guide_stats.py
 ```
 
 This writes `Data/export/guide-stat-extracts.json` and `Docs/reports/guide-stat-extracts.md`, collecting the perk rows, direct weapon skill constants, AI stack definitions, survivability stacks, and smithing formulas used by the manual guide notes.
+
+Generate the doctrine-ranked commander perk report:
+
+```text
+python .\cli.py commander-report
+```
+
+This writes `Data/intermediate/commander_perks_extracted.json`, `Data/intermediate/commander_perks_report.txt`, and `Docs/reports/commander-banner-package-comparison.md`. The report is tuned for an elite shock-infantry-heavy one-party army: live troop lethality first, campaign engagement control second, and party size/logistics after the party can still catch worthwhile targets. It deliberately separates campaign party speed, troop combat movement, weapon handling speed, projectile speed, and siege speed so keyword matches do not overstate mobility value. The focused package comparison uses banner-centered full alternative-pick packages; use `Docs/reports/banner-effects.md` as the mechanics reference for what each banner actually modifies.
 
 Generate perk investment cost analysis:
 

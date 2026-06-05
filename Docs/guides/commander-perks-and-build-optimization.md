@@ -5,6 +5,8 @@ $$\text{VIG 3(5) | CTR 3(5) | END 3(5) | CNG 7 | SOC 2 | INT 7}$$
 
 It goes skill-by-skill to calculate the exact focus point cost required to reach target perks under this attribute profile, outlines why maxing every skill is a trap, and designs a zero-waste, optimized focus point budget.
 
+The commander doctrine assumed here is an elite one-party army: maximize live combat power per troop first, keep enough campaign mobility to choose fights second, and grow party size after the force can still catch worthwhile targets. For shock infantry, combat movement speed belongs in the combat-power bucket, not the convenience bucket, because faster troops spend less time under arrows and force melee contact more reliably.
+
 ---
 
 ## 1. Skill-by-Skill Focus Point Cost Analysis
@@ -126,7 +128,7 @@ At character level 28, you have **40-41 Focus Points** available. By utilizing y
 
 ## 3. Directory of Key Commander & Party Leader Perks
 
-Prioritize these perks to scale party size, campaign speed, and infantry/archer combat performance:
+Prioritize these perks by doctrine: live troop lethality and responsiveness first, campaign engagement control second, party size and logistics third. The generated commander report in `Data/intermediate/commander_perks_report.txt` applies that ranking across the full perk export and separates campaign party speed, troop combat movement, weapon handling speed, projectile speed, and siege speed. For speed, defense, and banner tradeoffs, use the generated [banner package comparison](../reports/commander-banner-package-comparison.md) together with the [banner effects reference](../reports/banner-effects.md), where the confirmed mechanics and package assumptions are visible instead of compressed into a simplified exposure shortcut.
 
 ### A. Party Size Perks
 * **Athletics (75) - `Imposing Stature`** (Party Leader): $+5$ Party Size.
@@ -157,6 +159,9 @@ Prioritize these perks to scale party size, campaign speed, and infantry/archer 
 * **Polearm (100) - `Footwork`**: $+2\%$ combat movement speed to infantry in your formation.
 * **Athletics (250) - `Ignore Pain`**: $+5$ flat armor to all equipped armor pieces of foot troops in your formation.
 
+> [!NOTE]
+> When movement speed competes with small HP gains, the speed side can be better for elite shock infantry than it first looks. Medicine, armor, and resistance perks can stack a lot of survivability, while movement speed directly reduces exposure before contact and improves how quickly infantry respond to orders.
+
 ### B. Archer & Ranged Formations (Control)
 * **Bow (25) - `Dead Aim`**: $+20$ Bow skill to troops in your formation.
 * **Bow (25) - `Bow Control`**: $+5\%$ damage with bows to troops in your formation.
@@ -165,3 +170,12 @@ Prioritize these perks to scale party size, campaign speed, and infantry/archer 
 * **Bow (75) - `Quick Adjustments`**: $-5\%$ accuracy penalty to archers in your formation.
 * **Bow (125) - `Strong Bows`**: $+5\%$ damage with bows by Tier 3+ troops in your formation.
 * **Bow (175) - `Skirmish Phase Master`**: $-10\%$ damage taken from projectiles by ranged troops in your formation.
+
+### C. Battle Banner Shortlist
+The generated [banner effects report](../reports/banner-effects.md) now extracts the actual banner tier values from `DefaultBannerEffects.InitializeAll` and joins them to banner item XML. The generated [banner package comparison](../reports/commander-banner-package-comparison.md) scores full commander-relevant perk alternative sets around the main banner options.
+
+For the shock-infantry commander doctrine, the main competitors are:
+* **Banner of Dust Devils / Strider's Flag**: $+30\%$ infantry movement speed at tier 3.
+* **Locked Shields Banner / Testudo Standard**: $-15\%$ ranged attack damage taken at tier 3. The raw game description string is misleading, but the effect id and combat formulas point to ranged damage reduction.
+* **Banner of Sultan's Eagle / Tug of Whistling Arrow**: $-8\%$ ranged accuracy penalty for ranged troops at tier 3, mostly for archer-heavy commanders. The effect applies to `WeaponInaccuracy`, so read it as base spread/inaccuracy reduction rather than a direct $+8\%$ hit chance or movement-penalty fix.
+* **Standard of Wrath**: $+15\%$ melee damage at tier 3, strong on paper but less certain when elite shock troops already overkill many targets.

@@ -10,8 +10,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src" / "bannerlord_perk_analyzer"))
 
 try:
+    from bannerlord_perk_analyzer.extract_banners import extract_banners
     from bannerlord_perk_analyzer.extract_character_creation import extract_character_creation
     from bannerlord_perk_analyzer.extract_combat_formulas import extract_combat_formulas
+    from bannerlord_perk_analyzer.extract_commander_perks import extract_commander_perks
     from bannerlord_perk_analyzer.extract_guide_stats import extract_guide_stats
     from bannerlord_perk_analyzer.extract_skill_xp_sources import extract_skill_xp_sources
     from bannerlord_perk_analyzer.extract_xp_awards import extract_xp_awards
@@ -192,6 +194,57 @@ def main() -> None:
         help="Keep per-scan temporary JSON files under Data/intermediate/combat-formula-scan-temp."
     )
 
+    # Extract-banners subcommand
+    parser_banners = subparsers.add_parser(
+        "extract-banners",
+        help="Run the banner item/effect extraction."
+    )
+    parser_banners.add_argument(
+        "--workspace",
+        type=Path,
+        default=default_workspace(),
+        help="Path to workspace directory"
+    )
+    parser_banners.add_argument(
+        "--game-root",
+        type=Path,
+        default=None,
+        help="Bannerlord game root directory. Overrides BANNERLORD_GAME_ROOT env var."
+    )
+    parser_banners.add_argument(
+        "--json-output",
+        type=Path,
+        default=None,
+        help="Path to save banner JSON. Defaults to Data/raw/banner-items.json."
+    )
+    parser_banners.add_argument(
+        "--markdown-output",
+        type=Path,
+        default=None,
+        help="Path to save banner markdown. Defaults to Docs/reports/banner-effects.md."
+    )
+    parser_banners.add_argument(
+        "--usage-output",
+        type=Path,
+        default=None,
+        help="Path to save banner effect usage JSON. Defaults to Data/raw/banner-effect-usages.json."
+    )
+    parser_banners.add_argument(
+        "--skip-scan",
+        action="store_true",
+        help="Skip fresh extraction and reuse existing banner JSON to regenerate the report."
+    )
+    parser_banners.add_argument(
+        "--skip-usage-scan",
+        action="store_true",
+        help="Do not refresh Data/raw/banner-effect-usages.json while extracting banners."
+    )
+    parser_banners.add_argument(
+        "--include-mp",
+        action="store_true",
+        help="Also include multiplayer banner XML; off by default to avoid duplicate singleplayer item IDs."
+    )
+
     # Stats subcommand
     parser_stats = subparsers.add_parser(
         "stats",
@@ -220,6 +273,42 @@ def main() -> None:
         type=Path,
         default=None,
         help="Path to save guide stat markdown. Defaults to Docs/reports/guide-stat-extracts.md."
+    )
+
+    # Commander report subcommand
+    parser_commander = subparsers.add_parser(
+        "commander-report",
+        help="Extract doctrine-ranked commander perk reports for elite one-party builds."
+    )
+    parser_commander.add_argument(
+        "--workspace",
+        type=Path,
+        default=default_workspace(),
+        help="Path to workspace directory"
+    )
+    parser_commander.add_argument(
+        "--perk-export",
+        type=Path,
+        default=None,
+        help="Path to generated perk export JSON. Defaults to Data/export/perk-effects.json."
+    )
+    parser_commander.add_argument(
+        "--json-output",
+        type=Path,
+        default=None,
+        help="Path to save commander report JSON. Defaults to Data/intermediate/commander_perks_extracted.json."
+    )
+    parser_commander.add_argument(
+        "--markdown-output",
+        type=Path,
+        default=None,
+        help="Path to save commander report markdown. Defaults to Data/intermediate/commander_perks_report.txt."
+    )
+    parser_commander.add_argument(
+        "--package-output",
+        type=Path,
+        default=None,
+        help="Path to save the banner package comparison. Defaults to Docs/reports/commander-banner-package-comparison.md."
     )
 
     args = parser.parse_args()
@@ -316,6 +405,21 @@ def main() -> None:
             keep_temp=args.keep_temp,
         )
 
+    elif args.command == "extract-banners":
+        json_output = args.json_output or workspace / "Data" / "raw" / "banner-items.json"
+        markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "banner-effects.md"
+        usage_output = args.usage_output or workspace / "Data" / "raw" / "banner-effect-usages.json"
+        extract_banners(
+            workspace=workspace,
+            game_root=args.game_root,
+            json_output=json_output,
+            markdown_output=markdown_output,
+            usage_output=usage_output,
+            skip_scan=args.skip_scan,
+            skip_usage_scan=args.skip_usage_scan,
+            include_mp=args.include_mp,
+        )
+
     elif args.command == "stats":
         perk_export_path = args.perk_export or workspace / "Data" / "export" / "perk-effects.json"
         json_output = args.json_output or workspace / "Data" / "export" / "guide-stat-extracts.json"
@@ -325,6 +429,19 @@ def main() -> None:
             perk_export_path=perk_export_path.resolve(),
             json_output=json_output,
             markdown_output=markdown_output,
+        )
+
+    elif args.command == "commander-report":
+        perk_export_path = args.perk_export or workspace / "Data" / "export" / "perk-effects.json"
+        json_output = args.json_output or workspace / "Data" / "intermediate" / "commander_perks_extracted.json"
+        markdown_output = args.markdown_output or workspace / "Data" / "intermediate" / "commander_perks_report.txt"
+        package_output = args.package_output or workspace / "Docs" / "reports" / "commander-banner-package-comparison.md"
+        extract_commander_perks(
+            workspace=workspace,
+            perk_export_path=perk_export_path.resolve(),
+            json_output=json_output,
+            markdown_output=markdown_output,
+            package_output=package_output,
         )
 
 

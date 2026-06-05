@@ -1,0 +1,380 @@
+# Commander Perks Report
+
+Generated: 2026-06-05T13:21:05.896685+03:00
+
+This generated report is tuned for an elite one-party commander build: first make every troop as lethal as possible, then keep enough campaign speed to choose fights, then add party size once the force can still catch worthwhile targets.
+
+> [!NOTE]
+> Troop combat movement speed is ranked as core combat power for shock infantry. Closing faster means less arrow exposure, better melee contact, better formation response, and faster cleanup. Small HP gains remain useful, but Medicine and resistance stacking make HP easier to find than movement speed.
+
+## Speed Kind Legend
+
+| Speed kind | Meaning |
+| --- | --- |
+| `campaign_party_speed` | Strategic party or army movement on the campaign map. |
+| `troop_combat_movement` | Live battle movement speed for troops or formations. |
+| `personal_combat_movement` | Live battle movement speed for the player hero only. |
+| `weapon_handling_speed` | Reload, draw, aiming, swing, attack, or loadout movement handling. |
+| `projectile_speed` | Projectile travel speed for arrows, bolts, or thrown weapons. |
+| `siege_speed` | Siege engine build, preparation, bombardment, or reload speed. |
+
+## Summary
+
+- Records: 303
+- Doctrine order: core troop lethality, combat staying power, engagement control, party scaling.
+- Low-priority rows are retained when they are common keyword traps, such as projectile travel speed or personal reload movement.
+
+| Category | Rows | Purpose |
+| --- | ---: | --- |
+| Core Troop Lethality | 87 | Direct live-battle power per soldier: damage, combat skill, attack cadence, accuracy, melee pressure, and troop combat movement. For shock infantry, movement speed is treated as a lethality multiplier because it shortens arrow exposure and helps force melee contact. |
+| Combat Staying Power | 34 | Live-battle durability for elite troops: hit points, armor, damage reduction, shield coverage, stagger resistance, and survival-facing combat effects. |
+| Engagement Control | 16 | Campaign movement and pursuit tools that let the party choose fights, avoid bad ones, and later run down parties of equal or smaller size. |
+| Party Scaling | 98 | Party size and logistics that scale the elite stack. These are valuable, but they come after per-troop dominance and enough map speed to pick engagements. |
+| Low Priority or Misleading for This Doctrine | 68 | Personal-only, governor-only, siege-only, simulation-only, projectile-speed, and weapon-handling rows that can look relevant in a keyword report but do not provide core one-party shock-infantry value. |
+
+## Core Troop Lethality
+
+Direct live-battle power per soldier: damage, combat skill, attack cadence, accuracy, melee pressure, and troop combat movement. For shock infantry, movement speed is treated as a lethality multiplier because it shortens arrow exposure and helps force melee contact.
+
+| Rating | Skill | Level | Perk | Role | Fit | Speed kind | Bonus | Effect | Notes |
+| --- | --- | ---: | --- | --- | --- | --- | ---: | --- | --- |
+| high | Athletics | 25 | Morning Exercise | captain | shock-infantry fit | troop_combat_movement | 5% | 5% combat movement speed to troops in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. Speed competes with a troop HP alternative here. For shock infantry, speed can be the scarcer multiplier because Medicine and resistance stacks already add a lot of survivability. |
+| high | One Handed | 25 | Wrapped Handles | captain | shock-infantry fit |  | 30 | 30 one handed skill to infantry troops in your formation. |  |
+| high | Polearm | 25 | Pikeman | captain | shock-infantry fit |  | 2% | 2% damage by infantry troops in your formation. |  |
+| high | Riding | 25 | Full Speed | captain | all troops |  | 10% | 10% charge damage dealt by troops in your formation. |  |
+| high | Riding | 25 | Nimble Steed | captain | all troops |  | 30 | 30 riding skill to troops in your formation. |  |
+| high | Two Handed | 25 | Strong Grip | captain | shock-infantry fit |  | 30 | 30 two handed skill to infantry troops in your formation. |  |
+| high | Two Handed | 25 | Wood Chopper | captain | all troops |  | 15% | 15% damage against shields by troops in your formation. |  |
+| high | Athletics | 50 | Form Fitting Armor | captain | shock-infantry fit | troop_combat_movement | 4% | 4% combat movement speed to tier 3+ foot troops in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
+| high | Polearm | 50 | Braced | captain | shock-infantry fit |  | 10% | 10% damage by infantry in your formation against cavalry. |  |
+| high | Tactics | 50 | Decisive Battle | captain | all troops | troop_combat_movement | 5% | 5% movement speed to troops in your formation in plains, steppes and deserts. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
+| high | Tactics | 50 | Extended Skirmish | captain | all troops | troop_combat_movement | 2% | 2% movement speed to troops in your formation in snowy and forest terrains. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
+| high | Throwing | 50 | Flexible Fighter | captain | shock-infantry fit |  | 15 | 15 Control skills of infantry, 15 Vigor skills of archers in your formation. |  |
+| high | Two Handed | 50 | Head Basher | captain | shock-infantry fit |  | 2% | 2% damage by infantry in your formation. |  |
+| high | Crossbow | 75 | Sheriff | captain | shock-infantry fit |  | 10% | 10% crossbow damage to infantry by troops in your formation. |  |
+| high | Leadership | 75 | Heroic Leader | captain | all troops |  | 10% | 10% battle morale penalty to enemies when troops in your formation kill an enemy. |  |
+| high | One Handed | 75 | Shield Bearer | captain | shock-infantry fit | troop_combat_movement | 3% | 3% movement speed to infantry in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
+| high | Polearm | 75 | Clean Thrust | captain | shock-infantry fit |  | 30 | 30 polearm skill to infantry in your formation. |  |
+| high | Tactics | 75 | Small Unit Tactics | captain | all troops | troop_combat_movement | 5% | 5% movement speed to troops in your formation when there are less than 15 soldiers. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
+| high | Athletics | 100 | Powerful | captain | all troops |  | 2% | 2% melee damage by troops in your formation. |  |
+| high | Athletics | 100 | Sprint | captain | shock-infantry fit | troop_combat_movement | 3% | 3% combat movement speed to infantry troops in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
+| high | Engineering | 100 | Wall Breaker | captain | all troops |  | 10% | 10% damage dealt to shields by troops in your formation. |  |
+| high | Polearm | 100 | Footwork | captain | shock-infantry fit | troop_combat_movement | 2% | 2% movement speed to infantry in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. Speed competes with a troop HP alternative here. For shock infantry, speed can be the scarcer multiplier because Medicine and resistance stacks already add a lot of survivability. |
+| high | Tactics | 100 | Coaching | captain | all troops |  | 1% | 1% damage by troops in your formation. |  |
+| high | Tactics | 100 | Law Keeper | captain | all troops |  | 4% | 4% damage against bandits by troops in your formation. |  |
+| high | Two Handed | 100 | Beast Slayer | captain | all troops |  | 10% | 10% damage to mounts by troops in your formation. |  |
+| high | Two Handed | 100 | Shield breaker | captain | all troops |  | 10% | 10% damage against shields by troops in your formation. |  |
+| high | Athletics | 125 | Braced | captain | shock-infantry fit |  | -30% | -30% charge damage taken by troops in your formation. |  |
+| high | Athletics | 125 | Surging Blow | captain | shock-infantry fit |  | 30% | 30% damage bonus from speed to troops in your formation. |  |
+| high | Crossbow | 125 | Fletcher | party leader | all troops |  | 2 | 2 bolts per quiver to troops in your party. |  |
+| high | One Handed | 125 | Arrow Catcher | captain | all troops |  | 0.01 | Larger shield protection area against projectiles for troops in your formation. |  |
+| high | One Handed | 125 | Shieldwall | captain | all troops |  | 0.01 | Larger shield protection area against projectiles to troops in your formation while in shield wall formation. |  |
+| high | Polearm | 125 | Lancer | captain | all troops |  | 30% | 30% damage bonus from speed with polearms by troops in your formation. |  |
+| high | Polearm | 125 | Steed Killer | captain | shock-infantry fit |  | 30% | 30% damage to mounts with polearms by infantry in your formation. |  |
+| high | Throwing | 125 | Skirmisher | captain | all troops |  | -3% | -3% damage taken by ranged attacks to troops in your formation. |  |
+| high | Roguery | 150 | Partners in Crime | captain | all troops |  | 2% | 2% damage by bandit troops in your formation. |  |
+| high | Polearm | 175 | Phalanx | party leader | all troops |  | 30 | 30 melee weapon skills to troops in your party while in shield wall formation. |  |
+| high | Polearm | 175 | Phalanx | captain | all troops |  | 3% | 3% damage with polearms by troops in your formation. |  |
+| high | One Handed | 200 | Fleet of Foot | captain | shock-infantry fit | troop_combat_movement | 4% | 4% movement speed to infantry in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
+| high | Riding | 200 | Annoying Buzz | captain | all troops |  | 5% | 5% battle morale penalty to enemies with mounted ranged kills by troops in your formation. |  |
+| high | Roguery | 200 | Carver | captain | all troops |  | 2% | 2% one handed damage by troops under your formation. |  |
+| high | Two Handed | 200 | Reckless Charge | captain | shock-infantry fit | troop_combat_movement | 2% | 2% damage and movement speed to infantry in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. Speed competes with a troop HP alternative here. For shock infantry, speed can be the scarcer multiplier because Medicine and resistance stacks already add a lot of survivability. |
+| high | Bow | 225 | Deep Quivers | party leader | all troops |  | 1 | 1 extra arrow per quiver to troops in your party. |  |
+| high | Engineering | 225 | Improved Tools | captain | all troops |  | 5% | 5% melee damage by troops in your formation. |  |
+| high | One Handed | 225 | Deadly Purpose | captain | shock-infantry fit |  | 10% | 10% melee weapon damage by infantry in your formation. |  |
+| high | Polearm | 225 | Sure Footed | captain | shock-infantry fit |  | -30% | -30% charge damage taken by troops in your formation. |  |
+| high | Two Handed | 225 | Vandal | captain | shock-infantry fit |  | 20% | 20% damage against destructible objects by troops in your formation. |  |
+| high | Polearm | 250 | Counterweight | captain | all troops |  | 20 | 20 polearm skill to troops in your formation. |  |
+| high | Polearm | 250 | Sharpen the Tip | captain | shock-infantry fit |  | 5% | 5% damage with thrust attacks by infantry troops in your formation. |  |
+| high | Roguery | 250 | Dash and Slash | captain | all troops |  | 2% | 2% two handed weapon damage by troops in your formation. |  |
+| high | Tactics | 250 | Gens d'armes | captain | shock-infantry fit |  | 2% | 2% damage to infantry by cavalry troops in your formation. |  |
+| medium | Bow | 25 | Bow Control | captain | ranged-specific |  | 5% | 5% damage with bows by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Bow | 25 | Dead Aim | captain | ranged-specific |  | 20 | 20 Bow skill to troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Polearm | 25 | Cavalry | captain | mounted-specific |  | 2% | 2% damage by cavalry troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Throwing | 25 | Shield Breaker | captain | ranged-specific |  | 8% | 8% damage to shields with throwing weapons by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Bow | 50 | Bodkin | captain | ranged-specific |  | 5% | 5% armor penetration with bows by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Bow | 50 | Nocking Point | captain | ranged-specific | troop_combat_movement | 3% | 3% movement speed to archers in your formation. | Troop movement speed for this troop class; useful tactically, but not an infantry-wide mobility buff. ranged-specific; do not assume it buffs infantry. |
+| medium | Crossbow | 50 | Unhorser | captain | ranged-specific |  | 20% | 20% damage against mounts to crossbow troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Throwing | 50 | Hunter | captain | ranged-specific |  | 8% | 8% damage to mounts with throwing weapons by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Bow | 75 | Quick Adjustments | captain | ranged-specific |  | -5% | -5% accuracy penalty to archers in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Crossbow | 75 | Donkey's Swiftness | captain | ranged-specific |  | 30 | 30 crossbow skill to troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | One Handed | 75 | Cavalry | captain | mounted-specific |  | 5% | 5% melee damage by cavalry troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Riding | 75 | Nomadic Traditions | captain | mounted-specific |  | 10% | 10% melee damage bonus from speed to mounted troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Throwing | 75 | Mounted Skirmisher | captain | ranged-specific |  | 10% | 10% damage with throwing weapons by mounted troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Throwing | 75 | Well Prepared | party leader | ranged-specific |  | 1 | 1 ammunition for throwing weapons to troops in your party. | ranged-specific; do not assume it buffs infantry. |
+| medium | Engineering | 100 | Dreadful Besieger | captain | ranged-specific |  | 5% | 5% crossbow damage by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Riding | 100 | Sagittarius | captain | mounted-specific |  | -15% | -15% accuracy penalty to mounted troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Throwing | 100 | Knock Off | captain | ranged-specific |  | 5% | 5% throwing weapon damage to cavalry by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Throwing | 100 | Running Throw | captain | ranged-specific |  | 30 | 30 throwing skill to troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Bow | 125 | Strong bows | captain | ranged-specific |  | 5% | 5% damage with bows by tier 3+ troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Crossbow | 125 | Puncture | captain | ranged-specific |  | 5% | 5% armor penetration with crossbows by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Crossbow | 150 | Loose and Move | captain | ranged-specific | troop_combat_movement | 5% | 5% movement speed to ranged troops in your formation. | Troop movement speed for this troop class; useful tactically, but not an infantry-wide mobility buff. ranged-specific; do not assume it buffs infantry. |
+| medium | Riding | 150 | Horse Archer | captain | ranged-specific |  | 5% | 5% damage by mounted archers in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Riding | 150 | Mounted Warrior | captain | mounted-specific |  | 5% | 5% mounted melee damage by troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Bow | 175 | Skirmish Phase Master | captain | ranged-specific |  | -10% | -10% damage taken from projectiles by ranged troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Crossbow | 175 | Counter Fire | captain | situational |  | -3% | -3% damage taken from projectiles by your troops. |  |
+| medium | Roguery | 175 | One of the Family | party leader | situational |  | 10 | 10 bonus Vigor and Control skills to bandit units in your party |  |
+| medium | Riding | 200 | Thunderous Charge | captain | mounted-specific |  | 10% | 10% battle morale penalty to enemies with mounted melee kills by troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Throwing | 200 | Splinters | captain | ranged-specific |  | 50% | 50% damage to shields with throwing weapons by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Athletics | 225 | Strong Arms | captain | ranged-specific |  | 20 | 20 throwing skill to troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Bow | 225 | Horse Master | captain | ranged-specific |  | 30 | 30 bow skill to horse archers in your formation | ranged-specific; do not assume it buffs infantry. |
+| medium | Crossbow | 225 | Hammer Bolts | captain | ranged-specific |  | 10% | 10% damage with crossbows by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Polearm | 225 | Unstoppable Force | captain | mounted-specific |  | 30% | 30% damage bonus from speed with polearms to cavalry in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Crossbow | 250 | Terror | captain | ranged-specific |  | 25% | 25% morale loss to enemy due to crossbow kills by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Scouting | 250 | Rearguard | party leader | situational |  | 10% | 10% damage by your troops when defending at your siege camp. |  |
+| medium | Throwing | 250 | Impale | captain | ranged-specific |  | 10% | 10% damage with throwing weapons by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Throwing | 250 | Weak Spot | captain | ranged-specific |  | 10% | 10% armor penetration with throwing weapons by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| medium | Steward | 275 | Price of Loyalty | quartermaster | situational |  | -0.5% | -0.5% to food consumption, wages and combat related morale loss for each steward point above 250 in your party. |  |
+
+
+## Combat Staying Power
+
+Live-battle durability for elite troops: hit points, armor, damage reduction, shield coverage, stagger resistance, and survival-facing combat effects.
+
+| Rating | Skill | Level | Perk | Role | Fit | Speed kind | Bonus | Effect | Notes |
+| --- | --- | ---: | --- | --- | --- | --- | ---: | --- | --- |
+| high | One Handed | 25 | Basher | captain | shock-infantry fit |  | -4% | -4% damage taken by infantry while in shield wall formation. |  |
+| high | Tactics | 200 | Elite Reserves | captain | all troops |  | -5% | -5% damage taken by troops in your formation. |  |
+| medium | Athletics | 25 | Well Built | party leader | shock-infantry fit |  | 5 | 5 hit points to foot troops in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. HP competes with a troop speed alternative here. Take HP when the formation already reaches contact reliably; otherwise speed may prevent more arrow exposure than the flat HP absorbs. |
+| medium | Tactics | 25 | Loose Formations | captain | all troops |  | -25% | -25% morale penalty when troops in your formation use line, loose, circle or scatter formations. |  |
+| medium | Tactics | 25 | Tight Formations | captain | all troops |  | -25% | -25% morale penalty when troops in your formation use shield wall, square, skein, column formations. |  |
+| medium | Riding | 50 | Veterinary | party leader | all troops |  | 10% | 10% hit points to mounts of troops in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
+| medium | Leadership | 100 | Loyalty and Honor | party leader | all troops |  | 3 | Tier 3+ troops in your party no longer retreat due to low morale |  |
+| medium | Polearm | 100 | Hard Knock | party leader | shock-infantry fit |  | 3 | 3 hit points to infantry in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. HP competes with a troop speed alternative here. Take HP when the formation already reaches contact reliably; otherwise speed may prevent more arrow exposure than the flat HP absorbs. |
+| medium | Steward | 125 | Logistician | quartermaster | shock-infantry fit |  | 4 | 4 party morale when number of mounts is greater than number of foot troops in your party. |  |
+| medium | Throwing | 150 | Last Hit | party leader | all troops |  | 5 | 5 starting battle morale to troops in your party. |  |
+| medium | One Handed | 175 | Lead by example | party leader | all troops |  | 5 | 5 starting battle morale to troops in your party. |  |
+| medium | One Handed | 175 | Stand United | party leader | all troops |  | 8 | 8 starting battle morale to troops in your party if you are outnumbered. |  |
+| medium | Polearm | 175 | Standard Bearer | captain | all troops |  | -20% | -20% battle morale loss to troops in your formation. |  |
+| medium | One Handed | 200 | Steel Core Shields | captain | shock-infantry fit |  | -10% | -10% damage to shields of infantry troops in your formation. |  |
+| medium | Polearm | 200 | Hardy Frontline | party leader | all troops |  | 5 | 5 hit points to troops in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
+| medium | Two Handed | 200 | Thick Hides | party leader | all troops |  | 5 | 5 hit points to troops in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. HP competes with a troop speed alternative here. Take HP when the formation already reaches contact reliably; otherwise speed may prevent more arrow exposure than the flat HP absorbs. |
+| medium | One Handed | 225 | Unwavering Defense | party leader | shock-infantry fit |  | 10 | 10 hit points to infantry in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
+| medium | Charm | 25 | Self Promoter | party leader | situational |  | 1 | 1 morale while defending in a besieged settlement. |  |
+| medium | Crossbow | 25 | Marksmen | party leader | ranged-specific |  | 10% | 10% starting battle morale to ranged troops in your party. | ranged-specific; do not assume it buffs infantry. |
+| medium | Leadership | 50 | Fervent Attacker | party leader | situational |  | 4 | 4 starting battle morale when attacking. |  |
+| medium | Leadership | 50 | Stout Defender | party leader | situational |  | 8 | 8 starting battle morale when defending. |  |
+| medium | Medicine | 75 | Sledges | party leader | situational |  | 15 | 15 hit points to mounts in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
+| medium | Crossbow | 100 | Peasant Leader | party leader | situational |  | 10% | 10% battle morale to tier 1 to 3 troops |  |
+| medium | Riding | 125 | Relief Force | party leader | situational |  | 10 | 10 starting battle morale when you join an ongoing battle of your allies. |  |
+| medium | Scouting | 150 | Patrols | scout | situational |  | 5 | 5 battle morale against bandit parties. |  |
+| medium | Leadership | 175 | Uplifting Spirit | party leader | situational |  | 10 | 10 battle morale in siege battles. |  |
+| medium | Medicine | 175 | Health Advice | surgeon | situational |  | 0% | Wounded troops do not decrease morale in battles. |  |
+| medium | Steward | 175 | Gourmet | quartermaster | situational |  | 100% | Double the morale bonus from having diverse food in your party. |  |
+| medium | Bow | 200 | Renowned Archer | party leader | ranged-specific |  | 10% | 10% starting battle morale to ranged troops in your party. | ranged-specific; do not assume it buffs infantry. |
+| medium | Leadership | 225 | Great Leader | army leader | army-only support |  | 5 | 5 battle morale to troops at the beginning of a battle. | Army-leader effect; weaker fit for a single-party commander. |
+| medium | Leadership | 225 | Great Leader | party leader | situational |  | 5 | 5 battle morale to troops that are of same culture as you. |  |
+| medium | Medicine | 225 | Fortitude Tonic | party leader | situational |  | 10 | 10 hit points to other heroes in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
+| medium | Crossbow | 250 | Picked Shots | party leader | ranged-specific |  | 5 | 5 hit points to ranged troops in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. ranged-specific; do not assume it buffs infantry. |
+| medium | Leadership | 250 | We Pledge our Swords | party leader | situational |  | 1 | 1 battle morale at the beginning of the battle for each tier 6 troop in the party up to 10 morale. |  |
+
+
+## Engagement Control
+
+Campaign movement and pursuit tools that let the party choose fights, avoid bad ones, and later run down parties of equal or smaller size.
+
+| Rating | Skill | Level | Perk | Role | Fit | Speed kind | Bonus | Effect | Notes |
+| --- | --- | ---: | --- | --- | --- | --- | ---: | --- | --- |
+| high | Scouting | 25 | Day Traveler | scout | one-party mobility | campaign_party_speed | 2% | 2% travel speed during daytime. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 25 | Night Runner | scout | one-party mobility | campaign_party_speed | 5% | 5% travel speed during nighttime | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 50 | Pathfinder | scout | one-party mobility | campaign_party_speed | 2% | 2% travel speed on steppes and plains. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Medicine | 75 | Sledges | surgeon | one-party mobility | campaign_party_speed | -50% | -50% party speed penalty from the wounded. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Riding | 75 | Nomadic Traditions | party leader | shock-infantry fit | campaign_party_speed | 30% | 30% party speed bonus from footmen on horses. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 75 | Desert Born | scout | one-party mobility | campaign_party_speed | 5% | 5% travel speed on deserts and dunes. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 75 | Forest Kin | scout | shock-infantry fit | campaign_party_speed | -50% | -50% travel speed penalty from forests if your party is composed of 75% or more infantry units. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Riding | 100 | Sweeping Wind | party leader | one-party mobility | campaign_party_speed | 2% | 2% party speed. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 100 | Forced March | scout | one-party mobility | campaign_party_speed | 2.5% | 2.5% travel speed when the party morale is higher than 75. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 100 | Unburdened | scout | one-party mobility | campaign_party_speed | -20% | -20% overburden penalty. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 125 | Tracker | scout | one-party mobility | campaign_party_speed | 2% | 2% travel speed while following a hostile party. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Athletics | 175 | Energetic | party leader | one-party mobility | campaign_party_speed | -20% | -20% overburdened speed penalty. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Riding | 175 | Shepherd | party leader | one-party mobility | campaign_party_speed | -50% | -50% herding speed penalty. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Athletics | 200 | Strong | party leader | shock-infantry fit | campaign_party_speed | 5% | 5% party speed by foot troops in your party. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| high | Scouting | 275 | Uncanny Insight | scout | one-party mobility | campaign_party_speed | 0.1% | 0.1% party speed for every skill point above 200 scouting skill. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| medium | Tactics | 150 | Call To Arms | army leader | army-only support | campaign_party_speed | 10% | 10% movement speed to parties called to your army. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. Army-leader effect; weaker fit for a single-party commander. |
+
+
+## Party Scaling
+
+Party size and logistics that scale the elite stack. These are valuable, but they come after per-troop dominance and enough map speed to pick engagements.
+
+| Rating | Skill | Level | Perk | Role | Fit | Speed kind | Bonus | Effect | Notes |
+| --- | --- | ---: | --- | --- | --- | --- | ---: | --- | --- |
+| high | Athletics | 75 | Imposing Stature | party leader | one-party scaling |  | 5 | 5 party size. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Leadership | 75 | Authority | party leader | one-party scaling |  | 5 | 5 party size limit. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Tactics | 75 | Horde Leader | party leader | one-party scaling |  | 10 | 10 party size. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Tactics | 75 | Small Unit Tactics | party leader | one-party scaling |  | 1 | 1 troop for the hideout crew | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Bow | 100 | Merry Men | party leader | one-party scaling |  | 5 | 5 party size. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Leadership | 125 | Leader of the Masses | clan leader | one-party scaling |  | 5 | 5 party size for each town you control. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Scouting | 150 | Mounted Scouts | party leader | one-party scaling |  | 5 | 5 party size limit. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Leadership | 175 | Uplifting Spirit | party leader | one-party scaling |  | 10 | 10 party size limit. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Two Handed | 175 | Hope | party leader | one-party scaling |  | 5 | 5 party limit. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Leadership | 250 | Talent Magnet | party leader | one-party scaling |  | 10 | 10 party size limit. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | One Handed | 250 | Prestige | party leader | one-party scaling |  | 15 | 15 party limit. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| high | Leadership | 275 | Ultimate Leader | party leader | one-party scaling |  | 1 | 1 party size for each leadership point above 250. | Party size is always welcome, but larger parties are naturally slower, so it ranks after combat power and mobility. |
+| medium | Leadership | 25 | Combat Tips | party leader | all troops |  | 2 | 2 experience per day to all troops in party. |  |
+| medium | Steward | 50 | Drill Sergeant | quartermaster | all troops |  | 2 | 2 daily experience to troops in your party. |  |
+| medium | Steward | 50 | Seven Veterans | quartermaster | all troops |  | 4 | 4 daily experience for tier 4+ troops in your party. |  |
+| medium | Two Handed | 75 | Baptised in Blood | party leader | shock-infantry fit |  | 5% | 5% experience to melee troops in your party after every battle. |  |
+| medium | Two Handed | 75 | Show of Strength | party leader | shock-infantry fit |  | -20% | -20% recruitment cost of infantry. |  |
+| medium | One Handed | 100 | Trainer | party leader | shock-infantry fit |  | 5% | 5% experience to melee troops in your party after every battle. |  |
+| medium | Scouting | 100 | Forced March | party leader | all troops |  | 2 | 2 experience per day to all troops while traveling with party morale higher than 75. |  |
+| medium | Scouting | 100 | Unburdened | party leader | all troops |  | 2 | 2 experience per day to all troops when traveling while overburdened. |  |
+| medium | Leadership | 125 | Leader of the Masses | party leader | all troops |  | 5% | 5% experience from battles shared with the troops in your party. |  |
+| medium | Throwing | 125 | Saddlebags | party leader | shock-infantry fit |  | 1 | 1 daily experience to infantry troops in your party. |  |
+| medium | Athletics | 150 | A Good Days Rest | party leader | shock-infantry fit |  | 10 | 10 daily experience to foot troops while waiting in settlements. |  |
+| medium | Athletics | 150 | Walk It Off | party leader | shock-infantry fit |  | 3 | 3 daily experience to foot troops while traveling. |  |
+| medium | One Handed | 150 | Corps-a-corps | party leader | shock-infantry fit |  | 10% | 10% of the total experience gained as a bonus to infantry after battles. |  |
+| medium | One Handed | 150 | Military Tradition | party leader | shock-infantry fit |  | 2 | 2 daily experience to infantry in your party. |  |
+| medium | Steward | 150 | Aid Corps | quartermaster | all troops |  | 0% | Wounded troops in your party are no longer paid wages. |  |
+| medium | Leadership | 175 | Inspiring Leader | captain | all troops |  | 5% | 5% experience to troops in your formation. |  |
+| medium | One Handed | 175 | Lead by example | party leader | all troops |  | 5% | 5% experience to troops in your party after battle. |  |
+| medium | Leadership | 200 | Lead by Example | party leader | shock-infantry fit |  | 50% | 50% recruitment rate for infantry prisoners. |  |
+| medium | Polearm | 200 | Drills | party leader | all troops |  | 0.1 | 0.1 bonus daily experience to troops in your party. |  |
+| medium | Polearm | 200 | Hardy Frontline | party leader | shock-infantry fit |  | -20% | -20% recruitment cost of infantry. |  |
+| medium | Steward | 200 | Contractors | quartermaster | all troops |  | -25% | -25% wages and upgrade costs of the mercenary troops in your party. |  |
+| medium | Steward | 225 | Arenicos' Horses | quartermaster | all troops |  | 10% | 10% carrying capacity for troops in your party. |  |
+| medium | One Handed | 250 | Chink in the Armor | party leader | shock-infantry fit |  | -20% | -20% recruitment cost of infantry. |  |
+| medium | Crossbow | 25 | Piercer | party leader | ranged-specific |  | -20% | -20% recruitment cost of ranged troops. | ranged-specific; do not assume it buffs infantry. |
+| medium | Leadership | 25 | Combat Tips | party leader | situational |  | 1 | 1 to troop tiers when recruiting from same culture. |  |
+| medium | Leadership | 25 | Raise The Meek | party leader | situational |  | 4 | 4 experience per day to tier 1 and 2 troops. |  |
+| medium | Roguery | 25 | No Rest for the Wicked | party leader | situational |  | 20% | 20% experience gain for bandits in your party. |  |
+| medium | Steward | 25 | Frugal | quartermaster | situational |  | -5% | -5% wages in your party. |  |
+| medium | Steward | 25 | Frugal | party leader | situational |  | -15% | -15% recruitment costs. |  |
+| medium | Steward | 25 | Warrior's Diet | quartermaster | situational |  | -10% | -10% food consumption in your party. |  |
+| medium | Steward | 25 | Warrior's Diet | party leader | situational |  | 0% | No morale penalty from having single type of food. |  |
+| medium | Leadership | 50 | Fervent Attacker | party leader | situational |  | 50% | 50% recruitment rate of tier 1, 2 and 3 prisoners. |  |
+| medium | Leadership | 50 | Stout Defender | party leader | situational |  | 50% | 50% recruitment rate of tier 4+ prisoners. |  |
+| medium | Roguery | 50 | Two Faced | party leader | situational |  | 0 | No morale loss from converting bandit prisoners. |  |
+| medium | Trade | 50 | Caravan Master | quartermaster | situational |  | 30% | 30% carrying capacity for your party. |  |
+| medium | Athletics | 75 | Stamina | party leader | situational |  | 5 | 5 prisoner limit and -10% escape chance to your prisoners. |  |
+| medium | Medicine | 75 | Doctor's Oath | surgeon | situational |  | 0% | Your medicine skill partially applies to enemy casualties, increasing potential prisoners. |  |
+| medium | Riding | 75 | Deeper Sacks | party leader | situational |  | 20% | 20% carrying capacity for pack animals in your party. |  |
+| medium | Steward | 75 | Stiff Upper Lip | quartermaster | situational |  | -10% | -10% food consumption in your party while it is part of an army. |  |
+| medium | Crossbow | 100 | Renowned Marksmen | party leader | ranged-specific |  | 2 | 2 daily experience to ranged troops in your party. | ranged-specific; do not assume it buffs infantry. |
+| medium | Leadership | 100 | Loyalty and Honor | party leader | situational |  | 30% | 30% faster non-bandit prisoner recruitment. |  |
+| medium | Roguery | 100 | Manhunter | party leader | situational |  | 10 | 10 prisoner limit. |  |
+| medium | Roguery | 100 | Promises | party leader | situational |  | -50% | -50% food consumption for bandit units in your party. |  |
+| medium | Roguery | 100 | Promises | party leader | situational |  | 30% | 30% recruitment rate for bandit prisoners in your party. |  |
+| medium | Steward | 100 | Efficient Campaigner | party leader | situational |  | 1 | 1 extra food for each food taken during village raids for your party. |  |
+| medium | Steward | 100 | Efficient Campaigner | quartermaster | situational |  | -25% | -25% troop wages in your party while it is part of an army. |  |
+| medium | Steward | 100 | Paid in Promise | party leader | situational |  | -25% | -25% companion wages and recruitment fees. |  |
+| medium | Steward | 100 | Paid in Promise | quartermaster | situational |  | 0% | Discarded armors are donated to troops for increased experience. |  |
+| medium | Bow | 125 | Trainer | party leader | ranged-specific |  | 3 | 3 daily experience to archers in your party. | ranged-specific; do not assume it buffs infantry. |
+| medium | Charm | 125 | Firebrand | party leader | situational |  | 1 | 1 recruitment slot from rural notables. |  |
+| medium | Leadership | 125 | Presence | party leader | situational |  | 0 | No morale penalty for recruiting prisoners of your faction. |  |
+| medium | Steward | 125 | Giving Hands | quartermaster | situational |  | 0% | Discarded weapons are donated to troops for increased experience. |  |
+| medium | Trade | 125 | Artisan Community | quartermaster | situational |  | 1 | 1 recruitment slot when recruiting from merchant notables. |  |
+| medium | Trade | 125 | Great Investor | quartermaster | situational |  | -30% | -30% companion recruitment cost. |  |
+| medium | Leadership | 150 | Citizen Militia | party leader | situational |  | 10% | 10% morale from victories. |  |
+| medium | Roguery | 150 | Partners in Crime | party leader | situational |  | 0% | Surrendering bandit parties can be recruited. |  |
+| medium | Trade | 150 | Content Trades | party leader | situational |  | -50% | -50% wages paid while waiting in settlements. |  |
+| medium | Trade | 150 | Mercenary Connections | party leader | situational |  | -25% | -25% mercenary troop wages in your party. |  |
+| medium | Crossbow | 175 | Mounted Crossbowman | party leader | ranged-specific |  | 5% | 5% experience gained to ranged troops in your party. | ranged-specific; do not assume it buffs infantry. |
+| medium | Medicine | 175 | Perfect Health | surgeon | situational |  | 5% | 5% recovery rate for each type of food in party inventory. |  |
+| medium | Scouting | 175 | Beast Whisperer | party leader | situational |  | 10% | 10% carrying capacity for pack animals in your party. |  |
+| medium | Scouting | 175 | Foragers | scout | situational |  | -10% | -10% food consumption while traveling through steppes and forests. |  |
+| medium | Steward | 175 | Sound Reserves | quartermaster | situational |  | -10% | -10% food consumption during sieges in your party. |  |
+| medium | Throwing | 175 | Head Hunter | party leader | situational |  | -20% | -20% recruitment cost of tier 2+ troops. |  |
+| medium | Trade | 175 | Insurance Plans | quartermaster | situational |  | -25% | -25% price penalty while buying food items. |  |
+| medium | Two Handed | 175 | Terror | party leader | situational |  | 10 | 10 prisoner limit. |  |
+| medium | Bow | 200 | Bulls Eye | party leader | ranged-specific |  | 10% | 10% bonus experience to ranged troops in your party after every battle. | ranged-specific; do not assume it buffs infantry. |
+| medium | Bow | 200 | Renowned Archer | party leader | ranged-specific |  | -30% | -30% recruitment and upgrade cost to ranged troops. | ranged-specific; do not assume it buffs infantry. |
+| medium | Leadership | 200 | Lead by Example | party leader | mounted-specific |  | 10% | 10% shared experience for cavalry troops. | mounted-specific; do not assume it buffs infantry. |
+| medium | Leadership | 200 | Trusted Commander | party leader | situational |  | 50% | 50% recruitment rate for ranged prisoners. |  |
+| medium | Roguery | 200 | Ransom Broker | party leader | situational |  | -30% | -30% escape chance for hero prisoners. |  |
+| medium | Steward | 200 | Forced Labor | quartermaster | situational |  | 0% | Prisoners in your party provide carry capacity as if they are standard troops. |  |
+| medium | Throwing | 200 | Resourceful | party leader | ranged-specific |  | 10% | 10% experience from battles to troops in your party equipped with throwing weapons. | ranged-specific; do not assume it buffs infantry. |
+| medium | Leadership | 225 | Make a Difference | party leader | ranged-specific |  | 10% | 10% shared experience for archers. | ranged-specific; do not assume it buffs infantry. |
+| medium | Riding | 225 | Mounted Patrols | party leader | situational |  | -50% | -50% escape chance to prisoners in your party. |  |
+| medium | Scouting | 225 | Keen Sight | party leader | situational |  | -50% | -50% chance of prisoner lords escaping from your party. |  |
+| medium | Scouting | 225 | Vantage Point | party leader | situational |  | 10 | 10 prisoner limit. |  |
+| medium | Steward | 225 | Arenicos' Mules | quartermaster | situational |  | 20% | 20% carrying capacity for pack animals in your party. |  |
+| medium | Throwing | 225 | Long Reach | party leader | situational |  | 20% | 20% morale and renown gained from battles won. |  |
+| medium | Trade | 225 | Sword For Barter | quartermaster | situational |  | -15% | -15% caravan guard wages. |  |
+| medium | Athletics | 250 | Spartan | party leader | situational |  | -20% | -20% food consumption in your party. |  |
+| medium | Crossbow | 250 | Picked Shots | party leader | ranged-specific |  | -50% | -50% wages of tier 4+ ranged troops. | ranged-specific; do not assume it buffs infantry. |
+| medium | Medicine | 250 | Battle Hardened | surgeon | situational |  | 25 | 25 experience to wounded units at the end of the battle. |  |
+| medium | Steward | 250 | Master of Planning | quartermaster | situational |  | -40% | -40% food consumption while your party is in a siege camp. |  |
+| medium | Steward | 250 | Master of Warcraft | quartermaster | situational |  | -25% | -25% troop wages while your party is in a siege camp. |  |
+| medium | Trade | 275 | Man of Means | clan leader | situational |  | -20% | -20% costs of recruiting minor faction clans into your clan. |  |
+
+
+## Low Priority or Misleading for This Doctrine
+
+Personal-only, governor-only, siege-only, simulation-only, projectile-speed, and weapon-handling rows that can look relevant in a keyword report but do not provide core one-party shock-infantry value.
+
+| Rating | Skill | Level | Perk | Role | Fit | Speed kind | Bonus | Effect | Notes |
+| --- | --- | ---: | --- | --- | --- | --- | ---: | --- | --- |
+| low | Athletics | 50 | Fury | captain | shock-infantry fit |  | 10% | 10% weapon handling to foot troops in your formation. |  |
+| low | Two Handed | 50 | On the Edge | captain | shock-infantry fit | weapon_handling_speed | 2% | 2% swing speed to infantry in your formation. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Bow | 75 | Rapid Fire | captain | all troops | weapon_handling_speed | 5% | 5% reload speed to troops in your formation. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Polearm | 75 | Swift Swing | captain | shock-infantry fit | weapon_handling_speed | 2% | 2% swing speed to infantry in your formation. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Engineering | 225 | Metallurgy | captain | all troops |  | 5 | 5 armor to all equipped armor pieces of troops in your formation. |  |
+| low | Two Handed | 225 | Blade Master | captain | shock-infantry fit | weapon_handling_speed | 2% | 2% attack speed to infantry in your formation. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Athletics | 250 | Ignore Pain | captain | shock-infantry fit |  | 5 | 5 armor to all equipped armor pieces of foot troops in your formation. |  |
+| low | Riding | 250 | Tough Steed | captain | all troops |  | 10 | 10 armor to mounts of troops in your formation. |  |
+| low | Athletics | 25 | Morning Exercise | personal | personal only | personal_combat_movement | 3% | 3% combat movement speed. |  |
+| low | Engineering | 25 | Scaffolds | engineer | situational | siege_speed | 10% | 10% build speed to non-ranged siege engines. | Siege-speed effect; useful in sieges but outside the default one-party shock-infantry doctrine. |
+| low | Engineering | 25 | Torsion Engines | engineer | situational | siege_speed | 10% | 10% build speed to ranged siege engines. | Siege-speed effect; useful in sieges but outside the default one-party shock-infantry doctrine. |
+| low | Medicine | 25 | Self Medication | personal | personal only | personal_combat_movement | 2% | 2% combat movement speed. |  |
+| low | Roguery | 25 | No Rest for the Wicked | party leader | situational |  | 5% | 5% raid speed. |  |
+| low | Tactics | 25 | Loose Formations | party leader | simulation only |  | -10% | -10% damage to your infantry from ranged troops when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Tactics | 25 | Tight Formations | party leader | simulation only |  | 10% | 10% damage by your infantry to cavalry when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Throwing | 25 | Quick Draw | personal | personal only | projectile_speed | 20% | 20% draw speed with throwing weapons. | Projectile travel speed, not party mobility or troop foot speed. |
+| low | Throwing | 25 | Quick Draw | captain | ranged-specific | projectile_speed | 10% | 10% draw speed with throwing weapons to troops in your formation. | Projectile travel speed, not party mobility or troop foot speed. ranged-specific; do not assume it buffs infantry. |
+| low | Bow | 50 | Nocking Point | personal | personal only | weapon_handling_speed | -50% | -50% movement speed penalty while reloading. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Crossbow | 50 | Wind Winder | personal | personal only | weapon_handling_speed | 25% | 25% reload speed with crossbows. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Crossbow | 50 | Wind Winder | captain | ranged-specific | weapon_handling_speed | 5% | 5% crossbow reload speed to troops in your formation. | Weapon handling or personal reload/loadout movement; do not count as party mobility. ranged-specific; do not assume it buffs infantry. |
+| low | One Handed | 50 | Swift Strike | personal | personal only | weapon_handling_speed | 2% | 2% swing speed with one handed weapons. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Tactics | 50 | Decisive Battle | party leader | simulation only |  | 5% | 5% damage in plains, steppes and deserts when your troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Tactics | 50 | Extended Skirmish | party leader | simulation only |  | 10% | 10% damage in snowy and forest terrains when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Two Handed | 50 | On the Edge | personal | personal only | weapon_handling_speed | 3% | 3% swing speed with two handed weapons. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Bow | 75 | Rapid Fire | personal | personal only | weapon_handling_speed | 25% | 25% reload speed with bows. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | One Handed | 75 | Shield Bearer | personal | personal only | weapon_handling_speed | 0 | Removed movement speed penalty of wielding shields. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Polearm | 75 | Swift Swing | personal | personal only | weapon_handling_speed | 5% | 5% swing speed with polearms. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Roguery | 75 | In Best Light | party leader | situational |  | 1 | 1 extra troop from village notables when successfully forced for volunteers. |  |
+| low | Athletics | 100 | Sprint | personal | personal only | troop_combat_movement | 5% | 5% combat movement speed when you have no shields and no ranged weapons equipped. | Troop movement speed for this troop class; useful tactically, but not an infantry-wide mobility buff. |
+| low | Polearm | 100 | Footwork | personal | personal only | personal_combat_movement | 2% | 2% combat movement speed with polearms. |  |
+| low | Tactics | 100 | Coaching | party leader | simulation only |  | 3% | 3% damage when your troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Tactics | 100 | Law Keeper | party leader | simulation only |  | 10% | 10% damage against bandits when your troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Throwing | 100 | Running Throw | personal | personal only | projectile_speed | 0.25 | 25% damage bonus from speed with throwing weapons. | Projectile travel speed, not party mobility or troop foot speed. |
+| low | Athletics | 125 | Surging Blow | personal | personal only |  | 30% | 30% damage bonus from speed while on foot. |  |
+| low | Engineering | 125 | Salvager | governor | governor/settlement only | siege_speed | 0.1% | 0.1% siege engine build speed increase for each militia. | Siege-speed effect; useful in sieges but outside the default one-party shock-infantry doctrine. |
+| low | Polearm | 125 | Lancer | personal | personal only |  | 20% | 20% damage bonus from speed with polearms while mounted. |  |
+| low | Crossbow | 150 | Deft Hands | captain | ranged-specific |  | 50% | 50% resistance to getting staggered while reloading crossbows to troops in your formation. | ranged-specific; do not assume it buffs infantry. |
+| low | Crossbow | 150 | Loose and Move | personal | personal only | personal_combat_movement | 0 | Equipped crossbows do not slow you down. |  |
+| low | Leadership | 200 | Trusted Commander | party leader | simulation only |  | 20% | 20% experience for troops, when they are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | One Handed | 200 | Fleet of Foot | personal | personal only | personal_combat_movement | 4% | 4% combat movement speed. |  |
+| low | Tactics | 200 | Elite Reserves | party leader | simulation only |  | -20% | -20% less damage to tier 3+ units when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Tactics | 200 | Encirclement | party leader | simulation only |  | 5% | 5% damage to outnumbered enemies when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Two Handed | 200 | Reckless Charge | personal | personal only |  | 20% | 20% damage bonus from speed with two handed weapons while on foot. |  |
+| low | Engineering | 225 | Improved Tools | engineer | situational | siege_speed | 20% | 20% siege camp preparation speed. | Siege-speed effect; useful in sieges but outside the default one-party shock-infantry doctrine. |
+| low | Riding | 225 | Cavalry Tactics | clan leader | governor/settlement only |  | 30% | 30% volunteering rate of cavalry troops in the settlements governed by your clan. |  |
+| low | Tactics | 225 | Pre Battle Maneuvers | party leader | simulation only |  | 1% | 1% damage per 100 skill difference with the enemy when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
+| low | Throwing | 225 | Perfect Technique | personal | personal only | projectile_speed | 25% | 25% travel speed to your throwing weapons. | Projectile travel speed, not party mobility or troop foot speed. |
+| low | Throwing | 225 | Perfect Technique | captain | ranged-specific | projectile_speed | 10% | 10% travel speed to throwing weapons of troops in your formation. | Projectile travel speed, not party mobility or troop foot speed. ranged-specific; do not assume it buffs infantry. |
+| low | Bow | 250 | Quick Draw | personal | personal only | weapon_handling_speed | 25% | 25% aiming speed with bows. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Bow | 250 | Ranger's Swiftness | personal | personal only | personal_combat_movement | 0 | Equipped bows do not slow you down. |  |
+| low | Charm | 250 | Camaraderie | clan leader | situational |  | 1 | 1 companion limit |  |
+| low | Engineering | 250 | Architectural Commissions | engineer | situational | siege_speed | 25% | 25% reload speed to mangonels and trebuchets in siege bombardment. | Siege-speed effect; useful in sieges but outside the default one-party shock-infantry doctrine. |
+| low | Engineering | 250 | Clockwork | engineer | situational | siege_speed | 25% | 25% reload speed to ballistas during siege bombardment. | Siege-speed effect; useful in sieges but outside the default one-party shock-infantry doctrine. |
+| low | Leadership | 250 | Talent Magnet | clan leader | situational |  | 1 | 1 clan party limit. |  |
+| low | Riding | 250 | Dauntless Steed | captain | mounted-specific |  | 5 | 5 armor to all equipped armor pieces of mounted troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| low | Roguery | 250 | Dash and Slash | personal | personal only |  | 50% | 50% damage bonus from speed while on foot. |  |
+| low | Roguery | 250 | Fleet Footed | personal | personal only | personal_combat_movement | 10% | 10% combat movement speed while no weapons or shields are equipped. |  |
+| low | Scouting | 250 | Vanguard | party leader | simulation only |  | 5% | 5% damage by your troops when they are sent as attackers. | Simulation/autoresolve row, not live tactical combat. |
+| low | Scouting | 250 | Vanguard | party leader | simulation only |  | 10% | 10% damage by your troops when they are sent to sally out. | Simulation/autoresolve row, not live tactical combat. |
+| low | Tactics | 250 | Counter Offensive | party leader | simulation only |  | 10% | 10% damage when troops are sent to confront the attacking enemy in a field battle. | Simulation/autoresolve row, not live tactical combat. |
+| low | Tactics | 250 | Counter Offensive | party leader | simulation only |  | 10% | 10% damage when troops are sent to confront the enemy while outnumbered. | Simulation/autoresolve row, not live tactical combat. |
+| low | Two Handed | 250 | Way Of The Great Axe | personal | personal only | weapon_handling_speed | 0.2% | 0.2% attack speed with two handed weapons for every skill point above 250. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Bow | 275 | Deadshot | personal | personal only | weapon_handling_speed | 0.2% | 0.2% reload speed with bows for every skill point above 200. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Crossbow | 275 | Mighty Pull | personal | personal only | weapon_handling_speed | 0.2% | 0.2% reload speed with crossbows for every skill point above 200. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | One Handed | 275 | Way of the Sword | personal | personal only | weapon_handling_speed | 0.2% | 0.2% attack speed with one handed weapons for every skill point above 250. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Polearm | 275 | Way of the Spear | personal | personal only | weapon_handling_speed | 0.2% | 0.2% attack speed with polearms for every skill point above 250. | Weapon handling or personal reload/loadout movement; do not count as party mobility. |
+| low | Tactics | 275 | Tactical Mastery | army leader | army-only support |  | 0.5% | 0.5% damage for every skill point above 200 tactics skill when troops are sent to confront the enemy. | Army-leader effect; weaker fit for a single-party commander. Simulation/autoresolve row, not live tactical combat. |
+| low | Throwing | 275 | Unstoppable Force | personal | personal only | projectile_speed | 0.2% | 0.2% travel speed to your throwing weapons for every skill point above 200. | Projectile travel speed, not party mobility or troop foot speed. |
+
+## Outputs
+
+- JSON: `Data\intermediate\commander_perks_extracted.json`
+- Report: `Data\intermediate\commander_perks_report.txt`

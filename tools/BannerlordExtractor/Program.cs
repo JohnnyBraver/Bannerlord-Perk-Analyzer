@@ -3,6 +3,7 @@ using System.Reflection.Emit;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 internal static class Program
 {
@@ -27,6 +28,7 @@ internal static class Program
             return command switch
             {
                 "perks" => ExtractPerks(options),
+                "banners" => ExtractBanners(options),
                 "xp-methods" => ExtractXpMethods(options),
                 "dump-il" => DumpIl(options),
                 "find-methods" => FindMethods(options),
@@ -47,6 +49,7 @@ internal static class Program
         Console.WriteLine();
         Console.WriteLine("Commands:");
         Console.WriteLine("  perks --game-root <path> --output <json>");
+        Console.WriteLine("  banners --game-root <path> --output <json> [--include-mp]");
         Console.WriteLine("  xp-methods --game-root <path> --json-output <json> [--assembly <name>] [--include-il] [--deep-scan-callers] [--include-contracts]");
         Console.WriteLine("  dump-il --game-root <path> --assembly <name> --type <full type> --method <name> [--output <txt>]");
         Console.WriteLine("  find-methods --game-root <path> --query <text> [--assembly <name>] [--all-game-assemblies] [--include-il] [--output <json>]");
@@ -104,6 +107,122 @@ internal static class Program
 
         WriteJson(output, perks);
         Console.WriteLine($"Raw perks written: {perks.Count}");
+        Console.WriteLine($"Output: {output}");
+        return 0;
+    }
+
+    private static int ExtractBanners(CliOptions options)
+    {
+        var gameRoot = options.RequiredPath("game-root");
+        var output = options.RequiredPath("output");
+        var bin = ResolveGameBin(gameRoot);
+        var coreDll = Path.Combine(bin, "TaleWorlds.Core.dll");
+        RequireFile(coreDll, "Could not find TaleWorlds.Core.dll.");
+        AddAssemblyResolver(ResolveAssemblySearchDirs(gameRoot));
+
+        var coreAsm = Assembly.LoadFrom(coreDll);
+        var defaultBannerEffectsType = coreAsm.GetType("TaleWorlds.Core.DefaultBannerEffects", throwOnError: true)
+            ?? throw new InvalidOperationException("Could not load DefaultBannerEffects type.");
+        var register = defaultBannerEffectsType.GetMethod("RegisterAll", BindingFlags.NonPublic | BindingFlags.Instance)
+            ?? throw new InvalidOperationException("Could not find DefaultBannerEffects.RegisterAll.");
+        var initialize = defaultBannerEffectsType.GetMethod("InitializeAll", BindingFlags.NonPublic | BindingFlags.Instance)
+            ?? throw new InvalidOperationException("Could not find DefaultBannerEffects.InitializeAll.");
+
+        var stringIdsByField = GetBannerEffectStringIds(IlReader.ReadInstructions(register));
+        var effects = GetBannerEffectDefinitions(IlReader.ReadInstructions(initialize), stringIdsByField)
+            .OrderBy(effect => effect.StringId)
+            .ToList();
+        var effectsByStringId = effects.ToDictionary(effect => effect.StringId, StringComparer.OrdinalIgnoreCase);
+        var includeMultiplayer = options.Has("include-mp");
+        var bannerXmlPaths = FindBannerXmlPaths(gameRoot, includeMultiplayer);
+        var items = bannerXmlPaths
+            .SelectMany(path => ReadBannerItems(gameRoot, path, effectsByStringId))
+            .OrderBy(item => item.EffectStringId)
+            .ThenBy(item => item.BannerLevel)
+            .ThenBy(item => item.Id)
+            .ToList();
+
+        var payload = new Dictionary<string, object?>
+        {
+            ["generated_at"] = DateTimeOffset.Now.ToString("o"),
+            ["inputs"] = new Dictionary<string, object?>
+            {
+                ["game_root"] = "<local Bannerlord install>",
+                ["core_assembly"] = SanitizeLocalPath(coreDll, gameRoot),
+                ["banner_xml"] = bannerXmlPaths.Select(path => SanitizeLocalPath(path, gameRoot)).ToList(),
+            },
+            ["effect_definitions"] = effects.Select(effect => new Dictionary<string, object?>
+            {
+                ["string_id"] = effect.StringId,
+                ["field"] = effect.Field,
+                ["name_raw"] = effect.NameRaw,
+                ["name"] = effect.Name,
+                ["description_raw"] = effect.DescriptionRaw,
+                ["description"] = effect.Description,
+                ["increment_type"] = effect.IncrementType,
+                ["increment_value"] = effect.IncrementValue,
+                ["tiers"] = effect.Tiers.Select(tier => new Dictionary<string, object?>
+                {
+                    ["level"] = tier.Level,
+                    ["bonus"] = tier.Bonus,
+                    ["bonus_percent"] = tier.Bonus * 100.0,
+                    ["display_bonus"] = FormatPercent(tier.Bonus),
+                    ["description"] = FormatBannerDescription(effect.Description, tier.Bonus),
+                }).ToList(),
+            }).ToList(),
+            ["items"] = items.Select(item => new Dictionary<string, object?>
+            {
+                ["id"] = item.Id,
+                ["name_raw"] = item.NameRaw,
+                ["name"] = item.Name,
+                ["culture"] = item.Culture,
+                ["module"] = item.Module,
+                ["source"] = item.Source,
+                ["banner_level"] = item.BannerLevel,
+                ["effect"] = item.EffectStringId,
+                ["effect_name"] = item.EffectName,
+                ["effect_description"] = item.EffectDescription,
+                ["bonus"] = item.Bonus,
+                ["bonus_percent"] = item.Bonus * 100.0,
+                ["display_bonus"] = FormatPercent(item.Bonus),
+                ["display_effect"] = FormatBannerDescription(item.EffectDescription, item.Bonus),
+                ["weapon_class"] = item.WeaponClass,
+                ["mesh"] = item.Mesh,
+                ["prefab"] = item.Prefab,
+                ["weight"] = item.Weight,
+            }).ToList(),
+            ["groups"] = items
+                .GroupBy(item => item.EffectStringId, StringComparer.OrdinalIgnoreCase)
+                .OrderBy(group => group.Key)
+                .Select(group => new Dictionary<string, object?>
+                {
+                    ["effect"] = group.Key,
+                    ["effect_name"] = group.First().EffectName,
+                    ["items"] = group
+                        .OrderBy(item => item.BannerLevel)
+                        .ThenBy(item => item.Id)
+                        .Select(item => item.Id)
+                        .ToList(),
+                    ["tiers"] = group
+                        .GroupBy(item => item.BannerLevel)
+                        .OrderBy(tierGroup => tierGroup.Key)
+                        .Select(tierGroup => new Dictionary<string, object?>
+                        {
+                            ["level"] = tierGroup.Key,
+                            ["bonus"] = tierGroup.First().Bonus,
+                            ["bonus_percent"] = tierGroup.First().Bonus * 100.0,
+                            ["display_bonus"] = FormatPercent(tierGroup.First().Bonus),
+                            ["item_count"] = tierGroup.Count(),
+                            ["items"] = tierGroup.Select(item => item.Id).OrderBy(id => id).ToList(),
+                        })
+                        .ToList(),
+                })
+                .ToList(),
+        };
+
+        WriteJson(output, payload);
+        Console.WriteLine($"Banner effects extracted: {effects.Count}");
+        Console.WriteLine($"Banner items extracted: {items.Count}");
         Console.WriteLine($"Output: {output}");
         return 0;
     }
@@ -668,6 +787,225 @@ internal static class Program
         return map.TryGetValue(skill, out var attribute) ? attribute : "";
     }
 
+    private static Dictionary<string, string> GetBannerEffectStringIds(List<IlInstruction> instructions)
+    {
+        var stack = new List<StackValue?>();
+        var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var instruction in instructions)
+        {
+            switch (instruction.OpCode)
+            {
+                case "ldarg.0":
+                    stack.Add(new StackValue("this"));
+                    break;
+                case "ldstr":
+                    stack.Add(new StackValue("string", Value: instruction.Operand as string));
+                    break;
+                case "call":
+                    if (instruction.Operand is MethodBase { Name: "Create" })
+                    {
+                        var arg = Pop(stack);
+                        stack.Add(new StackValue("created_banner_effect", StringId: Convert.ToString(arg?.Value) ?? ""));
+                    }
+                    break;
+                case "stfld":
+                    var value = Pop(stack);
+                    if (stack.Count > 0)
+                    {
+                        stack.RemoveAt(stack.Count - 1);
+                    }
+                    if (value?.Kind == "created_banner_effect" && instruction.Operand is FieldInfo field)
+                    {
+                        map[field.Name] = value.StringId ?? "";
+                    }
+                    break;
+            }
+        }
+        return map;
+    }
+
+    private static List<BannerEffectDefinition> GetBannerEffectDefinitions(
+        List<IlInstruction> instructions,
+        Dictionary<string, string> stringIdsByField
+    )
+    {
+        var stack = new List<object?>();
+        var defs = new List<BannerEffectDefinition>();
+
+        foreach (var instruction in instructions)
+        {
+            var op = instruction.OpCode;
+            if (op == "ldarg.0")
+            {
+                stack.Add(new StackValue("this"));
+            }
+            else if (op == "ldstr")
+            {
+                stack.Add(instruction.Operand as string ?? "");
+            }
+            else if (op == "ldc.r4" || op == "ldc.r8")
+            {
+                stack.Add(Convert.ToDouble(instruction.Operand));
+            }
+            else if (op == "ldc.i4.m1")
+            {
+                stack.Add(-1);
+            }
+            else if (Regex.IsMatch(op, "^ldc\\.i4\\.[0-8]$"))
+            {
+                stack.Add(int.Parse(op[^1].ToString()));
+            }
+            else if (op is "ldc.i4.s" or "ldc.i4")
+            {
+                stack.Add(Convert.ToInt32(instruction.Operand));
+            }
+            else if (op == "ldfld")
+            {
+                if (stack.Count > 0)
+                {
+                    stack.RemoveAt(stack.Count - 1);
+                }
+                if (instruction.Operand is FieldInfo field)
+                {
+                    stringIdsByField.TryGetValue(field.Name, out var stringId);
+                    stack.Add(new StackValue("field", Field: field.Name, StringId: stringId ?? ""));
+                }
+            }
+            else if (op == "callvirt" && instruction.Operand is MethodBase method)
+            {
+                if (method.Name == "Initialize" && method.DeclaringType?.FullName == "TaleWorlds.Core.BannerEffect")
+                {
+                    var items = new List<object?>();
+                    for (var i = 0; i < 7; i++)
+                    {
+                        items.Insert(0, PopAny(stack));
+                    }
+                    var effectField = (StackValue)items[0]!;
+                    var tier1 = Convert.ToDouble(items[3]);
+                    var tier2 = Convert.ToDouble(items[4]);
+                    var tier3 = Convert.ToDouble(items[5]);
+                    var incrementValue = Convert.ToInt32(items[6]);
+                    defs.Add(new BannerEffectDefinition
+                    {
+                        Field = effectField.Field ?? "",
+                        StringId = effectField.StringId ?? "",
+                        NameRaw = Convert.ToString(items[1]) ?? "",
+                        Name = StripLocPrefix(Convert.ToString(items[1])),
+                        DescriptionRaw = Convert.ToString(items[2]) ?? "",
+                        Description = StripLocPrefix(Convert.ToString(items[2])),
+                        IncrementValue = incrementValue,
+                        IncrementType = ConvertIncrement(incrementValue),
+                        Tiers = new List<BannerEffectTier>
+                        {
+                            new() { Level = 1, Bonus = tier1 },
+                            new() { Level = 2, Bonus = tier2 },
+                            new() { Level = 3, Bonus = tier3 },
+                        },
+                    });
+                }
+            }
+        }
+
+        return defs;
+    }
+
+    private static List<string> FindBannerXmlPaths(string gameRoot, bool includeMultiplayer)
+    {
+        var modules = Path.Combine(Path.GetFullPath(gameRoot), "Modules");
+        if (!Directory.Exists(modules))
+        {
+            return new List<string>();
+        }
+        var singleplayerPath = Path.Combine(modules, "SandBoxCore", "ModuleData", "items", "banners.xml");
+        if (!includeMultiplayer && File.Exists(singleplayerPath))
+        {
+            return new List<string> { singleplayerPath };
+        }
+        return Directory.GetFiles(modules, "banners.xml", SearchOption.AllDirectories)
+            .Where(path => Regex.IsMatch(path, @"ModuleData[\\/](items[\\/])?banners\.xml$", RegexOptions.IgnoreCase))
+            .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+    }
+
+    private static List<BannerItemDefinition> ReadBannerItems(
+        string gameRoot,
+        string xmlPath,
+        Dictionary<string, BannerEffectDefinition> effectsByStringId
+    )
+    {
+        var document = XDocument.Load(xmlPath);
+        var module = GetModuleName(gameRoot, xmlPath);
+        var source = SanitizeLocalPath(xmlPath, gameRoot);
+        var items = new List<BannerItemDefinition>();
+
+        foreach (var item in document.Descendants("Item"))
+        {
+            var banner = item.Descendants("Banner").FirstOrDefault();
+            if (banner is null)
+            {
+                continue;
+            }
+
+            var effectStringId = Attr(banner, "effect");
+            var level = ParseInt(Attr(banner, "banner_level"));
+            effectsByStringId.TryGetValue(effectStringId, out var effect);
+            var bonus = effect?.Tiers.FirstOrDefault(tier => tier.Level == level)?.Bonus ?? 0;
+
+            items.Add(new BannerItemDefinition
+            {
+                Id = Attr(item, "id"),
+                NameRaw = Attr(item, "name"),
+                Name = StripLocPrefix(Attr(item, "name")),
+                Culture = Attr(item, "culture").Replace("Culture.", "", StringComparison.Ordinal),
+                Module = module,
+                Source = source,
+                BannerLevel = level,
+                EffectStringId = effectStringId,
+                EffectName = effect?.Name ?? "",
+                EffectDescription = effect?.Description ?? "",
+                Bonus = bonus,
+                WeaponClass = Attr(banner, "weapon_class"),
+                Mesh = Attr(item, "mesh"),
+                Prefab = Attr(item, "prefab"),
+                Weight = ParseDouble(Attr(item, "weight")),
+            });
+        }
+
+        return items;
+    }
+
+    private static string Attr(XElement element, string name) => element.Attribute(name)?.Value ?? "";
+
+    private static int ParseInt(string text) => int.TryParse(text, out var value) ? value : 0;
+
+    private static double ParseDouble(string text) => double.TryParse(text, out var value) ? value : 0;
+
+    private static string GetModuleName(string gameRoot, string path)
+    {
+        var modules = Path.Combine(Path.GetFullPath(gameRoot), "Modules");
+        var relative = Path.GetRelativePath(modules, Path.GetFullPath(path));
+        var first = relative.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).FirstOrDefault();
+        return string.IsNullOrWhiteSpace(first) ? "" : first;
+    }
+
+    private static string FormatPercent(double value)
+    {
+        var percent = value * 100.0;
+        var text = Math.Abs(percent - Math.Round(percent)) < 0.000001
+            ? Math.Round(percent).ToString("0")
+            : percent.ToString("0.####");
+        return text + "%";
+    }
+
+    private static string FormatBannerDescription(string description, double bonus)
+    {
+        if (string.IsNullOrWhiteSpace(description))
+        {
+            return "";
+        }
+        return description.Replace("{BONUS_AMOUNT}", FormatPercent(bonus).TrimEnd('%'), StringComparison.Ordinal);
+    }
+
     private static Dictionary<string, string> GetPerkCreateMap(List<IlInstruction> instructions)
     {
         var stack = new List<StackValue?>();
@@ -1013,6 +1351,44 @@ internal static class Program
         public int SecondaryIncrementValue { get; init; }
         public int PrimaryTroopMaskValue { get; init; }
         public int SecondaryTroopMaskValue { get; init; }
+    }
+
+    private sealed class BannerEffectTier
+    {
+        public int Level { get; init; }
+        public double Bonus { get; init; }
+    }
+
+    private sealed class BannerEffectDefinition
+    {
+        public string Field { get; init; } = "";
+        public string StringId { get; init; } = "";
+        public string NameRaw { get; init; } = "";
+        public string Name { get; init; } = "";
+        public string DescriptionRaw { get; init; } = "";
+        public string Description { get; init; } = "";
+        public int IncrementValue { get; init; }
+        public string IncrementType { get; init; } = "";
+        public List<BannerEffectTier> Tiers { get; init; } = new();
+    }
+
+    private sealed class BannerItemDefinition
+    {
+        public string Id { get; init; } = "";
+        public string NameRaw { get; init; } = "";
+        public string Name { get; init; } = "";
+        public string Culture { get; init; } = "";
+        public string Module { get; init; } = "";
+        public string Source { get; init; } = "";
+        public int BannerLevel { get; init; }
+        public string EffectStringId { get; init; } = "";
+        public string EffectName { get; init; } = "";
+        public string EffectDescription { get; init; } = "";
+        public double Bonus { get; init; }
+        public string WeaponClass { get; init; } = "";
+        public string Mesh { get; init; } = "";
+        public string Prefab { get; init; } = "";
+        public double Weight { get; init; }
     }
 
     private sealed class CliOptions

@@ -7,8 +7,10 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from .extract_commander_perks import build_commander_records
     from .perk_limits import check_perk_filters
 except ImportError:
+    from extract_commander_perks import build_commander_records
     from perk_limits import check_perk_filters
 
 
@@ -106,6 +108,161 @@ def row_key(row: dict[str, Any]) -> str:
 
 def override_key(override: dict[str, Any]) -> str:
     return f"{override.get('perk_string_id', '')}|{override.get('effect_slot', '')}"
+
+
+def validate_commander_report_classification(
+    export_rows: list[dict[str, Any]],
+    banner_payload: dict[str, Any] | None = None,
+) -> list[str]:
+    errors: list[str] = []
+    records = build_commander_records(export_rows)
+    by_key = {str(record["id"]): record for record in records}
+
+    def require_record(key: str) -> dict[str, Any] | None:
+        record = by_key.get(key)
+        if record is None:
+            errors.append(f"Commander report missing expected row: {key}")
+        return record
+
+    nocking_point = require_record("BowNockingPoint|primary")
+    if nocking_point and nocking_point.get("speed_kind") != "weapon_handling_speed":
+        errors.append("Commander report should classify BowNockingPoint|primary as weapon_handling_speed.")
+    if nocking_point and nocking_point.get("doctrine_category") != "low_priority_misleading":
+        errors.append("Commander report should keep BowNockingPoint|primary out of mobility/lethality buckets.")
+
+    throwing_primary = require_record("ThrowingPerfectTechnique|primary")
+    throwing_secondary = require_record("ThrowingPerfectTechnique|secondary")
+    for record in [throwing_primary, throwing_secondary]:
+        if record and record.get("speed_kind") != "projectile_speed":
+            errors.append(f"Commander report should classify {record['id']} as projectile_speed.")
+        if record and record.get("doctrine_category") == "engagement_control":
+            errors.append(f"Commander report should not classify projectile speed as engagement control: {record['id']}")
+
+    morning_exercise = require_record("AthleticsMorningExercise|secondary")
+    if morning_exercise and morning_exercise.get("speed_kind") != "troop_combat_movement":
+        errors.append("Commander report should classify AthleticsMorningExercise|secondary as troop_combat_movement.")
+    if morning_exercise and morning_exercise.get("doctrine_category") != "core_troop_lethality":
+        errors.append("Commander report should rank AthleticsMorningExercise|secondary as core troop lethality.")
+    if morning_exercise and not morning_exercise.get("comparison_note"):
+        errors.append("Commander report should explain the Athletics speed-vs-HP tradeoff.")
+
+    well_built = require_record("AthleticsWellBuilt|secondary")
+    if well_built and not well_built.get("comparison_note"):
+        errors.append("Commander report should explain the Athletics HP-vs-speed tradeoff.")
+
+    shield_bearer = require_record("OneHandedShieldBearer|secondary")
+    if shield_bearer and "all_troops" in shield_bearer.get("troop_classes", []):
+        errors.append("Commander report should not mark infantry-only Shield Bearer as all_troops.")
+    if shield_bearer and "infantry_or_foot" not in shield_bearer.get("troop_classes", []):
+        errors.append("Commander report should mark Shield Bearer as infantry_or_foot.")
+
+    loose_and_move = require_record("CrossbowLooseAndMove|secondary")
+    if loose_and_move and "infantry_or_foot" in loose_and_move.get("troop_classes", []):
+        errors.append("Commander report should not mark ranged-only Loose and Move as infantry_or_foot.")
+    if loose_and_move and "all_troops" in loose_and_move.get("troop_classes", []):
+        errors.append("Commander report should not mark ranged-only Loose and Move as all_troops.")
+    if loose_and_move and "ranged" not in loose_and_move.get("troop_classes", []):
+        errors.append("Commander report should mark Loose and Move as ranged-specific.")
+
+    sweeping_wind = require_record("RidingSweepingWind|secondary")
+    if sweeping_wind and sweeping_wind.get("speed_kind") != "campaign_party_speed":
+        errors.append("Commander report should classify RidingSweepingWind|secondary as campaign_party_speed.")
+    if sweeping_wind and sweeping_wind.get("doctrine_category") != "engagement_control":
+        errors.append("Commander report should rank RidingSweepingWind|secondary as engagement control.")
+
+    return errors
+
+
+def validate_banner_extraction(workspace: Path) -> list[str]:
+    errors: list[str] = []
+    banner_path = workspace / "Data" / "raw" / "banner-items.json"
+    if not banner_path.exists():
+        return errors
+
+    payload = read_json(banner_path)
+    effects = payload.get("effect_definitions", [])
+    items = payload.get("items", [])
+    groups = {str(group.get("effect", "")): group for group in payload.get("groups", [])}
+
+    if len(effects) != 13:
+        errors.append(f"Banner extraction expected 13 banner effects, found {len(effects)}.")
+    if len(items) != 45:
+        errors.append(f"Banner extraction expected 45 singleplayer banner items, found {len(items)}.")
+
+    item_ids = [str(item.get("id", "")) for item in items]
+    duplicates = sorted({item_id for item_id in item_ids if item_ids.count(item_id) > 1})
+    for item_id in duplicates:
+        errors.append(f"Banner extraction contains duplicate item id: {item_id}")
+
+    expected_tier3 = {
+        "IncreasedTroopMovementSpeed": 0.30000001192092896,
+        "IncreasedMountMovementSpeed": 0.10000000149011612,
+        "DecreasedRangedAttackDamage": -0.15000000596046448,
+        "DecreasedRangedAccuracyPenalty": -0.07999999821186066,
+        "IncreasedMeleeDamage": 0.15000000596046448,
+    }
+    for effect, expected in expected_tier3.items():
+        group = groups.get(effect)
+        if not group:
+            errors.append(f"Banner extraction missing effect group: {effect}")
+            continue
+        tier3 = next((tier for tier in group.get("tiers", []) if int(tier.get("level", 0)) == 3), None)
+        if tier3 is None:
+            errors.append(f"Banner extraction missing tier 3 value for {effect}.")
+            continue
+        actual = float(tier3.get("bonus", 0))
+        if abs(actual - expected) > 1e-6:
+            errors.append(f"Banner extraction tier 3 value for {effect} is {actual}, expected {expected}.")
+
+    ranged_group = groups.get("DecreasedRangedAttackDamage")
+    if ranged_group and "Ranged" not in str(ranged_group.get("effect_name", "")):
+        errors.append("Banner extraction should preserve the DecreasedRangedAttackDamage effect name.")
+
+    return errors
+
+
+def validate_banner_usage_scan(workspace: Path) -> list[str]:
+    errors: list[str] = []
+    usage_path = workspace / "Data" / "raw" / "banner-effect-usages.json"
+    banner_path = workspace / "Data" / "raw" / "banner-items.json"
+    if not usage_path.exists() or not banner_path.exists():
+        return errors
+
+    usage_payload = read_json(usage_path)
+    banner_payload = read_json(banner_path)
+    expected_effects = {str(effect.get("string_id", "")) for effect in banner_payload.get("effect_definitions", [])}
+    seen_effects: set[str] = set()
+    il_text_by_method = []
+    for method in usage_payload.get("methods", []):
+        il_text = "\n".join(str(line) for line in method.get("il", []))
+        members_text = "\n".join(str(member) for member in method.get("referenced_members", []))
+        il_text_by_method.append(f"{members_text}\n{il_text}")
+        for member in method.get("referenced_members", []):
+            member_text = str(member)
+            if "DefaultBannerEffects.get_" not in member_text:
+                continue
+            effect = member_text.split("get_", 1)[1].split("(", 1)[0]
+            if effect != "Instance":
+                seen_effects.add(effect)
+
+    for effect in sorted(expected_effects - seen_effects):
+        errors.append(f"Banner usage scan missing formula reference for effect: {effect}")
+
+    all_text = "\n".join(il_text_by_method)
+    expected_snippets = {
+        "IncreasedTroopMovementSpeed": "set_MaxSpeedMultiplier",
+        "IncreasedMountMovementSpeed": "set_MountSpeed",
+        "DecreasedRangedAccuracyPenalty": "set_WeaponInaccuracy",
+        "DecreasedRangedAttackDamage": "DefaultBannerEffects.get_DecreasedRangedAttackDamage",
+        "DecreasedShieldDamage": "DefaultBannerEffects.get_DecreasedShieldDamage",
+    }
+    for effect, snippet in expected_snippets.items():
+        if effect not in seen_effects:
+            continue
+        if snippet not in all_text:
+            errors.append(f"Banner usage scan should show {effect} reaching {snippet}.")
+
+    return errors
 
 
 def validate(workspace: Path) -> None:
@@ -232,6 +389,12 @@ def validate(workspace: Path) -> None:
         errors.append(f"Expected perk_wrong row is missing: {key}")
     for key in sorted(actual_wrong - EXPECTED_WRONG):
         errors.append(f"Unexpected perk_wrong row: {key}")
+
+    banner_path = workspace / "Data" / "raw" / "banner-items.json"
+    banner_payload = read_json(banner_path) if banner_path.exists() else None
+    errors.extend(validate_commander_report_classification(export_rows, banner_payload))
+    errors.extend(validate_banner_extraction(workspace))
+    errors.extend(validate_banner_usage_scan(workspace))
 
     if errors:
         for error in errors:
