@@ -83,7 +83,7 @@ Assume a Tier 5 sword with a base value of $1,000$ gold and a flat $1.0$ local M
 | :--- | ---: | :--- | :--- | :--- |
 | **Trade** | 25 | `Appraiser` | Party Leader | $-15\%$ price penalty when selling equipment. |
 | **Trade** | 25 | `Whole Seller` | Party Leader | $-15\%$ price penalty when selling trade goods. |
-| **Trade** | 50 | `Market Dealer` | Quartermaster | $-15\%$ trade penalty when buying and selling in town markets. |
+| **Trade** | 50 | `Market Dealer` / `Caravan Master` | Personal | Marks item prices relative to average (no penalty reduction). |
 | **Trade** | 75 | `Distributed Goods` | Quartermaster | $-15\%$ price penalty when buying from villages. |
 | **Trade** | 75 | `Local Connection` | Quartermaster | $-15\%$ price penalty when selling animals. |
 | **Trade** | 175 | `Insurance Plans` | Quartermaster | $-25\%$ price penalty when buying food items. |
@@ -113,11 +113,11 @@ Certain economic perks target specific transaction types outside the standard sh
 
 ### Key Non-Trade Economic Perks
 * **Steward (Level 25) - `Frugal`**: Reduces party wages by $-5\%$ (Quartermaster).
-* **Steward (Level 75) - `Stiff Upper Lip`**: Reduces party wages by $-5\%$, and governor security $+0.5$/day.
-* **Trade (Level 225) - `Sword For Barter`**: Reduces mercenary hiring cost by $-20\%$ and peace/treaty barter cost by $-10\%$.
-* **Trade (Level 250) - `Silver Tongue`**: Reduces caravan wages by $-25\%$ and barter penalties by $-20\%$.
-* **Trade (Level 250) - `Spring of Gold`**: Generates a $+0.1\%$ daily interest on your current gold reserves (up to $+1,000$ gold per day).
-* **Trade (Level 275) - `Trickle Down`**: Caravan trade transaction values are boosted by $+10\%$ (Caravan Leader perk).
+* **Steward (Level 75) - `Stiff Upper Lip`**: Reduces party food consumption by $-10\%$ while in an army (Quartermaster) / reduces garrison wages in castles by $-20\%$ (Governor).
+* **Trade (Level 225) - `Sword For Barter`**: Reduces mercenary hiring costs by $-20\%$ (Personal) / reduces caravan guard wages by $-15\%$ (Quartermaster).
+* **Trade (Level 250) - `Silver Tongue`**: Reduces gold required to defect lords by $-15\%$ (Personal) / $15\%$ better trade deals from caravans and villagers (Quartermaster).
+* **Trade (Level 250) - `Spring of Gold`**: Generates a $+0.1\%$ daily interest on your current gold reserves (up to $+1,000$ gold per day, Clan Leader) / $+20\%$ project boosting effect in governed settlements (Governor).
+* **Trade (Level 275) - `Trickle Down`**: $+1$ relationship with merchants when spending $10,000+$ denars (Party Leader) / $+2$ daily prosperity while building a project in governed settlements (Governor).
 
 ---
 
@@ -129,7 +129,8 @@ Trade skill experience is generated through two distinct methods:
 Experience is awarded when you sell trade goods to a city market at a net profit:
 $$\text{Trade XP} = 0.5 \times \text{Net Trade Profit}$$
 
-* **Profit tracking**: The engine tracks the average purchase cost of items in your inventory. Moving items between parties or storing them in fiefs resets this average cost tracker, potentially wiping out your accumulated trade profit record.
+> [!WARNING]
+> **Average Cost Reset Trap**: The game engine tracks the average purchase cost of items in your inventory to determine profit. Moving items between your party and companions, or storing them in fief warehouses, completely resets this average cost tracker, wiping out your accumulated trade profit record and preventing you from gaining Trade XP when you sell them.
 * **Flipping limits**: Selling items at a loss yields zero experience.
 
 ### Method 2: Warehouse Production
@@ -143,6 +144,7 @@ This allows you to level up your Trade skill passively without running manual tr
 ## 7. Practical Trading Advice
 
 * **Splash Utility**: Spending points to reach Trade level 50 is highly recommended for all characters. Both `Appraiser`/`Whole Seller` (level 25) and `Caravan Master` (level 50) mark profit colors and highlight average prices directly in the trade screen, providing invaluable information.
-* **The 300 Target**: Pushing Trade to level 300 unlocks `Everything Has a Price`, which allows you to trade fiefs and settlements in lord barters. This is a game-changing political tool. If you do not plan to reach level 300, stopping at Trade level 50 or 75 is the most point-efficient setup.
+> [!TIP]
+> **The 300 Trade Target**: Pushing Trade to level 300 unlocks `Everything Has a Price`, which allows you to trade fiefs and settlements in lord barters. This is a game-changing political tool. If you do not plan to reach level 300, stopping at Trade level 50 or 75 is the most point-efficient setup.
 * **Caravan Arbitrage**: Caravans are subject to halved trade penalties. Always prioritize buying from or selling to caravans rather than town markets when their inventories allow it.
 * **Crafted Weapon Sales**: If you are funding your clan by selling crafted weapons, the Smithing perk `Artisan Smith` ($-50\%$ penalty) is far more effective than generic Trade skill penalty reductions.

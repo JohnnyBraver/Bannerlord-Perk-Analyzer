@@ -9,13 +9,14 @@ $$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \tex
 ## 1. Core Build Philosophy
 
 ### Focus Point Depletion vs. Attribute Limits
-Focus points (max 40) are extremely scarce. You receive exactly $1$ focus point per character level (plus up to 12 starting focus points and $1$ optional bonus focus point from Smithing 225 `Fencer Smith`). Because focus points are highly limited, they are the primary bottleneck in late-game build designs. 
-
-By contrast, attribute points are also scarce ($1$ point per 4 character levels), but a single attribute point increases the learning rate and learning limits of **three linked skills** simultaneously by 14 levels each. 
-
-This build design invests heavily in **Cunning (7)** and **Intelligence (7)** to maximize the effectiveness of your scarce focus points:
-* At $7$ Cunning and $7$ Intelligence, you can reach the critical **level 250/275 perk milestones** across Scouting, Tactics, Roguery, Steward, Medicine, and Engineering by investing focus points, without wasting any attribute points.
-* Your character will run out of focus points to spend long before running out of skill capacity, meaning every focus point you allocate is used at maximum attribute-boosted efficiency.
+> [!NOTE]
+> **Focus Point Scarcity**: Focus points (max 40) are extremely scarce. You receive exactly $1$ focus point per character level (plus up to 12 starting focus points and $1$ optional bonus focus point from Smithing 225 `Fencer Smith`). Because focus points are highly limited, they are the primary bottleneck in late-game build designs. 
+> 
+> By contrast, attribute points are also scarce ($1$ point per 4 character levels), but a single attribute point increases the learning rate and learning limits of **three linked skills** simultaneously by 14 levels each. 
+> 
+> This build design invests heavily in **Cunning (7)** and **Intelligence (7)** to maximize the effectiveness of your scarce focus points:
+> * At $7$ Cunning and $7$ Intelligence, you can reach the critical **level 250/275 perk milestones** across Scouting, Tactics, Roguery, Steward, Medicine, and Engineering by investing focus points, without wasting any attribute points.
+> * Your character will run out of focus points to spend long before running out of skill capacity, meaning every focus point you allocate is used at maximum attribute-boosted efficiency.
 
 ### The Physical Attribute "Rule of 5"
 A common mistake is investing hard attribute points to raise Vigor, Control, or Endurance above 5. 
@@ -48,16 +49,19 @@ Taking both perks permanently increases your Endurance attribute from **3 to 5**
 Once your Endurance is raised to 5, investing exactly **1 focus point** in Riding gives you a learning limit of exactly **100**:
 $$\text{Limit} = 4 + 14 \times (5 - 1) + 40 \times 1 = 100$$
 
-This allows you to train Riding up to level 100 and unlock the critical `Sweeping Wind` perk ($+2\%$ flat party travel speed) with zero wasted focus or attribute points.
+> [!IMPORTANT]
+> **Riding 100 Limit**: This allows you to train Riding up to level 100 and unlock the critical `Sweeping Wind` perk ($+2\%$ flat party travel speed) with zero wasted focus or attribute points.
 
 ### The Arena Perk Respec Trick
 The Arena Master allows you to respec the perk selections of any skill for a small gold fee, but does not allow resetting focus or attribute points. You can exploit this to rotate your physical attribute points:
 
-1. **Endurance Leveling Phase**: Select the Endurance options (`Durable` in Athletics 175, `Enduring Smith` in Smithing 225) to temporarily raise Endurance to 5, allowing you to train Athletics and Smithing up to their target caps.
-2. **Rotation Phase**: Once Athletics and Smithing have reached their target caps, visit an Arena Master to respec your perks. Rotate the attribute perks:
-   * Select Vigor options (`Strong` in Athletics 200, `Vigorous Smith` in Smithing 150) to permanently raise Vigor to 5.
-   * Select Control options (`Steady` in Athletics 200, `Controlled Smith` in Smithing 150) to permanently raise Control to 5.
-   * Even though your Endurance drops back to 3, you retain all of your maxed-out Athletics and Smithing skill levels and their non-attribute perks. This trick allows you to achieve $5$ in Vigor, Control, and Endurance simultaneously.
+> [!TIP]
+> **The Arena Respec Rotation Trick**:
+> 1. **Endurance Leveling Phase**: Select the Endurance options (`Durable` in Athletics 175, `Enduring Smith` in Smithing 225) to temporarily raise Endurance to 5, allowing you to train Athletics and Smithing up to their target caps.
+> 2. **Rotation Phase**: Once Athletics and Smithing have reached their target caps, visit an Arena Master to respec your perks. Rotate the attribute perks:
+>    * Select Vigor options (`Strong` in Athletics 200, `Vigorous Smith` in Smithing 150) to permanently raise Vigor to 5.
+>    * Select Control options (`Steady` in Athletics 200, `Controlled Smith` in Smithing 150) to permanently raise Control to 5.
+>    * Even though your Endurance drops back to 3, you retain all of your maxed-out Athletics and Smithing skill levels and their non-attribute perks. This trick allows you to achieve $5$ in Vigor, Control, and Endurance simultaneously.
 
 ---
 

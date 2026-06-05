@@ -171,10 +171,8 @@ Damage resistance acts as a third pre-roll defense layer, applying percentage cu
 
 While **Doctor's Oath** (Medicine 75) is exceptionally powerful for farming high-tier prisoners and accelerating Roguery and Medicine experience, it contains a significant tactical drawback during siege campaigns.
 
-### The Mechanic
-When you assault a settlement in multiple sequential waves (a common tactic to whittle down a massive garrison), **Doctor's Oath** applies your surgeon's Medicine level to the defending enemy casualties. 
-
-Instead of being killed, a massive proportion of the defenders are processed as wounded. Because they are wounded inside a settlement, they recover rapidly (boosted by the settlement's natural healing rates and any active governor/project bonuses) and are fully ready to defend the walls again in the next assault phase. You are essentially fighting against your own surgeon's death-protection capabilities.
+> [!WARNING]
+> **The Siege Attrition Trap**: When you assault a settlement in multiple sequential waves, **Doctor's Oath** applies your surgeon's Medicine level to the defending enemy casualties. Instead of being killed, a massive proportion of the defenders are processed as wounded. Because they are wounded inside a settlement, they recover rapidly (boosted by the settlement's natural healing rates and any active governor/project bonuses) and are fully ready to defend the walls again in the next assault phase. You are essentially fighting against your own surgeon's death-protection capabilities.
 
 ### Physician of People Exclusion
 The Medicine 200 perk **Physician of People** ($+30\%$ survival rate factor for Tier 1/2 units) is restricted **strictly to the surgeon's own party**. 
@@ -183,6 +181,10 @@ The Medicine 200 perk **Physician of People** ($+30\%$ survival rate factor for 
 
 ### Tactical Workaround
 If you plan to use repeated assaults to wear down a massive garrison via attrition:
-1. **Reassign Surgeon**: Temporarily open the Clan screen and assign a different companion (ideally one with $0$ Medicine skill) to the **Surgeon** role before launching the siege assault.
-2. **Execute Assault**: Perform the attack wave. Because the active surgeon has $0$ Medicine and no Doctor's Oath, downed defenders will die at extremely high rates (e.g. $75.8\%$ for basic Tier 3 units), permanently depleting the garrison.
-3. **Reassign Surgeon Back**: Once the siege is won or you need to recover your own party's health, reassign your high-Medicine surgeon back to the Surgeon role to restore your own troop survival bonuses.
+
+> [!TIP]
+> **The High-Medicine Backup Workaround**: The optimal strategy is to have a companion with high Medicine skill who has selected **`Sledges`** instead of **`Doctor's Oath`** at the Level 75 perk choice. 
+> 1. **Assign Backup Surgeon**: Open the Clan screen and temporarily assign this backup companion to the **Surgeon** role before launching the siege assault. (Do not assign a 0-Medicine surgeon, as that removes your own troop survival protection, putting both armies on equal footing and causing massive player casualties).
+> 2. **Execute Assault**: Perform the attack wave. Because the active backup surgeon has high Medicine but no Doctor's Oath, your own troops benefit from high survival rates while the downed defenders receive no surgery protection and die at normal rates, successfully depleting the garrison.
+> 3. **Restore Main Surgeon**: Once the siege is won or you need to recover health, reassign your main surgeon back.
+

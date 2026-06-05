@@ -44,8 +44,9 @@ Several Charm perks assist in building influence and managing lord relations dur
 
 ### Ruler Overrides
 The ruler can overrule any council vote by spending influence proportional to the support gap.
-* **Cost formula**: The cost scales quadratically based on the percentage support gap between the ruler's choice and the popular choice.
-* **Override discount**: The policy `Royal Privilege` applies a flat $20\%$ discount to all ruler override costs, enabling the ruler to force centralization over vassal objections.
+
+> [!WARNING]
+> **Quadratic Override Costs**: Overrule costs scale quadratically based on the percentage support gap between the ruler's choice and the popular choice. Attempting to force a policy through against $100\%$ vassal opposition is extremely expensive. However, the policy `Royal Privilege` applies a flat $20\%$ discount to all ruler override costs, making centralized royal control far more affordable.
 
 ---
 
@@ -205,7 +206,9 @@ Enacted to empower senior vassal houses, maximizing noble cooperation and defens
 
 ## 8. Political Traps to Avoid
 
-* **Debasement of the Currency**: The $+100$ gold per town is negligible compared to the devastating $-1$ daily loyalty hit, which triggers rebellions and halts construction.
-* **War Tax**: Restricts the ruler's ability to drive warfare by doubling war proposal costs, while degrading overall settlement prosperity.
-* **Citizenship in Multi-Culture Kingdoms**: The $-0.5$ loyalty penalty to mismatching cultures will trigger massive rebellions in conquering realms.
-* **Trial by Jury**: Starves small vassal clans of influence completely due to the global $-1$ daily influence drain.
+> [!CAUTION]
+> **Diplomatic and Stability Pitfalls**:
+> * **Debasement of the Currency**: The $+100$ gold per town is negligible compared to the devastating $-1$ daily loyalty hit, which triggers rebellions and halts construction.
+> * **War Tax**: Restricts the ruler's ability to drive warfare by doubling war proposal costs, while degrading overall settlement prosperity.
+> * **Citizenship in Multi-Culture Kingdoms**: The $-0.5$ loyalty penalty to mismatching cultures will trigger massive rebellions in conquering realms.
+> * **Trial by Jury**: Starves small vassal clans of influence completely due to the global $-1$ daily influence drain.

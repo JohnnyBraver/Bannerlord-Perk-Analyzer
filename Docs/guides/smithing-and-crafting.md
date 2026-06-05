@@ -20,8 +20,8 @@ $$\text{Smithing Free Build XP} = \text{Round}(0.02 \times \text{Crafted Item Va
 * **Smithing (Crafting Order Mode)**:
 $$\text{Smithing Crafting Order XP} = \text{Round}(0.10 \times \text{Crafted Item Value})$$
 
-> [!NOTE]
-> Crafting orders yield five times more experience than Free Build mode for a weapon of the same market value. However, orders are subject to target constraints; failing to meet the order requirements applies a multiplier penalty that degrades the final XP yield.
+> [!TIP]
+> **Crafting Order XP Multiplier**: Crafting orders yield five times more experience ($10\%$ of item value) than Free Build mode ($2\%$ of item value) for a weapon of the same market value. However, orders are subject to target constraints; failing to meet the order requirements applies a multiplier penalty that degrades the final XP yield.
 
 ### The Charcoal and Iron Refining Strategy
 Early skill leveling is heavily accelerated by the Smithing level 25 perks:
@@ -141,5 +141,5 @@ As your Smithing skill exceeds a design's difficulty, you gain chances to craft 
 * **High Damage + Speed Priority**: Damage is the primary driver of item value, but it is heavily scaled by attack speed. A slightly slower weapon with high damage is often less valuable than a faster weapon with moderate damage.
 * **Reach Multiplier**: Weapon length acts as a multiplier to the final mode tier. Ensure you maximize the size slider of your blades and poles when crafting for profit, provided it does not catastrophically degrade swing/thrust speed.
 * **Blunt/Pierce Domination**: Pierce and blunt weapons are valued significantly higher than cut weapons. Focus on unlocking and crafting weapons that deal blunt/pierce damage (such as maces and spears) to accelerate value scaling.
-* **Curious Smelter Loop**: Craft the highest-value weapon design you can afford, and immediately smelt it down. With `Curious Smelter`, the smelting returns $50\%$ of the item value as part research, recycling materials and unlocking new parts rapidly.
+* **Curious Smelter Loop**: Craft the highest-value weapon design you can afford, and immediately smelt it down. Stacking `Curious Smelter` and `Curious Smith` makes this craft-and-smelt loop the most efficient path for unlocking high-tier parts, as smelting returns $50\%$ of the item value as part research while recycling materials.
 * **Step-Down for Quality**: Attempting to craft a design that exceeds your current Smithing skill can trigger penalty rolls that reduce the weapon's final stats and value. If your skill is too low, step down to an easier design to ensure a high-value output.

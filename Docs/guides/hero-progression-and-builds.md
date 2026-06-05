@@ -99,7 +99,8 @@ Passive and semi-passive XP channels run continuously in the background as you t
 Steward XP is awarded daily to the party's assigned **Quartermaster** based on food consumption and variety.
 $$\text{Steward XP} = \text{Round}(\text{Daily Food Consumption} \times 100) \times \frac{\text{Food Variety} - 2}{3}$$
 * **Prerequisites**: The party must have an active Quartermaster, must not be starving, and must carry **strictly more than 3 unique food types** ($\text{Food Variety} > 3$). If variety is 3 or less, Steward XP is $0$.
-* **Upkeep Discounts (The Upkeep Trap)**: Perks that reduce party food consumption (such as Steward 25 `Frugal` or other consumption discounts) reduce the daily food consumption rate. Consequently, **food upkeep reductions directly slow down Steward XP gain**.
+> [!WARNING]
+> **The Food Upkeep XP Trap**: Perks that reduce party food consumption (such as Steward 25 `Frugal` or other consumption discounts) directly reduce the daily food consumption rate. Because Steward XP scales on the volume of food consumed, **food upkeep reductions directly slow down your Steward XP gain**.
 * **Calradic Diet**: There are exactly 9 unique consumable food items in Bannerlord: *Grain, Fish, Meat, Butter, Cheese, Grapes, Olives, Dates, and Beer*. Stacking all 9 types applies a $2.33\times$ multiplier to the XP pulse, while carrying only 4 types reduces the multiplier to $0.67\times$.
 
 ### Stewardship - Town/Castle Governance
@@ -115,7 +116,8 @@ $$\text{Scouting XP} = \text{Speed} \times \left(1.0 + \text{PartySize}^{0.66}\r
 * **Terrain Multiplier**:
   - **0.25** for difficult terrains (Forest, Snow, Desert, Mountain).
   - **0.15** for normal terrains (Plains, Steppes).
-* **The Small Party Penalty**: Because of the $5.0$ XP minimum threshold, tiny parties (especially solo heroes) on clean terrain often receive **zero Scouting XP** because their pulse values fail to reach $5.0$. Larger parties scale the pulse value, making Scouting much easier to train. Caravan parties have their final Scouting XP halved ($0.5\times$).
+> [!IMPORTANT]
+> **The Small Party Scouting Penalty**: Because of the $5.0$ XP minimum threshold, tiny parties (especially solo heroes) on clean terrain often receive **zero Scouting XP** because their pulse values fail to reach $5.0$. Larger parties scale the pulse value, making Scouting much easier to train. Caravan parties also have their final Scouting XP halved ($0.5\times$).
 
 ### Medicine - Passive Healing (Town Resting)
 Passive healing of wounded troops in your party yields Medicine XP.
@@ -133,7 +135,8 @@ Traveling on the campaign map on foot (without a mount equipped in your characte
 $$\text{Athletics XP} = 1 + \text{RoundRandomized}(\text{Speed} \times 0.2)$$
 
 ### Riding - Campaign Map Quirk
-* **The Riding Quirk**: **Riding on the campaign map while mounted awards $0$ Riding XP**. Unlike Athletics, there is no map travel XP hook in the Riding code; Riding XP can only be earned in active combat missions or tournaments (by hitting targets while mounted or moving at high speed).
+> [!NOTE]
+> **Riding Map Travel Quirk**: Riding on the campaign map while mounted awards exactly **$0$ Riding XP**. Unlike Athletics, there is no map travel XP hook in the Riding code; Riding XP can only be earned in active combat missions or tournaments (by hitting targets while mounted or moving at high speed).
 
 ---
 

@@ -12,9 +12,11 @@ Fief development is the foundation of faction dominance in Bannerlord. A town's 
 Loyalty is the central metric of stability. It possesses a natural drift toward the baseline of $50$:
 $$\text{Daily Loyalty Drift} = -0.1 \times (\text{Current Loyalty} - 50)$$
 
-* **Decaying Drift**: Raw loyalty bonuses have varying impacts depending on where the town currently sits. A town at $25$ loyalty gains $+2.5$ daily loyalty from drift (helping it recover), whereas a highly stable town at $75$ loyalty loses $-2.5$ daily loyalty from drift.
-* **Cultural Penalties**: Conquering a town of a different culture applies a massive $-3$ daily loyalty penalty.
-* **Governor Mitigation**: Assigning a governor of the same culture as the settlement offsets this with a $+1$ daily loyalty bonus, whereas mismatching cultures adds a $-1$ penalty.
+> [!IMPORTANT]
+> **Loyalty Decay and Cultural Drag**:
+> * **Decaying Drift**: Raw loyalty bonuses have varying impacts depending on where the town currently sits. A town at $25$ loyalty gains $+2.5$ daily loyalty from drift (helping it recover), whereas a highly stable town at $75$ loyalty loses $-2.5$ daily loyalty from drift.
+> * **Cultural Penalties**: Conquering a town of a different culture applies a massive $-3$ daily loyalty penalty.
+> * **Governor Mitigation**: Assigning a governor of the same culture as the settlement offsets this with a $+1$ daily loyalty bonus, whereas mismatching cultures adds a $-1$ penalty.
 
 | Current Loyalty | Daily Drift | Drift Tendency |
 | :---: | :---: | :--- |
@@ -49,17 +51,15 @@ Food acts as the ultimate hard cap on settlement growth. Prosperity and garrison
 | **Leadership** | 75 | `Heroic Leader` | $+1$ daily loyalty | Early, highly efficient loyalty driver. |
 | **Medicine** | 200 | `Physician of People` | $+1$ daily loyalty | Excellent dual-utility perk (loyalty and healing). |
 | **Riding** | 50 | `Well Strapped` | $+0.5$ daily loyalty | Cheap early stabilizer if governor has Riding skill. |
-| **Engineering** | 50 | `Dungeon Architect` | $+1$ daily loyalty | Decent loyalty stabilizer if using an engineer governor. |
-| **Charm** | 100 | `In Bloom` / `Young And Respectful` | $+0.5$ daily loyalty | Small loyalty booster. |
-| **Engineering** | 25 | `Scaffolds` | $+10\%$ town project construction speed | Speeds up initial building projects. |
-| **Engineering** | 75 | `Carpenters` | $+12\%$ construction speed | Speeds up initial town improvements. |
-| **Engineering** | 75 | `Military Planner` | $-10\%$ military project costs | Saves time/gold on barracks/walls. |
-| **Engineering** | 150 | `Stonecutters` | $+30\%$ military build speed | Fast-tracks walls, barracks, and fortifications. |
-| **Engineering** | 175 | `Battlements` | $+20\%$ wall construction speed | Accelerates wall defenses. |
-| **Engineering** | 250 | `Architectural Commissions` | $+20\%$ gold boost project speed | Improves gold-to-construction conversion. |
-| **Steward** | 150 | `Relocation` | $+20\%$ project building speed | Accelerates city project development. |
+| **Bow** | 150 | `Discipline` | $+1$ daily loyalty | Strong loyalty anchor for ranged governors. |
+| **Engineering** | 75 | `Carpenters` | $+12\%$ town project speed | Speeds up building projects in towns. |
+| **Engineering** | 75 | `Military Planner` | $+25\%$ castle project speed | Saves time on projects in castles. |
+| **Engineering** | 150 | `Stonecutters` | $+30\%$ military project speed | Fast-tracks walls, barracks, and fortifications. |
+| **Engineering** | 175 | `Battlements` | $+100$ maximum food storage | Expands town food reserve limits to prevent starvation. |
+| **Engineering** | 250 | `Architectural Commissions` | $+20$ gold/day bonus | Daily gold bonus for continuous projects. |
+| **Steward** | 150 | `Relocation` | $+20\%$ project boost effect | Speeds up projects when boosted by money. |
 | **Steward** | 200 | `Contractors` | $+10\%$ project effects | Increases the output efficiency of completed buildings. |
-| **Steward** | 200 | `Forced Labor` | $+20\%$ building speed from prisoners | Utilizes captive labor for faster construction. |
+| **Steward** | 200 | `Forced Labor` | $+1\%$ speed per 3 prisoners | Utilizes captive labor for faster construction. |
 | **Athletics** | 175 | `Energetic` | $+20\%$ village hearth growth | Accelerates bound village production and tax yields. |
 | **Medicine** | 150 | `Pristine Streets` | $+1$ daily prosperity | Simple, steady town-value scaling. |
 | **Medicine** | 250 | `Helping Hands` | $-50\%$ starvation prosperity loss | Crucial safety net for high-prosperity settlements. |
@@ -111,8 +111,10 @@ Defending a fief involves managing security, maintaining garrisons, training vet
 Security acts as the law-and-order tracker. It drifts back to $50$ daily:
 $$\text{Daily Security Drift} = \frac{-(\text{Security} - 50)}{15}$$
 
-* **Garrison Strength**: Garrisoned troops supply positive security pressure based on their total combat power. Unwounded elite troops yield far higher security pressure than recruits.
-* **Prosperity Drag**: High prosperity lowers security, necessitating larger, higher-tier garrisons to maintain the law-and-order bonus.
+> [!NOTE]
+> **Security Drift and Drag**:
+> * **Garrison Strength**: Garrisoned troops supply positive security pressure based on their total combat power. Unwounded elite troops yield far higher security pressure than recruits.
+> * **Prosperity Drag**: High prosperity lowers security (up to a max drag of $-5$), necessitating larger, higher-tier garrisons to maintain the law-and-order bonus.
 
 ### Defense Governor Perks
 

@@ -264,10 +264,11 @@ Because the mount surcharge (+150 or +500 gold) is so massive relative to a troo
 *Note: Mercenary troop counterparts (e.g., caravan guards or mercenary cavalry) multiply their base cost by $3.0\times$ before the surcharge is added. For example, a T5 Mounted Mercenary has a total cost of $(400 \times 3) + 500 = 1700$ gold, yielding a base ransom of **425 gold**.*
 
 #### 6. Strategic Prisoner Optimization
-To optimize your economy and character progression, apply these three rules:
-1. **Always Sell High-Tier Mounted Prisoners**: T5 and T6 mounted units (selling for 225–275 base gold) represent huge cash opportunities. Converting them into influence is economically inefficient because they convert at a poor Gold-to-Influence ratio ($\approx 128:1$).
-2. **Donate Low-to-Mid Tier Foot Prisoners**: T3 and T4 foot units (selling for 25–50 gold) yield excellent influence returns relative to their market value. They convert at a highly favorable Gold-to-Influence ratio ($\approx 35\text{ to }50$ gold per 1.0 Influence), making them the cheapest source of Influence in the game.
-3. **Keep Regular Troops for Roguery XP**: Since Roguery XP scales strictly on Troop Tier and is identical for foot and mounted units, you gain the same Roguery progress from a T3 foot unit (25 gold) as you do from a T3 mounted unit (62 gold). Keep your high-value mounts for gold and burn your lower-value foot units for XP/influence.
+> [!TIP]
+> **Prisoner Logistics Strategy**:
+> * **Always Sell High-Tier Mounted Prisoners**: T5 and T6 mounted units (selling for 225–275 base gold) represent huge cash opportunities. Converting them into influence is economically inefficient because they convert at a poor Gold-to-Influence ratio ($\approx 128:1$).
+> * **Donate Low-to-Mid Tier Foot Prisoners**: T3 and T4 foot units (selling for 25–50 gold) yield excellent influence returns relative to their market value. They convert at a highly favorable Gold-to-Influence ratio ($\approx 35\text{ to }50$ gold per 1.0 Influence), making them the cheapest source of Influence in the game.
+> * **Keep Regular Troops for Roguery XP**: Since Roguery XP scales strictly on Troop Tier and is identical for foot and mounted units, you gain the same Roguery progress from a T3 foot unit (25 gold) as you do from a T3 mounted unit (62 gold). Keep your high-value mounts for gold and burn your lower-value foot units for XP/influence.
 
 ---
 
@@ -326,8 +327,8 @@ Because different AI behaviors use different curves, a skill buff has very diffe
 | **Elite Menavliaton** | 0.416 | 0.816 | 0.012 |
 | **Elite Menavliaton +50 Buff** | 0.576 | **0.872** ($+5.6\%$) | **0.152** ($+14.0\%$ flat / $12.7\times$ relative increase) |
 
-> [!NOTE]
-> The recruit gains a solid defensive blocking boost from the $+50$ skill buff, but gains no offensive block-reading capability. The Elite Menavliaton gains a smaller defensive block percentage increase (due to root-curve diminishing returns), but their ability to read and counter enemy blocks leaps from a negligible $1.2\%$ to $15.2\%$ (a flat $+14.0\%$ increase, which is a massive $12.7\times$ relative improvement).
+> [!TIP]
+> **Recruit vs. Elite Captain Buff Scaling**: The recruit gains a solid defensive blocking boost from the $+50$ skill buff, but gains no offensive block-reading capability. The Elite Menavliaton gains a smaller defensive block percentage increase (due to root-curve diminishing returns), but their ability to read and counter enemy blocks leaps from a negligible $1.2\%$ to $15.2\%$ (a flat $+14.0\%$ increase, which is a massive $12.7\times$ relative improvement).
 
 ### Shield and Defensive AI
 
@@ -385,8 +386,8 @@ This table models the final damage dealt by a standard $100$-magnitude hit at di
 | **60** (Heavy Armor) | 18.46 | 30.60 | 40.65 |
 | **80** (Super Heavy Armor) | 3.85 | 18.67 | 32.06 |
 
-> [!NOTE]
-> Against a heavily armored knight ($A = 80$), a **Cut** attack loses its entire non-blunt component to armor soak ($C_{\text{nonBlunt}} = 0$), leaving only the $10\%$ blunt impact component ($3.85$ damage). Conversely, a **Blunt** attack bypasses most of the soak, dealing **$32.06$ damage**—more than **8 times** the damage of Cut under the exact same magnitude!
+> [!IMPORTANT]
+> **Armor Mitigation Divergence**: Against a heavily armored knight ($A = 80$), a **Cut** attack loses its entire non-blunt component to armor soak ($C_{\text{nonBlunt}} = 0$), leaving only the $10\%$ blunt impact component ($3.85$ damage). Conversely, a **Blunt** attack bypasses most of the soak, dealing **$32.06$ damage**—more than **8 times** the damage of Cut under the exact same magnitude!
 
 ---
 
@@ -546,31 +547,31 @@ Higher hearths act as a direct multiplier for raid gold, production progress, an
 The following directory outlines the commander, battle management, and lord recruitment perks that shape faction warfare.
 
 ### Battle Command & Formations (Tactics)
-* **Tactics (Level 25) - `Tight Formations`**: Reduces damage taken from area attacks (e.g. rocks/arrows) while in close formations by $-15\%$. (Captain)
+* **Tactics (Level 25) - `Tight Formations`**: Reduces infantry morale penalty by $-25\%$ when in close formations. (Captain)
 * **Tactics (Level 50) - `Decisive Battle`**: $+10\%$ simulated battle resolution strength. (Party Leader)
 * **Tactics (Level 50) - `Extended Skirmish`**: Ranged troops shoot at $+10\%$ greater distance during initial skirmish phase. (Captain)
 * **Tactics (Level 75) - `Small Unit Tactics`**: $+5\%$ movement speed to foot troops if total party count is under 50. (Party Leader)
 * **Tactics (Level 100) - `Coaching`**: Troops in your formation gain $+10\%$ melee attack speed. (Captain)
 * **Tactics (Level 100) - `Law Keeper`**: $+15\%$ simulated battle strength against bandits. (Party Leader)
-* **Tactics (Level 125) - `Improviser`**: Removes movement speed penalties on unfavorable battle terrain. (Party Leader)
-* **Tactics (Level 125) - `Swift Regroup`**: Reduces troop rally/flee timer recovery speed. (Captain)
+* **Tactics (Level 125) - `Improviser`**: Reduces troop losses by $-25\%$ when breaking into or out of a besieged settlement. (Party Leader)
+* **Tactics (Level 125) - `Swift Regroup`**: Reduces troops left behind when escaping from battle by $-50\%$. (Party Leader)
 * **Tactics (Level 150) - `On The March`**: Party campaign map speed $+2\%$ when traveling in army. (Army Member)
-* **Tactics (Level 175) - `Pick Them Off The Walls`**: $+20\%$ damage to enemy troops during siege defense. (Captain)
-* **Tactics (Level 225) - `Besieged`**: Reduces siege engine reload time by $-10\%$ during offensive sieges. (Party Leader)
+* **Tactics (Level 175) - `Pick Them Off The Walls`**: $25\%$ chance to deal double damage to defenders during siege bombardment. (Engineer)
+* **Tactics (Level 225) - `Besieged`**: $+50\%$ influence gain from winning sieges. (Personal)
 * **Tactics (Level 225) - `Pre Battle Maneuvers`**: Allows repositioning troops inside the deployment zone prior to battle. (Party Leader)
-* **Tactics (Level 250) - `Counter Offensive`**: $+10\%$ melee damage for 10 seconds after successfully blocking an attack. (Captain)
-* **Tactics (Level 275) - `Tactical Mastery`**: Increases initial battle simulation power of all troops by $+10\%$. (Party Leader)
+* **Tactics (Level 250) - `Counter Offensive`**: $+10\%$ damage in battle simulations when attacking or when outnumbered. (Party Leader)
+* **Tactics (Level 275) - `Tactical Mastery`**: $+0.5\%$ damage per skill point above 200 in battle simulations. (Army Leader)
 
 ### Leadership, Morale & Recruitment (Leadership)
 * **Leadership (Level 50) - `Fervent Attacker`**: $+10$ battle morale to your troops when attacking. (Party Leader)
 * **Leadership (Level 50) - `Stout Defender`**: $+10$ battle morale to your troops when defending. (Party Leader)
-* **Leadership (Level 100) - `Loyalty and Honor`**: Vassal relations decay slower, and $+10\%$ party morale. (Clan Leader)
-* **Leadership (Level 125) - `Leader of the Masses`**: $+10\%$ party size per owned town. (Clan Leader)
-* **Leadership (Level 125) - `Presence`**: Passive daily security $+0.5$ when waiting in town. (Personal)
+* **Leadership (Level 100) - `Loyalty and Honor`**: Tier 3+ troops in party do not retreat due to low morale, and $+30\%$ prisoner recruitment speed. (Party Leader)
+* **Leadership (Level 125) - `Leader of the Masses`**: $+5$ party size limit for each owned town. (Clan Leader)
+* **Leadership (Level 125) - `Presence`**: $+1$ daily security while waiting in a town (Personal) / $+5$ party size limit for each owned castle (Clan Leader).
 * **Leadership (Level 150) - `Citizen Militia`**: Militia recruitment rate $+20\%$, and militia starts with higher tier troops. (Governor)
 * **Leadership (Level 150) - `Veteran's Respect`**: Allows converting bandit troops into standard faction soldiers. (Party Leader)
 * **Leadership (Level 175) - `Uplifting Spirit`**: $+10\%$ party recruitment slots in villages. (Party Leader)
-* **Leadership (Level 225) - `Great Leader`**: Doubles influence gained from battles. (Personal)
-* **Leadership (Level 225) - `Make a Difference`**: $+20\%$ battle XP gained by companion heroes in the party. (Personal)
-* **Leadership (Level 250) - `Talent Magnet`**: High tier prisoner recruitment speed doubled. (Party Leader)
+* **Leadership (Level 225) - `Great Leader`**: $+5$ battle morale to all troops at the start of a battle. (Army Leader)
+* **Leadership (Level 225) - `Make a Difference`**: $+100\%$ battle morale to troops when you kill an enemy. (Personal)
+* **Leadership (Level 250) - `Talent Magnet`**: $+10$ party size and $+1$ clan party limit. (Clan Leader)
 * **Leadership (Level 250) - `We Pledge our Swords`**: $+10\%$ renown from battles. (Party Leader)
