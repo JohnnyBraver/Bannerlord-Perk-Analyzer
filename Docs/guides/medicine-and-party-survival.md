@@ -124,6 +124,11 @@ Armor reduces incoming damage before it is processed, making it the most critica
 
 * **Armor Perk Application**: These perks add flat armor points directly to every equipped armor slot (head, chest, shoulders, hands, feet), multiplying their effectiveness.
 
+> [!WARNING]
+> **The Engineering 225 Metallurgy Trap**:
+> Reaching `Metallurgy` (Engineering 225) requires a steep **4 Focus Points** under the recommended **7 Cunning / 7 Intelligence** character build. Attempting to acquire this perk results in severe focus point starvation, as those points are desperately needed for Scouting, Medicine, and Steward. 
+> This perk was originally a cornerstone of the older, pure INT build (**3/5 3/5 3/5 2 2 10**), where 10 INT naturally lowered the requirement to 3 focus points and Cunning skills did not drain focus. For the 7 INT / 7 CNG build, the $+5$ armor is a trap; you should keep Engineering capped at **3 Focus Points** (level 150 project speed boost) and instead rely on Athletics (`Ignore Pain`) or Riding (`Dauntless Steed`) for formation armor.
+
 ---
 
 ## 5. Damage Resistance & Shield Coverage
