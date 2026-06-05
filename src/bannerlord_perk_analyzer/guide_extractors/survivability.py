@@ -159,6 +159,14 @@ def get_stacks() -> dict[str, list[GuideStack]]:
 
 
 def get_buckets() -> list[GuideBucket]:
+    defensive_subtypes = {
+        "damage resistance",
+        "ranged",
+        "charge",
+        "projectile protection",
+        "shield durability",
+    }
+
     return [
         GuideBucket(
             key="troop_survival_hit_points",
@@ -174,17 +182,22 @@ def get_buckets() -> list[GuideBucket]:
         ),
         GuideBucket(
             key="troop_survival_damage_reduction",
-            title="Troop Damage Reduction And Shield Perks",
-            description="Damage-taken, charge, projectile-protection, and shield durability perks.",
+            title="Live Troop Damage Reduction And Shield Perks",
+            description="Live-battle damage-taken, charge, projectile-protection, and shield durability perks. Simulation-only rows are split into their own bucket.",
             predicate=lambda row: (
-                row_subtype(row)
-                in {
-                    "damage resistance",
-                    "ranged",
-                    "charge",
-                    "projectile protection",
-                    "shield durability",
-                }
+                row_subtype(row) in defensive_subtypes
+                and "simulation" not in row.get("classification", {}).get("trigger_conditions", [])
+                and is_troop_facing(row)
+                and is_defensive_survival_effect(row)
+            ),
+        ),
+        GuideBucket(
+            key="simulation_troop_damage_reduction",
+            title="Simulation Troop Damage Reduction Perks",
+            description="Autoresolve/simulation-only defensive rows separated from live-battle survivability tables.",
+            predicate=lambda row: (
+                row_subtype(row) in defensive_subtypes
+                and "simulation" in row.get("classification", {}).get("trigger_conditions", [])
                 and is_troop_facing(row)
                 and is_defensive_survival_effect(row)
             ),

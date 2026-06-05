@@ -105,12 +105,9 @@ $$\text{Daily Influence Award} = \frac{\text{Party Strength} + 20}{200} \text{ (
 | `Inspiring Leader` | Army leader pays $-20\%$ influence to call parties. | Essential Leadership perk for warfare. |
 | `Call To Arms` | $-15\%$ summoning cost and called parties move faster. | Improves tactical response times. |
 | `Encirclement` | $-10\%$ influence cost to boost army cohesion. | Extends army duration in long campaigns. |
-| `Horde Leader` | Army leader loses $5\%$ less cohesion daily. | Reduces influence drain while sieging. |
-| `Authority` | Army daily cohesion decay rate reduced by $-20\%$. | Leadership Level 75 army stabilizer. |
+| `Horde Leader` | Army leader loses $5\%$ less cohesion daily. | Reduces cohesion drain in commanded armies. |
+| `Camp Building` | Armies lose $50\%$ less cohesion while besieging. | Engineering siege stabilizer for long sieges. |
 | `Royal Commissions` | Ruler army cost $-30\%$, Vassal army cost $+10\%$. | Restricts army-leading capabilities to the crown. |
-| `Master of Planning` | Army daily cohesion decay rate reduced by $-5\%$ when traveling. | Steward Level 250 army stabilizer. |
-| `Master of Warcraft` | Army daily cohesion decay rate reduced by $-5\%$ when sieging. | Steward Level 250 army siege stabilizer. |
-| `Ultimate Leader` | Party size $+1$ for every Leadership level $>250$. | Late-game Leadership party-limit multiplier. |
 
 ---
 

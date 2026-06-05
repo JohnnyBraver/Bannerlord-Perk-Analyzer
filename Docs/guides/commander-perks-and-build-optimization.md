@@ -15,7 +15,7 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
 ### A. Intelligence Skills (Base 7, Pushing to 10 in Late Game)
 
 #### Medicine (Target: 275 or 330)
-* **Strategic Value**: Extremely High. Pushing Medicine to 275+ is the single most powerful troop survival tool in Bannerlord. Pushing to 330 is the optimal late-game stretch goal.
+* **Strategic Value**: Extremely High for party-wide troop durability in this commander build. Medicine 200 `Physician of People` improves low-tier lethal-wound recovery, while Medicine 275 `Minister of Health` turns skill above 250 into flat troop hit points. Pushing to 330 is the late-game stretch goal for maximizing that HP layer.
 * **Focus Cost**:
   * *At 7 Intelligence*: **5 Focus** is required to reach 275 (limit 288).
   * *At 9-10 Intelligence*: **4 Focus** is enough to reach 275 (limit 276 / 290).
@@ -27,7 +27,7 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
   * *At 7 Cunning*: **5 Focus** is required to reach 250/275 (limit 288). 4 focus only caps at 248, falling just short of the 250 milestone.
 
 #### Steward (Target: 250 or 275)
-* **Strategic Value**: High. Directly controls your maximum party size. Target level is 250 (`Master of Warcraft`) or 275 (`Price of Loyalty` scaling).
+* **Strategic Value**: High. Steward covers siege-camp logistics, wages, food consumption, and quartermaster scaling. Target level is 250 (`Master of Warcraft` / `Master of Planning`) or 275 (`Price of Loyalty` scaling).
 * **Focus Cost**:
   * *At 7 Intelligence*: **5 Focus** is required to reach 250/275 (limit 288).
   * *At 10 Intelligence*: **4 Focus** is enough to reach 250/275 (limit 290).
@@ -56,7 +56,7 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
   * *At 7 Cunning*: **0 Focus** is required! With 0 focus and 7 Cunning, your limit is exactly **88** ($4 + 14 \times 6$). This is more than enough to unlock the level 25 close-formation morale perk and the level 75 `Horde Leader` ($+10$ party size) perk without spending a single focus point.
 
 #### Roguery (Target: 50 or 75)
-* **Strategic Value**: Low. Pushing past 75 (`Know-How` $+20\%$ alley returns) is irrelevant for combat commanders.
+* **Strategic Value**: Low for this combat-commander plan. Pushing past 75 mostly adds niche loot, security, or crime-side options rather than core party durability or speed.
 * **Focus Cost**:
   * *At 7 Cunning*: **0 Focus** is required! With 0 focus, your learning cap is **88**, enabling you to grab the level 50 and 75 perks for free.
 
@@ -70,12 +70,12 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
   * *At 2 Social*: **2 Focus** is required to reach 75 (limit 98). **5 Focus** is required to reach 175 (limit 218). *(Note: With 2 Social, you cannot reach the level 250 perk, as 5 focus caps at 218).*
 
 #### Charm (Target: 50)
-* **Strategic Value**: Moderate. Target is level 50 (`Oratory` $+2$ renown / $+1$ influence per quest resolved).
+* **Strategic Value**: Moderate. Target is level 50 (`Oratory` $+1$ renown and $+1$ influence per issue resolved).
 * **Focus Cost**:
   * *At 2 Social*: **1 Focus** is required to reach 50 (limit 58).
 
 #### Trade (Target: 50)
-* **Strategic Value**: Moderate. Target is level 50 (`Caravan Master` average price colors in trade screen).
+* **Strategic Value**: Moderate. Target is level 50 (`Caravan Master` for price marking or Quartermaster carrying capacity, depending on the build role).
 * **Focus Cost**:
   * *At 2 Social*: **1 Focus** is required to reach 50 (limit 58).
 
@@ -90,7 +90,7 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
 * **Focus Cost**: **1 Focus**. Once Endurance is pushed to 5, 1 focus point is enough to reach exactly 100 ($4 + 14 \times 4 + 40 \times 1 = 100$) to unlock `Sweeping Wind` ($+2\%$ party speed).
 
 #### Weapon Skills (One-Handed, Two-Handed, Bow, Crossbow, Throwing)
-* **Target**: Level 100 (for utility perks like Two-Handed `Projectile Deflection`, One-Handed `Shield Bearer`, or Bow `Merry Men` $+5$ party size).
+* **Target**: Level 100 for cheap utility perks like Two-Handed `Beast Slayer` / `Shield breaker`, One-Handed `Shield Bearer`, or Bow `Merry Men` $+5$ party size. `Projectile Deflection` is a stronger defensive tool, but it is a level 150 perk and requires a separate investment plan.
 * **Focus Cost**: **1 Focus** each. Once Vigor and Control are pushed to 5 via the respec trick, exactly 1 focus point guarantees a learning limit of **100** ($4 + 14 \times 4 + 40 \times 1 = 100$). Putting 2 focus points into these early on is a waste.
 
 ---
@@ -104,19 +104,19 @@ At character level 28, you have **40-41 Focus Points** available. By utilizing y
 | **Athletics** | **5** | 3 (5) | 232 (growth) | level 175 `Durable` ($+1$ Endurance) |
 | **Smithing** | **5** | 3 (5) | 232 (growth) | level 225 `Enduring Smith` ($+1$ Endurance) |
 | **Riding** | **1** | 5 (rotated) | 100 | level 100 `Sweeping Wind` ($+2\%$ Party Speed) |
-| **Medicine** | **5** | 7 (to 10) | 288 (to 330) | level 275 `Physician of People` ($+30\%$ low-tier survival) |
+| **Medicine** | **5** | 7 (to 10) | 288 (to 330) | level 275 `Minister of Health` (troop HP scaling; level 200 `Physician of People` is also covered) |
 | **Scouting** | **5** | 7 | 288 | level 275 `Uncanny Insight` (passive map speed) |
-| **Steward** | **5** | 7 (to 10) | 288 (to 330) | level 250 `Master of Warcraft` (reduced siege decay) |
+| **Steward** | **5** | 7 (to 10) | 288 (to 330) | level 250 `Master of Warcraft` / `Master of Planning` (siege-camp wages or food logistics) |
 | **Engineering** | **0 (or 3)**| 7 (to 10) | 88 (to 250) | level 80 (Dumped) / level 150 `Stonecutters` (If player builds) |
 | **Tactics** | **0** | 7 | **88** | level 75 `Horde Leader` ($+10$ Party Size) |
-| **Roguery** | **0** | 7 | **88** | level 75 `Know-How` ($+20\%$ Alley Returns) |
+| **Roguery** | **0** | 7 | **88** | level 75 `Know-How` (villager/caravan loot or governor security) |
 | **Leadership** | **2** | 2 | 98 | level 75 `Authority` ($+5$ Party Size) |
-| **Charm** | **1** | 2 | 58 | level 50 `Oratory` ($+2$ Renown / $+1$ Influence) |
-| **Trade** | **1** | 2 | 58 | level 50 `Caravan Master` (price colors unlocked) |
+| **Charm** | **1** | 2 | 58 | level 50 `Oratory` ($+1$ Renown / $+1$ Influence per issue) |
+| **Trade** | **1** | 2 | 58 | level 50 `Caravan Master` (price marking or +30% carrying capacity) |
 | **One-Handed** | **1** | 5 (rotated) | 100 | level 25 `Wrapped Handles` ($+30$ skill to infantry) |
-| **Two-Handed** | **1** | 5 (rotated) | 100 | level 100 `Projectile Deflection` (block arrows) |
+| **Two-Handed** | **1** | 5 (rotated) | 100 | level 100 `Beast Slayer` / `Shield breaker` (mount or shield damage) |
 | **Bow** | **1** | 5 (rotated) | 100 | level 100 `Merry Men` ($+5$ Party Size) |
-| **TOTAL SPENT** | **33-36 Focus**| — | — | **4-8 Focus Points Leftover (Flexible Buffer)** |
+| **TOTAL SPENT** | **33-36 Focus**| -- | -- | **4-8 Focus Points Leftover (Flexible Buffer)** |
 
 ### Progression Path for Leftover Points:
 * **Weapon Splashes**: Spend 1 focus point on **Polearm** (limit 100 for infantry speed buffs) or **Throwing** (limit 100 for infantry stat boosts).

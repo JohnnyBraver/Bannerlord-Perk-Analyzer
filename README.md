@@ -5,18 +5,19 @@ This repository extracts Bannerlord perk effect data from the local game assembl
 ## Data Layout
 
 - `Data/raw/` contains extracted game data before custom classification or overrides.
-- `Data/generated/` contains classifier output, post-processed snapshots, generated markdown notes, and reports.
+- `Data/intermediate/` contains classifier output, post-processed snapshots, and intermediate analysis data.
 - `Data/curated/` contains human-maintained overrides, review notes, and suspected game-data issues.
 - `Data/export/` contains merged JSON intended for tools and UI work.
-- `Docs/` contains supporting notes and manual references.
+- `Docs/reports/` contains generated reports and `Docs/reference/` contains generated perk reference markdown.
+- `Docs/guides/` contains manual guide notes.
 
 Game values and custom fields are kept separate in the source layout. The merged export keeps the split visible with `game`, `classification`, `review`, `source`, and `provenance` sections.
 
 The pipeline is intentionally staged:
 
 1. `Data/raw/perks.json`: raw game extraction.
-2. `Data/generated/classified-perk-effects.json`: generated classifier output before overrides.
-3. `Data/generated/postprocessed-perk-effects.json`: mechanical taxonomy post-processing.
+2. `Data/intermediate/classified-perk-effects.json`: generated classifier output before overrides.
+3. `Data/intermediate/postprocessed-perk-effects.json`: mechanical taxonomy post-processing.
 4. `Data/export/perk-effects.json`: final export with curated review fields applied.
 
 ## Rebuild
@@ -63,7 +64,7 @@ Generate a first-pass map of XP award logic from the local compiled assemblies:
 python .\src\bannerlord_perk_analyzer\extract_xp_awards.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord" --include-il
 ```
 
-The script writes `Data/generated/xp-award-methods.json`, `Data/generated/reports/xp-awards.md`, and, with `--include-il`, `Data/generated/reports/xp-award-il.md`. The default scan covers `TaleWorlds.Core` and `TaleWorlds.CampaignSystem`; use `--deep-scan-callers` for a slower pass that inspects every method body for calls into XP sinks.
+The script writes `Data/raw/xp-award-methods.json`, `Docs/reports/xp-awards.md`, and, with `--include-il`, `Docs/reports/xp-award-il.md`. The default scan covers `TaleWorlds.Core` and `TaleWorlds.CampaignSystem`; use `--deep-scan-callers` for a slower pass that inspects every method body for calls into XP sinks.
 
 Dig into broader XP formula candidates across campaign, mission, sandbox, and story assemblies:
 
@@ -71,7 +72,7 @@ Dig into broader XP formula candidates across campaign, mission, sandbox, and st
 python .\src\bannerlord_perk_analyzer\extract_xp_formulas.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
 ```
 
-This wraps the `.NET` extractor's method search in thematic scans for combat, hero progression, troop XP, crafting/discard XP, and activity XP. It writes `Data/generated/xp-formula-methods.json`, `Data/generated/reports/xp-formulas.md`, and the friendlier guide `Data/generated/reports/xp-insights.md`; pass `--no-il` for a smaller JSON file, or `--keep-temp` to preserve the per-scan intermediate JSON files.
+This wraps the `.NET` extractor's method search in thematic scans for combat, hero progression, troop XP, crafting/discard XP, and activity XP. It writes `Data/raw/xp-formula-methods.json`, `Docs/reports/xp-formulas.md`, and the friendlier guide `Docs/reports/xp-insights.md`; pass `--no-il` for a smaller JSON file, or `--keep-temp` to preserve the per-scan temporary JSON files under `Data/intermediate/xp-formula-scan-temp/`.
 
 Generate a skill-by-skill source map for XP gain:
 
@@ -79,7 +80,7 @@ Generate a skill-by-skill source map for XP gain:
 python .\src\bannerlord_perk_analyzer\extract_skill_xp_sources.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
 ```
 
-This writes `Data/generated/skill-xp-source-methods.json` and `Data/generated/reports/skill-xp-sources.md`, grouping direct and inferred XP sources under each player-facing skill.
+This writes `Data/raw/skill-xp-source-methods.json` and `Docs/reports/skill-xp-sources.md`, grouping direct and inferred XP sources under each player-facing skill.
 
 Generate the character creation option map:
 
@@ -87,7 +88,7 @@ Generate the character creation option map:
 python .\src\bannerlord_perk_analyzer\extract_character_creation.py --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
 ```
 
-This writes `Data/generated/character-creation-options.json` and `Data/generated/reports/character-creation-options.md`, including family/background, childhood, education, youth, adulthood, sandbox age, story-mode escape choices, campaign family mechanical stats, and the HeroCreator initialization flow that applies to family members.
+This writes `Data/raw/character-creation-options.json` and `Docs/reports/character-creation-options.md`, including family/background, childhood, education, youth, adulthood, sandbox age, story-mode escape choices, campaign family mechanical stats, and the HeroCreator initialization flow that applies to family members.
 
 Generate guide-facing stat extracts from the current perk export:
 
@@ -95,7 +96,7 @@ Generate guide-facing stat extracts from the current perk export:
 python .\src\bannerlord_perk_analyzer\extract_guide_stats.py
 ```
 
-This writes `Data/generated/guide-stat-extracts.json` and `Data/generated/reports/guide-stat-extracts.md`, collecting the perk rows, direct weapon skill constants, AI stack definitions, survivability stacks, and smithing formulas used by the manual guide notes.
+This writes `Data/export/guide-stat-extracts.json` and `Docs/reports/guide-stat-extracts.md`, collecting the perk rows, direct weapon skill constants, AI stack definitions, survivability stacks, and smithing formulas used by the manual guide notes.
 
 Generate perk investment cost analysis:
 
@@ -103,7 +104,7 @@ Generate perk investment cost analysis:
 python .\src\bannerlord_perk_analyzer\analyze_perk_investment.py
 ```
 
-This writes `Data/generated/perk-investment-costs.json` and `Data/generated/reports/perk-investment-costs.md`, assigning each perk tier a low/medium/high investment category, additive allocation cost, level gate, above-focus-only summary, shared-attribute examples, and Endurance-stretch comparison for expensive targets.
+This writes `Data/intermediate/perk-investment-costs.json` and `Docs/reports/perk-investment-costs.md`, assigning each perk tier a low/medium/high investment category, additive allocation cost, level gate, above-focus-only summary, shared-attribute examples, and Endurance-stretch comparison for expensive targets.
 
 For focused IL debugging, call the extractor directly:
 
@@ -114,7 +115,7 @@ dotnet run --project .\tools\BannerlordExtractor -- dump-il --game-root "E:\Stea
 For targeted method searches across game and module assemblies:
 
 ```text
-dotnet run --project .\tools\BannerlordExtractor -- find-methods --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord" --assembly SandBox --assembly TaleWorlds.MountAndBlade --query shotDifficulty --include-il --output Data\generated\shot-difficulty-methods.json
+dotnet run --project .\tools\BannerlordExtractor -- find-methods --game-root "E:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord" --assembly SandBox --assembly TaleWorlds.MountAndBlade --query shotDifficulty --include-il --output Data\raw\shot-difficulty-methods.json
 ```
 
 ## Validate

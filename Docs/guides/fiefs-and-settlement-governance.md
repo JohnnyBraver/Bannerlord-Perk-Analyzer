@@ -116,7 +116,7 @@ $$\text{Daily Security Drift} = \frac{-(\text{Security} - 50)}{15}$$
 > * **Garrison Strength**: Garrisoned troops supply positive security pressure based on their total combat power. Unwounded elite troops yield far higher security pressure than recruits.
 > * **Prosperity Drag**: High prosperity lowers security (up to a max drag of $-5$), necessitating larger, higher-tier garrisons to maintain the law-and-order bonus.
 
-### Defense Governor Perks
+### Defense, Garrison, And Siege Perks
 
 | Skill | Level | Perk | Effect | Tactical Read |
 | :--- | ---: | :--- | :--- | :--- |
@@ -130,16 +130,14 @@ $$\text{Daily Security Drift} = \frac{-(\text{Security} - 50)}{15}$$
 | **Leadership** | 25 | `Raise The Meek` | $+3$ daily XP to garrison | Passively trains defenders. |
 | **Athletics** | 225 | `Strong Legs` | $-20\%$ food use under siege | Significantly extends survival time when blockaded. |
 | **Bow** | 150 | `Hunter Clan` | $+30\%$ garrison size limit | Increases maximum garrison capacity. |
-| **Steward** | 175 | `Sound Reserves` | $+20\%$ garrison size limit | Increases maximum garrison capacity. |
-| **Engineering** | 25 | `Torsion Engines` | $+20\%$ siege engine build speed | Accelerates defensive engine construction. |
-| **Engineering** | 100 | `Dreadful Besieger` | $+20\%$ damage to enemy engines | Multiplies defensive engine impact. |
-| **Engineering** | 100 | `Wall Breaker` | $+20\%$ wall damage during sieges | Increases damage output. |
+| **Engineering** | 25 | `Torsion Engines` | $+10\%$ ranged siege engine build speed | Accelerates ranged engine construction. |
+| **Engineering** | 100 | `Dreadful Besieger` | $+10\%$ accuracy to siege engines during bombardment | Improves governed-settlement bombardment reliability. |
+| **Engineering** | 100 | `Wall Breaker` | $+25\%$ wall damage during siege bombardment | Increases wall-breaking output. |
 | **Engineering** | 125 | `Salvager` | $+20\%$ salvage yield | Enhances scrap recovery during sieges. |
-| **Engineering** | 150 | `Siege Engineer` | $-30\%$ siege build times | Reduces defensive build prep times. |
-| **Engineering** | 175 | `Camp Building` | $+20\%$ camp prep build speed | Speeds up initial defenses. |
+| **Engineering** | 150 | `Siege Engineer` | $+30\%$ defensive siege engine hit points / fire engine construction | Strengthens defensive engines or unlocks fire versions through the Engineer role. |
+| **Engineering** | 175 | `Camp Building` | $-20\%$ casualty chance from siege bombardments | Reduces bombardment losses through the Engineer role. |
 | **Engineering** | 200 | `Engineering Guilds` | $+25\%$ wall hit points | Directly improves siege defense resilience. |
-| **Engineering** | 200 | `Apprenticeship` | $+10\%$ troop training rate | Speeds up garrison experience growth. |
-| **Engineering** | 250 | `Clockwork` | $-10\%$ garrison wage | Great for cost-effective garrison upkeep. |
+| **Engineering** | 250 | `Clockwork` | $+25\%$ ballista reload speed / $+20\%$ boost-project effect | Improves siege-engine tempo or governed-settlement project boosting. |
 | **Tactics** | 175 | `Make Them Pay` | $+25\%$ damage to siege engines | Boosts bombardment defense. |
 
 ---
@@ -237,9 +235,11 @@ Alleys serve as a highly effective tool for leveling up companions in Roguery an
 | **Daily Assigned Leader Drip** | 200 XP | Assigned Companion |
 | **Defending an Alley Attack** | 6,000 XP | Main Hero |
 
-### Alley-Specific Perks
-* **Roguery (Level 50) - `Two Faced`**: Alley takeover troop requirement reduced by $3$ (minimum $2$).
-* **Roguery (Level 75) - `Know-How`**: Alley daily economic returns increased by $+20\%$.
-* **Roguery (Level 125) - `Scarface`**: Defending an alley attack yields double Roguery experience.
-* **Roguery (Level 150) - `Partners in Crime`**: Alley defense forces have $+20\%$ combat effectiveness.
-* **Roguery (Level 175) - `One of the Family`**: Companion assigned as alley leader gains $+20\%$ experience drip.
+### Roguery Perks Relevant To Crime And Loot
+The current perk export does not show direct alley profit or alley-garrison modifiers. Avoid treating Roguery perks as alley-income multipliers unless a separate code-path review confirms that behavior.
+
+* **Roguery (Level 50) - `Two Faced`**: $+50\%$ chance for sneaking into towns, or no morale loss from converting bandit prisoners.
+* **Roguery (Level 75) - `Know-How`**: $+5\%$ more loot from defeated villagers and caravans, or $+1$ security per day as governor.
+* **Roguery (Level 125) - `Scarface`**: $+30\%$ chance for bandits, villagers, and caravans to surrender, or a governed-settlement relation tick.
+* **Roguery (Level 150) - `Partners in Crime`**: Surrendering bandit parties can be recruited, or bandit troops in your formation deal $+2\%$ damage.
+* **Roguery (Level 175) - `One of the Family`**: Bandit units in your party gain $+10$ Vigor and Control skills, or governor recruitment from gang leaders gains one slot.

@@ -282,7 +282,7 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 * **Level 50** - `Head Basher`: $+10\%$ blunt damage with two-handed weapons.
 * **Level 50** - `On the Edge`: $+5\%$ two-handed weapon swing speed.
 * **Level 75** - `Show of Strength`: Melee strikes have a $+30\%$ chance to knock down foot soldiers.
-* **Level 100** - `Projectile Deflection`: Allows blocking arrows and bolts with two-handed swords. Defining defensive tool.
+* **Level 150** - `Projectile Deflection`: Allows blocking projectiles with two-handed swords. Defining defensive tool, but it requires a higher investment than the level 100 utility tier.
 * **Level 100** - `Beast Slayer`: $+50\%$ damage against mounts.
 * **Level 125** - `Berserker`: Deal $+20\%$ damage when below $50\%$ health.
 * **Level 125** - `Confidence`: $+10\%$ damage when your character HP is above $90\%$.
@@ -373,7 +373,7 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 * **Level 75** - `Imposing Stature`: Persuasion chance $+10\%$.
 * **Level 100** - `Sprint`: $+10\%$ combat running speed.
 * **Level 125** - `Surging Blow`: Melee damage $+5\%$ when on foot.
-* **Level 150** - `A Good Days Rest`: Town resting recovery speed $+20\%$.
+* **Level 150** - `A Good Days Rest`: $+10\%$ hit point regeneration while waiting in settlements; the companion effect gives $+10$ daily XP to foot troops while waiting.
 * **Level 175** - `Ignore Pain`: $+10\%$ armor while on foot.
 * **Level 225** - `Strong Arms`: Throwing weapons deal $+10\%$ damage.
 * **Level 250** - `Spartan`: Reduces campaign party wages by $-5\%$.
@@ -417,7 +417,7 @@ These perks are highly prized because they grant permanent points that can resha
 > In vanilla Bannerlord, you can exploit the Arena Master respec mechanics to rotate physical attribute perks in Athletics (Level 175/200) and Smithing (Level 150/225). This allows your physical attributes (Vigor, Control, and Endurance) to reach 5 without ever investing hard attribute points.
 > * **Absurd Efficiency**: Investing 10 focus points (5 in Athletics, 5 in Smithing) to execute this push essentially buys **6 physical attribute points** (equivalent to 24 character levels of progression) while unlocking high-value utility and survival perks.
 > * **Progression Warning**: This requires a heavy investment of 10 focus points and is only relevant if your build requires multiple high-tier combat perks.
-> * **Detailed Guide**: For the step-by-step leveling walkthrough, focus point limits, and math proofs, see [The Arena Respec Rotation Trick in the Commander Guide](file:///d:/Projects/Bannerlord/Docs/guides/battanian-starts.md#the-arena-perk-respec-trick).
+> * **Detailed Guide**: For the step-by-step leveling walkthrough, focus point limits, and math proofs, see [The Arena Respec Rotation Trick in the Commander Guide](battanian-starts.md#the-arena-perk-respec-trick).
 
 ---
 
@@ -430,7 +430,7 @@ These perks are highly prized because they grant permanent points that can resha
 
 #### Charm and Diplomacy
 * **Level 25** - `Virile`: $+20\%$ pregnancy chance to hero couples.
-* **Level 50** - `Oratory`: Adds $+2$ renown and $+1$ influence for every issue/quest resolved.
+* **Level 50** - `Oratory`: Adds $+1$ renown and $+1$ influence for every issue resolved.
 * **Level 200** - `Moral Leader` & `Natural Leader`: Reduces the number of successful arguments required during persuasion checks.
 * **Level 250** - `Camaraderie`: Doubles relation gains when aiding allied lords in combat.
 * **Level 275** - `Immortal Charm`: Passive $+5$ influence per day.
@@ -447,7 +447,7 @@ When starting a new character, aligning your attribute allocations with your pla
   *(Physical attributes are raised from 3 to 5 via Smithing and Athletics perks, rotated using the Arena Perk Respec Trick).*
 * **Primary Skills**: Scouting, Tactics, Roguery (Cunning) and Medicine, Engineering, Steward (Intelligence).
 * **Strategic Role**: Maximizes campaign map speed, army unit survival rates, and rapid siege operations. Best suited for leading large faction campaigns on the front line.
-* **Starting Selections**: For the exact zero-waste starting background choices and level-up steps, see the dedicated [Battanian Character Creation and Commander Progression Guide](file:///d:/Projects/Bannerlord/Docs/guides/battanian-starts.md). For a detailed cost-benefit analysis of the focus point starvation conflict, a directory of commander perks, and an optimized generalist captain setup, see the [Commander Perks and Build Optimization Guide](file:///d:/Projects/Bannerlord/Docs/guides/commander-perks-and-build-optimization.md).
+* **Starting Selections**: For the exact zero-waste starting background choices and level-up steps, see the dedicated [Battanian Character Creation and Commander Progression Guide](battanian-starts.md). For a detailed cost-benefit analysis of the focus point starvation conflict, a directory of commander perks, and an optimized generalist captain setup, see the [Commander Perks and Build Optimization Guide](commander-perks-and-build-optimization.md).
 
 > [!WARNING]
 > **Focus Point Over-Investment Trap**: The primary progression danger for this build is accidentally allocating focus points beyond the minimum required to clear your target perks.
@@ -473,7 +473,7 @@ To guarantee no wasted points at any level (even when attributes are pushed to t
 | Skill Group | Target Perk Level | Planned Peak Attribute | Safe Focus Points | Limit Reached | Why it is Safe |
 | :--- | :---: | :---: | :---: | :---: | :--- |
 | **Riding** | 100 (`Sweeping Wind`) | 5 Endurance | **1 Focus** | 100 | Eventual 5 Endurance guarantees the limit is exactly 100; allocating a second focus point is a waste. |
-| **Two-Handed** | 100 (`Projectile Deflection`) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor (from the Respec Trick) guarantees the limit is exactly 100; allocating more is a waste. |
+| **Two-Handed** | 100 (`Beast Slayer` / `Shield breaker`) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor (from the Respec Trick) guarantees the limit is exactly 100. `Projectile Deflection` is level 150 and needs a separate higher-investment plan. |
 | **One-Handed / Polearm** | 100 (Utility/Speed Perks) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor guarantees the limit is exactly 100. |
 | **Scouting / Tactics / Roguery** | 275 (Final Perk) | 10 Cunning | **4 Focus** | 290 | If Cunning is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Cunning. *(Note: If Cunning is capped at 7, 5 focus points are required, as 4 focus points only caps at 248).* |
 | **Medicine / Steward** | 275 (Final Perk) | 10 Intelligence | **4 Focus** | 290 | If Intelligence is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Intelligence. *(Note: If Intelligence is capped at 7, 5 focus points are required, as 4 focus points only caps at 248).* |

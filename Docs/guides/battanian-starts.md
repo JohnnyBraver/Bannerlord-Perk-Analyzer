@@ -57,7 +57,7 @@ $$\text{Limit} = 4 + 14 \times (5 - 1) + 40 \times 1 = 100$$
 > **The Focus Point Over-Investment Trap**:
 > The primary danger of the $3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \text{ } 2 \text{ } 7$ build is accidentally over-investing focus points beyond the absolute minimum needed to clear target perks. For example:
 > * **Riding**: Allocating a second focus point to Riding early on to speed up leveling is a permanent waste of a focus point. Once your Endurance is pushed to 5, a single focus point already guarantees a learning limit of exactly 100.
-> * **Engineering / Intelligence Skills**: Allocating 4 focus points to Engineering when you plan to raise Intelligence to 7 (or 10) is a waste of a point. Always cross-reference your planned final attribute levels with the [Alternative Splits Grid](file:///d:/Projects/Bannerlord/Docs/guides/hero-progression-and-builds.md#alternative-splits-attribute-and-focus-trade-offs) to avoid wasting focus points.
+> * **Engineering / Intelligence Skills**: Allocating 4 focus points to Engineering when you plan to raise Intelligence to 7 (or 10) is a waste of a point. Always cross-reference your planned final attribute levels with the [Alternative Splits Grid](hero-progression-and-builds.md#alternative-splits-attribute-and-focus-trade-offs) to avoid wasting focus points.
 
 ### The Arena Perk Respec Trick
 The Arena Master allows you to respec the perk selections of any skill for a small gold fee, but does not allow resetting focus or attribute points. You can exploit this to rotate your physical attribute points:

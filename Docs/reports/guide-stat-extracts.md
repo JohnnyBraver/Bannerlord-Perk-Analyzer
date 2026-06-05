@@ -1,6 +1,6 @@
 # Bannerlord Guide Stat Extracts
 
-Generated: 2026-06-02T22:38:56.562743+03:00
+Generated: 2026-06-05T11:01:11.100920+03:00
 
 This report collects the perk rows, formulas, and stack definitions behind the manual guide notes. It is meant to make guide updates repeatable: refresh the perk export, re-run this script, and compare the generated stat tables before editing prose.
 
@@ -201,6 +201,97 @@ Rows: 99
 | Two Handed | 225 | Blade Master | captain | 0.02 | on_foot | 2% attack speed to infantry in your formation. |
 | Two Handed | 225 | Vandal | captain | 0.2 | on_foot | 20% damage against destructible objects by troops in your formation. |
 
+### Garrison Troop XP Perks
+
+Governor and settlement-defense troop XP rows that apply to garrisons rather than the traveling party.
+
+Rows: 4
+
+| Skill | Level | Perk | Role | Bonus | Scope | Effect |
+| --- | ---: | --- | --- | ---: | --- | --- |
+| Bow | 200 | Bulls Eye | governor | 3 | all | 3 daily experience to garrison troops in the governed settlement. |
+| Leadership | 25 | Raise The Meek | governor | 3 | all | 3 experience per day to each troop in garrison in the governed settlement. |
+| Polearm | 150 | Guards | governor | 0.2 | all | 20% experience gain to garrisoned cavalry in the governed settlement. |
+| Two Handed | 150 | Projectile Deflection | governor | 0.1 | all | 10% experience to garrison troops in the governed settlement. |
+
+### Gold Economy Perks
+
+Rows classified specifically as gold economy, excluding non-economic Trade skill side effects.
+
+Rows: 69
+
+| Skill | Level | Perk | Role | Bonus | Scope | Effect |
+| --- | ---: | --- | --- | ---: | --- | --- |
+| Bow | 150 | Hunter Clan | governor | -0.15 | all | -15% garrison wages in the governed castle. |
+| Bow | 200 | Renowned Archer | party leader | -0.3 | all | -30% recruitment and upgrade cost to ranged troops. |
+| Charm | 150 | Effort For The People | personal | -0.25 | all | -25% barter penalty with lords of same culture. |
+| Charm | 150 | Slick Negotiator | personal | -0.2 | all | -20% hiring costs of mercenary troops. |
+| Charm | 150 | Slick Negotiator | personal | -0.1 | all | -10% barter penalty with lords of different cultures. |
+| Crossbow | 25 | Piercer | party leader | -0.2 | all | -20% recruitment cost of ranged troops. |
+| Crossbow | 100 | Peasant Leader | governor | -0.2 | all | -20% garrisoned ranged troop wages in the governed settlement. |
+| Crossbow | 250 | Picked Shots | party leader | -0.5 | all | -50% wages of tier 4+ ranged troops. |
+| Engineering | 225 | Metallurgy | engineer | 0.3 | all | 30% chance to remove negative modifiers on looted items. |
+| One Handed | 150 | Military Tradition | governor | -0.05 | all | -5% garrison wages in the governed settlement. |
+| One Handed | 250 | Chink in the Armor | party leader | -0.2 | all | -20% recruitment cost of infantry. |
+| Polearm | 175 | Standard Bearer | governor | -0.2 | all | -20% wages to garrisoned infantry in the governed settlement. |
+| Polearm | 200 | Hardy Frontline | party leader | -0.2 | all | -20% recruitment cost of infantry. |
+| Riding | 75 | Deeper Sacks | party leader | -0.1 | all | -10% trade penalty for mounts. |
+| Riding | 225 | Cavalry Tactics | governor | -0.5 | all | -50% wages of mounted troops in the governed settlement. |
+| Roguery | 50 | Deep Pockets | personal | -0.2 | all | -20% bandit troop wages. |
+| Roguery | 75 | Know-How | party leader | 0.05 | all | 5% more loot from defeated villagers and caravans. |
+| Roguery | 100 | Manhunter | personal | 0.2 | all | 20% better deals with ransom broker for regular troops. |
+| Roguery | 150 | Smuggler Connections | party leader | -0.5 | all | -50% trade penalty when you are trading with a faction you have crime rating against. |
+| Roguery | 175 | Salt the Earth | party leader | 0.2 | all | 20% more loot when villagers comply to your hostile actions. |
+| Roguery | 200 | Ransom Broker | party leader | 0.25 | all | 25% better deals for heroes from ransom brokers. |
+| Roguery | 225 | Arms Dealer | party leader | -0.2 | all | -20% sell price penalty for weapons. |
+| Roguery | 275 | Rogue Extraordinaire | personal | 0.01 | all | 1% loot amount for every skill point above 200. |
+| Scouting | 200 | Rumor Network | party leader | -0.05 | all | -5% trade penalty within cities of your own kingdom. |
+| Scouting | 200 | Village Network | party leader | -0.1 | all | -10% trade penalty with villages of your own culture. |
+| Smithing | 175 | Artisan Smith | party leader | -0.5 | all | -50% trade penalty when selling smithing weapons. |
+| Steward | 25 | Frugal | quartermaster | -0.05 | all | -5% wages in your party. |
+| Steward | 25 | Frugal | party leader | -0.15 | all | -15% recruitment costs. |
+| Steward | 50 | Drill Sergeant | governor | -0.05 | all | -5% garrison wages in the governed settlement. |
+| Steward | 75 | Stiff Upper Lip | governor | -0.2 | all | -20% garrison wages in the governed castle. |
+| Steward | 100 | Efficient Campaigner | quartermaster | -0.25 | all | -25% troop wages in your party while it is part of an army. |
+| Steward | 100 | Paid in Promise | party leader | -0.25 | all | -25% companion wages and recruitment fees. |
+| Steward | 150 | Aid Corps | quartermaster | 0 | all | Wounded troops in your party are no longer paid wages. |
+| Steward | 175 | Sound Reserves | quartermaster | -0.1 | all | -10% troop upgrade costs. |
+| Steward | 200 | Contractors | quartermaster | -0.25 | all | -25% wages and upgrade costs of the mercenary troops in your party. |
+| Steward | 225 | Arenicos' Horses | personal | -0.2 | all | -20% trade penalty for trading mounts. |
+| Steward | 225 | Arenicos' Mules | quartermaster | -0.2 | all | -20% trade penalty for trading pack animals. |
+| Steward | 250 | Master of Warcraft | quartermaster | -0.25 | all | -25% troop wages while your party is in a siege camp. |
+| Throwing | 175 | Head Hunter | party leader | -0.2 | all | -20% recruitment cost of tier 2+ troops. |
+| Trade | 25 | Appraiser | party leader | -0.15 | all | -15% price penalty while selling equipment. |
+| Trade | 25 | Appraiser | personal | 0 | all | Your profits are marked. |
+| Trade | 25 | Whole Seller | party leader | -0.15 | all | -15% price penalty while selling trade goods. |
+| Trade | 25 | Whole Seller | personal | 0 | all | Your profits are marked. |
+| Trade | 50 | Caravan Master | personal | 0 | all | Item prices are marked relative to the average price. |
+| Trade | 50 | Market Dealer | clan leader | -0.5 | all | -50% cost of bartering for safe passage. |
+| Trade | 50 | Market Dealer | personal | 0 | all | Item prices are marked relative to the average price. |
+| Trade | 75 | Distributed Goods | quartermaster | -0.15 | all | -15% price penalty while buying from villages. |
+| Trade | 75 | Local Connection | quartermaster | -0.15 | all | -15% price penalty while selling animals. |
+| Trade | 100 | Toll Gates | personal | 0 | all | Your workshops gather trade rumors. |
+| Trade | 100 | Traveling Rumors | personal | 0 | all | Your caravans gather trade rumors. |
+| Trade | 125 | Great Investor | quartermaster | -0.3 | all | -30% companion recruitment cost. |
+| Trade | 150 | Content Trades | party leader | -0.5 | all | -50% wages paid while waiting in settlements. |
+| Trade | 150 | Mercenary Connections | party leader | -0.25 | all | -25% mercenary troop wages in your party. |
+| Trade | 175 | Insurance Plans | clan leader | 5000 | all | 5000 denar return when one of your caravans is destroyed. |
+| Trade | 175 | Insurance Plans | quartermaster | -0.25 | all | -25% price penalty while buying food items. |
+| Trade | 175 | Rapid Development | clan leader | 5000 | all | 5000 denar return for each workshop when workshop's town is captured by an enemy. |
+| Trade | 175 | Rapid Development | quartermaster | -0.25 | all | -25% price penalty while buying clay, iron, silk and silver. |
+| Trade | 200 | Granary Accountant | personal | -0.2 | all | -20% price penalty while selling food items. |
+| Trade | 200 | Tradeyard Foreman | personal | -0.2 | all | -20% price penalty while selling pottery, tools, silk and jewelry. |
+| Trade | 225 | Self-made Man | personal | -0.5 | all | -50% barter penalty for items. |
+| Trade | 225 | Sword For Barter | personal | -0.2 | all | -20% hiring costs of mercenary troops. |
+| Trade | 225 | Sword For Barter | quartermaster | -0.15 | all | -15% caravan guard wages. |
+| Trade | 250 | Silver Tongue | personal | -0.15 | all | -15% gold required while persuading lords to defect to your faction. |
+| Trade | 250 | Silver Tongue | quartermaster | 0.15 | all | 15% better trade deals from caravans and villagers |
+| Trade | 250 | Spring of Gold | clan leader | 0.001 | all | 0.1% denars of interest income per day based on your current denars up to 1000 denars. |
+| Trade | 275 | Man of Means | clan leader | -0.2 | all | -20% costs of recruiting minor faction clans into your clan. |
+| Trade | 275 | Man of Means | personal | -0.3 | all | -30% ransom cost for your freedom. |
+| Two Handed | 75 | Show of Strength | party leader | -0.2 | all | -20% recruitment cost of infantry. |
+| Two Handed | 125 | Berserker | governor | -0.1 | all | -10% garrison wages in the governed settlement. |
+
 ### Governor and Settlement Governance Perks
 
 Perks that apply to a Governor role for governing fiefs, settlements, and castles.
@@ -372,9 +463,23 @@ Rows: 45
 | Roguery | 75 | In Best Light | clan leader | 0.2 | all | 20% faster recovery from raids for your villages. |
 | Scouting | 250 | Rearguard | party leader | 0.2 | all | 20% wounded troop recovery speed while in an army. |
 
+### Other Troop XP Perks
+
+Troop XP rows with engineer, captain, surgeon, personal, siege, or kill-triggered scopes that should not be merged into passive party-training tables without review.
+
+Rows: 5
+
+| Skill | Level | Perk | Role | Bonus | Scope | Effect |
+| --- | ---: | --- | --- | ---: | --- | --- |
+| Engineering | 200 | Apprenticeship | engineer | 5 | all | 5 experience to troops when a siege engine is built. |
+| Leadership | 100 | Famous Commander | personal | 200 | all | 200 experience to troops on recruitment. |
+| Leadership | 175 | Inspiring Leader | captain | 0.05 | none | 5% experience to troops in your formation. |
+| Medicine | 250 | Battle Hardened | surgeon | 25 | all | 25 experience to wounded units at the end of the battle. |
+| Two Handed | 75 | Baptised in Blood | personal | 5 | all | 5 experience to infantry in your party for each enemy you kill with a two handed weapon. |
+
 ### Party Leader and Quartermaster Perks
 
-Perks that apply to a Party Leader or Quartermaster role to manage party size, speed, wages, and limits.
+Broad index of perks that apply to a Party Leader or Quartermaster role. Use narrower subtype-specific buckets for recommendations about party size, speed, wages, prisoners, food, or carrying capacity.
 
 Rows: 183
 
@@ -564,6 +669,42 @@ Rows: 183
 | Two Handed | 175 | Terror | party leader | 10 | all | 10 prisoner limit. |
 | Two Handed | 200 | Thick Hides | party leader | 5 | all | 5 hit points to troops in your party. |
 
+### Party Passive Troop XP Perks
+
+Party leader and quartermaster troop XP rows for passive or party-wide training tables.
+
+Rows: 27
+
+| Skill | Level | Perk | Role | Bonus | Scope | Effect |
+| --- | ---: | --- | --- | ---: | --- | --- |
+| Athletics | 150 | A Good Days Rest | party leader | 10 | all | 10 daily experience to foot troops while waiting in settlements. |
+| Athletics | 150 | Walk It Off | party leader | 3 | all | 3 daily experience to foot troops while traveling. |
+| Bow | 125 | Trainer | party leader | 3 | all | 3 daily experience to archers in your party. |
+| Bow | 200 | Bulls Eye | party leader | 0.1 | ranged | 10% bonus experience to ranged troops in your party after every battle. |
+| Crossbow | 100 | Renowned Marksmen | party leader | 2 | all | 2 daily experience to ranged troops in your party. |
+| Crossbow | 175 | Mounted Crossbowman | party leader | 0.05 | all | 5% experience gained to ranged troops in your party. |
+| Leadership | 25 | Combat Tips | party leader | 2 | all | 2 experience per day to all troops in party. |
+| Leadership | 25 | Raise The Meek | party leader | 4 | all | 4 experience per day to tier 1 and 2 troops. |
+| Leadership | 125 | Leader of the Masses | party leader | 0.05 | all | 5% experience from battles shared with the troops in your party. |
+| Leadership | 200 | Lead by Example | party leader | 0.1 | all | 10% shared experience for cavalry troops. |
+| Leadership | 200 | Trusted Commander | party leader | 0.2 | all | 20% experience for troops, when they are sent to confront the enemy. |
+| Leadership | 225 | Make a Difference | party leader | 0.1 | all | 10% shared experience for archers. |
+| One Handed | 100 | Trainer | party leader | 0.05 | all | 5% experience to melee troops in your party after every battle. |
+| One Handed | 150 | Corps-a-corps | party leader | 0.1 | all | 10% of the total experience gained as a bonus to infantry after battles. |
+| One Handed | 150 | Military Tradition | party leader | 2 | all | 2 daily experience to infantry in your party. |
+| One Handed | 175 | Lead by example | party leader | 0.05 | all | 5% experience to troops in your party after battle. |
+| Polearm | 200 | Drills | party leader | 0.1 | all | 0.1 bonus daily experience to troops in your party. |
+| Roguery | 25 | No Rest for the Wicked | party leader | 0.2 | all | 20% experience gain for bandits in your party. |
+| Scouting | 100 | Forced March | party leader | 2 | all | 2 experience per day to all troops while traveling with party morale higher than 75. |
+| Scouting | 100 | Unburdened | party leader | 2 | all | 2 experience per day to all troops when traveling while overburdened. |
+| Steward | 50 | Drill Sergeant | quartermaster | 2 | all | 2 daily experience to troops in your party. |
+| Steward | 50 | Seven Veterans | quartermaster | 4 | all | 4 daily experience for tier 4+ troops in your party. |
+| Steward | 100 | Paid in Promise | quartermaster | 0 | all | Discarded armors are donated to troops for increased experience. |
+| Steward | 125 | Giving Hands | quartermaster | 0 | all | Discarded weapons are donated to troops for increased experience. |
+| Throwing | 125 | Saddlebags | party leader | 1 | all | 1 daily experience to infantry troops in your party. |
+| Throwing | 200 | Resourceful | party leader | 0.1 | all | 10% experience from battles to troops in your party equipped with throwing weapons. |
+| Two Handed | 75 | Baptised in Blood | party leader | 0.05 | all | 5% experience to melee troops in your party after every battle. |
+
 ### Personal Combat Payoff Perks
 
 Perks with a Personal role that affect the main hero's combat stats.
@@ -714,6 +855,17 @@ Rows: 141
 | Two Handed | 250 | Way Of The Great Axe | personal | 0.002 | all | 0.2% attack speed with two handed weapons for every skill point above 250. |
 | Two Handed | 250 | Way Of The Great Axe | personal | 0.005 | all | 0.5% damage with two handed weapons for every skill point above 250. |
 
+### Simulation Troop Damage Reduction Perks
+
+Autoresolve/simulation-only defensive rows separated from live-battle survivability tables.
+
+Rows: 2
+
+| Skill | Level | Perk | Role | Bonus | Scope | Effect |
+| --- | ---: | --- | --- | ---: | --- | --- |
+| Tactics | 25 | Loose Formations | party leader | -0.1 | all | -10% damage to your infantry from ranged troops when troops are sent to confront the enemy. |
+| Tactics | 200 | Elite Reserves | party leader | -0.2 | all | -20% less damage to tier 3+ units when troops are sent to confront the enemy. |
+
 ### Smithing And Crafting Perks
 
 Smithing perk effects and crafting-bonus rows.
@@ -746,9 +898,9 @@ Rows: 23
 | Smithing | 250 | Sharpened Tip | personal | 0.02 | all | 2% thrust damage of crafted weapons. |
 | Smithing | 275 | Legendary Smith | personal | 0.05 | all | 5% greater chance of creating Legendary weapons, chance increases by 1% for every 5 skill points above 275. |
 
-### Trade and Gold Economy Perks
+### Trade Skill And Gold Economy Perks
 
-Perks that affect prices, trade penalties, workshops, caravans, and gold accumulation.
+Broad index of all Trade skill perks plus non-Trade perks classified as gold economy. This bucket intentionally includes non-price rows such as carrying capacity, relationship, settlement, and unique barter effects.
 
 Rows: 86
 
@@ -876,11 +1028,11 @@ Rows: 4
 | Riding | 250 | Dauntless Steed | captain | 5 | mounted | 5 armor to all equipped armor pieces of mounted troops in your formation. |
 | Riding | 250 | Tough Steed | captain | 10 | mounted | 10 armor to mounts of troops in your formation. |
 
-### Troop Damage Reduction And Shield Perks
+### Live Troop Damage Reduction And Shield Perks
 
-Damage-taken, charge, projectile-protection, and shield durability perks.
+Live-battle damage-taken, charge, projectile-protection, and shield durability perks. Simulation-only rows are split into their own bucket.
 
-Rows: 12
+Rows: 10
 
 | Skill | Level | Perk | Role | Bonus | Scope | Effect |
 | --- | ---: | --- | --- | ---: | --- | --- |
@@ -892,8 +1044,6 @@ Rows: 12
 | One Handed | 125 | Shieldwall | captain | 0.01 | shield_user | Larger shield protection area against projectiles to troops in your formation while in shield wall formation. |
 | One Handed | 200 | Steel Core Shields | captain | -0.1 | shield_user | -10% damage to shields of infantry troops in your formation. |
 | Polearm | 225 | Sure Footed | captain | -0.3 | on_foot | -30% charge damage taken by troops in your formation. |
-| Tactics | 25 | Loose Formations | party leader | -0.1 | all | -10% damage to your infantry from ranged troops when troops are sent to confront the enemy. |
-| Tactics | 200 | Elite Reserves | party leader | -0.2 | all | -20% less damage to tier 3+ units when troops are sent to confront the enemy. |
 | Tactics | 200 | Elite Reserves | captain | -0.05 | none | -5% damage taken by troops in your formation. |
 | Throwing | 125 | Skirmisher | captain | -0.03 | none | -3% damage taken by ranged attacks to troops in your formation. |
 
@@ -917,7 +1067,7 @@ Rows: 9
 
 ### Troop XP Perks
 
-Perks that directly mention troop XP or experience gains.
+Broad index of perks that directly mention troop XP or experience gains, across party, garrison, formation, siege, and personal triggers.
 
 Rows: 36
 

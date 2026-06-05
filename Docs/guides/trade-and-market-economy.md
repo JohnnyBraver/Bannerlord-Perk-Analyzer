@@ -83,7 +83,7 @@ Assume a Tier 5 sword with a base value of $1,000$ gold and a flat $1.0$ local M
 | :--- | ---: | :--- | :--- | :--- |
 | **Trade** | 25 | `Appraiser` | Party Leader | $-15\%$ price penalty when selling equipment. |
 | **Trade** | 25 | `Whole Seller` | Party Leader | $-15\%$ price penalty when selling trade goods. |
-| **Trade** | 50 | `Market Dealer` / `Caravan Master` | Personal | Marks item prices relative to average (no penalty reduction). |
+| **Trade** | 50 | `Market Dealer` / `Caravan Master` | Personal / Quartermaster | Personal effects mark item prices relative to average; `Caravan Master` can instead be used as a Quartermaster perk for $+30\%$ party carrying capacity. |
 | **Trade** | 75 | `Distributed Goods` | Quartermaster | $-15\%$ price penalty when buying from villages. |
 | **Trade** | 75 | `Local Connection` | Quartermaster | $-15\%$ price penalty when selling animals. |
 | **Trade** | 175 | `Insurance Plans` | Quartermaster | $-25\%$ price penalty when buying food items. |
@@ -143,7 +143,7 @@ This allows you to level up your Trade skill passively without running manual tr
 
 ## 7. Practical Trading Advice
 
-* **Splash Utility**: Spending points to reach Trade level 50 is highly recommended for all characters. Both `Appraiser`/`Whole Seller` (level 25) and `Caravan Master` (level 50) mark profit colors and highlight average prices directly in the trade screen, providing invaluable information.
+* **Splash Utility**: Spending points to reach Trade level 50 is highly recommended for trade-focused characters. `Appraiser`/`Whole Seller` (level 25) mark profit colors, while the personal level 50 Trade effects mark prices relative to the average. `Caravan Master` can also be chosen for its Quartermaster $+30\%$ carrying capacity effect when logistics matter more than price display.
 > [!TIP]
 > **The 300 Trade Target**: Pushing Trade to level 300 unlocks `Everything Has a Price`, which allows you to trade fiefs and settlements in lord barters. This is a game-changing political tool. If you do not plan to reach level 300, stopping at Trade level 50 or 75 is the most point-efficient setup.
 * **Caravan Arbitrage**: Caravans are subject to halved trade penalties. Always prioritize buying from or selling to caravans rather than town markets when their inventories allow it.

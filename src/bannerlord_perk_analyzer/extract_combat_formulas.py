@@ -413,7 +413,7 @@ def main() -> None:
     parser.add_argument("--markdown-output", type=Path, default=None)
     parser.add_argument("--insights-output", type=Path, default=None)
     parser.add_argument("--no-il", action="store_true", help="Do not keep IL instructions in the merged JSON output.")
-    parser.add_argument("--keep-temp", action="store_true", help="Keep per-scan temporary JSON files under Data/generated/combat-formula-scan-temp.")
+    parser.add_argument("--keep-temp", action="store_true", help="Keep per-scan temporary JSON files under Data/intermediate/combat-formula-scan-temp.")
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()

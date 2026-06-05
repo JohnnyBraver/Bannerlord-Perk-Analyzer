@@ -71,7 +71,9 @@ Below is the speed scaling for a 100-man mixed party (assuming every foot soldie
 * **Forest Terrain**: Forests apply a baseline $-30\%$ speed penalty. However, the Scout perk `Forest Kin` reduces this penalty to $-15\%$ if at least $75\%$ of the party is infantry. On forest terrain, an all-cavalry party is slowed to **3.401**, while an infantry party with spare mounts and forest perks moves at **3.724**—making the infantry party significantly faster.
 * **Bad Weather**: Applies a penalty directly to the cavalry and mounted footmen composition bonuses. Because the `Strong` and `Nomadic Traditions` add-ons are applied in a separate branch, bad-weather land movement makes infantry with spare mounts virtually equal to all-cavalry.
 
-### Speed-Enhancing Perks
+### Speed, Vision, And Logistics Perks
+
+Only some rows below directly increase campaign speed. Scouting also contains sight, prisoner, recovery, and simulation perks that sit near the speed tiers but should not be treated as speed bonuses.
 
 | Skill | Level | Perk | Role | Effect | Practical Application |
 | :--- | ---: | :--- | :--- | :--- | :--- |
@@ -83,18 +85,18 @@ Below is the speed scaling for a 100-man mixed party (assuming every foot soldie
 | **Scouting** | 100 | `Forced March` | Scout | $+2.5$ Speed when morale $> 75$ | Highly compatible with high food variety and frequent victories. |
 | **Scouting** | 100 | `Unburdened` | Scout | $-20$ Overburden speed penalty | Keeps you moving when hauling heavy cargo. |
 | **Scouting** | 125 | `Tracker` | Scout | $+2$ Speed when tracking hostile | Helps chase down specific targets. |
-| **Scouting** | 150 | `Mounted Scouts` | Scout | $+2$ Speed if $\ge 50\%$ party is mounted | Synergizes with cavalry/horse archer builds. |
-| **Scouting** | 150 | `Patrols` | Scout | $-15$ speed penalty from prisoners | Allows hauling large captive populations without slowing down. |
-| **Scouting** | 175 | `Foragers` | Scout | $-20$ speed penalty from wounded | Critical for maintaining mobility after heavy casualties. |
+| **Scouting** | 150 | `Mounted Scouts` | Scout / Party Leader | $+10\%$ sight range if party is $>50\%$ cavalry / $+5$ party size | Vision and party-size utility for mounted parties; not a speed bonus. |
+| **Scouting** | 150 | `Patrols` | Scout / Party Leader | $+5$ battle morale against bandits / $+10\%$ autoresolve advantage against bandits | Bandit-fighting utility; not a prisoner-speed perk. |
+| **Scouting** | 175 | `Foragers` | Scout / Party Leader | $-10\%$ food consumption in steppes and forests / $-15\%$ disorganized-state duration | Food and recovery utility; not a wounded-speed perk. |
 | **Scouting** | 175 | `Beast Whisperer` | Scout | $+10\%$ cargo capacity per pack animal | Logistics enabler for massive baggage trains. |
-| **Scouting** | 200 | `Village Network` | Scout | $+4$ speed inside own territory | Enhances home defense and border patrol speed. |
-| **Scouting** | 225 | `Keen Sight` | Scout | $-10$ speed penalty from forest/swamp | Broad terrain penalty dampener. |
-| **Scouting** | 225 | `Vantage Point` | Scout | $+2$ speed in hills / $+20\%$ spotting | Hills speed-booster and vision enhancer. |
-| **Scouting** | 250 | `Rearguard` | Scout | $+2$ speed when chased | Helps escape overwhelming forces. |
-| **Scouting** | 250 | `Vanguard` | Scout | $+2$ speed when chasing enemies | Prevents target lords from slipping away on map. |
+| **Scouting** | 200 | `Village Network` | Party Leader / Governor | $-10\%$ same-culture village trade penalty / $+10\%$ villager party size | Village economy and governor utility; not an own-territory speed perk. |
+| **Scouting** | 225 | `Keen Sight` | Scout / Party Leader | $-50\%$ forest sight penalty / $-50\%$ prisoner lord escape chance | Vision and prisoner control; not a terrain-speed perk. |
+| **Scouting** | 225 | `Vantage Point` | Scout / Party Leader | $+25\%$ sight range when stationary / $+10$ prisoner limit | Stationary vision and prisoner capacity; not hill speed. |
+| **Scouting** | 250 | `Rearguard` | Party Leader | $+20\%$ wounded troop recovery while in an army / $+10\%$ siege-camp defense damage | Recovery and siege-defense utility; not chase speed. |
+| **Scouting** | 250 | `Vanguard` | Party Leader | $+5\%$ autoresolve attack damage / $+10\%$ sally-out damage | Simulation and siege attack utility; not chase speed. |
 | **Scouting** | 275 | `Uncanny Insight` | Scout | $+0.1\%$ Speed per point $> 200$ | Massive late-game scaling. |
 | **Medicine** | 75 | `Sledges` | Surgeon | $-50\%$ Speed penalty from wounded | Critical post-battle recovery tool. |
-| **Steward** | 150 | `Aid Corps` | Quartermaster | $-20\%$ speed penalty from wounded | Speeds up recovery and maintains party velocity after battles. |
+| **Steward** | 150 | `Aid Corps` | Quartermaster / Governor | Wounded troops no longer receive wages / $+20\%$ hearth growth in bound villages | Wage and governor-economy utility; use Medicine `Sledges` for wounded speed penalty. |
 | **Athletics** | 200 | `Strong` | Party Leader | $+5\%$ Speed by foot troops | Strong choice for infantry-heavy builds. |
 | **Riding** | 75 | `Nomadic Traditions` | Party Leader | $+30\%$ Mounted footmen bonus | Mandatory if you run infantry with spare mounts. |
 | **Riding** | 100 | `Sweeping Wind` | Party Leader | $+2\%$ Flat travel speed | Simple, unconditional speed boost. |
@@ -162,7 +164,7 @@ These perks drip-feed experience to your troops at the end of each campaign day.
 | **Bow** | 125 | `Trainer` | Party Leader | $+3$ XP/day to archers | Ranged-focused builds. |
 | **Crossbow** | 100 | `Renowned Marksmen` | Party Leader | $+2$ XP/day to ranged troops | Stacks on crossbow lines. |
 | **Athletics** | 150 | `Walk It Off` | Party Leader | $+3$ XP/day to foot troops moving | Excellent for active campaign mapping. |
-| **Athletics** | 150 | `A Good Day's Rest`| Party Leader | $+10$ XP/day to foot troops resting | Extremely strong when waiting in towns. |
+| **Athletics** | 150 | `A Good Days Rest`| Party Leader | $+10$ XP/day to foot troops resting | Extremely strong when waiting in towns. |
 | **Scouting** | 100 | `Forced March` | Party Leader | $+2$ XP/day when traveling, morale $>75$ | Reward for maintaining high party morale. |
 | **Throwing** | 125 | `Saddlebags` | Party Leader | $+1$ XP/day to infantry | Minor auxiliary boost. |
 | **Polearm** | 200 | `Drills` | Party Leader | $+0.1$ XP/day to troops | **BUGGED/NO-OP**: The helper rounds this value to the nearest integer, turning `0.1` into `0`. Avoid. |

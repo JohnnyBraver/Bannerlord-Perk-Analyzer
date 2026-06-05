@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-02T22:38:56.562743+03:00",
+  "generated_at": "2026-06-05T11:01:11.100920+03:00",
   "inputs": {
     "perk_export": "Data\\export\\perk-effects.json"
   },
@@ -4774,8 +4774,8 @@
       ]
     },
     "trade_economy_perks": {
-      "title": "Trade and Gold Economy Perks",
-      "description": "Perks that affect prices, trade penalties, workshops, caravans, and gold accumulation.",
+      "title": "Trade Skill And Gold Economy Perks",
+      "description": "Broad index of all Trade skill perks plus non-Trade perks classified as gold economy. This bucket intentionally includes non-price rows such as carrying capacity, relationship, settlement, and unique barter effects.",
       "count": 86,
       "rows": [
         {
@@ -6342,6 +6342,1295 @@
             "trade"
           ],
           "effect": "You can now trade settlements in barter."
+        },
+        {
+          "id": "TwoHandedShowOfStrength|secondary",
+          "skill": "Two Handed",
+          "level": 75,
+          "perk": "Show of Strength",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-20% recruitment cost of infantry."
+        },
+        {
+          "id": "TwoHandedBerserker|secondary",
+          "skill": "Two Handed",
+          "level": 125,
+          "perk": "Berserker",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "garrison"
+          ],
+          "effect": "-10% garrison wages in the governed settlement."
+        }
+      ]
+    },
+    "gold_economy_perks": {
+      "title": "Gold Economy Perks",
+      "description": "Rows classified specifically as gold economy, excluding non-economic Trade skill side effects.",
+      "count": 69,
+      "rows": [
+        {
+          "id": "BowHunterClan|secondary",
+          "skill": "Bow",
+          "level": 150,
+          "perk": "Hunter Clan",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "garrison"
+          ],
+          "effect": "-15% garrison wages in the governed castle."
+        },
+        {
+          "id": "BowRenownedArcher|secondary",
+          "skill": "Bow",
+          "level": 200,
+          "perk": "Renowned Archer",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.30000001192092896,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "upgrade cost"
+          ],
+          "effect": "-30% recruitment and upgrade cost to ranged troops."
+        },
+        {
+          "id": "CharmEffortForThePeople|secondary",
+          "skill": "Charm",
+          "level": 150,
+          "perk": "Effort For The People",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "barter",
+          "trigger_conditions": [
+            "same culture"
+          ],
+          "effect_tags": [],
+          "effect": "-25% barter penalty with lords of same culture."
+        },
+        {
+          "id": "CharmSlickNegotiator|primary",
+          "skill": "Charm",
+          "level": 150,
+          "perk": "Slick Negotiator",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-20% hiring costs of mercenary troops."
+        },
+        {
+          "id": "CharmSlickNegotiator|secondary",
+          "skill": "Charm",
+          "level": 150,
+          "perk": "Slick Negotiator",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "barter",
+          "trigger_conditions": [
+            "different culture"
+          ],
+          "effect_tags": [],
+          "effect": "-10% barter penalty with lords of different cultures."
+        },
+        {
+          "id": "CrossbowPiercer|secondary",
+          "skill": "Crossbow",
+          "level": 25,
+          "perk": "Piercer",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-20% recruitment cost of ranged troops."
+        },
+        {
+          "id": "CrossbowPeasantLeader|secondary",
+          "skill": "Crossbow",
+          "level": 100,
+          "perk": "Peasant Leader",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "party composition",
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "garrison"
+          ],
+          "effect": "-20% garrisoned ranged troop wages in the governed settlement."
+        },
+        {
+          "id": "CrossbowBoltenGuard|primary",
+          "skill": "Crossbow",
+          "level": 250,
+          "perk": "Picked Shots",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-50% wages of tier 4+ ranged troops."
+        },
+        {
+          "id": "EngineeringMetallurgy|primary",
+          "skill": "Engineering",
+          "level": 225,
+          "perk": "Metallurgy",
+          "effect_slot": "primary",
+          "role": "engineer",
+          "bonus": 0.30000001192092896,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "loot bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "loot"
+          ],
+          "effect": "30% chance to remove negative modifiers on looted items."
+        },
+        {
+          "id": "OneHandedMilitaryTradition|secondary",
+          "skill": "One Handed",
+          "level": 150,
+          "perk": "Military Tradition",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "garrison"
+          ],
+          "effect": "-5% garrison wages in the governed settlement."
+        },
+        {
+          "id": "OneHandedChinkInTheArmor|secondary",
+          "skill": "One Handed",
+          "level": 250,
+          "perk": "Chink in the Armor",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-20% recruitment cost of infantry."
+        },
+        {
+          "id": "PolearmStandardBearer|secondary",
+          "skill": "Polearm",
+          "level": 175,
+          "perk": "Standard Bearer",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "party composition",
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "garrison"
+          ],
+          "effect": "-20% wages to garrisoned infantry in the governed settlement."
+        },
+        {
+          "id": "PolearmHardyFrontline|secondary",
+          "skill": "Polearm",
+          "level": 200,
+          "perk": "Hardy Frontline",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-20% recruitment cost of infantry."
+        },
+        {
+          "id": "RidingDeeperSacks|secondary",
+          "skill": "Riding",
+          "level": 75,
+          "perk": "Deeper Sacks",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "mounts",
+            "trade"
+          ],
+          "effect": "-10% trade penalty for mounts."
+        },
+        {
+          "id": "RidingCavalryTactics|secondary",
+          "skill": "Riding",
+          "level": 225,
+          "perk": "Cavalry Tactics",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "party composition",
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "mounts"
+          ],
+          "effect": "-50% wages of mounted troops in the governed settlement."
+        },
+        {
+          "id": "RogueryDeepPockets|secondary",
+          "skill": "Roguery",
+          "level": 50,
+          "perk": "Deep Pockets",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "bandits"
+          ],
+          "effect": "-20% bandit troop wages."
+        },
+        {
+          "id": "RogueryKnowHow|primary",
+          "skill": "Roguery",
+          "level": 75,
+          "perk": "Know-How",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "loot bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "caravan",
+            "village",
+            "loot"
+          ],
+          "effect": "5% more loot from defeated villagers and caravans."
+        },
+        {
+          "id": "RogueryManhunter|primary",
+          "skill": "Roguery",
+          "level": 100,
+          "perk": "Manhunter",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "ransom",
+            "trade"
+          ],
+          "effect": "20% better deals with ransom broker for regular troops."
+        },
+        {
+          "id": "RoguerySmugglerConnections|secondary",
+          "skill": "Roguery",
+          "level": 150,
+          "perk": "Smuggler Connections",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade"
+          ],
+          "effect": "-50% trade penalty when you are trading with a faction you have crime rating against."
+        },
+        {
+          "id": "RoguerySaltTheEarth|primary",
+          "skill": "Roguery",
+          "level": 175,
+          "perk": "Salt the Earth",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "loot bonus",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "village",
+            "loot"
+          ],
+          "effect": "20% more loot when villagers comply to your hostile actions."
+        },
+        {
+          "id": "RogueryRansomBroker|primary",
+          "skill": "Roguery",
+          "level": 200,
+          "perk": "Ransom Broker",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "ransom",
+            "trade"
+          ],
+          "effect": "25% better deals for heroes from ransom brokers."
+        },
+        {
+          "id": "RogueryArmsDealer|primary",
+          "skill": "Roguery",
+          "level": 225,
+          "perk": "Arms Dealer",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons",
+            "trade"
+          ],
+          "effect": "-20% sell price penalty for weapons."
+        },
+        {
+          "id": "RogueryRogueExtraordinaire|primary",
+          "skill": "Roguery",
+          "level": 275,
+          "perk": "Rogue Extraordinaire",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0.009999999776482582,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "loot bonus",
+          "trigger_conditions": [
+            "over skill cap"
+          ],
+          "effect_tags": [
+            "loot"
+          ],
+          "effect": "1% loot amount for every skill point above 200."
+        },
+        {
+          "id": "ScoutingRumourNetwork|primary",
+          "skill": "Scouting",
+          "level": 200,
+          "perk": "Rumor Network",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [
+            "own kingdom"
+          ],
+          "effect_tags": [
+            "trade"
+          ],
+          "effect": "-5% trade penalty within cities of your own kingdom."
+        },
+        {
+          "id": "ScoutingVillageNetwork|primary",
+          "skill": "Scouting",
+          "level": 200,
+          "perk": "Village Network",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [
+            "same culture"
+          ],
+          "effect_tags": [
+            "village",
+            "trade"
+          ],
+          "effect": "-10% trade penalty with villages of your own culture."
+        },
+        {
+          "id": "ArtisanSmith|primary",
+          "skill": "Smithing",
+          "level": 175,
+          "perk": "Artisan Smith",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons",
+            "trade"
+          ],
+          "effect": "-50% trade penalty when selling smithing weapons."
+        },
+        {
+          "id": "StewardFrugal|primary",
+          "skill": "Steward",
+          "level": 25,
+          "perk": "Frugal",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": -0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-5% wages in your party."
+        },
+        {
+          "id": "StewardFrugal|secondary",
+          "skill": "Steward",
+          "level": 25,
+          "perk": "Frugal",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-15% recruitment costs."
+        },
+        {
+          "id": "StewardDrillSergant|secondary",
+          "skill": "Steward",
+          "level": 50,
+          "perk": "Drill Sergeant",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "garrison"
+          ],
+          "effect": "-5% garrison wages in the governed settlement."
+        },
+        {
+          "id": "StewardStiffUpperLip|secondary",
+          "skill": "Steward",
+          "level": 75,
+          "perk": "Stiff Upper Lip",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "garrison"
+          ],
+          "effect": "-20% garrison wages in the governed castle."
+        },
+        {
+          "id": "StewardEfficientCampaigner|secondary",
+          "skill": "Steward",
+          "level": 100,
+          "perk": "Efficient Campaigner",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-25% troop wages in your party while it is part of an army."
+        },
+        {
+          "id": "StewardPaidInPromise|primary",
+          "skill": "Steward",
+          "level": 100,
+          "perk": "Paid in Promise",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "wages",
+            "companions"
+          ],
+          "effect": "-25% companion wages and recruitment fees."
+        },
+        {
+          "id": "StewardAidCorps|primary",
+          "skill": "Steward",
+          "level": 150,
+          "perk": "Aid Corps",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "Wounded troops in your party are no longer paid wages."
+        },
+        {
+          "id": "StewardSoundReserves|primary",
+          "skill": "Steward",
+          "level": 175,
+          "perk": "Sound Reserves",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": -0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "upgrade cost",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-10% troop upgrade costs."
+        },
+        {
+          "id": "StewardContractors|primary",
+          "skill": "Steward",
+          "level": 200,
+          "perk": "Contractors",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "upgrade cost"
+          ],
+          "effect": "-25% wages and upgrade costs of the mercenary troops in your party."
+        },
+        {
+          "id": "StewardArenicosHorses|secondary",
+          "skill": "Steward",
+          "level": 225,
+          "perk": "Arenicos' Horses",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "mounts",
+            "trade"
+          ],
+          "effect": "-20% trade penalty for trading mounts."
+        },
+        {
+          "id": "StewardArenicosMules|secondary",
+          "skill": "Steward",
+          "level": 225,
+          "perk": "Arenicos' Mules",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "mounts",
+            "trade"
+          ],
+          "effect": "-20% trade penalty for trading pack animals."
+        },
+        {
+          "id": "StewardMasterOfWarcraft|primary",
+          "skill": "Steward",
+          "level": 250,
+          "perk": "Master of Warcraft",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "during siege"
+          ],
+          "effect_tags": [],
+          "effect": "-25% troop wages while your party is in a siege camp."
+        },
+        {
+          "id": "ThrowingHeadHunter|secondary",
+          "skill": "Throwing",
+          "level": 175,
+          "perk": "Head Hunter",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "recruitment cost"
+          ],
+          "effect": "-20% recruitment cost of tier 2+ troops."
+        },
+        {
+          "id": "TradeAppraiser|primary",
+          "skill": "Trade",
+          "level": 25,
+          "perk": "Appraiser",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade"
+          ],
+          "effect": "-15% price penalty while selling equipment."
+        },
+        {
+          "id": "TradeAppraiser|secondary",
+          "skill": "Trade",
+          "level": 25,
+          "perk": "Appraiser",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade info",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "profit marking",
+            "trade"
+          ],
+          "effect": "Your profits are marked."
+        },
+        {
+          "id": "TradeWholeSeller|primary",
+          "skill": "Trade",
+          "level": 25,
+          "perk": "Whole Seller",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade"
+          ],
+          "effect": "-15% price penalty while selling trade goods."
+        },
+        {
+          "id": "TradeWholeSeller|secondary",
+          "skill": "Trade",
+          "level": 25,
+          "perk": "Whole Seller",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade info",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "profit marking",
+            "trade"
+          ],
+          "effect": "Your profits are marked."
+        },
+        {
+          "id": "TradeCaravanMaster|secondary",
+          "skill": "Trade",
+          "level": 50,
+          "perk": "Caravan Master",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade info",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "price marking",
+            "trade"
+          ],
+          "effect": "Item prices are marked relative to the average price."
+        },
+        {
+          "id": "TradeMarketDealer|primary",
+          "skill": "Trade",
+          "level": 50,
+          "perk": "Market Dealer",
+          "effect_slot": "primary",
+          "role": "clan leader",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "barter",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-50% cost of bartering for safe passage."
+        },
+        {
+          "id": "TradeMarketDealer|secondary",
+          "skill": "Trade",
+          "level": 50,
+          "perk": "Market Dealer",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade info",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "price marking",
+            "trade"
+          ],
+          "effect": "Item prices are marked relative to the average price."
+        },
+        {
+          "id": "TradeDistributedGoods|secondary",
+          "skill": "Trade",
+          "level": 75,
+          "perk": "Distributed Goods",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "village",
+            "trade"
+          ],
+          "effect": "-15% price penalty while buying from villages."
+        },
+        {
+          "id": "TradeLocalConnection|secondary",
+          "skill": "Trade",
+          "level": 75,
+          "perk": "Local Connection",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade"
+          ],
+          "effect": "-15% price penalty while selling animals."
+        },
+        {
+          "id": "TradeTollgates|primary",
+          "skill": "Trade",
+          "level": 100,
+          "perk": "Toll Gates",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade info",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade rumors",
+            "workshop",
+            "trade"
+          ],
+          "effect": "Your workshops gather trade rumors."
+        },
+        {
+          "id": "TradeTravelingRumors|primary",
+          "skill": "Trade",
+          "level": 100,
+          "perk": "Traveling Rumors",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 0,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade info",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade rumors",
+            "caravan",
+            "trade"
+          ],
+          "effect": "Your caravans gather trade rumors."
+        },
+        {
+          "id": "TradeGreatInvestor|secondary",
+          "skill": "Trade",
+          "level": 125,
+          "perk": "Great Investor",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.30000001192092896,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "companions"
+          ],
+          "effect": "-30% companion recruitment cost."
+        },
+        {
+          "id": "TradeContentTrades|secondary",
+          "skill": "Trade",
+          "level": 150,
+          "perk": "Content Trades",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "while waiting"
+          ],
+          "effect_tags": [],
+          "effect": "-50% wages paid while waiting in settlements."
+        },
+        {
+          "id": "TradeMercenaryConnections|secondary",
+          "skill": "Trade",
+          "level": 150,
+          "perk": "Mercenary Connections",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-25% mercenary troop wages in your party."
+        },
+        {
+          "id": "TradeInsurancePlans|primary",
+          "skill": "Trade",
+          "level": 175,
+          "perk": "Insurance Plans",
+          "effect_slot": "primary",
+          "role": "clan leader",
+          "bonus": 5000,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "income",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "caravan"
+          ],
+          "effect": "5000 denar return when one of your caravans is destroyed."
+        },
+        {
+          "id": "TradeInsurancePlans|secondary",
+          "skill": "Trade",
+          "level": 175,
+          "perk": "Insurance Plans",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "food",
+            "trade"
+          ],
+          "effect": "-25% price penalty while buying food items."
+        },
+        {
+          "id": "TradeRapidDevelopment|primary",
+          "skill": "Trade",
+          "level": 175,
+          "perk": "Rapid Development",
+          "effect_slot": "primary",
+          "role": "clan leader",
+          "bonus": 5000,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "income",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "workshop"
+          ],
+          "effect": "5000 denar return for each workshop when workshop's town is captured by an enemy."
+        },
+        {
+          "id": "TradeRapidDevelopment|secondary",
+          "skill": "Trade",
+          "level": 175,
+          "perk": "Rapid Development",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.25,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade"
+          ],
+          "effect": "-25% price penalty while buying clay, iron, silk and silver."
+        },
+        {
+          "id": "TradeGranaryAccountant|primary",
+          "skill": "Trade",
+          "level": 200,
+          "perk": "Granary Accountant",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "food",
+            "trade"
+          ],
+          "effect": "-20% price penalty while selling food items."
+        },
+        {
+          "id": "TradeTradeyardForeman|primary",
+          "skill": "Trade",
+          "level": 200,
+          "perk": "Tradeyard Foreman",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "trade"
+          ],
+          "effect": "-20% price penalty while selling pottery, tools, silk and jewelry."
+        },
+        {
+          "id": "TradeSelfMadeMan|primary",
+          "skill": "Trade",
+          "level": 225,
+          "perk": "Self-made Man",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.5,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "barter",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-50% barter penalty for items."
+        },
+        {
+          "id": "TradeSwordForBarter|primary",
+          "skill": "Trade",
+          "level": 225,
+          "perk": "Sword For Barter",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "-20% hiring costs of mercenary troops."
+        },
+        {
+          "id": "TradeSwordForBarter|secondary",
+          "skill": "Trade",
+          "level": 225,
+          "perk": "Sword For Barter",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "wages",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "caravan"
+          ],
+          "effect": "-15% caravan guard wages."
+        },
+        {
+          "id": "TradeSilverTongue|primary",
+          "skill": "Trade",
+          "level": 250,
+          "perk": "Silver Tongue",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": -0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "persuasion cost",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-15% gold required while persuading lords to defect to your faction."
+        },
+        {
+          "id": "TradeSilverTongue|secondary",
+          "skill": "Trade",
+          "level": 250,
+          "perk": "Silver Tongue",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": 0.15000000596046448,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "caravan",
+            "village",
+            "trade"
+          ],
+          "effect": "15% better trade deals from caravans and villagers"
+        },
+        {
+          "id": "TradeSpringOfGold|primary",
+          "skill": "Trade",
+          "level": 250,
+          "perk": "Spring of Gold",
+          "effect_slot": "primary",
+          "role": "clan leader",
+          "bonus": 0.0010000000474974513,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "income",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "0.1% denars of interest income per day based on your current denars up to 1000 denars."
+        },
+        {
+          "id": "TradeManOfMeans|primary",
+          "skill": "Trade",
+          "level": 275,
+          "perk": "Man of Means",
+          "effect_slot": "primary",
+          "role": "clan leader",
+          "bonus": -0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "recruitment cost",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-20% costs of recruiting minor faction clans into your clan."
+        },
+        {
+          "id": "TradeManOfMeans|secondary",
+          "skill": "Trade",
+          "level": 275,
+          "perk": "Man of Means",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": -0.30000001192092896,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "gold economy",
+          "perk_subtype": "trade penalty reduction",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "ransom"
+          ],
+          "effect": "-30% ransom cost for your freedom."
         },
         {
           "id": "TwoHandedShowOfStrength|secondary",
@@ -9405,7 +10694,7 @@
     },
     "troop_xp": {
       "title": "Troop XP Perks",
-      "description": "Perks that directly mention troop XP or experience gains.",
+      "description": "Broad index of perks that directly mention troop XP or experience gains, across party, garrison, formation, siege, and personal triggers.",
       "count": 36,
       "rows": [
         {
@@ -10079,9 +11368,699 @@
         }
       ]
     },
+    "party_passive_troop_xp": {
+      "title": "Party Passive Troop XP Perks",
+      "description": "Party leader and quartermaster troop XP rows for passive or party-wide training tables.",
+      "count": 27,
+      "rows": [
+        {
+          "id": "AthleticsAGoodDaysRest|secondary",
+          "skill": "Athletics",
+          "level": 150,
+          "perk": "A Good Days Rest",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 10,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while waiting",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10 daily experience to foot troops while waiting in settlements."
+        },
+        {
+          "id": "AthleticsWalkItOff|secondary",
+          "skill": "Athletics",
+          "level": 150,
+          "perk": "Walk It Off",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while traveling",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "3 daily experience to foot troops while traveling."
+        },
+        {
+          "id": "BowTrainer|secondary",
+          "skill": "Bow",
+          "level": 125,
+          "perk": "Trainer",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "3 daily experience to archers in your party."
+        },
+        {
+          "id": "BowBullsEye|primary",
+          "skill": "Bow",
+          "level": 200,
+          "perk": "Bulls Eye",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "ranged",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10% bonus experience to ranged troops in your party after every battle."
+        },
+        {
+          "id": "CrossbowRenownMarksmen|primary",
+          "skill": "Crossbow",
+          "level": 100,
+          "perk": "Renowned Marksmen",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "2 daily experience to ranged troops in your party."
+        },
+        {
+          "id": "CrossbowMountedCrossbowman|secondary",
+          "skill": "Crossbow",
+          "level": 175,
+          "perk": "Mounted Crossbowman",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience gained to ranged troops in your party."
+        },
+        {
+          "id": "LeadershipCombatTips|primary",
+          "skill": "Leadership",
+          "level": 25,
+          "perk": "Combat Tips",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "2 experience per day to all troops in party."
+        },
+        {
+          "id": "LeadershipRaiseTheMeek|primary",
+          "skill": "Leadership",
+          "level": 25,
+          "perk": "Raise The Meek",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 4,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "4 experience per day to tier 1 and 2 troops."
+        },
+        {
+          "id": "LeadershipLeaderOfMasses|secondary",
+          "skill": "Leadership",
+          "level": 125,
+          "perk": "Leader of the Masses",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience from battles shared with the troops in your party."
+        },
+        {
+          "id": "LeadershipLeadByExample|secondary",
+          "skill": "Leadership",
+          "level": 200,
+          "perk": "Lead by Example",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "mounts"
+          ],
+          "effect": "10% shared experience for cavalry troops."
+        },
+        {
+          "id": "LeadershipTrustedCommander|secondary",
+          "skill": "Leadership",
+          "level": 200,
+          "perk": "Trusted Commander",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "simulation"
+          ],
+          "effect_tags": [],
+          "effect": "20% experience for troops, when they are sent to confront the enemy."
+        },
+        {
+          "id": "LeadershipMakeADifference|secondary",
+          "skill": "Leadership",
+          "level": 225,
+          "perk": "Make a Difference",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10% shared experience for archers."
+        },
+        {
+          "id": "OneHandedTrainer|secondary",
+          "skill": "One Handed",
+          "level": 100,
+          "perk": "Trainer",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience to melee troops in your party after every battle."
+        },
+        {
+          "id": "OneHandedCorpsACorps|primary",
+          "skill": "One Handed",
+          "level": 150,
+          "perk": "Corps-a-corps",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "10% of the total experience gained as a bonus to infantry after battles."
+        },
+        {
+          "id": "OneHandedMilitaryTradition|primary",
+          "skill": "One Handed",
+          "level": 150,
+          "perk": "Military Tradition",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "2 daily experience to infantry in your party."
+        },
+        {
+          "id": "OneHandedLeadByExample|primary",
+          "skill": "One Handed",
+          "level": 175,
+          "perk": "Lead by example",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience to troops in your party after battle."
+        },
+        {
+          "id": "PolearmDrills|secondary",
+          "skill": "Polearm",
+          "level": 200,
+          "perk": "Drills",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "0.1 bonus daily experience to troops in your party."
+        },
+        {
+          "id": "RogueryNoRestForTheWicked|primary",
+          "skill": "Roguery",
+          "level": 25,
+          "perk": "No Rest for the Wicked",
+          "effect_slot": "primary",
+          "role": "party leader",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [
+            "bandits"
+          ],
+          "effect": "20% experience gain for bandits in your party."
+        },
+        {
+          "id": "ScoutingForcedMarch|secondary",
+          "skill": "Scouting",
+          "level": 100,
+          "perk": "Forced March",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while traveling",
+            "morale threshold"
+          ],
+          "effect_tags": [],
+          "effect": "2 experience per day to all troops while traveling with party morale higher than 75."
+        },
+        {
+          "id": "ScoutingUnburdened|secondary",
+          "skill": "Scouting",
+          "level": 100,
+          "perk": "Unburdened",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "while traveling"
+          ],
+          "effect_tags": [
+            "overburden"
+          ],
+          "effect": "2 experience per day to all troops when traveling while overburdened."
+        },
+        {
+          "id": "StewardDrillSergant|primary",
+          "skill": "Steward",
+          "level": 50,
+          "perk": "Drill Sergeant",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": 2,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "2 daily experience to troops in your party."
+        },
+        {
+          "id": "StewardSevenVeterans|primary",
+          "skill": "Steward",
+          "level": 50,
+          "perk": "Seven Veterans",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": 4,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "4 daily experience for tier 4+ troops in your party."
+        },
+        {
+          "id": "StewardPaidInPromise|secondary",
+          "skill": "Steward",
+          "level": 100,
+          "perk": "Paid in Promise",
+          "effect_slot": "secondary",
+          "role": "quartermaster",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "Discarded armors are donated to troops for increased experience."
+        },
+        {
+          "id": "StewardForeseeableFuture|primary",
+          "skill": "Steward",
+          "level": 125,
+          "perk": "Giving Hands",
+          "effect_slot": "primary",
+          "role": "quartermaster",
+          "bonus": 0,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "Discarded weapons are donated to troops for increased experience."
+        },
+        {
+          "id": "ThrowingSaddlebags|secondary",
+          "skill": "Throwing",
+          "level": 125,
+          "perk": "Saddlebags",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 1,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "1 daily experience to infantry troops in your party."
+        },
+        {
+          "id": "ThrowingResourceful|secondary",
+          "skill": "Throwing",
+          "level": 200,
+          "perk": "Resourceful",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "10% experience from battles to troops in your party equipped with throwing weapons."
+        },
+        {
+          "id": "TwoHandedBaptisedInBlood|secondary",
+          "skill": "Two Handed",
+          "level": 75,
+          "perk": "Baptised in Blood",
+          "effect_slot": "secondary",
+          "role": "party leader",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle",
+            "party composition"
+          ],
+          "effect_tags": [],
+          "effect": "5% experience to melee troops in your party after every battle."
+        }
+      ]
+    },
+    "garrison_troop_xp": {
+      "title": "Garrison Troop XP Perks",
+      "description": "Governor and settlement-defense troop XP rows that apply to garrisons rather than the traveling party.",
+      "count": 4,
+      "rows": [
+        {
+          "id": "BowBullsEye|secondary",
+          "skill": "Bow",
+          "level": 200,
+          "perk": "Bulls Eye",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison"
+          ],
+          "effect": "3 daily experience to garrison troops in the governed settlement."
+        },
+        {
+          "id": "LeadershipRaiseTheMeek|secondary",
+          "skill": "Leadership",
+          "level": 25,
+          "perk": "Raise The Meek",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 3,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison"
+          ],
+          "effect": "3 experience per day to each troop in garrison in the governed settlement."
+        },
+        {
+          "id": "PolearmGuards|secondary",
+          "skill": "Polearm",
+          "level": 150,
+          "perk": "Guards",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 0.20000000298023224,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition",
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison",
+            "mounts"
+          ],
+          "effect": "20% experience gain to garrisoned cavalry in the governed settlement."
+        },
+        {
+          "id": "TwoHandedProjectileDeflection|secondary",
+          "skill": "Two Handed",
+          "level": 150,
+          "perk": "Projectile Deflection",
+          "effect_slot": "secondary",
+          "role": "governor",
+          "bonus": 0.10000000149011612,
+          "increment_type": "add_factor",
+          "troop_usage": "all",
+          "perk_type": "settlement defense",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "governed settlement"
+          ],
+          "effect_tags": [
+            "defense",
+            "garrison"
+          ],
+          "effect": "10% experience to garrison troops in the governed settlement."
+        }
+      ]
+    },
+    "other_troop_xp": {
+      "title": "Other Troop XP Perks",
+      "description": "Troop XP rows with engineer, captain, surgeon, personal, siege, or kill-triggered scopes that should not be merged into passive party-training tables without review.",
+      "count": 5,
+      "rows": [
+        {
+          "id": "EngineeringApprenticeship|primary",
+          "skill": "Engineering",
+          "level": 200,
+          "perk": "Apprenticeship",
+          "effect_slot": "primary",
+          "role": "engineer",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "during siege"
+          ],
+          "effect_tags": [],
+          "effect": "5 experience to troops when a siege engine is built."
+        },
+        {
+          "id": "LeadershipFamousCommander|secondary",
+          "skill": "Leadership",
+          "level": 100,
+          "perk": "Famous Commander",
+          "effect_slot": "secondary",
+          "role": "personal",
+          "bonus": 200,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "200 experience to troops on recruitment."
+        },
+        {
+          "id": "LeadershipInspiringLeader|secondary",
+          "skill": "Leadership",
+          "level": 175,
+          "perk": "Inspiring Leader",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": 0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "none",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "5% experience to troops in your formation."
+        },
+        {
+          "id": "MedicineBattleHardened|primary",
+          "skill": "Medicine",
+          "level": 250,
+          "perk": "Battle Hardened",
+          "effect_slot": "primary",
+          "role": "surgeon",
+          "bonus": 25,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "after battle"
+          ],
+          "effect_tags": [],
+          "effect": "25 experience to wounded units at the end of the battle."
+        },
+        {
+          "id": "TwoHandedBaptisedInBlood|primary",
+          "skill": "Two Handed",
+          "level": 75,
+          "perk": "Baptised in Blood",
+          "effect_slot": "primary",
+          "role": "personal",
+          "bonus": 5,
+          "increment_type": "add",
+          "troop_usage": "all",
+          "perk_type": "party management",
+          "perk_subtype": "troop xp",
+          "trigger_conditions": [
+            "party composition",
+            "on kill"
+          ],
+          "effect_tags": [
+            "weapons"
+          ],
+          "effect": "5 experience to infantry in your party for each enemy you kill with a two handed weapon."
+        }
+      ]
+    },
     "party_leader_quartermaster_perks": {
       "title": "Party Leader and Quartermaster Perks",
-      "description": "Perks that apply to a Party Leader or Quartermaster role to manage party size, speed, wages, and limits.",
+      "description": "Broad index of perks that apply to a Party Leader or Quartermaster role. Use narrower subtype-specific buckets for recommendations about party size, speed, wages, prisoners, food, or carrying capacity.",
       "count": 183,
       "rows": [
         {
@@ -14043,9 +16022,9 @@
       ]
     },
     "troop_survival_damage_reduction": {
-      "title": "Troop Damage Reduction And Shield Perks",
-      "description": "Damage-taken, charge, projectile-protection, and shield durability perks.",
-      "count": 12,
+      "title": "Live Troop Damage Reduction And Shield Perks",
+      "description": "Live-battle damage-taken, charge, projectile-protection, and shield durability perks. Simulation-only rows are split into their own bucket.",
+      "count": 10,
       "rows": [
         {
           "id": "AthleticsBraced|secondary",
@@ -14184,6 +16163,45 @@
           "effect": "-30% charge damage taken by troops in your formation."
         },
         {
+          "id": "TacticsEliteReserves|secondary",
+          "skill": "Tactics",
+          "level": 200,
+          "perk": "Elite Reserves",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.05000000074505806,
+          "increment_type": "add_factor",
+          "troop_usage": "none",
+          "perk_type": "troop combat",
+          "perk_subtype": "damage resistance",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-5% damage taken by troops in your formation."
+        },
+        {
+          "id": "ThrowingSkirmisher|secondary",
+          "skill": "Throwing",
+          "level": 125,
+          "perk": "Skirmisher",
+          "effect_slot": "secondary",
+          "role": "captain",
+          "bonus": -0.029999999329447746,
+          "increment_type": "add_factor",
+          "troop_usage": "none",
+          "perk_type": "troop combat",
+          "perk_subtype": "ranged",
+          "trigger_conditions": [],
+          "effect_tags": [],
+          "effect": "-3% damage taken by ranged attacks to troops in your formation."
+        }
+      ]
+    },
+    "simulation_troop_damage_reduction": {
+      "title": "Simulation Troop Damage Reduction Perks",
+      "description": "Autoresolve/simulation-only defensive rows separated from live-battle survivability tables.",
+      "count": 2,
+      "rows": [
+        {
           "id": "TacticsLooseFormations|primary",
           "skill": "Tactics",
           "level": 25,
@@ -14220,38 +16238,6 @@
           ],
           "effect_tags": [],
           "effect": "-20% less damage to tier 3+ units when troops are sent to confront the enemy."
-        },
-        {
-          "id": "TacticsEliteReserves|secondary",
-          "skill": "Tactics",
-          "level": 200,
-          "perk": "Elite Reserves",
-          "effect_slot": "secondary",
-          "role": "captain",
-          "bonus": -0.05000000074505806,
-          "increment_type": "add_factor",
-          "troop_usage": "none",
-          "perk_type": "troop combat",
-          "perk_subtype": "damage resistance",
-          "trigger_conditions": [],
-          "effect_tags": [],
-          "effect": "-5% damage taken by troops in your formation."
-        },
-        {
-          "id": "ThrowingSkirmisher|secondary",
-          "skill": "Throwing",
-          "level": 125,
-          "perk": "Skirmisher",
-          "effect_slot": "secondary",
-          "role": "captain",
-          "bonus": -0.029999999329447746,
-          "increment_type": "add_factor",
-          "troop_usage": "none",
-          "perk_type": "troop combat",
-          "perk_subtype": "ranged",
-          "trigger_conditions": [],
-          "effect_tags": [],
-          "effect": "-3% damage taken by ranged attacks to troops in your formation."
         }
       ]
     }

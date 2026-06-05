@@ -159,6 +159,11 @@ def main() -> None:
         default=None,
         help="Bannerlord game root directory. Overrides BANNERLORD_GAME_ROOT env var."
     )
+    parser_creation.add_argument(
+        "--skip-scan",
+        action="store_true",
+        help="Skip fresh C# scanning and reuse the existing character creation JSON output to regenerate the report."
+    )
     # Extract-combat subcommand
     parser_combat = subparsers.add_parser(
         "extract-combat",

@@ -615,7 +615,7 @@ def write_insights_report(payload: dict[str, Any], path: Path, workspace: Path, 
         "",
         f"Generated: {payload.get('generated_at', '')}",
         "",
-        "This is the approachable companion to `Data/generated/reports/xp-formulas.md`. The formula report keeps the evidence trail; this guide turns the same findings into gameplay and analysis notes.",
+        "This is the approachable companion to `Docs/reports/xp-formulas.md`. The formula report keeps the evidence trail; this guide turns the same findings into gameplay and analysis notes.",
         "",
         "## Fast Takeaways",
         "",
@@ -823,7 +823,7 @@ def main() -> None:
     parser.add_argument("--markdown-output", type=Path, default=None)
     parser.add_argument("--insights-output", type=Path, default=None)
     parser.add_argument("--no-il", action="store_true", help="Do not keep IL instructions in the merged JSON output.")
-    parser.add_argument("--keep-temp", action="store_true", help="Keep per-scan temporary JSON files under Data/generated/xp-formula-scan-temp.")
+    parser.add_argument("--keep-temp", action="store_true", help="Keep per-scan temporary JSON files under Data/intermediate/xp-formula-scan-temp.")
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()
