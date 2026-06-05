@@ -233,16 +233,21 @@ INVESTMENT_BAR_CONFIG = {
     },
     "Riding": {
         "default_stop": 100,
-        "stretch_stop": 175,
+        "stretch_stop": 100,
         "worth": "25-100",
-        "context": "175 if herding penalty matters; 200+ for mounted armies",
-        "skip": "250-275 for infantry commanders",
-        "point_read": "For an infantry-heavy party, Sweeping Wind at 100 is the main prize. Later mounted armor/morale is composition-specific.",
+        "context": "125+ only for niche logistics, prisoners, or mounted armies",
+        "skip": "200+ for infantry commanders",
+        "point_read": (
+            "For an infantry-heavy party, Sweeping Wind at 100 is the main prize. Past 100, the tree is "
+            "ally-battle morale, herding, prisoner handling, mounted-only captain value, mounted armor, or personal mount scaling."
+        ),
         "details": {
             100: ("worth", "Sweeping Wind gives campaign speed, which directly supports fight selection."),
-            175: ("context", "Shepherd is excellent if herd penalty is a recurring problem, otherwise optional."),
-            200: ("context", "Mounted kill morale perks are good for cavalry/horse archer formations, not infantry doctrine."),
-            250: ("context", "Mount and mounted-troop armor are real, but not infantry value."),
+            125: ("context", "Relief Force is ally-battle morale; it is not a normal infantry commander target."),
+            175: ("context", "Shepherd is only a logistics pickup if herding penalty is a recurring problem."),
+            200: ("skip", "Mounted kill morale perks are cavalry/horse-archer value, not infantry doctrine."),
+            225: ("context", "Mounted Patrols is prisoner control; useful campaign utility, not infantry combat power."),
+            250: ("skip", "Mount and mounted-troop armor are real for cavalry, but not infantry value."),
             275: ("skip", "Way of the Saddle is personal mount scaling."),
         },
     },
@@ -304,14 +309,19 @@ INVESTMENT_BAR_CONFIG = {
     "Bow": {
         "default_stop": 100,
         "stretch_stop": 175,
-        "worth": "100 for party size; 175 for archer-heavy commanders",
-        "context": "225 if ranged ammunition is a real bottleneck",
-        "skip": "250-275 for commander value",
-        "point_read": "For shock infantry, Bow is mostly Merry Men. Fian-heavy commanders can justify 175/225; personal bow perks after that do not help troops.",
+        "worth": "100 for party size",
+        "context": "175+ only for archer-heavy commanders",
+        "skip": "225+ for shock infantry",
+        "point_read": (
+            "For shock infantry, Bow is mostly Merry Men. At assisted Control 4, Bow 100 needs 2 focus; "
+            "buying Control 3 just to make this a 1-focus pickup is usually worse than spending that "
+            "attribute on Scouting, Medicine, Steward, or a shared Vigor package. The captain bonuses are "
+            "archer/ranged value, and Skirmish Phase Master protects ranged troops, not melee infantry."
+        ),
         "details": {
             100: ("worth", "Merry Men is +5 party size, the universal reason to touch Bow."),
-            175: ("worth", "Skirmish Phase Master is excellent for ranged troops, not melee infantry."),
-            225: ("context", "Deep Quivers is useful for archer-heavy armies, but it is not a shock-infantry breakpoint."),
+            175: ("context", "Skirmish Phase Master is excellent for ranged troops, but does not protect melee infantry."),
+            225: ("context", "Deep Quivers/Horse Master are archer or horse-archer investments, not shock-infantry breakpoints."),
             250: ("skip", "Quick Draw and Ranger's Swiftness are personal/governor value."),
             275: ("skip", "Deadshot is personal scaling."),
         },
@@ -319,13 +329,16 @@ INVESTMENT_BAR_CONFIG = {
     "Crossbow": {
         "default_stop": 0,
         "stretch_stop": 175,
-        "worth": "Only for crossbow/ranged formations",
-        "context": "175 for universal -3% projectile damage if Control is already high",
+        "worth": "None for shock infantry; only for crossbow formations",
+        "context": "175 for crossbow-user projectile mitigation, not infantry resistance",
         "skip": "225+ for shock infantry",
-        "point_read": "This tree is the classic wording trap: most useful rows are ranged-specific and do not protect melee infantry.",
+        "point_read": (
+            "This tree is the classic wording trap. Counter Fire's description sounds broad, but the curated "
+            "damage-model note says it applies to crossbow users, so it does not protect melee infantry."
+        ),
         "details": {
             125: ("context", "Fletcher is good crossbow ammunition, not infantry durability."),
-            175: ("context", "Counter Fire is the one broadly useful defensive row, but -3% projectile damage is expensive if this is the only target."),
+            175: ("context", "Counter Fire is crossbow-user projectile mitigation, not universal ranged resistance for infantry."),
             225: ("context", "Hammer Bolts is crossbow damage only."),
             250: ("context", "Picked Shots/Terror are ranged-specialist economy, HP, or morale pressure."),
             275: ("skip", "Mighty Pull is personal scaling."),
@@ -337,7 +350,12 @@ INVESTMENT_BAR_CONFIG = {
         "worth": "50 and 125",
         "context": "225 for morale/renown; 250 for throwing-heavy troops",
         "skip": "275",
-        "point_read": "Flexible Fighter and Skirmisher are the clean commander picks. After that, the tree becomes throwing-specialist or personal projectile speed.",
+        "point_read": (
+            "Flexible Fighter and Skirmisher are the broad Control pickups. Assisted Control 4 reaches "
+            "Throwing 125 with 2 focus, so the default shock-infantry plan can drop the bought Control "
+            "point. After 125, the tree becomes throwing-specialist, morale/renown utility, or "
+            "personal/projectile-speed value."
+        ),
         "details": {
             50: ("worth", "Flexible Fighter is the cheap mixed-skill troop bonus."),
             125: ("worth", "Skirmisher gives all troops -3% ranged damage taken."),
@@ -362,18 +380,21 @@ INVESTMENT_BAR_CONFIG = {
         },
     },
     "Scouting": {
-        "default_stop": 150,
+        "default_stop": 275,
         "stretch_stop": 275,
-        "worth": "25-150",
-        "context": "175-225 utility; 275 for map-speed maximizers",
+        "worth": "25-150 and 275",
+        "context": "175-225 are path utility on the way to Uncanny Insight",
         "skip": "250 combat rows",
-        "point_read": "Unlike most physical stretches, Scouting 275 can pay back because engagement control is a core doctrine pillar.",
+        "point_read": (
+            "Scouting 275 is the engagement-control capstone. Uncanny Insight gives +7.5% party speed the "
+            "moment it unlocks at 275, then continues scaling; the 175/225 rows are useful path pickups, not the reason to invest."
+        ),
         "details": {
             150: ("worth", "Mounted Scouts is +5 party size on top of the early campaign speed chain."),
-            175: ("context", "Foragers/Beast Whisperer are logistics comfort, not combat power."),
-            225: ("context", "Prisoner lord escape prevention is useful but not build-defining."),
+            175: ("context", "Foragers/Beast Whisperer are useful path logistics, not the investment thesis."),
+            225: ("context", "Keen Sight/Vantage Point are useful path utility, not the investment thesis."),
             250: ("skip", "Rearguard/Vanguard are siege or simulation rows."),
-            275: ("worth", "Uncanny Insight is direct map speed scaling and can be worth it for fight selection."),
+            275: ("worth", "Uncanny Insight is +7.5% party speed immediately at unlock and keeps scaling above 275."),
         },
     },
     "Roguery": {
@@ -743,9 +764,13 @@ def value_rating(row: dict[str, Any], category: str, speed_kind: str | None, fit
     subtype = row_subtype(row)
     role = row_role(row)
     text = row_effect_lower(row)
+    skill = str(row.get("skill", ""))
+    level = int(row.get("level", 0) or 0)
 
     if category == "low_priority_misleading":
         return "low"
+    if skill == "Riding" and level > 100:
+        return "medium"
     if category == "core_troop_lethality":
         if speed_kind == "troop_combat_movement" and fit in {"all troops", "shock-infantry fit"}:
             return "high"
@@ -832,6 +857,10 @@ def record_notes(
         notes.append("Army-leader effect; weaker fit for a single-party commander.")
     if "simulation" in row_triggers(row):
         notes.append("Simulation/autoresolve row, not live tactical combat.")
+    if str(row.get("skill", "")) == "Riding" and int(row.get("level", 0) or 0) > 100:
+        notes.append("Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling.")
+    if str(row.get("perk_string_id", "")) == "CrossbowCounterFire":
+        notes.append("Hidden current-weapon gate: benefits crossbow users, not melee infantry or bow archers.")
     if fit in {"ranged-specific", "mounted-specific"}:
         notes.append(f"{fit}; do not assume it buffs infantry.")
     if comparison:
@@ -1130,16 +1159,24 @@ def build_investment_bars(rows: list[dict[str, Any]], records: list[dict[str, An
 
     physical_cut_summary = [
         {
+            "skill": "Control baseline",
+            "read": "Drop the bought Control point for the default shock-infantry plan. Controlled Smith plus Steady can make effective Control 4, where Bow 100 and Throwing 125 each need 2 focus; buy Control only for ranged-specialist paths or if one saved focus is worth the attribute.",
+        },
+        {
             "skill": "Crossbow",
-            "read": "Cut entirely for shock infantry unless the formation is actually ranged. The old crossbow-ranged-resistance assumption was not universal.",
+            "read": "Cut entirely for shock infantry unless the formation is actually crossbow-focused. Counter Fire is crossbow-user mitigation, not universal infantry ranged resistance.",
         },
         {
             "skill": "Bow",
-            "read": "Stop at 100 for Merry Men unless the commander is Fian/archer-heavy.",
+            "read": "Stop at 100 for Merry Men unless the commander is Fian/archer-heavy; Bow 175+ is ranged composition value, not infantry protection.",
         },
         {
             "skill": "Throwing",
-            "read": "Stop at 125 for Flexible Fighter plus Skirmisher; later tiers are morale/QoL or throwing-specialist.",
+            "read": "Stop at 125 for Flexible Fighter plus Skirmisher; later tiers are morale/renown utility, projectile speed, or throwing-specialist.",
+        },
+        {
+            "skill": "Scouting",
+            "read": "Push to 275 as a core engagement-control target. Uncanny Insight gives +7.5% party speed immediately at unlock, and 175/225 are just path utility.",
         },
         {
             "skill": "Two Handed",
@@ -1155,7 +1192,7 @@ def build_investment_bars(rows: list[dict[str, Any]], records: list[dict[str, An
         },
         {
             "skill": "Riding",
-            "read": "Stop at 100 for infantry-heavy parties; mounted armor/morale tiers are cavalry-specific.",
+            "read": "Stop at 100 for infantry-heavy parties. Past that is niche logistics, prisoner utility, mounted-only captain value, or personal mount scaling.",
         },
     ]
 
@@ -1180,6 +1217,12 @@ def build_investment_bars(rows: list[dict[str, Any]], records: list[dict[str, An
                 "Fencer Smith gives +1 focus to One Handed and +1 focus to Two Handed, so it can function as a "
                 "temporary training/refund tool for the Vigor package if the build can give up Enduring Smith while "
                 "those weapon skills are being pushed. The granted focus is not generic and does not apply to Polearm."
+            ),
+            "control_baseline_note": (
+                "Default shock-infantry Control can be planned as 2 purchased attribute, 4 effective attribute "
+                "after Controlled Smith plus Steady. At Control 4, 2 focus reaches level 126, enough for both "
+                "Bow 100 Merry Men and Throwing 125 Skirmisher. Control 5 mostly saves one focus on Bow 100, "
+                "so it is a ranged-specialist or luxury choice rather than a default attribute buy."
             ),
             "non_monotonic_note": (
                 "Some bars are not strictly monotonic: a dead 225 tier can be followed by a strong 250 perk. "
@@ -1908,6 +1951,9 @@ def write_investment_bar_markdown(payload: dict[str, Any], path: Path, workspace
         "",
         "> [!NOTE]",
         f"> {bars['assumptions']['vigor_hyper_stretch_note']}",
+        "",
+        "> [!NOTE]",
+        f"> {bars['assumptions']['control_baseline_note']}",
         "",
         "> [!NOTE]",
         f"> {bars['assumptions']['non_monotonic_note']}",

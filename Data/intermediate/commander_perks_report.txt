@@ -1,6 +1,6 @@
 # Commander Perks Report
 
-Generated: 2026-06-05T14:21:22.986402+03:00
+Generated: 2026-06-05T15:19:54.709962+03:00
 
 This generated report is tuned for an elite one-party commander build: first make every troop as lethal as possible, then keep enough campaign speed to choose fights, then add party size once the force can still catch worthwhile targets.
 
@@ -76,7 +76,6 @@ Direct live-battle power per soldier: damage, combat skill, attack cadence, accu
 | high | Polearm | 175 | Phalanx | party leader | all troops |  | 30 | 30 melee weapon skills to troops in your party while in shield wall formation. |  |
 | high | Polearm | 175 | Phalanx | captain | all troops |  | 3% | 3% damage with polearms by troops in your formation. |  |
 | high | One Handed | 200 | Fleet of Foot | captain | shock-infantry fit | troop_combat_movement | 4% | 4% movement speed to infantry in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. |
-| high | Riding | 200 | Annoying Buzz | captain | all troops |  | 5% | 5% battle morale penalty to enemies with mounted ranged kills by troops in your formation. |  |
 | high | Roguery | 200 | Carver | captain | all troops |  | 2% | 2% one handed damage by troops under your formation. |  |
 | high | Two Handed | 200 | Reckless Charge | captain | shock-infantry fit | troop_combat_movement | 2% | 2% damage and movement speed to infantry in your formation. | Shock-infantry multiplier: closes under fire faster, keeps melee pressure, and improves formation responsiveness. Speed competes with a troop HP alternative here. For shock infantry, speed can be the scarcer multiplier because Medicine and resistance stacks already add a lot of survivability. |
 | high | Bow | 225 | Deep Quivers | party leader | all troops |  | 1 | 1 extra arrow per quiver to troops in your party. |  |
@@ -88,6 +87,7 @@ Direct live-battle power per soldier: damage, combat skill, attack cadence, accu
 | high | Polearm | 250 | Sharpen the Tip | captain | shock-infantry fit |  | 5% | 5% damage with thrust attacks by infantry troops in your formation. |  |
 | high | Roguery | 250 | Dash and Slash | captain | all troops |  | 2% | 2% two handed weapon damage by troops in your formation. |  |
 | high | Tactics | 250 | Gens d'armes | captain | shock-infantry fit |  | 2% | 2% damage to infantry by cavalry troops in your formation. |  |
+| medium | Riding | 200 | Annoying Buzz | captain | all troops |  | 5% | 5% battle morale penalty to enemies with mounted ranged kills by troops in your formation. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. |
 | medium | Bow | 25 | Bow Control | captain | ranged-specific |  | 5% | 5% damage with bows by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
 | medium | Bow | 25 | Dead Aim | captain | ranged-specific |  | 20 | 20 Bow skill to troops in your formation. | ranged-specific; do not assume it buffs infantry. |
 | medium | Polearm | 25 | Cavalry | captain | mounted-specific |  | 2% | 2% damage by cavalry troops in your formation. | mounted-specific; do not assume it buffs infantry. |
@@ -109,12 +109,12 @@ Direct live-battle power per soldier: damage, combat skill, attack cadence, accu
 | medium | Bow | 125 | Strong bows | captain | ranged-specific |  | 5% | 5% damage with bows by tier 3+ troops in your formation. | ranged-specific; do not assume it buffs infantry. |
 | medium | Crossbow | 125 | Puncture | captain | ranged-specific |  | 5% | 5% armor penetration with crossbows by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
 | medium | Crossbow | 150 | Loose and Move | captain | ranged-specific | troop_combat_movement | 5% | 5% movement speed to ranged troops in your formation. | Troop movement speed for this troop class; useful tactically, but not an infantry-wide mobility buff. ranged-specific; do not assume it buffs infantry. |
-| medium | Riding | 150 | Horse Archer | captain | ranged-specific |  | 5% | 5% damage by mounted archers in your formation. | ranged-specific; do not assume it buffs infantry. |
-| medium | Riding | 150 | Mounted Warrior | captain | mounted-specific |  | 5% | 5% mounted melee damage by troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Riding | 150 | Horse Archer | captain | ranged-specific |  | 5% | 5% damage by mounted archers in your formation. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. ranged-specific; do not assume it buffs infantry. |
+| medium | Riding | 150 | Mounted Warrior | captain | mounted-specific |  | 5% | 5% mounted melee damage by troops in your formation. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. mounted-specific; do not assume it buffs infantry. |
 | medium | Bow | 175 | Skirmish Phase Master | captain | ranged-specific |  | -10% | -10% damage taken from projectiles by ranged troops in your formation. | ranged-specific; do not assume it buffs infantry. |
-| medium | Crossbow | 175 | Counter Fire | captain | situational |  | -3% | -3% damage taken from projectiles by your troops. |  |
+| medium | Crossbow | 175 | Counter Fire | captain | situational |  | -3% | -3% damage taken from projectiles by your troops. | Hidden current-weapon gate: benefits crossbow users, not melee infantry or bow archers. |
 | medium | Roguery | 175 | One of the Family | party leader | situational |  | 10 | 10 bonus Vigor and Control skills to bandit units in your party |  |
-| medium | Riding | 200 | Thunderous Charge | captain | mounted-specific |  | 10% | 10% battle morale penalty to enemies with mounted melee kills by troops in your formation. | mounted-specific; do not assume it buffs infantry. |
+| medium | Riding | 200 | Thunderous Charge | captain | mounted-specific |  | 10% | 10% battle morale penalty to enemies with mounted melee kills by troops in your formation. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. mounted-specific; do not assume it buffs infantry. |
 | medium | Throwing | 200 | Splinters | captain | ranged-specific |  | 50% | 50% damage to shields with throwing weapons by troops in your formation. | ranged-specific; do not assume it buffs infantry. |
 | medium | Athletics | 225 | Strong Arms | captain | ranged-specific |  | 20 | 20 throwing skill to troops in your formation. | ranged-specific; do not assume it buffs infantry. |
 | medium | Bow | 225 | Horse Master | captain | ranged-specific |  | 30 | 30 bow skill to horse archers in your formation | ranged-specific; do not assume it buffs infantry. |
@@ -137,9 +137,7 @@ Live-battle durability for elite troops: hit points, armor, damage reduction, sh
 | high | Tactics | 200 | Elite Reserves | captain | all troops |  | -5% | -5% damage taken by troops in your formation. |  |
 | high | Engineering | 225 | Metallurgy | captain | all troops |  | 5 | 5 armor to all equipped armor pieces of troops in your formation. |  |
 | high | Athletics | 250 | Ignore Pain | captain | shock-infantry fit |  | 5 | 5 armor to all equipped armor pieces of foot troops in your formation. |  |
-| high | Riding | 250 | Tough Steed | captain | all troops |  | 10 | 10 armor to mounts of troops in your formation. |  |
 | high | Medicine | 275 | Minister of Health | personal | all troops |  | 1 | 1 hit point to troops for every skill point above 250. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
-| high | Riding | 250 | Dauntless Steed | captain | mounted-specific |  | 5 | 5 armor to all equipped armor pieces of mounted troops in your formation. | mounted-specific; do not assume it buffs infantry. |
 | medium | Athletics | 25 | Well Built | party leader | shock-infantry fit |  | 5 | 5 hit points to foot troops in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. HP competes with a troop speed alternative here. Take HP when the formation already reaches contact reliably; otherwise speed may prevent more arrow exposure than the flat HP absorbs. |
 | medium | Tactics | 25 | Loose Formations | captain | all troops |  | -25% | -25% morale penalty when troops in your formation use line, loose, circle or scatter formations. |  |
 | medium | Tactics | 25 | Tight Formations | captain | all troops |  | -25% | -25% morale penalty when troops in your formation use shield wall, square, skein, column formations. |  |
@@ -157,6 +155,7 @@ Live-battle durability for elite troops: hit points, armor, damage reduction, sh
 | medium | Leadership | 225 | Great Leader | party leader | all troops |  | 5 | 5 battle morale to troops that are of same culture as you. |  |
 | medium | Leadership | 225 | Make a Difference | personal | all troops |  | 100% | 100% battle morale to troops when you kill an enemy in battle. |  |
 | medium | One Handed | 225 | Unwavering Defense | party leader | shock-infantry fit |  | 10 | 10 hit points to infantry in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
+| medium | Riding | 250 | Tough Steed | captain | all troops |  | 10 | 10 armor to mounts of troops in your formation. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. |
 | medium | Charm | 25 | Self Promoter | party leader | situational |  | 1 | 1 morale while defending in a besieged settlement. |  |
 | medium | Crossbow | 25 | Marksmen | party leader | ranged-specific |  | 10% | 10% starting battle morale to ranged troops in your party. | ranged-specific; do not assume it buffs infantry. |
 | medium | Leadership | 50 | Fervent Attacker | party leader | situational |  | 4 | 4 starting battle morale when attacking. |  |
@@ -164,7 +163,7 @@ Live-battle durability for elite troops: hit points, armor, damage reduction, sh
 | medium | Medicine | 75 | Sledges | party leader | situational |  | 15 | 15 hit points to mounts in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. |
 | medium | Crossbow | 100 | Peasant Leader | party leader | situational |  | 10% | 10% battle morale to tier 1 to 3 troops |  |
 | medium | Medicine | 125 | Siege Medic | surgeon | situational |  | 50% | 50% chance of troops getting wounded instead of getting killed during siege bombardment. |  |
-| medium | Riding | 125 | Relief Force | party leader | situational |  | 10 | 10 starting battle morale when you join an ongoing battle of your allies. |  |
+| medium | Riding | 125 | Relief Force | party leader | situational |  | 10 | 10 starting battle morale when you join an ongoing battle of your allies. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. |
 | medium | Scouting | 150 | Patrols | scout | situational |  | 5 | 5 battle morale against bandit parties. |  |
 | medium | Leadership | 175 | Uplifting Spirit | party leader | situational |  | 10 | 10 battle morale in siege battles. |  |
 | medium | Medicine | 175 | Health Advice | surgeon | situational |  | 0% | Wounded troops do not decrease morale in battles. |  |
@@ -177,6 +176,7 @@ Live-battle durability for elite troops: hit points, armor, damage reduction, sh
 | medium | Crossbow | 250 | Picked Shots | party leader | ranged-specific |  | 5 | 5 hit points to ranged troops in your party. | HP is useful, but it is easier to stack through Medicine than troop combat speed is. ranged-specific; do not assume it buffs infantry. |
 | medium | Leadership | 250 | We Pledge our Swords | party leader | situational |  | 1 | 1 battle morale at the beginning of the battle for each tier 6 troop in the party up to 10 morale. |  |
 | medium | Medicine | 250 | Helping Hands | surgeon | situational |  | 2% | 2% troop recovery rate for every 10 troop in your party. |  |
+| medium | Riding | 250 | Dauntless Steed | captain | mounted-specific |  | 5 | 5 armor to all equipped armor pieces of mounted troops in your formation. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. mounted-specific; do not assume it buffs infantry. |
 | medium | Scouting | 250 | Rearguard | party leader | situational |  | 20% | 20% wounded troop recovery speed while in an army. |  |
 
 
@@ -198,9 +198,9 @@ Campaign movement and pursuit tools that let the party choose fights, avoid bad 
 | high | Scouting | 100 | Unburdened | scout | one-party mobility | campaign_party_speed | -20% | -20% overburden penalty. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
 | high | Scouting | 125 | Tracker | scout | one-party mobility | campaign_party_speed | 2% | 2% travel speed while following a hostile party. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
 | high | Athletics | 175 | Energetic | party leader | one-party mobility | campaign_party_speed | -20% | -20% overburdened speed penalty. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
-| high | Riding | 175 | Shepherd | party leader | one-party mobility | campaign_party_speed | -50% | -50% herding speed penalty. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
 | high | Athletics | 200 | Strong | party leader | shock-infantry fit | campaign_party_speed | 5% | 5% party speed by foot troops in your party. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
 | high | Scouting | 275 | Uncanny Insight | scout | one-party mobility | campaign_party_speed | 0.1% | 0.1% party speed for every skill point above 200 scouting skill. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. |
+| medium | Riding | 175 | Shepherd | party leader | one-party mobility | campaign_party_speed | -50% | -50% herding speed penalty. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. |
 | medium | Tactics | 150 | Call To Arms | army leader | army-only support | campaign_party_speed | 10% | 10% movement speed to parties called to your army. | Engagement-control perk: helps choose, refuse, or chase fights on the campaign map. Army-leader effect; weaker fit for a single-party commander. |
 
 
@@ -295,7 +295,7 @@ Party size and logistics that scale the elite stack. These are valuable, but the
 | medium | Steward | 200 | Forced Labor | quartermaster | situational |  | 0% | Prisoners in your party provide carry capacity as if they are standard troops. |  |
 | medium | Throwing | 200 | Resourceful | party leader | ranged-specific |  | 10% | 10% experience from battles to troops in your party equipped with throwing weapons. | ranged-specific; do not assume it buffs infantry. |
 | medium | Leadership | 225 | Make a Difference | party leader | ranged-specific |  | 10% | 10% shared experience for archers. | ranged-specific; do not assume it buffs infantry. |
-| medium | Riding | 225 | Mounted Patrols | party leader | situational |  | -50% | -50% escape chance to prisoners in your party. |  |
+| medium | Riding | 225 | Mounted Patrols | party leader | situational |  | -50% | -50% escape chance to prisoners in your party. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. |
 | medium | Scouting | 225 | Keen Sight | party leader | situational |  | -50% | -50% chance of prisoner lords escaping from your party. |  |
 | medium | Scouting | 225 | Vantage Point | party leader | situational |  | 10 | 10 prisoner limit. |  |
 | medium | Steward | 225 | Arenicos' Mules | quartermaster | situational |  | 20% | 20% carrying capacity for pack animals in your party. |  |
@@ -372,14 +372,14 @@ Personal-only, governor-only, siege-only, simulation-only, projectile-speed, and
 | low | Crossbow | 200 | Steady | personal | personal only |  | -50% | -50% accuracy penalty with crossbows while mounted. |  |
 | low | Leadership | 200 | Trusted Commander | party leader | simulation only |  | 20% | 20% experience for troops, when they are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
 | low | One Handed | 200 | Fleet of Foot | personal | personal only | personal_combat_movement | 4% | 4% combat movement speed. |  |
-| low | Riding | 200 | Thunderous Charge | personal | personal only |  | 20% | 20% battle morale penalty to enemies with mounted melee kills. |  |
+| low | Riding | 200 | Thunderous Charge | personal | personal only |  | 20% | 20% battle morale penalty to enemies with mounted melee kills. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. |
 | low | Tactics | 200 | Elite Reserves | party leader | simulation only |  | -20% | -20% less damage to tier 3+ units when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
 | low | Tactics | 200 | Encirclement | party leader | simulation only |  | 5% | 5% damage to outnumbered enemies when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
 | low | Throwing | 200 | Resourceful | personal | personal only |  | 2 | 2 ammunition for throwing weapons. |  |
 | low | Two Handed | 200 | Reckless Charge | personal | personal only |  | 20% | 20% damage bonus from speed with two handed weapons while on foot. |  |
 | low | Athletics | 225 | Strong Arms | personal | personal only |  | 5% | 5% damage with throwing weapons. |  |
 | low | Engineering | 225 | Improved Tools | engineer | situational | siege_speed | 20% | 20% siege camp preparation speed. | Siege-speed effect; useful in sieges but outside the default one-party shock-infantry doctrine. |
-| low | Riding | 225 | Cavalry Tactics | clan leader | governor/settlement only |  | 30% | 30% volunteering rate of cavalry troops in the settlements governed by your clan. |  |
+| low | Riding | 225 | Cavalry Tactics | clan leader | governor/settlement only |  | 30% | 30% volunteering rate of cavalry troops in the settlements governed by your clan. | Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling. |
 | low | Tactics | 225 | Pre Battle Maneuvers | party leader | simulation only |  | 1% | 1% damage per 100 skill difference with the enemy when troops are sent to confront the enemy. | Simulation/autoresolve row, not live tactical combat. |
 | low | Throwing | 225 | Perfect Technique | personal | personal only | projectile_speed | 25% | 25% travel speed to your throwing weapons. | Projectile travel speed, not party mobility or troop foot speed. |
 | low | Throwing | 225 | Perfect Technique | captain | ranged-specific | projectile_speed | 10% | 10% travel speed to throwing weapons of troops in your formation. | Projectile travel speed, not party mobility or troop foot speed. ranged-specific; do not assume it buffs infantry. |

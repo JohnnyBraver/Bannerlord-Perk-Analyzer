@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T14:21:22.986402+03:00",
+  "generated_at": "2026-06-05T15:19:54.709962+03:00",
   "inputs": {
     "perk_export": "Data\\export\\perk-effects.json",
     "banner_items": "Data\\raw\\banner-items.json"
@@ -54,6 +54,7 @@
       "default_lens": "Elite shock-infantry-heavy one-party commander.",
       "assisted_physical_note": "Endurance-skill attribute perks can raise one chosen physical attribute to 4 without purchased attribute points: Vigor via Smithing 150 plus Athletics 200, Control via the matching alternatives, or Endurance via Athletics 175 plus Smithing 225. The assisted cost column uses that as a practical physical baseline, but those free points are not available to every physical attribute at the same time, and enabler perks still have to be reached before the assisted baseline exists.",
       "vigor_hyper_stretch_note": "At Vigor 5, Two Handed reaches levels 175/200/225/250 with 3/4/5/5 focus. Smithing 225 Fencer Smith gives +1 focus to One Handed and +1 focus to Two Handed, so it can function as a temporary training/refund tool for the Vigor package if the build can give up Enduring Smith while those weapon skills are being pushed. The granted focus is not generic and does not apply to Polearm.",
+      "control_baseline_note": "Default shock-infantry Control can be planned as 2 purchased attribute, 4 effective attribute after Controlled Smith plus Steady. At Control 4, 2 focus reaches level 126, enough for both Bow 100 Merry Men and Throwing 125 Skirmisher. Control 5 mostly saves one focus on Bow 100, so it is a ranged-specialist or luxury choice rather than a default attribute buy.",
       "non_monotonic_note": "Some bars are not strictly monotonic: a dead 225 tier can be followed by a strong 250 perk. The report calls those out explicitly instead of pretending every skill has one clean cutoff."
     },
     "band_meta": {
@@ -72,16 +73,24 @@
     },
     "physical_cut_summary": [
       {
+        "skill": "Control baseline",
+        "read": "Drop the bought Control point for the default shock-infantry plan. Controlled Smith plus Steady can make effective Control 4, where Bow 100 and Throwing 125 each need 2 focus; buy Control only for ranged-specialist paths or if one saved focus is worth the attribute."
+      },
+      {
         "skill": "Crossbow",
-        "read": "Cut entirely for shock infantry unless the formation is actually ranged. The old crossbow-ranged-resistance assumption was not universal."
+        "read": "Cut entirely for shock infantry unless the formation is actually crossbow-focused. Counter Fire is crossbow-user mitigation, not universal infantry ranged resistance."
       },
       {
         "skill": "Bow",
-        "read": "Stop at 100 for Merry Men unless the commander is Fian/archer-heavy."
+        "read": "Stop at 100 for Merry Men unless the commander is Fian/archer-heavy; Bow 175+ is ranged composition value, not infantry protection."
       },
       {
         "skill": "Throwing",
-        "read": "Stop at 125 for Flexible Fighter plus Skirmisher; later tiers are morale/QoL or throwing-specialist."
+        "read": "Stop at 125 for Flexible Fighter plus Skirmisher; later tiers are morale/renown utility, projectile speed, or throwing-specialist."
+      },
+      {
+        "skill": "Scouting",
+        "read": "Push to 275 as a core engagement-control target. Uncanny Insight gives +7.5% party speed immediately at unlock, and 175/225 are just path utility."
       },
       {
         "skill": "Two Handed",
@@ -97,7 +106,7 @@
       },
       {
         "skill": "Riding",
-        "read": "Stop at 100 for infantry-heavy parties; mounted armor/morale tiers are cavalry-specific."
+        "read": "Stop at 100 for infantry-heavy parties. Past that is niche logistics, prisoner utility, mounted-only captain value, or personal mount scaling."
       }
     ],
     "skills": [
@@ -368,10 +377,10 @@
           "category": "low",
           "pressure": "assisted baseline"
         },
-        "worth": "100 for party size; 175 for archer-heavy commanders",
-        "context": "225 if ranged ammunition is a real bottleneck",
-        "skip": "250-275 for commander value",
-        "point_read": "For shock infantry, Bow is mostly Merry Men. Fian-heavy commanders can justify 175/225; personal bow perks after that do not help troops."
+        "worth": "100 for party size",
+        "context": "175+ only for archer-heavy commanders",
+        "skip": "225+ for shock infantry",
+        "point_read": "For shock infantry, Bow is mostly Merry Men. At assisted Control 4, Bow 100 needs 2 focus; buying Control 3 just to make this a 1-focus pickup is usually worse than spending that attribute on Scouting, Medicine, Steward, or a shared Vigor package. The captain bonuses are archer/ranged value, and Skirmish Phase Master protects ranged troops, not melee infantry."
       },
       {
         "skill": "Crossbow",
@@ -436,10 +445,10 @@
           "category": "low",
           "pressure": "assisted baseline"
         },
-        "worth": "Only for crossbow/ranged formations",
-        "context": "175 for universal -3% projectile damage if Control is already high",
+        "worth": "None for shock infantry; only for crossbow formations",
+        "context": "175 for crossbow-user projectile mitigation, not infantry resistance",
         "skip": "225+ for shock infantry",
-        "point_read": "This tree is the classic wording trap: most useful rows are ranged-specific and do not protect melee infantry."
+        "point_read": "This tree is the classic wording trap. Counter Fire's description sounds broad, but the curated damage-model note says it applies to crossbow users, so it does not protect melee infantry."
       },
       {
         "skill": "Throwing",
@@ -507,7 +516,7 @@
         "worth": "50 and 125",
         "context": "225 for morale/renown; 250 for throwing-heavy troops",
         "skip": "275",
-        "point_read": "Flexible Fighter and Skirmisher are the clean commander picks. After that, the tree becomes throwing-specialist or personal projectile speed."
+        "point_read": "Flexible Fighter and Skirmisher are the broad Control pickups. Assisted Control 4 reaches Throwing 125 with 2 focus, so the default shock-infantry plan can drop the bought Control point. After 125, the tree becomes throwing-specialist, morale/renown utility, or personal/projectile-speed value."
       },
       {
         "skill": "Athletics",
@@ -611,39 +620,39 @@
           "category": "low",
           "pressure": "assisted baseline"
         },
-        "stretch_stop": 175,
+        "stretch_stop": 100,
         "stretch_cost": {
           "baseline_attribute": 2,
           "attribute": 2,
-          "focus": 4,
-          "limit": 178,
-          "peak_learning_range": 130,
+          "focus": 3,
+          "limit": 138,
+          "peak_learning_range": 100,
           "purchased_attributes": 0,
-          "focus_points": 4,
-          "allocation_points": 4,
-          "weighted_allocation_cost": 4,
-          "level_gate_cost": 4,
+          "focus_points": 3,
+          "allocation_points": 3,
+          "weighted_allocation_cost": 3,
+          "level_gate_cost": 3,
           "category": "low",
           "pressure": "focus-only"
         },
         "assisted_stretch_cost": {
           "baseline_attribute": 4,
           "attribute": 4,
-          "focus": 4,
-          "limit": 206,
-          "peak_learning_range": 150,
+          "focus": 2,
+          "limit": 126,
+          "peak_learning_range": 90,
           "purchased_attributes": 0,
-          "focus_points": 4,
-          "allocation_points": 4,
-          "weighted_allocation_cost": 4,
-          "level_gate_cost": 4,
+          "focus_points": 2,
+          "allocation_points": 2,
+          "weighted_allocation_cost": 2,
+          "level_gate_cost": 2,
           "category": "low",
           "pressure": "assisted baseline"
         },
         "worth": "25-100",
-        "context": "175 if herding penalty matters; 200+ for mounted armies",
-        "skip": "250-275 for infantry commanders",
-        "point_read": "For an infantry-heavy party, Sweeping Wind at 100 is the main prize. Later mounted armor/morale is composition-specific."
+        "context": "125+ only for niche logistics, prisoners, or mounted armies",
+        "skip": "200+ for infantry commanders",
+        "point_read": "For an infantry-heavy party, Sweeping Wind at 100 is the main prize. Past 100, the tree is ally-battle morale, herding, prisoner handling, mounted-only captain value, mounted armor, or personal mount scaling."
       },
       {
         "skill": "Smithing",
@@ -760,20 +769,20 @@
         "attribute": "Cunning",
         "physical_skill": false,
         "assisted_baseline_attribute": null,
-        "default_stop": 150,
+        "default_stop": 275,
         "default_cost": {
           "baseline_attribute": 2,
-          "attribute": 2,
-          "focus": 4,
-          "limit": 178,
-          "peak_learning_range": 130,
-          "purchased_attributes": 0,
-          "focus_points": 4,
-          "allocation_points": 4,
-          "weighted_allocation_cost": 4,
-          "level_gate_cost": 4,
-          "category": "low",
-          "pressure": "focus-only"
+          "attribute": 7,
+          "focus": 5,
+          "limit": 288,
+          "peak_learning_range": 210,
+          "purchased_attributes": 5,
+          "focus_points": 5,
+          "allocation_points": 10,
+          "weighted_allocation_cost": 25,
+          "level_gate_cost": 20,
+          "category": "high",
+          "pressure": "specialist"
         },
         "assisted_default_cost": null,
         "stretch_stop": 275,
@@ -792,10 +801,10 @@
           "pressure": "specialist"
         },
         "assisted_stretch_cost": null,
-        "worth": "25-150",
-        "context": "175-225 utility; 275 for map-speed maximizers",
+        "worth": "25-150 and 275",
+        "context": "175-225 are path utility on the way to Uncanny Insight",
         "skip": "250 combat rows",
-        "point_read": "Unlike most physical stretches, Scouting 275 can pay back because engagement control is a core doctrine pillar."
+        "point_read": "Scouting 275 is the engagement-control capstone. Uncanny Insight gives +7.5% party speed the moment it unlocks at 275, then continues scaling; the 175/225 rows are useful path pickups, not the reason to invest."
       },
       {
         "skill": "Tactics",
@@ -2169,8 +2178,8 @@
         "attribute": "Control",
         "physical_skill": true,
         "level": 175,
-        "band": "worth",
-        "band_title": "Worth It",
+        "band": "context",
+        "band_title": "Meh or Contextual",
         "cost": {
           "baseline_attribute": 2,
           "attribute": 2,
@@ -2220,7 +2229,7 @@
           }
         ],
         "extracted_summary": "Skirmish Phase Master: -10% damage taken from projectiles by ranged troops in your formation.",
-        "note": "Skirmish Phase Master is excellent for ranged troops, not melee infantry."
+        "note": "Skirmish Phase Master is excellent for ranged troops, but does not protect melee infantry."
       },
       {
         "skill": "Bow",
@@ -2278,7 +2287,7 @@
           }
         ],
         "extracted_summary": "Deep Quivers: 1 extra arrow per quiver to troops in your party. / Horse Master: 30 bow skill to horse archers in your formation",
-        "note": "Deep Quivers is useful for archer-heavy armies, but it is not a shock-infantry breakpoint."
+        "note": "Deep Quivers/Horse Master are archer or horse-archer investments, not shock-infantry breakpoints."
       },
       {
         "skill": "Bow",
@@ -2519,7 +2528,7 @@
           }
         ],
         "extracted_summary": "Counter Fire: -3% damage taken from projectiles by your troops. / Mounted Crossbowman: 5% experience gained to ranged troops in your party.",
-        "note": "Counter Fire is the one broadly useful defensive row, but -3% projectile damage is expensive if this is the only target."
+        "note": "Counter Fire is crossbow-user projectile mitigation, not universal ranged resistance for infantry."
       },
       {
         "skill": "Crossbow",
@@ -3278,6 +3287,55 @@
         "skill": "Riding",
         "attribute": "Endurance",
         "physical_skill": true,
+        "level": 125,
+        "band": "context",
+        "band_title": "Meh or Contextual",
+        "cost": {
+          "baseline_attribute": 2,
+          "attribute": 2,
+          "focus": 3,
+          "limit": 138,
+          "peak_learning_range": 100,
+          "purchased_attributes": 0,
+          "focus_points": 3,
+          "allocation_points": 3,
+          "weighted_allocation_cost": 3,
+          "level_gate_cost": 3,
+          "category": "low",
+          "pressure": "focus-only"
+        },
+        "assisted_cost": {
+          "baseline_attribute": 4,
+          "attribute": 4,
+          "focus": 2,
+          "limit": 126,
+          "peak_learning_range": 90,
+          "purchased_attributes": 0,
+          "focus_points": 2,
+          "allocation_points": 2,
+          "weighted_allocation_cost": 2,
+          "level_gate_cost": 2,
+          "category": "low",
+          "pressure": "assisted baseline"
+        },
+        "extracted_rows": [
+          {
+            "id": "RidingReliefForce|primary",
+            "perk": "Relief Force",
+            "role": "party leader",
+            "category": "combat_staying_power",
+            "rating": "medium",
+            "fit": "situational",
+            "effect": "10 starting battle morale when you join an ongoing battle of your allies."
+          }
+        ],
+        "extracted_summary": "Relief Force: 10 starting battle morale when you join an ongoing battle of your allies.",
+        "note": "Relief Force is ally-battle morale; it is not a normal infantry commander target."
+      },
+      {
+        "skill": "Riding",
+        "attribute": "Endurance",
+        "physical_skill": true,
         "level": 175,
         "band": "context",
         "band_title": "Meh or Contextual",
@@ -3315,21 +3373,21 @@
             "perk": "Shepherd",
             "role": "party leader",
             "category": "engagement_control",
-            "rating": "high",
+            "rating": "medium",
             "fit": "one-party mobility",
             "effect": "-50% herding speed penalty."
           }
         ],
         "extracted_summary": "Shepherd: -50% herding speed penalty.",
-        "note": "Shepherd is excellent if herd penalty is a recurring problem, otherwise optional."
+        "note": "Shepherd is only a logistics pickup if herding penalty is a recurring problem."
       },
       {
         "skill": "Riding",
         "attribute": "Endurance",
         "physical_skill": true,
         "level": 200,
-        "band": "context",
-        "band_title": "Meh or Contextual",
+        "band": "skip",
+        "band_title": "Usually Skip",
         "cost": {
           "baseline_attribute": 2,
           "attribute": 2,
@@ -3364,7 +3422,7 @@
             "perk": "Annoying Buzz",
             "role": "captain",
             "category": "core_troop_lethality",
-            "rating": "high",
+            "rating": "medium",
             "fit": "all troops",
             "effect": "5% battle morale penalty to enemies with mounted ranged kills by troops in your formation."
           },
@@ -3388,15 +3446,73 @@
           }
         ],
         "extracted_summary": "Annoying Buzz: 5% battle morale penalty to enemies with mounted ranged kills by troops in your formation. / Thunderous Charge: 10% battle morale penalty to enemies with mounted melee kills by troops in your formation.",
-        "note": "Mounted kill morale perks are good for cavalry/horse archer formations, not infantry doctrine."
+        "note": "Mounted kill morale perks are cavalry/horse-archer value, not infantry doctrine."
+      },
+      {
+        "skill": "Riding",
+        "attribute": "Endurance",
+        "physical_skill": true,
+        "level": 225,
+        "band": "context",
+        "band_title": "Meh or Contextual",
+        "cost": {
+          "baseline_attribute": 2,
+          "attribute": 3,
+          "focus": 5,
+          "limit": 232,
+          "peak_learning_range": 170,
+          "purchased_attributes": 1,
+          "focus_points": 5,
+          "allocation_points": 6,
+          "weighted_allocation_cost": 9,
+          "level_gate_cost": 5,
+          "category": "medium",
+          "pressure": "attribute-gated"
+        },
+        "assisted_cost": {
+          "baseline_attribute": 4,
+          "attribute": 4,
+          "focus": 5,
+          "limit": 246,
+          "peak_learning_range": 180,
+          "purchased_attributes": 0,
+          "focus_points": 5,
+          "allocation_points": 5,
+          "weighted_allocation_cost": 5,
+          "level_gate_cost": 5,
+          "category": "low",
+          "pressure": "assisted baseline"
+        },
+        "extracted_rows": [
+          {
+            "id": "RidingMountedPatrols|primary",
+            "perk": "Mounted Patrols",
+            "role": "party leader",
+            "category": "party_scaling",
+            "rating": "medium",
+            "fit": "situational",
+            "effect": "-50% escape chance to prisoners in your party."
+          },
+          {
+            "id": "RidingCavalryTactics|primary",
+            "perk": "Cavalry Tactics",
+            "role": "clan leader",
+            "category": "low_priority_misleading",
+            "rating": "low",
+            "fit": "governor/settlement only",
+            "effect": "30% volunteering rate of cavalry troops in the settlements governed by your clan."
+          }
+        ],
+        "extracted_summary": "Mounted Patrols: -50% escape chance to prisoners in your party.",
+        "note": "Mounted Patrols is prisoner control; useful campaign utility, not infantry combat power."
       },
       {
         "skill": "Riding",
         "attribute": "Endurance",
         "physical_skill": true,
         "level": 250,
-        "band": "context",
-        "band_title": "Meh or Contextual",
+        "band": "skip",
+        "band_title": "Usually Skip",
         "cost": {
           "baseline_attribute": 2,
           "attribute": 5,
@@ -3431,7 +3547,7 @@
             "perk": "Tough Steed",
             "role": "captain",
             "category": "combat_staying_power",
-            "rating": "high",
+            "rating": "medium",
             "fit": "all troops",
             "effect": "10 armor to mounts of troops in your formation."
           },
@@ -3440,13 +3556,13 @@
             "perk": "Dauntless Steed",
             "role": "captain",
             "category": "combat_staying_power",
-            "rating": "high",
+            "rating": "medium",
             "fit": "mounted-specific",
             "effect": "5 armor to all equipped armor pieces of mounted troops in your formation."
           }
         ],
         "extracted_summary": "Dauntless Steed: 5 armor to all equipped armor pieces of mounted troops in your formation. / Tough Steed: 10 armor to mounts of troops in your formation.",
-        "note": "Mount and mounted-troop armor are real, but not infantry value."
+        "note": "Mount and mounted-troop armor are real for cavalry, but not infantry value."
       },
       {
         "skill": "Riding",
@@ -3871,7 +3987,7 @@
           }
         ],
         "extracted_summary": "Beast Whisperer: 10% carrying capacity for pack animals in your party. / Foragers: -10% food consumption while traveling through steppes and forests.",
-        "note": "Foragers/Beast Whisperer are logistics comfort, not combat power."
+        "note": "Foragers/Beast Whisperer are useful path logistics, not the investment thesis."
       },
       {
         "skill": "Scouting",
@@ -3916,7 +4032,7 @@
           }
         ],
         "extracted_summary": "Keen Sight: -50% chance of prisoner lords escaping from your party. / Vantage Point: 10 prisoner limit.",
-        "note": "Prisoner lord escape prevention is useful but not build-defining."
+        "note": "Keen Sight/Vantage Point are useful path utility, not the investment thesis."
       },
       {
         "skill": "Scouting",
@@ -4015,7 +4131,7 @@
           }
         ],
         "extracted_summary": "Uncanny Insight: 0.1% party speed for every skill point above 200 scouting skill.",
-        "note": "Uncanny Insight is direct map speed scaling and can be worth it for fight selection."
+        "note": "Uncanny Insight is +7.5% party speed immediately at unlock and keeps scaling above 275."
       },
       {
         "skill": "Tactics",
@@ -5193,8 +5309,8 @@
       "low_priority_misleading": 91
     },
     "rating_counts": {
-      "high": 84,
-      "medium": 161,
+      "high": 80,
+      "medium": 165,
       "low": 91
     }
   },
@@ -31664,38 +31780,6 @@
       ]
     },
     {
-      "id": "RidingAnnoyingBuzz|secondary",
-      "skill": "Riding",
-      "level": 200,
-      "perk": "Annoying Buzz",
-      "perk_string_id": "RidingAnnoyingBuzz",
-      "effect_slot": "secondary",
-      "alternative_perk_string_id": "RidingThunderousCharge",
-      "role": "captain",
-      "bonus": 0.05000000074505806,
-      "increment_type": "add_factor",
-      "troop_usage": "mounted, ranged",
-      "perk_type": "troop combat",
-      "perk_subtype": "morale damage",
-      "trigger_conditions": [
-        "while mounted",
-        "on kill"
-      ],
-      "effect_tags": [
-        "mounts"
-      ],
-      "effect": "5% battle morale penalty to enemies with mounted ranged kills by troops in your formation.",
-      "speed_kind": null,
-      "troop_classes": [
-        "all_troops"
-      ],
-      "default_force_fit": "all troops",
-      "doctrine_category": "core_troop_lethality",
-      "value_rating": "high",
-      "comparison_note": "",
-      "notes": []
-    },
-    {
       "id": "RogueryCarver|secondary",
       "skill": "Roguery",
       "level": 200,
@@ -32012,6 +32096,40 @@
       "value_rating": "high",
       "comparison_note": "",
       "notes": []
+    },
+    {
+      "id": "RidingAnnoyingBuzz|secondary",
+      "skill": "Riding",
+      "level": 200,
+      "perk": "Annoying Buzz",
+      "perk_string_id": "RidingAnnoyingBuzz",
+      "effect_slot": "secondary",
+      "alternative_perk_string_id": "RidingThunderousCharge",
+      "role": "captain",
+      "bonus": 0.05000000074505806,
+      "increment_type": "add_factor",
+      "troop_usage": "mounted, ranged",
+      "perk_type": "troop combat",
+      "perk_subtype": "morale damage",
+      "trigger_conditions": [
+        "while mounted",
+        "on kill"
+      ],
+      "effect_tags": [
+        "mounts"
+      ],
+      "effect": "5% battle morale penalty to enemies with mounted ranged kills by troops in your formation.",
+      "speed_kind": null,
+      "troop_classes": [
+        "all_troops"
+      ],
+      "default_force_fit": "all troops",
+      "doctrine_category": "core_troop_lethality",
+      "value_rating": "medium",
+      "comparison_note": "",
+      "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling."
+      ]
     },
     {
       "id": "BowBowControl|secondary",
@@ -32745,6 +32863,7 @@
       "value_rating": "medium",
       "comparison_note": "",
       "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling.",
         "ranged-specific; do not assume it buffs infantry."
       ]
     },
@@ -32779,6 +32898,7 @@
       "value_rating": "medium",
       "comparison_note": "",
       "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling.",
         "mounted-specific; do not assume it buffs infantry."
       ]
     },
@@ -32838,7 +32958,9 @@
       "doctrine_category": "core_troop_lethality",
       "value_rating": "medium",
       "comparison_note": "",
-      "notes": []
+      "notes": [
+        "Hidden current-weapon gate: benefits crossbow users, not melee infantry or bow archers."
+      ]
     },
     {
       "id": "RogueryOneOfTheFamily|primary",
@@ -32901,6 +33023,7 @@
       "value_rating": "medium",
       "comparison_note": "",
       "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling.",
         "mounted-specific; do not assume it buffs infantry."
       ]
     },
@@ -33346,37 +33469,6 @@
       "notes": []
     },
     {
-      "id": "RidingToughSteed|secondary",
-      "skill": "Riding",
-      "level": 250,
-      "perk": "Tough Steed",
-      "perk_string_id": "RidingToughSteed",
-      "effect_slot": "secondary",
-      "alternative_perk_string_id": "RidingDauntlessSteed",
-      "role": "captain",
-      "bonus": 10,
-      "increment_type": "add",
-      "troop_usage": "mounted",
-      "perk_type": "troop combat",
-      "perk_subtype": "armor increase",
-      "trigger_conditions": [],
-      "effect_tags": [
-        "mounts"
-      ],
-      "effect": "10 armor to mounts of troops in your formation.",
-      "speed_kind": null,
-      "troop_classes": [
-        "all_troops",
-        "cavalry",
-        "mounted"
-      ],
-      "default_force_fit": "all troops",
-      "doctrine_category": "combat_staying_power",
-      "value_rating": "high",
-      "comparison_note": "",
-      "notes": []
-    },
-    {
       "id": "MedicineMinisterOfHealth|primary",
       "skill": "Medicine",
       "level": 275,
@@ -33405,40 +33497,6 @@
       "comparison_note": "",
       "notes": [
         "HP is useful, but it is easier to stack through Medicine than troop combat speed is."
-      ]
-    },
-    {
-      "id": "RidingDauntlessSteed|secondary",
-      "skill": "Riding",
-      "level": 250,
-      "perk": "Dauntless Steed",
-      "perk_string_id": "RidingDauntlessSteed",
-      "effect_slot": "secondary",
-      "alternative_perk_string_id": "RidingToughSteed",
-      "role": "captain",
-      "bonus": 5,
-      "increment_type": "add",
-      "troop_usage": "mounted",
-      "perk_type": "troop combat",
-      "perk_subtype": "armor increase",
-      "trigger_conditions": [
-        "party composition"
-      ],
-      "effect_tags": [
-        "mounts"
-      ],
-      "effect": "5 armor to all equipped armor pieces of mounted troops in your formation.",
-      "speed_kind": null,
-      "troop_classes": [
-        "cavalry",
-        "mounted"
-      ],
-      "default_force_fit": "mounted-specific",
-      "doctrine_category": "combat_staying_power",
-      "value_rating": "high",
-      "comparison_note": "",
-      "notes": [
-        "mounted-specific; do not assume it buffs infantry."
       ]
     },
     {
@@ -33938,6 +33996,39 @@
       ]
     },
     {
+      "id": "RidingToughSteed|secondary",
+      "skill": "Riding",
+      "level": 250,
+      "perk": "Tough Steed",
+      "perk_string_id": "RidingToughSteed",
+      "effect_slot": "secondary",
+      "alternative_perk_string_id": "RidingDauntlessSteed",
+      "role": "captain",
+      "bonus": 10,
+      "increment_type": "add",
+      "troop_usage": "mounted",
+      "perk_type": "troop combat",
+      "perk_subtype": "armor increase",
+      "trigger_conditions": [],
+      "effect_tags": [
+        "mounts"
+      ],
+      "effect": "10 armor to mounts of troops in your formation.",
+      "speed_kind": null,
+      "troop_classes": [
+        "all_troops",
+        "cavalry",
+        "mounted"
+      ],
+      "default_force_fit": "all troops",
+      "doctrine_category": "combat_staying_power",
+      "value_rating": "medium",
+      "comparison_note": "",
+      "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling."
+      ]
+    },
+    {
       "id": "CharmSelfPromoter|secondary",
       "skill": "Charm",
       "level": 25,
@@ -34162,7 +34253,9 @@
       "doctrine_category": "combat_staying_power",
       "value_rating": "medium",
       "comparison_note": "",
-      "notes": []
+      "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling."
+      ]
     },
     {
       "id": "ScoutingPatrols|primary",
@@ -34496,6 +34589,41 @@
       "value_rating": "medium",
       "comparison_note": "",
       "notes": []
+    },
+    {
+      "id": "RidingDauntlessSteed|secondary",
+      "skill": "Riding",
+      "level": 250,
+      "perk": "Dauntless Steed",
+      "perk_string_id": "RidingDauntlessSteed",
+      "effect_slot": "secondary",
+      "alternative_perk_string_id": "RidingToughSteed",
+      "role": "captain",
+      "bonus": 5,
+      "increment_type": "add",
+      "troop_usage": "mounted",
+      "perk_type": "troop combat",
+      "perk_subtype": "armor increase",
+      "trigger_conditions": [
+        "party composition"
+      ],
+      "effect_tags": [
+        "mounts"
+      ],
+      "effect": "5 armor to all equipped armor pieces of mounted troops in your formation.",
+      "speed_kind": null,
+      "troop_classes": [
+        "cavalry",
+        "mounted"
+      ],
+      "default_force_fit": "mounted-specific",
+      "doctrine_category": "combat_staying_power",
+      "value_rating": "medium",
+      "comparison_note": "",
+      "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling.",
+        "mounted-specific; do not assume it buffs infantry."
+      ]
     },
     {
       "id": "ScoutingRearguard|primary",
@@ -34878,33 +35006,6 @@
       ]
     },
     {
-      "id": "RidingShepherd|primary",
-      "skill": "Riding",
-      "level": 175,
-      "perk": "Shepherd",
-      "perk_string_id": "RidingShepherd",
-      "effect_slot": "primary",
-      "alternative_perk_string_id": "RidingBreeder",
-      "role": "party leader",
-      "bonus": -0.5,
-      "increment_type": "add_factor",
-      "troop_usage": "all",
-      "perk_type": "party management",
-      "perk_subtype": "party speed",
-      "trigger_conditions": [],
-      "effect_tags": [],
-      "effect": "-50% herding speed penalty.",
-      "speed_kind": "campaign_party_speed",
-      "troop_classes": [],
-      "default_force_fit": "one-party mobility",
-      "doctrine_category": "engagement_control",
-      "value_rating": "high",
-      "comparison_note": "",
-      "notes": [
-        "Engagement-control perk: helps choose, refuse, or chase fights on the campaign map."
-      ]
-    },
-    {
       "id": "AthleticsStrong|secondary",
       "skill": "Athletics",
       "level": 200,
@@ -34962,6 +35063,34 @@
       "comparison_note": "",
       "notes": [
         "Engagement-control perk: helps choose, refuse, or chase fights on the campaign map."
+      ]
+    },
+    {
+      "id": "RidingShepherd|primary",
+      "skill": "Riding",
+      "level": 175,
+      "perk": "Shepherd",
+      "perk_string_id": "RidingShepherd",
+      "effect_slot": "primary",
+      "alternative_perk_string_id": "RidingBreeder",
+      "role": "party leader",
+      "bonus": -0.5,
+      "increment_type": "add_factor",
+      "troop_usage": "all",
+      "perk_type": "party management",
+      "perk_subtype": "party speed",
+      "trigger_conditions": [],
+      "effect_tags": [],
+      "effect": "-50% herding speed penalty.",
+      "speed_kind": "campaign_party_speed",
+      "troop_classes": [],
+      "default_force_fit": "one-party mobility",
+      "doctrine_category": "engagement_control",
+      "value_rating": "medium",
+      "comparison_note": "",
+      "notes": [
+        "Engagement-control perk: helps choose, refuse, or chase fights on the campaign map.",
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling."
       ]
     },
     {
@@ -37440,7 +37569,9 @@
       "doctrine_category": "party_scaling",
       "value_rating": "medium",
       "comparison_note": "",
-      "notes": []
+      "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling."
+      ]
     },
     {
       "id": "ScoutingKeenSight|secondary",
@@ -39500,7 +39631,9 @@
       "doctrine_category": "low_priority_misleading",
       "value_rating": "low",
       "comparison_note": "",
-      "notes": []
+      "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling."
+      ]
     },
     {
       "id": "TacticsEliteReserves|primary",
@@ -39712,7 +39845,9 @@
       "doctrine_category": "low_priority_misleading",
       "value_rating": "low",
       "comparison_note": "",
-      "notes": []
+      "notes": [
+        "Post-100 Riding is niche for infantry: logistics, prisoners, mounted-only value, or personal mount scaling."
+      ]
     },
     {
       "id": "TacticsPreBattleManeuvers|secondary",
