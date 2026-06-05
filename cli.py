@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src" / "bannerlord_perk_analyzer"))
 
 try:
+    from bannerlord_perk_analyzer.analyze_battanian_starts import analyze_battanian_starts, analyze_culture_start_leaks
     from bannerlord_perk_analyzer.extract_banners import extract_banners
     from bannerlord_perk_analyzer.extract_character_creation import extract_character_creation
     from bannerlord_perk_analyzer.extract_combat_formulas import extract_combat_formulas
@@ -317,6 +318,77 @@ def main() -> None:
         help="Path to save the commander perk investment bars. Defaults to Docs/reports/commander-perk-investment-bars.md."
     )
 
+    # Battanian start leak analysis subcommand
+    parser_battanian = subparsers.add_parser(
+        "battanian-starts",
+        help="Brute-force Battanian character creation paths and classify focus leaks."
+    )
+    parser_battanian.add_argument(
+        "--workspace",
+        type=Path,
+        default=default_workspace(),
+        help="Path to workspace directory"
+    )
+    parser_battanian.add_argument(
+        "--culture",
+        default="Battania",
+        help="Culture family options to use."
+    )
+    parser_battanian.add_argument(
+        "--json-output",
+        type=Path,
+        default=None,
+        help="Path to save leak JSON. Defaults to Data/intermediate/battanian_start_leaks.json."
+    )
+    parser_battanian.add_argument(
+        "--markdown-output",
+        type=Path,
+        default=None,
+        help="Path to save leak markdown. Defaults to Docs/reports/battanian-start-leaks.md."
+    )
+    parser_battanian.add_argument(
+        "--top",
+        type=int,
+        default=20,
+        help="Number of top paths/profiles to include in the report."
+    )
+
+    # Culture start leak comparison subcommand
+    parser_culture_starts = subparsers.add_parser(
+        "culture-starts",
+        help="Compare character creation focus leaks across all cultures."
+    )
+    parser_culture_starts.add_argument(
+        "--workspace",
+        type=Path,
+        default=default_workspace(),
+        help="Path to workspace directory"
+    )
+    parser_culture_starts.add_argument(
+        "--culture",
+        action="append",
+        default=[],
+        help="Culture to include. Repeat to compare a subset. Defaults to all family cultures."
+    )
+    parser_culture_starts.add_argument(
+        "--json-output",
+        type=Path,
+        default=None,
+        help="Path to save comparison JSON. Defaults to Data/intermediate/culture_start_leaks.json."
+    )
+    parser_culture_starts.add_argument(
+        "--markdown-output",
+        type=Path,
+        default=None,
+        help="Path to save comparison markdown. Defaults to Docs/reports/culture-start-leaks.md."
+    )
+    parser_culture_starts.add_argument(
+        "--top",
+        type=int,
+        default=20,
+        help="Number of top paths/profiles to include per culture."
+    )
+
     args = parser.parse_args()
 
     # Execute the requested command
@@ -451,6 +523,54 @@ def main() -> None:
             package_output=package_output,
             investment_output=investment_output,
         )
+
+    elif args.command == "battanian-starts":
+        json_output = args.json_output or workspace / "Data" / "intermediate" / "battanian_start_leaks.json"
+        markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "battanian-start-leaks.md"
+        payload = analyze_battanian_starts(
+            workspace=workspace,
+            culture=args.culture,
+            json_output=json_output,
+            markdown_output=markdown_output,
+            top=args.top,
+        )
+        summary = payload["summary"]
+        print(f"Battanian start leak JSON written: {json_output}")
+        print(f"Battanian start leak report written: {markdown_output}")
+        print(f"  attribute-valid paths: {summary['attribute_valid_paths']}")
+        print(
+            "  minimum default focus leaks: {leaks} ({paths} paths)".format(
+                leaks=summary["minimum_default_focus_leaks"],
+                paths=summary["paths_at_minimum_default_focus_leaks"],
+            )
+        )
+        print(f"  no-hard-leak paths: {summary['no_hard_focus_leak_paths']}")
+        print(f"  no-hard/no-tactics paths: {summary['no_hard_no_tactics_paths']}")
+
+    elif args.command == "culture-starts":
+        json_output = args.json_output or workspace / "Data" / "intermediate" / "culture_start_leaks.json"
+        markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "culture-start-leaks.md"
+        payload = analyze_culture_start_leaks(
+            workspace=workspace,
+            cultures=args.culture or None,
+            json_output=json_output,
+            markdown_output=markdown_output,
+            top=args.top,
+        )
+        print(f"Culture start leak JSON written: {json_output}")
+        print(f"Culture start leak report written: {markdown_output}")
+        for item in payload["cultures"]:
+            summary = item["summary"]
+            print(
+                "  {culture}: min-leaks {min_leaks} ({paths} paths), valid {valid}, no-hard {no_hard}, zero-leak {zero}".format(
+                    culture=item["culture"],
+                    min_leaks=summary["minimum_default_focus_leaks"],
+                    paths=summary["paths_at_minimum_default_focus_leaks"],
+                    valid=summary["attribute_valid_paths"],
+                    no_hard=summary["no_hard_focus_leak_paths"],
+                    zero=summary["zero_default_focus_leak_paths"],
+                )
+            )
 
 
 if __name__ == "__main__":

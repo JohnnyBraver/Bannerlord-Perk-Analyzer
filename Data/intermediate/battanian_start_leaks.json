@@ -1,0 +1,7611 @@
+{
+  "generated_at": "2026-06-05T16:19:11+03:00",
+  "culture": "Battania",
+  "stages": [
+    "family",
+    "childhood",
+    "education",
+    "youth",
+    "adulthood",
+    "escape"
+  ],
+  "target_attributes": {
+    "Vigor": 3,
+    "Control": 2,
+    "Endurance": 3,
+    "Cunning": 7,
+    "Social": 2,
+    "Intelligence": 7
+  },
+  "focus_policy": {
+    "Scouting": {
+      "bucket": "core",
+      "cap": 5,
+      "read": "Core 275 engagement-control target."
+    },
+    "Medicine": {
+      "bucket": "core",
+      "cap": 5,
+      "read": "Core 275 troop-survival target."
+    },
+    "Steward": {
+      "bucket": "core",
+      "cap": 5,
+      "read": "Core party-scaling target if the player is quartermaster."
+    },
+    "Athletics": {
+      "bucket": "core",
+      "cap": 5,
+      "read": "Physical attribute and foot-party enabler."
+    },
+    "Smithing": {
+      "bucket": "core",
+      "cap": 5,
+      "read": "Attribute/focus engine and money engine."
+    },
+    "One Handed": {
+      "bucket": "core",
+      "cap": 5,
+      "read": "Core Vigor infantry package."
+    },
+    "Polearm": {
+      "bucket": "core",
+      "cap": 5,
+      "read": "Core Vigor infantry package."
+    },
+    "Two Handed": {
+      "bucket": "core",
+      "cap": 3,
+      "read": "Default stop is 175; later focus is optional."
+    },
+    "Riding": {
+      "bucket": "core",
+      "cap": 1,
+      "read": "Only needs one focus for Riding 100 in infantry doctrine."
+    },
+    "Bow": {
+      "bucket": "core",
+      "cap": 2,
+      "read": "Bow 100 Merry Men under assisted Control 4."
+    },
+    "Throwing": {
+      "bucket": "core",
+      "cap": 2,
+      "read": "Throwing 125 Skirmisher under assisted Control 4."
+    },
+    "Leadership": {
+      "bucket": "optional",
+      "cap": 5,
+      "read": "Useful party-size stretch; Social still stays at 2."
+    },
+    "Charm": {
+      "bucket": "optional",
+      "cap": 1,
+      "read": "One-focus QoL or renown pickup."
+    },
+    "Trade": {
+      "bucket": "optional",
+      "cap": 1,
+      "read": "One-focus price-marking QoL pickup."
+    },
+    "Tactics": {
+      "bucket": "soft",
+      "cap": 5,
+      "read": "Soft leak unless Tactics 200 is planned."
+    },
+    "Engineering": {
+      "bucket": "side_plan",
+      "cap": 0,
+      "read": "Side plan only; usually delegate engineer."
+    },
+    "Roguery": {
+      "bucket": "side_plan",
+      "cap": 0,
+      "read": "Side plan only; loot/crime build."
+    },
+    "Crossbow": {
+      "bucket": "side_plan",
+      "cap": 0,
+      "read": "Side plan only; crossbow formations."
+    }
+  },
+  "stage_option_counts": {
+    "family": 6,
+    "childhood": 6,
+    "education": 12,
+    "youth": 17,
+    "adulthood": 12,
+    "escape": 6
+  },
+  "total_combinations": 528768,
+  "pruned_branches": {
+    "control_attribute": 7673,
+    "other_attribute_overflow": 9306,
+    "social_attribute": 6945
+  },
+  "summary": {
+    "attribute_valid_paths": 15800,
+    "minimum_default_focus_leaks": 2,
+    "paths_at_minimum_default_focus_leaks": 390,
+    "zero_default_focus_leak_paths": 0,
+    "no_hard_focus_leak_paths": 280,
+    "no_hard_no_tactics_paths": 0,
+    "no_hard_tactics_at_most_2_paths": 51,
+    "hard_skill_path_counts": {
+      "Crossbow": 3640,
+      "Engineering": 13874,
+      "Roguery": 9216
+    },
+    "overflow_path_counts": {
+      "Bow": 160,
+      "Trade": 2432
+    },
+    "default_focus_leak_distribution": {
+      "2": 390,
+      "3": 2140,
+      "4": 4684,
+      "5": 4850,
+      "6": 2788,
+      "7": 844,
+      "8": 104
+    },
+    "tactics_distribution_no_hard": {
+      "2": 51,
+      "3": 128,
+      "4": 89,
+      "5": 12
+    },
+    "top_profiles": [
+      {
+        "profile": "side=Engineering 2; overflow=none; tactics=2; optional=Leadership 1, Trade 1",
+        "paths": 184
+      },
+      {
+        "profile": "side=Engineering 1, Roguery 1; overflow=none; tactics=2; optional=Leadership 1, Trade 1",
+        "paths": 156
+      },
+      {
+        "profile": "side=Engineering 1, Roguery 1; overflow=none; tactics=3; optional=Leadership 1, Trade 1",
+        "paths": 141
+      },
+      {
+        "profile": "side=Engineering 1, Roguery 1; overflow=none; tactics=3; optional=Leadership 2",
+        "paths": 139
+      },
+      {
+        "profile": "side=Engineering 2, Roguery 1; overflow=none; tactics=2; optional=Leadership 1, Trade 1",
+        "paths": 138
+      },
+      {
+        "profile": "side=Engineering 1; overflow=none; tactics=3; optional=Leadership 2",
+        "paths": 134
+      },
+      {
+        "profile": "side=Engineering 2; overflow=none; tactics=1; optional=Charm 1, Leadership 1, Trade 1",
+        "paths": 121
+      },
+      {
+        "profile": "side=Engineering 1, Roguery 1; overflow=none; tactics=3; optional=Leadership 1",
+        "paths": 114
+      },
+      {
+        "profile": "side=Engineering 1; overflow=none; tactics=2; optional=Leadership 1, Trade 1",
+        "paths": 113
+      },
+      {
+        "profile": "side=Engineering 1; overflow=none; tactics=3; optional=Leadership 1, Trade 1",
+        "paths": 105
+      },
+      {
+        "profile": "side=Engineering 2; overflow=none; tactics=2; optional=Leadership 2",
+        "paths": 98
+      },
+      {
+        "profile": "side=Engineering 1, Roguery 1; overflow=none; tactics=2; optional=Charm 1, Leadership 1, Trade 1",
+        "paths": 96
+      },
+      {
+        "profile": "side=Engineering 1; overflow=none; tactics=3; optional=Leadership 1",
+        "paths": 89
+      },
+      {
+        "profile": "side=Engineering 1, Roguery 1; overflow=none; tactics=2; optional=Charm 1, Leadership 1",
+        "paths": 88
+      },
+      {
+        "profile": "side=Engineering 1, Roguery 1; overflow=none; tactics=1; optional=Charm 1, Leadership 1, Trade 1",
+        "paths": 86
+      },
+      {
+        "profile": "side=Engineering 2; overflow=none; tactics=2; optional=Leadership 1",
+        "paths": 85
+      },
+      {
+        "profile": "side=Engineering 1; overflow=none; tactics=2; optional=Charm 1, Leadership 1, Trade 1",
+        "paths": 85
+      },
+      {
+        "profile": "side=Engineering 2; overflow=none; tactics=1; optional=Leadership 1, Trade 1",
+        "paths": 83
+      },
+      {
+        "profile": "side=Engineering 2; overflow=none; tactics=3; optional=Leadership 2",
+        "paths": 83
+      },
+      {
+        "profile": "side=Engineering 2; overflow=none; tactics=3; optional=Leadership 1, Trade 1",
+        "paths": 83
+      }
+    ],
+    "side_plan_sources": [
+      {
+        "skill": "Engineering",
+        "stage": "youth",
+        "choice": "stood guard with the garrisons.",
+        "paths": 7280
+      },
+      {
+        "skill": "Engineering",
+        "stage": "escape",
+        "choice": "you threw up makeshift fortifications.",
+        "paths": 5816
+      },
+      {
+        "skill": "Engineering",
+        "stage": "childhood",
+        "choice": "your aptitude for numbers.",
+        "paths": 5816
+      },
+      {
+        "skill": "Roguery",
+        "stage": "escape",
+        "choice": "you tricked the raiders.",
+        "paths": 5808
+      },
+      {
+        "skill": "Crossbow",
+        "stage": "youth",
+        "choice": "stood guard with the garrisons.",
+        "paths": 3640
+      },
+      {
+        "skill": "Engineering",
+        "stage": "education",
+        "choice": "repaired projects.",
+        "paths": 2908
+      },
+      {
+        "skill": "Engineering",
+        "stage": "education",
+        "choice": "studied with your private tutor.",
+        "paths": 2908
+      },
+      {
+        "skill": "Roguery",
+        "stage": "education",
+        "choice": "hung out with the gangs in the alleys.",
+        "paths": 2904
+      },
+      {
+        "skill": "Roguery",
+        "stage": "youth",
+        "choice": "marched with the camp followers.",
+        "paths": 1816
+      },
+      {
+        "skill": "Roguery",
+        "stage": "adulthood",
+        "choice": "you had a famous escapade in town.",
+        "paths": 704
+      },
+      {
+        "skill": "Roguery",
+        "stage": "adulthood",
+        "choice": "you had a famous escapade.",
+        "paths": 704
+      }
+    ],
+    "best_paths": [
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      }
+    ],
+    "best_min_leak_paths": [
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      }
+    ],
+    "best_no_hard_paths": [
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 2,
+          "core_focus": 8
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_brawn_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your brawn.",
+            "attribute": "Vigor",
+            "skills": [
+              "Two Handed",
+              "Throwing"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Throwing": 1,
+          "Trade": 1,
+          "Two Handed": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Bow": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Steward": 1,
+            "Throwing": 1,
+            "Two Handed": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_horse_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your skill with horses.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "education_hunter_option",
+            "stage": "education",
+            "culture": "",
+            "title": "hunted small game.",
+            "attribute": "Cunning",
+            "skills": [
+              "Bow",
+              "Tactics"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_caravan_leader_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you led a caravan.",
+            "attribute": "Cunning",
+            "skills": [
+              "Leadership",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 5,
+          "Social": 2,
+          "Intelligence": 3
+        },
+        "level_up_attributes": {
+          "Cunning": 2,
+          "Intelligence": 4
+        },
+        "focus": {
+          "Athletics": 1,
+          "Bow": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Riding": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Bow": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Riding": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_docker_option",
+            "stage": "education",
+            "culture": "",
+            "title": "helped at building sites.",
+            "attribute": "Vigor",
+            "skills": [
+              "Athletics",
+              "Smithing"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_horse_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you rode off on a fast horse.",
+            "attribute": "Endurance",
+            "skills": [
+              "Riding",
+              "Scouting"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 1,
+          "Riding": 1,
+          "Scouting": 1,
+          "Smithing": 2,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 1,
+            "Riding": 1,
+            "Scouting": 1,
+            "Smithing": 2,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_servant_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "were a chieftain's servant.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_investor_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in land.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      },
+      {
+        "choices": [
+          {
+            "id": "battania_healer_option",
+            "stage": "family",
+            "culture": "Battania",
+            "title": "Healers",
+            "attribute": "Intelligence",
+            "skills": [
+              "Charm",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "childhood_leadership_option",
+            "stage": "childhood",
+            "culture": "",
+            "title": "your leadership skills.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Leadership"
+            ]
+          },
+          {
+            "id": "education_doctor_option",
+            "stage": "education",
+            "culture": "",
+            "title": "gathered herbs in the wild.",
+            "attribute": "Endurance",
+            "skills": [
+              "Scouting",
+              "Medicine"
+            ]
+          },
+          {
+            "id": "youth_staff_second_option",
+            "stage": "youth",
+            "culture": "",
+            "title": "joined a commander's staff.",
+            "attribute": "Cunning",
+            "skills": [
+              "Tactics",
+              "Steward"
+            ]
+          },
+          {
+            "id": "adulthood_workshop_option",
+            "stage": "adulthood",
+            "culture": "",
+            "title": "you invested some money in a workshop.",
+            "attribute": "Intelligence",
+            "skills": [
+              "Smithing",
+              "Trade"
+            ]
+          },
+          {
+            "id": "escape_subdued_raider_option",
+            "stage": "escape",
+            "culture": "",
+            "title": "you subdued a raider.",
+            "attribute": "Vigor",
+            "skills": [
+              "One Handed",
+              "Athletics"
+            ]
+          }
+        ],
+        "starting_attributes": {
+          "Vigor": 3,
+          "Control": 2,
+          "Endurance": 3,
+          "Cunning": 4,
+          "Social": 2,
+          "Intelligence": 4
+        },
+        "level_up_attributes": {
+          "Cunning": 3,
+          "Intelligence": 3
+        },
+        "focus": {
+          "Athletics": 1,
+          "Charm": 1,
+          "Leadership": 1,
+          "Medicine": 2,
+          "One Handed": 1,
+          "Scouting": 1,
+          "Smithing": 1,
+          "Steward": 1,
+          "Tactics": 2,
+          "Trade": 1
+        },
+        "focus_buckets": {
+          "core": {
+            "Athletics": 1,
+            "Medicine": 2,
+            "One Handed": 1,
+            "Scouting": 1,
+            "Smithing": 1,
+            "Steward": 1
+          },
+          "optional": {
+            "Charm": 1,
+            "Leadership": 1,
+            "Trade": 1
+          },
+          "soft": {
+            "Tactics": 2
+          },
+          "side_plan": {},
+          "overflow": {}
+        },
+        "score": {
+          "hard_focus": 0,
+          "soft_focus": 2,
+          "default_focus_leaks": 2,
+          "optional_focus": 3,
+          "core_focus": 7
+        }
+      }
+    ]
+  }
+}
