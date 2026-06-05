@@ -33,14 +33,16 @@ When a proposal goes to vote, clans can back their stance at three strength tier
 
 ### Influence and Relation Perks
 Several Charm perks assist in building influence and managing lord relations during council sessions:
-* **Charm (Level 25) - `Self Promoter`**: Earn $+1$ influence per tournament win.
-* **Charm (Level 50) - `Warlord`**: Earn $+30\%$ influence from combat victories.
-* **Charm (Level 75) - `Forgivable Grievances`**: Prevents relations decay with other lords when voting against them in council decisions.
-* **Charm (Level 75) - `Meaningful Favors`**: Generates $+1$ relation per day with a random clan leader of your faction if your influence exceeds theirs.
-* **Charm (Level 150) - `Effort For The People`**: Reduces overall influence vote cost by $-10\%$ during kingdom proposals.
-* **Charm (Level 175) - `Tribute`**: Generates $+10\%$ influence from owned fief tariffs.
-* **Charm (Level 225) - `Public Speaker`**: Generates $+10\%$ influence from owned town taxes.
-* **Charm (Level 225) - `Parade`**: Visiting a town you own gives $+5$ loyalty to that town (once per town visit).
+* **Charm (Level 25) - `Self Promoter`**: Earn $+3$ renown when a tournament is won, or $+1$ morale while defending in a besieged settlement.
+* **Charm (Level 50) - `Warlord`**: Earn $+30\%$ influence from combat victories, or gain $+1$ relationship with a random lord of your kingdom when an enemy lord is defeated.
+* **Charm (Level 75) - `Forgivable Grievances`**: $+20\%$ chance to avoid critical persuasion failure, or a $5\%$ daily chance to improve relations with a negative-relation lord or notable while in a settlement.
+* **Charm (Level 75) - `Meaningful Favors`**: $+10\%$ chance for double persuasion success, or a governor-side $5\%$ daily chance to improve relations with powerful notables.
+* **Charm (Level 125) - `Flexible Ethics`**: $-30\%$ influence cost when voting for kingdom proposals made by others.
+* **Charm (Level 150) - `Effort For The People`**: Clearing a hideout grants $+3$ relation with the nearest settlement owner clan and $+1$ town loyalty if it is your clan; the alternate effect is $-25\%$ barter penalty with same-culture lords.
+* **Charm (Level 175) - `Good Natured`**: $100\%$ influence return when a supported proposal fails to pass, with an alternate merciful-lord relationship bonus.
+* **Charm (Level 175) - `Tribute`**: Improves barter relationship outcomes, not tariff or influence income.
+* **Charm (Level 225) - `Public Speaker`**: $+30\%$ renown from battles, or $+10\%$ effect from forums, marketplaces, and festivals as governor.
+* **Charm (Level 225) - `Parade`**: $+5$ loyalty while waiting in a settlement, or a $5\%$ daily chance to gain $+1$ relationship with a random lord in the same army.
 
 ### Ruler Overrides
 The ruler can overrule any council vote by spending influence proportional to the support gap.

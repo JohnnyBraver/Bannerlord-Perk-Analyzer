@@ -54,11 +54,11 @@ Food acts as the ultimate hard cap on settlement growth. Prosperity and garrison
 | **Bow** | 150 | `Discipline` | $+1$ daily loyalty | Strong loyalty anchor for ranged governors. |
 | **Engineering** | 75 | `Carpenters` | $+12\%$ town project speed | Speeds up building projects in towns. |
 | **Engineering** | 75 | `Military Planner` | $+25\%$ castle project speed | Saves time on projects in castles. |
-| **Engineering** | 150 | `Stonecutters` | $+30\%$ military project speed | Fast-tracks walls, barracks, and fortifications. |
+| **Engineering** | 150 | `Stonecutters` | $+30\%$ build speed for fortifications, aqueducts, and barracks | Fast-tracks the specific project families covered by the perk. |
 | **Engineering** | 175 | `Battlements` | $+100$ maximum food storage | Expands town food reserve limits to prevent starvation. |
 | **Engineering** | 250 | `Architectural Commissions` | $+20$ gold/day bonus | Daily gold bonus for continuous projects. |
 | **Steward** | 150 | `Relocation` | $+20\%$ project boost effect | Speeds up projects when boosted by money. |
-| **Steward** | 200 | `Contractors` | $+10\%$ project effects | Increases the output efficiency of completed buildings. |
+| **Steward** | 200 | `Contractors` | $+10\%$ town project effects | Increases the output efficiency of completed town buildings. |
 | **Steward** | 200 | `Forced Labor` | $+1\%$ speed per 3 prisoners | Utilizes captive labor for faster construction. |
 | **Athletics** | 175 | `Energetic` | $+20\%$ village hearth growth | Accelerates bound village production and tax yields. |
 | **Medicine** | 150 | `Pristine Streets` | $+1$ daily prosperity | Simple, steady town-value scaling. |
@@ -97,9 +97,9 @@ While prosperity scales tax base and construction power, it introduces security 
 * **Trade (Level 150) - `Content Trades`**: $+10\%$ tariff income.
 * **Trade (Level 200) - `Granary Accountant`**: $+20\%$ production to food villages (grain, olives, fish, dates).
 * **Trade (Level 200) - `Tradeyard Foreman`**: $+20\%$ production to raw material villages (clay, iron, silk, silver).
-* **Engineering (Level 50) - `Siegeworks`**: $+10\%$ tariff revenue.
-* **Engineering (Level 225) - `Improved Tools`**: $+10\%$ production speed to bound villages.
 * **Athletics (Level 200) - `Steady`**: $+10\%$ production to mines, lumber camps, and clay pits.
+
+Do not treat nearby Engineering governor perks as general revenue perks. `Siegeworks` gives a prebuilt catapult when a governed settlement is besieged, and `Improved Tools` is an Engineer/captain perk rather than a bound-village production modifier.
 
 ---
 
@@ -129,16 +129,26 @@ $$\text{Daily Security Drift} = \frac{-(\text{Security} - 50)}{15}$$
 | **Polearm** | 200 | `Drills` | $+100\%$ veteran militia rate | Crucial quality multiplier for garrisoned defenders. |
 | **Leadership** | 25 | `Raise The Meek` | $+3$ daily XP to garrison | Passively trains defenders. |
 | **Athletics** | 225 | `Strong Legs` | $-20\%$ food use under siege | Significantly extends survival time when blockaded. |
-| **Bow** | 150 | `Hunter Clan` | $+30\%$ garrison size limit | Increases maximum garrison capacity. |
+| **One Handed** | 150 | `Corps-a-corps` | $+30$ garrison limit | Increases maximum garrison capacity. |
+| **Leadership** | 150 | `Veteran's Respect` | $+20$ garrison size | Adds a smaller governor-side capacity increase, while its party-leader effect converts bandits. |
+| **Bow** | 150 | `Hunter Clan` | $-15\%$ castle garrison wages | Useful for castle upkeep, not garrison capacity. |
 | **Engineering** | 25 | `Torsion Engines` | $+10\%$ ranged siege engine build speed | Accelerates ranged engine construction. |
 | **Engineering** | 100 | `Dreadful Besieger` | $+10\%$ accuracy to siege engines during bombardment | Improves governed-settlement bombardment reliability. |
 | **Engineering** | 100 | `Wall Breaker` | $+25\%$ wall damage during siege bombardment | Increases wall-breaking output. |
-| **Engineering** | 125 | `Salvager` | $+20\%$ salvage yield | Enhances scrap recovery during sieges. |
+| **Engineering** | 125 | `Salvager` | $+20\%$ ballista accuracy / $+0.1\%$ siege-engine build speed per militia | Hybrid siege perk: direct ballista accuracy for Engineers, militia-scaled build speed for governors. |
 | **Engineering** | 150 | `Siege Engineer` | $+30\%$ defensive siege engine hit points / fire engine construction | Strengthens defensive engines or unlocks fire versions through the Engineer role. |
 | **Engineering** | 175 | `Camp Building` | $-20\%$ casualty chance from siege bombardments | Reduces bombardment losses through the Engineer role. |
 | **Engineering** | 200 | `Engineering Guilds` | $+25\%$ wall hit points | Directly improves siege defense resilience. |
 | **Engineering** | 250 | `Clockwork` | $+25\%$ ballista reload speed / $+20\%$ boost-project effect | Improves siege-engine tempo or governed-settlement project boosting. |
 | **Tactics** | 175 | `Make Them Pay` | $+25\%$ damage to siege engines | Boosts bombardment defense. |
+
+> [!NOTE]
+> **Off-Bucket Settlement Perks**:
+> Some settlement-facing perks sit near the right theme but do not use the obvious mechanic:
+> - `Hunter Clan` is an upkeep perk ($-15\%$ castle garrison wages), not a garrison-capacity perk.
+> - `Salvager` is a hybrid siege perk: ballista accuracy for the Engineer role and militia-scaled siege-engine build speed for governors.
+> - `Siegeworks` gives a prebuilt catapult when the governed settlement is besieged, not tariff income.
+> Check the role column before treating these as generic economy, defense, or capacity picks.
 
 ---
 
@@ -207,11 +217,11 @@ $$\text{Warehouse Trade XP} = 0.1 \times \text{Production Base Value}$$
 
 ### Workshop-Specific Perks
 * **Steward (Level 75) - `Sweatshops`**: $+20\%$ production speed to owned workshops (Personal perk).
-* **Smithing (Level 100) - `Experienced Smith`**: $+10\%$ production speed to owned workshops (Personal perk).
-* **Trade (Level 50) - `Market Dealer`**: Reduces workshop input material costs by $-10\%$ (Clan Leader perk).
 * **Trade (Level 150) - `Mercenary Connections`**: $+25\%$ workshop production speed (Governor perk).
 * **Trade (Level 125) - `Artisan Community`**: $+1$ daily renown for every profiting workshop (Clan Leader perk).
 * **Trade (Level 175) - `Rapid Development`**: $5,000$ gold payout if a workshop's town is captured by an enemy.
+
+`Experienced Smith` improves fine weapon crafting chance and notable crafting-order relations; it is not a workshop production perk. `Market Dealer` is a safe-passage barter and price-marking perk, not a workshop input-cost discount.
 
 ---
 

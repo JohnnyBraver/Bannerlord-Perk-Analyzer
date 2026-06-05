@@ -106,7 +106,7 @@ Certain economic perks target specific transaction types outside the standard sh
 | Perk Family | Example Perks | Function | System Checked |
 | :--- | :--- | :--- | :--- |
 | **Barter Penalty** | `Self-made Man`, `Slick Negotiator` | Reduces costs during lord-to-lord barters. | Diplomacy Barter Model |
-| **Ransom Values** | `Ransom Broker`, `Man of Means` | Increases gold received from selling prisoners. | Ransom Broker Model |
+| **Ransom Values** | `Ransom Broker` | Improves hero ransom broker deals and prisoner retention. | Ransom Broker Model |
 | **Wages** | `Mercenary Connections`, `Picked Shots` | Reduces recurring party/garrison wages. | Party Finance Model |
 | **Recruitment Cost**| `Great Investor`, `Head Hunter` | Lowers hiring and upgrading expenses. | Troop Recruitment Model |
 | **Settlement Revenue**| `Toll Gates`, `Traveling Rumors` | Adds gold from visiting caravans/parties. | Fief Finance Model |
