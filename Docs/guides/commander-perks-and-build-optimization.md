@@ -48,7 +48,7 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
 > Reaching level 225 unlocks **`Metallurgy`** (which grants $+5$ armor to your formation troops). While $+5$ armor is valuable, digging through the entire Engineering tree just for this perk is a massive focus point trap for the modern **7 Cunning / 7 Intelligence** build.
 > * Under the **7 INT** profile, reaching 225 requires **4 Focus Points** (limit 248).
 > * Under the older pure INT build (**3/5 3/5 3/5 2 2 10**), Metallurgy was much more viable because 10 INT naturally lowered the required investment to **3 Focus Points** (limit 250), and the build did not suffer from Cunning-split focus point starvation (having 2 Cunning instead of 7 Cunning meant Scouting, Tactics, and Roguery did not eat up focus).
-> * In the current **7 INT / 7 CNG** setup, focus points are extremely scarce due to Scouting (5), Medicine (5), and Steward (5). Keeping Engineering capped at **3 Focus Points** (for the level 150 project speed boost) is the most efficient choice, saving 1-2 focus points for combat or social scaling.
+> * In the current **7 INT / 7 CNG** setup, focus points are extremely scarce due to Scouting (5), Medicine (5), and Steward (5). Keeping Engineering capped at **3 Focus Points** for the level 150 utility tier is the most efficient choice: `Stonecutters` can unlock fire engines for the Engineer role, while its project-speed side is governor-only. This saves 1-2 focus points for combat or social scaling.
 
 > [!TIP]
 > **Fire Catapults for Siege Domination & XP**:
@@ -95,7 +95,7 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
 * **Focus Cost**: **1 Focus**. Once Endurance is pushed to 5, 1 focus point is enough to reach exactly 100 ($4 + 14 \times 4 + 40 \times 1 = 100$) to unlock `Sweeping Wind` ($+2\%$ party speed).
 
 #### Weapon Skills (One-Handed, Two-Handed, Bow, Crossbow, Throwing)
-* **Target**: Level 100 for cheap utility perks like Two-Handed `Beast Slayer` / `Shield breaker`, One-Handed `Shield Bearer`, or Bow `Merry Men` $+5$ party size. `Projectile Deflection` is a stronger defensive tool, but it is a level 150 perk and requires a separate investment plan.
+* **Target**: Level 100 or below for cheap utility perks like Two-Handed `Beast Slayer` / `Shield breaker`, One-Handed `Shield Bearer`, or Bow `Merry Men` $+5$ party size. `Projectile Deflection` is a stronger defensive tool, but it is a level 150 perk and requires a separate investment plan.
 * **Vigor Focus Cost**: Vigor can still justify a 5-attribute package when One Handed and Polearm are both pushed. At Vigor 5, 1 focus reaches level 100, 3 focus reaches Two Handed 175, and 5 focus reaches the 225/250 Vigor stretch.
 * **Control Focus Cost**: Control should normally be planned from assisted Control 4, not bought to 3(5). At Control 4, 2 focus reaches level 126, enough for both Bow 100 `Merry Men` and Throwing 125 `Skirmisher`. Crossbow is usually 0 for shock infantry. Control 5 is a ranged-specialist or luxury focus-saver, not a default attribute purchase.
 
@@ -155,7 +155,7 @@ Prioritize these perks by doctrine: live troop lethality and responsiveness firs
 * **Scouting (150) - `Mounted Scouts`** (Party Leader): $+5$ Party Size.
 * **Leadership (75) - `Authority`** (Party Leader): $+5$ Party Size.
 * **Leadership (175) - `Uplifting Spirit`** (Party Leader): $+10$ Party Size.
-* **Steward (250+) - `Price of Loyalty`** (Quartermaster): $+0.25$ Party Size per skill point above 250.
+* **Steward (275) - `Price of Loyalty`** (Quartermaster/Governor): Quartermaster scaling reduces food consumption, wages, and combat morale loss by $-0.5\%$ per Steward point above 250; the governor side adds $+0.5\%$ tax income per point above 200. It is not a party-size perk.
 
 ### B. Campaign Map Speed & Logistics Perks
 * **Riding (100) - `Sweeping Wind`** (Party Leader): $+2\%$ campaign travel speed.
@@ -187,7 +187,7 @@ Prioritize these perks by doctrine: live troop lethality and responsiveness firs
 * **Bow (50) - `Bodkin`**: $+5\%$ armor penetration with bows to troops in your formation.
 * **Bow (50) - `Nocking Point`**: $+3\%$ combat movement speed to archers in your formation.
 * **Bow (75) - `Quick Adjustments`**: $-5\%$ accuracy penalty to archers in your formation.
-* **Bow (125) - `Strong Bows`**: $+5\%$ damage with bows by Tier 3+ troops in your formation.
+* **Bow (125) - `Strong bows`**: $+5\%$ damage with bows by Tier 3+ troops in your formation.
 * **Bow (175) - `Skirmish Phase Master`**: $-10\%$ damage taken from projectiles by ranged troops in your formation.
 
 ### C. Battle Banner Shortlist

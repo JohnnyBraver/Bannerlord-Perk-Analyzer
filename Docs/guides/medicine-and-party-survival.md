@@ -17,7 +17,7 @@ $$\text{Death Chance} = \frac{1}{\text{Final Denominator}}$$
 
 * **Event Multipliers**: The Medicine skill term is scaled based on the campaign map context:
   - **Player Map Events**: $1.0\times$ (full Medicine effectiveness).
-  - **AI Map Events**: $0.25\times$ (halved effectiveness for non-player armies).
+  - **AI Map Events**: $0.25\times$ (quartered effectiveness for non-player armies).
 * **Troop Level Impact**: The formula checks `character.Level` (which ranges from 1 to 31+), not their visible tier. High-level troops have a higher base denominator, making them naturally more resilient to death.
 * **Blunt Damage**: Victims of blunt damage are automatically processed as wounded ($100\%$ wound chance) and skip the surgery check.
 
@@ -63,19 +63,19 @@ The Medicine skill tree contains several passive and active perks that govern tr
 * **Medicine (Level 75) - `Doctor's Oath`**: Applies your Medicine survival bonus to enemy casualties, increasing the number of wounded enemies available for recruitment or ransom. Operates at $1.0\times$ in player battles and $0.1\times$ in simulated battles. **Warning**: This can prevent siege garrison attrition (see Section 7).
 * **Medicine (Level 125) - `Siege Medic`**: Grants a flat $50\%$ chance for troops to be wounded instead of killed during siege bombardment events.
 * **Medicine (Level 125) - `Veterinarian`**: Reduces troop mount loss by $-50\%$ when a mounted troop is killed in battle (mount is recovered and recycled).
-* **Medicine (Level 200) - `Physician of People`**: Multiplies the survival denominator by $1.3$ (acting as a $+30\%$ factor bonus) for Tier 1 and Tier 2 troops **strictly in your party** (friendly only; does not apply to enemy casualties).
+* **Medicine (Level 200) - `Physician of People`**: Gives Tier 1 and Tier 2 troops a $30\%$ chance to recover from lethal wounds **strictly in your party** (friendly only; does not apply to enemy casualties). Its governor side is $+1$ daily loyalty.
 
 ### Healing Rate & Utility Perks
-* **Medicine (Level 25) - `Self Medication`**: $+10\%$ personal healing rate and $+5$ max HP to the surgeon.
-* **Medicine (Level 50) - `Triage Tent`**: $+15\%$ healing rate to the party while stationary on the campaign map.
-* **Medicine (Level 100) - `Best Medicine`**: $+15\%$ healing rate to the party while moving on the campaign map, and increases hero healing by $+10\%$.
-* **Medicine (Level 100) - `Good Lodging`**: $+15\%$ healing rate to the party when resting inside a settlement.
-* **Medicine (Level 150) - `Bush Doctor`**: $+20\%$ healing rate in forest terrain, and reduces campaign map speed penalties from wounded troops by $-10\%$.
-* **Medicine (Level 175) - `Health Advice`**: $+10\%$ healing rate to heroes in the party.
-* **Medicine (Level 175) - `Perfect Health`**: $+10\%$ healing rate to regular troops in the party.
-* **Medicine (Level 200) - `Clean Infrastructure`**: $+15\%$ party healing rate when inside territory owned by your own faction.
-* **Medicine (Level 225) - `Cheat Death`**: Grants a one-time cheat death buffer, preventing the player character's death from combat execution or old age.
-* **Medicine (Level 225) - `Fortitude Tonic`**: Adds $+5$ flat hit points to all heroes in your party.
+* **Medicine (Level 25) - `Self Medication`**: $+30\%$ personal healing rate, or $+2\%$ combat movement speed as the alternate personal pick.
+* **Medicine (Level 50) - `Triage Tent`**: $+30\%$ surgeon healing rate while stationary on the campaign map; the governor side reduces food consumption in besieged settlements by $-5\%$.
+* **Medicine (Level 100) - `Best Medicine`**: $+15\%$ surgeon healing rate while party morale is above $70$.
+* **Medicine (Level 100) - `Good Lodging`**: $+20\%$ surgeon healing rate while resting in settlements.
+* **Medicine (Level 150) - `Bush Doctor`**: $+20\%$ surgeon healing rate while waiting in villages; its governor side improves bound village hearth growth.
+* **Medicine (Level 175) - `Health Advice`**: Wounded troops no longer decrease morale in battles; its clan-leader side is old-age death recovery for clan members.
+* **Medicine (Level 175) - `Perfect Health`**: $+5\%$ recovery rate for each food type in party inventory; its governor side boosts animal production.
+* **Medicine (Level 200) - `Clean Infrastructure`**: Governor utility: $+1$ prosperity from civilian projects and $+30\%$ village raid recovery rate. It is not a general party-healing perk.
+* **Medicine (Level 225) - `Cheat Death`**: Personal one-time old-age cheat death, or $-50\%$ surgeon death chance when you fall unconscious in battle.
+* **Medicine (Level 225) - `Fortitude Tonic`**: $+10$ hit points to other heroes in your party, plus $+5$ personal hit points.
 
 ---
 
@@ -127,7 +127,7 @@ Armor reduces incoming damage before it is processed, making it the most critica
 > [!WARNING]
 > **The Engineering 225 Metallurgy Trap**:
 > Reaching `Metallurgy` (Engineering 225) requires a steep **4 Focus Points** under the recommended **7 Cunning / 7 Intelligence** character build. Attempting to acquire this perk results in severe focus point starvation, as those points are desperately needed for Scouting, Medicine, and Steward. 
-> This perk was originally a cornerstone of the older, pure INT build (**3/5 3/5 3/5 2 2 10**), where 10 INT naturally lowered the requirement to 3 focus points and Cunning skills did not drain focus. For the 7 INT / 7 CNG build, the $+5$ armor is a trap; you should keep Engineering capped at **3 Focus Points** (level 150 project speed boost) and instead rely on Athletics (`Ignore Pain`) or Riding (`Dauntless Steed`) for formation armor.
+> This perk was originally a cornerstone of the older, pure INT build (**3/5 3/5 3/5 2 2 10**), where 10 INT naturally lowered the requirement to 3 focus points and Cunning skills did not drain focus. For the 7 INT / 7 CNG build, the $+5$ armor is a trap; you should keep Engineering capped at **3 Focus Points** for the level 150 utility tier and instead rely on Athletics (`Ignore Pain`) or Riding (`Dauntless Steed`) for formation armor.
 
 ---
 
@@ -180,8 +180,8 @@ While **Doctor's Oath** (Medicine 75) is exceptionally powerful for farming high
 > **The Siege Attrition Trap**: When you assault a settlement in multiple sequential waves, **Doctor's Oath** applies your surgeon's Medicine level to the defending enemy casualties. Instead of being killed, a massive proportion of the defenders are processed as wounded. Because they are wounded inside a settlement, they recover rapidly (boosted by the settlement's natural healing rates and any active governor/project bonuses) and are fully ready to defend the walls again in the next assault phase. You are essentially fighting against your own surgeon's death-protection capabilities.
 
 ### Physician of People Exclusion
-The Medicine 200 perk **Physician of People** ($+30\%$ survival rate factor for Tier 1/2 units) is restricted **strictly to the surgeon's own party**. 
-* Defending militia (which are low-level and would otherwise benefit from it) and recruits in the garrison **do not** receive this $+30\%$ bonus.
+The Medicine 200 perk **Physician of People** ($30\%$ lethal-wound recovery chance for Tier 1/2 units) is restricted **strictly to the surgeon's own party**.
+* Defending militia (which are low-level and would otherwise benefit from it) and recruits in the garrison **do not** receive this recovery chance.
 * However, because low-tier militia are low level (typically Level 6 for Tier 1, Level 11 for Tier 2), their base death chance is naturally much higher (e.g. $32.1\%$ at 200 Medicine compared to $27.6\%$ for Tier 6 elites). This means militia will still die at higher rates than garrisoned elite troops during siege assaults.
 
 ### Tactical Workaround
@@ -192,4 +192,3 @@ If you plan to use repeated assaults to wear down a massive garrison via attriti
 > 1. **Assign Backup Surgeon**: Open the Clan screen and temporarily assign this backup companion to the **Surgeon** role before launching the siege assault. (Do not assign a 0-Medicine surgeon, as that removes your own troop survival protection, putting both armies on equal footing and causing massive player casualties).
 > 2. **Execute Assault**: Perform the attack wave. Because the active backup surgeon has high Medicine but no Doctor's Oath, your own troops benefit from high survival rates while the downed defenders receive no surgery protection and die at normal rates, successfully depleting the garrison.
 > 3. **Restore Main Surgeon**: Once the siege is won or you need to recover health, reassign your main surgeon back.
-

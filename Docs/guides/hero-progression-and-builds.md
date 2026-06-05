@@ -100,7 +100,7 @@ Steward XP is awarded daily to the party's assigned **Quartermaster** based on f
 $$\text{Steward XP} = \text{Round}(\text{Daily Food Consumption} \times 100) \times \frac{\text{Food Variety} - 2}{3}$$
 * **Prerequisites**: The party must have an active Quartermaster, must not be starving, and must carry **strictly more than 3 unique food types** ($\text{Food Variety} > 3$). If variety is 3 or less, Steward XP is $0$.
 > [!WARNING]
-> **The Food Upkeep XP Trap**: Perks that reduce party food consumption (such as Steward 25 `Frugal` or other consumption discounts) directly reduce the daily food consumption rate. Because Steward XP scales on the volume of food consumed, **food upkeep reductions directly slow down your Steward XP gain**.
+> **The Food Upkeep XP Trap**: Perks that reduce party food consumption (such as Steward 25 `Warrior's Diet` or other consumption discounts) directly reduce the daily food consumption rate. Because Steward XP scales on the volume of food consumed, **food upkeep reductions directly slow down your Steward XP gain**.
 * **Calradic Diet**: There are exactly 9 unique consumable food items in Bannerlord: *Grain, Fish, Meat, Butter, Cheese, Grapes, Olives, Dates, and Beer*. Stacking all 9 types applies a $2.33\times$ multiplier to the XP pulse, while carrying only 4 types reduces the multiplier to $0.67\times$.
 
 ### Stewardship - Town/Castle Governance
@@ -231,11 +231,11 @@ At the baseline of **2 Attribute and 1 Focus Point**, any skill will reach a lim
    - **Level 50**: `Drill Sergeant` (Adds $+2$ daily experience to all troops in your party).
 4. **Scouting (Level 50)**:
    - **Level 25**: `Day Traveler` ($+2\%$ daytime map speed).
-   - **Level 50**: `Pathfinder` ($+2\%$ daytime map speed; chance to gain relations with local notables when entering towns).
-   - **Level 50**: `Water Diviner` ($+5\%$ map speed on marshes and river crossings).
+   - **Level 50**: `Pathfinder` ($+2\%$ travel speed on steppes and plains; chance to gain relation with a notable when entering towns).
+   - **Level 50**: `Water Diviner` ($+10\%$ sight range on steppes and plains; chance to gain relation with a notable when entering villages).
 5. **Leadership (Level 50)**:
    - **Level 25**: `Combat Tips` ($+2$ daily experience to all troops in your party).
-   - **Level 50**: `Raise The Meek` ($+30\%$ prisoner recruitment speed; doubles training rate for Tier 1-3 troops).
+   - **Level 25**: `Raise The Meek` ($+4$ daily experience to Tier 1-2 troops, or $+3$ daily XP to garrison troops as governor).
 6. **Athletics (Level 50)**:
    - **Level 25**: `Well Built` ($+5$ personal HP and $+5$ HP to foot troops in party).
    - **Level 50**: `Form Fitting Armor` (Reduces equipped armor weight by $15\%$, improving combat movement speed).
@@ -245,9 +245,9 @@ At the baseline of **2 Attribute and 1 Focus Point**, any skill will reach a lim
 
 ---
 
-## 6. Personal Combat Perks
+## 6. Combat Tree Highlights
 
-Personal combat perks improve the main hero's combat performance in live battle. 
+Combat tree perks usually improve the main hero's live-battle performance, but several high-value tiers are worth noting because their alternate side effects support formations, party size, morale, settlement defense, or governor utility. Those off-bucket effects are called out where they are the real reason to target the perk.
 
 ### Direct Skill Passive Scaling
 Even before perks are unlocked, raising your weapon skill levels provides passive bonuses:
@@ -267,13 +267,13 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 
 #### One Handed
 * **Level 25** - `Wrapped Handles`: $+20\%$ handling (weapon swing recovery). Highly noticeable.
-* **Level 50** - `Shield Bearer`: Removes the movement speed penalty from equipped shields.
-* **Level 50** - `Swift Strike`: $+5\%$ one-handed attack speed.
-* **Level 150** - `Duelist`: $+20\%$ melee damage when fighting without a shield. Great for high-damage dueling.
-* **Level 200** - `Fleet of Foot`: $+5\%$ combat movement speed when holding a one-handed weapon.
-* **Level 225** - `Deadly Purpose`: $+10\%$ one-handed weapon damage.
+* **Level 50** - `Swift Strike`: $+2\%$ one-handed swing speed.
+* **Level 75** - `Shield Bearer`: Removes the movement speed penalty from equipped shields.
+* **Level 100** - `Duelist`: $+20\%$ melee damage when fighting without a shield. Great for high-damage dueling.
+* **Level 200** - `Fleet of Foot`: $+4\%$ combat movement speed, or $+4\%$ movement speed to infantry in your formation.
+* **Level 225** - `Deadly Purpose`: $+5\%$ one-handed weapon damage, or $+10\%$ melee weapon damage by infantry in your formation.
 * **Level 250** - `Chink in the Armor`: $+10\%$ melee armor penetration. Strongly improves damage against heavy units.
-* **Level 250** - `Prestige`: $+50\%$ renown from battles where you personally fight.
+* **Level 250** - `Prestige`: $+50\%$ damage against shields with one-handed weapons, or $+15$ party limit.
 * **Level 275** - `Way of the Sword`: At 330 skill, yields $+16\%$ attack speed and $+40\%$ One Handed damage.
 
 #### Two Handed
@@ -282,10 +282,10 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 * **Level 50** - `Head Basher`: $+10\%$ blunt damage with two-handed weapons.
 * **Level 50** - `On the Edge`: $+3\%$ personal two-handed swing speed, or $+2\%$ infantry swing speed.
 * **Level 75** - `Show of Strength`: Two-handed weapons that can knock down ignore $30\%$ knockdown resistance on swing attacks.
-* **Level 150** - `Projectile Deflection`: Allows blocking projectiles with two-handed swords. Defining defensive tool, but it requires a higher investment than the level 100 utility tier.
 * **Level 100** - `Beast Slayer`: $+50\%$ damage against mounts.
 * **Level 125** - `Berserker`: Deal $+20\%$ damage when below $50\%$ health.
-* **Level 125** - `Confidence`: $+10\%$ damage when your character HP is above $90\%$.
+* **Level 125** - `Confidence`: $+15\%$ damage when your character HP is above $90\%$.
+* **Level 150** - `Projectile Deflection`: Allows blocking projectiles with two-handed swords. Defining defensive tool, but it requires a higher investment than the level 100 utility tier.
 * **Level 175** - `Hope`: Friendly troop morale effect from your two-handed kills, or $+5$ party size.
 * **Level 175** - `Terror`: Enemy morale effect from your two-handed kills, or $+10$ prisoner capacity.
 * **Level 200** - `Reckless Charge`: $+20\%$ personal speed-damage bonus on foot, or $+2\%$ infantry damage and movement speed.
@@ -295,18 +295,18 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 * **Level 250** - `Way Of The Great Axe`: *Note: the scaling formula only starts above 250.* At 330 skill, yields $+16\%$ speed and $+40\%$ damage.
 
 #### Polearm
-* **Level 25** - `Pikeman`: $+50\%$ damage against mounts.
-* **Level 50** - `Clean Thrust`: $+10\%$ thrust damage. Paired with `Guards` ($+50\%$ headshot damage) makes spear thrusts lethal.
+* **Level 25** - `Pikeman`: $+2\%$ polearm damage on foot, or $+2\%$ infantry polearm damage in your formation.
 * **Level 50** - `Keep at Bay`: Polearm thrusts have a chance to push back enemies.
+* **Level 75** - `Clean Thrust`: $+10\%$ thrust damage. Paired with `Guards` ($+50\%$ headshot damage) makes spear thrusts lethal.
 * **Level 75** - `Swift Swing`: $+5\%$ swing speed. Mandatory for swingable polearms (glaives/menavlions).
-* **Level 100** - `Footwork`: $+5\%$ combat speed while holding a polearm.
+* **Level 100** - `Footwork`: $+2\%$ combat speed while holding a polearm, or $+2\%$ movement speed to infantry in your formation.
+* **Level 125** - `Lancer`: $+20\%$ mounted speed-damage bonus with polearms.
 * **Level 125** - `Steed Killer`: Dismounts enemies on successful thrust attacks.
 * **Level 150** - `Skewer`: $30\%$ chance to keep couch lance active after hitting.
-* **Level 175** - `Phalanx`: Infantry in your formation have $+5\%$ melee speed.
+* **Level 175** - `Phalanx`: $+30$ melee weapon skills to troops in your party while in shield wall formation, or $+3\%$ polearm damage by troops in your formation.
 * **Level 175** - `Standard Bearer`: Increases party morale in battles.
-* **Level 200** - `Lancer`: $+20\%$ speed-damage bonus while mounted.
-* **Level 250** - `Counterweight`: $+10\%$ swing damage.
-* **Level 250** - `Sharpen the Tip`: $+10\%$ thrust damage.
+* **Level 250** - `Counterweight`: $+15\%$ handling with swingable polearms, or $+20$ Polearm skill to troops in your formation.
+* **Level 250** - `Sharpen the Tip`: $+5\%$ thrust damage, or $+5\%$ thrust damage by infantry in your formation.
 * **Level 275** - `Way of the Spear`: Pushes limits of polearm combat stats.
 
 ---
@@ -315,52 +315,52 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 
 #### Bow
 * **Level 25** - `Bow Control`: Reduces movement accuracy penalty by $30\%$.
-* **Level 50** - `Dead Aim`: $+30\%$ headshot damage.
-* **Level 50** - `Bodkin`: $+20\%$ armor penetration with bows.
-* **Level 50** - `Nocking Point`: $+10\%$ bow reload speed.
+* **Level 25** - `Dead Aim`: $+30\%$ headshot damage.
+* **Level 50** - `Bodkin`: $+10\%$ personal armor penetration with bows, or $+5\%$ bow armor penetration by troops in your formation.
+* **Level 50** - `Nocking Point`: Reloading bows slows you $50\%$ less, or archers in your formation gain $+3\%$ movement speed.
 * **Level 75** - `Quick Adjustments`: Removes the accuracy penalty from turning.
-* **Level 100** - `Rapid Fire`: $+25\%$ reload speed. Clear DPS increase.
+* **Level 75** - `Rapid Fire`: $+25\%$ reload speed. Clear DPS increase.
 * **Level 125** - `Strong bows`: Bow shots deal $+8\%$ more damage.
-* **Level 150** - `Discipline`: Under command of the captain, archers have $+10\%$ accuracy.
+* **Level 150** - `Discipline`: You can aim $50\%$ longer without losing accuracy, or gain $+1$ loyalty per day as governor.
 * **Level 175** - `Eagle Eye`: Zoom factor increased by $+50\%$.
-* **Level 200** - `Renowned Archer`: Battle renown increased by $+20\%$.
+* **Level 200** - `Renowned Archer`: $+10\%$ starting battle morale to ranged troops, or $-30\%$ recruitment and upgrade costs for ranged troops.
 * **Level 225** - `Horse Master`: Allows utilizing all bows on horseback (otherwise restricted).
 * **Level 225** - `Deep Quivers`: Adds $+3$ arrows per quiver.
 * **Level 250** - `Quick Draw`: Bow draw speed increased by $+25\%$.
-* **Level 250** - `Ranger's Swiftness`: Combat movement speed increased by $+10\%$ when holding a bow.
+* **Level 250** - `Ranger's Swiftness`: Equipped bows no longer slow you down, or archers provide $+20\%$ security as governor.
 * **Level 275** - `Deadshot`: Starts scaling at 200 skill. At 330 skill, yields $+26\%$ reload speed and $+65\%$ bow damage.
 
 #### Crossbow
 * **Level 25** - `Piercer`: Ignores enemy armor below 20. Highly lethal early game.
 * **Level 50** - `Wind Winder`: $+25\%$ reload speed.
 * **Level 50** - `Unhorser`: Crossbow shots deal $+40\%$ damage against mounts.
-* **Level 75** - `Donkey's Swiftness`: Combat movement speed increased by $+5\%$ when holding a crossbow.
-* **Level 75** - `Sheriff`: Earn $+10\%$ renown from battles.
-* **Level 100** - `Peasant Leader`: High tier troops have $+5\%$ damage in autocalc.
-* **Level 125** - `Mounted Crossbowman`: Allows reloading all crossbows on horseback.
+* **Level 75** - `Donkey's Swiftness`: Moving accuracy loss with crossbows is reduced by $30\%$, or troops in your formation gain $+30$ Crossbow skill.
+* **Level 75** - `Sheriff`: $+50\%$ headshot damage with crossbows, or $+10\%$ crossbow damage to infantry by troops in your formation.
+* **Level 100** - `Peasant Leader`: Tier 1-3 troops gain $+10\%$ battle morale, or garrisoned ranged troop wages are reduced by $20\%$.
 * **Level 125** - `Fletcher`: Adds $+4$ bolts per quiver.
-* **Level 125** - `Puncture`: Crossbow shots ignore target armor below 10.
-* **Level 150** - `Deft Hands`: Reload speed $+15\%$ while moving.
-* **Level 150** - `Loose and Move`: Accuracy penalty while moving reduced by $-30\%$.
-* **Level 200** - `Long Shots`: Range-based damage decay reduced by $-50\%$.
-* **Level 225** - `Pavise`: $75\%$ chance to block projectiles from behind with an equipped shield on your back while reloading.
-* **Level 225** - `Hammer Bolts`: Crossbow hits have a $+25\%$ chance to stagger enemies.
-* **Level 250** - `Terror`: Increases enemy morale loss from your kills by $+10\%$.
+* **Level 125** - `Puncture`: Crossbow shots gain $+10\%$ armor penetration, or troops in your formation gain $+5\%$ crossbow armor penetration.
+* **Level 150** - `Deft Hands`: $+50\%$ resistance to being staggered while reloading a crossbow, including troops in your formation.
+* **Level 150** - `Loose and Move`: Equipped crossbows no longer slow you down, or ranged troops in your formation gain $+5\%$ movement speed.
+* **Level 175** - `Mounted Crossbowman`: Allows reloading all crossbows on horseback, or gives $+5\%$ XP to ranged troops.
+* **Level 200** - `Long Shots`: $+100\%$ zoom with crossbows, or $+1$ daily militia recruitment as governor.
+* **Level 225** - `Pavise`: $75\%$ chance to block projectiles from behind with a shield on your back, or $+30\%$ ballista accuracy as governor.
+* **Level 225** - `Hammer Bolts`: Crossbows can dismount cavalry and ignore $50\%$ dismount resistance, or troops in your formation gain $+10\%$ crossbow damage.
+* **Level 250** - `Terror`: Off-bucket utility: siege bombardment hits have a $20\%$ chance to add a casualty, or enemy morale loss from formation crossbow kills is increased by $25\%$.
 * **Level 275** - `Mighty Pull`: At 330 skill, yields $+26\%$ reload speed and $+65\%$ crossbow damage.
 
 #### Throwing
 * **Level 25** - `Shield Breaker`: $+40\%$ damage to shields.
 * **Level 50** - `Flexible Fighter`: $+10\%$ damage with throwing weapons on foot.
 * **Level 75** - `Mounted Skirmisher`: Accuracy penalty while mounted reduced by $-20\%$.
-* **Level 100** - `Well Prepared`: $+2$ throwing weapons per quiver.
-* **Level 100** - `Knock Off`: Throwing hits have a chance to disarm shields.
-* **Level 100** - `Running Throw`: Throwing damage scales with running speed (up to $+15\%$).
-* **Level 150** - `Last Hit`: $+20\%$ damage when target is below $50\%$ health.
-* **Level 175** - `Slinging Competitions`: Renown from battles $+10\%$.
-* **Level 200** - `Splinters`: Throwing axes and knives deal $+100\%$ damage to shields.
-* **Level 225** - `Impale`: Javelins break and penetrate shields, hitting the defender. Extremely powerful.
+* **Level 75** - `Well Prepared`: $+1$ throwing weapon per quiver, and $+1$ throwing ammunition to troops in your party.
+* **Level 100** - `Knock Off`: Thrown weapons can dismount cavalry and ignore $25\%$ dismount resistance, or troops in your formation deal $+5\%$ throwing damage to cavalry.
+* **Level 100** - `Running Throw`: Throwing damage gains $+25\%$ speed bonus, or troops in your formation gain $+30$ Throwing skill.
+* **Level 150** - `Last Hit`: $+50\%$ damage when target is below half health, or $+5$ starting battle morale to troops in your party.
+* **Level 175** - `Slinging Competitions`: Sling weapons can penetrate head armor, or $+1$ militia recruitment as governor.
+* **Level 200** - `Splinters`: Throwing axes deal triple damage against shields, or troops in your formation deal $+50\%$ throwing weapon damage to shields.
 * **Level 225** - `Long Reach`: Throwing weapon range increased by $+20\%$.
-* **Level 225** - `Perfect Technique`: Throwing velocity increased by $+15\%$.
+* **Level 225** - `Perfect Technique`: Throwing weapon travel speed increases by $+25\%$, or by $+10\%$ for troops in your formation.
+* **Level 250** - `Impale`: Javelins break and penetrate shields, hitting the defender. Extremely powerful.
 * **Level 250** - `Weak Spot`: $+30\%$ armor penetration.
 * **Level 275** - `Unstoppable Force`: Throwing hits knock back foot soldiers.
 
@@ -370,29 +370,29 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 
 #### Athletics
 * **Level 25** - `Morning Exercise`: $+3\%$ combat movement speed.
-* **Level 50** - `Fury`: $+10\%$ attack speed when HP is below $50\%$.
-* **Level 75** - `Powerful`: $+4\%$ melee weapon damage.
-* **Level 75** - `Imposing Stature`: Persuasion chance $+10\%$.
-* **Level 100** - `Sprint`: $+10\%$ combat running speed.
-* **Level 125** - `Surging Blow`: Melee damage $+5\%$ when on foot.
-* **Level 150** - `A Good Days Rest`: $+10\%$ hit point regeneration while waiting in settlements; the companion effect gives $+10$ daily XP to foot troops while waiting.
-* **Level 175** - `Ignore Pain`: $+10\%$ armor while on foot.
-* **Level 225** - `Strong Arms`: Throwing weapons deal $+10\%$ damage.
-* **Level 250** - `Spartan`: Reduces campaign party wages by $-5\%$.
+* **Level 50** - `Fury`: $+10\%$ weapon handling while on foot, or $+10\%$ weapon handling to foot troops in your formation.
+* **Level 75** - `Imposing Stature`: Persuasion chance $+30\%$, or $+5$ party size.
+* **Level 100** - `Sprint`: $+5\%$ combat movement speed when carrying no shields or ranged weapons, or $+3\%$ movement speed to infantry in your formation.
+* **Level 100** - `Powerful`: $+4\%$ melee weapon damage.
+* **Level 125** - `Surging Blow`: $+30\%$ speed-damage bonus while on foot, or the same speed-damage bonus to troops in your formation.
+* **Level 150** - `A Good Days Rest`: $+10\%$ hit point regeneration while waiting in settlements; the party-leader side gives $+10$ daily XP to foot troops while waiting.
+* **Level 225** - `Strong Arms`: Throwing weapons deal $+5\%$ damage, or troops in your formation gain $+20$ Throwing skill.
+* **Level 250** - `Ignore Pain`: $+10\%$ armor while on foot, or $+5$ armor to foot troops in your formation.
+* **Level 250** - `Spartan`: $+50\%$ stagger resistance while on foot, or $-20\%$ party food consumption.
 * **Level 275** - `Mighty Blow`: At 330 skill, yields $+80$ personal HP, making you exceptionally durable.
 
 #### Riding
 * **Level 25** - `Full Speed`: $+20\%$ charge damage.
 * **Level 100** - `Sagittarius`: Mounted ranged accuracy penalty reduced by $-15\%$.
-* **Level 125** - `Relief Force`: Speed on campaign map when traveling with mount $+3\%$.
+* **Level 125** - `Relief Force`: $+10$ starting battle morale when joining an ongoing allied battle, or $+20\%$ security from mounted troops as governor.
 * **Level 150** - `Horse Archer`: Mounted bow damage $+10\%$.
+* **Level 150** - `Mounted Warrior`: $+5\%$ mounted melee damage.
 * **Level 175** - `Breeder`: Pack animals/mounts reproduce slowly in your inventory.
-* **Level 200** - `Mounted Warrior`: $+5\%$ mounted melee damage.
-* **Level 200** - `Annoying Buzz`: Horse archers in your formation have $+10\%$ accuracy.
-* **Level 200** - `Thunderous Charge`: Mount charge damage increased by $+30\%$.
-* **Level 225** - `Cavalry Tactics`: Cavalry in your formation have $+5\%$ mount speed.
+* **Level 200** - `Annoying Buzz`: Mounted ranged kills apply a battle morale penalty to enemies.
+* **Level 200** - `Thunderous Charge`: Mounted melee kills apply a battle morale penalty to enemies.
+* **Level 225** - `Cavalry Tactics`: $+30\%$ cavalry volunteering rate in settlements governed by your clan, or $-50\%$ wages of mounted troops in a governed settlement.
 * **Level 225** - `Mounted Patrols`: Prisoner escape chance reduced by $-50\%$.
-* **Level 250** - `Tough Steed` & `Dauntless Steed`: Provides $+20\%$ mount HP and $+50\%$ mount stagger resistance.
+* **Level 250** - `Tough Steed` & `Dauntless Steed`: Provides $+20\%$ armor to your mount, $+10$ armor to troop mounts, $+50\%$ mounted stagger resistance, or $+5$ armor to mounted troops.
 * **Level 275** - `The Way Of The Saddle`: Mount maneuverability and speed scaling.
 
 ---
@@ -432,11 +432,14 @@ These perks are highly prized because they grant permanent points that can resha
 * **Level 150 (Roguery)** - `Smuggler Connections`: Allows trading with town merchants and markets even while in disguise inside enemy settlements.
 
 #### Charm and Diplomacy
-* **Level 25** - `Virile`: $+20\%$ pregnancy chance to hero couples.
+* **Level 25** - `Virile`: $+30\%$ pregnancy chance to hero couples.
 * **Level 50** - `Oratory`: Adds $+1$ renown and $+1$ influence for every issue resolved.
 * **Level 200** - `Moral Leader` & `Natural Leader`: Reduces the number of successful arguments required during persuasion checks.
 * **Level 250** - `Camaraderie`: Doubles relation gains when aiding allied lords in combat.
 * **Level 275** - `Immortal Charm`: Passive $+5$ influence per day.
+
+> [!NOTE]
+> `Immortal Charm` is political/army-management utility, not a persuasion perk. Treat it as a late Social sink for kingdom-scale influence income.
 
 ---
 
@@ -455,7 +458,7 @@ When starting a new character, aligning your attribute allocations with your pla
 > [!WARNING]
 > **Focus Point Over-Investment Trap**: The primary progression danger for this build is accidentally allocating focus points beyond the minimum required to clear your target perks.
 > * **Riding**: Adding a second focus point to Riding early on to speed up training is a permanent waste; once Endurance reaches 5, exactly 1 focus point (which is usually picked up during character creation origin, or can be assigned at any time) is sufficient to reach the level 100 map-speed perk.
-> * **Engineering (The Metallurgy Trap)**: Reaching level 225 for **`Metallurgy`** ($+5$ formation armor) is a major focus point sink under a **7 Cunning / 7 Intelligence** setup, requiring 4 focus points (limit 248). This perk was better aligned with the older pure INT build (**3/5 3/5 3/5 2 2 10**), where 10 INT naturally lowered the cost to 3 focus points and Cunning-based skills did not deplete the focus pool. In the current build, keep Engineering capped at **3 Focus Points** (level 150 project speed boost) to avoid focus starvation.
+> * **Engineering (The Metallurgy Trap)**: Reaching level 225 for **`Metallurgy`** ($+5$ formation armor) is a major focus point sink under a **7 Cunning / 7 Intelligence** setup, requiring 4 focus points (limit 248). This perk was better aligned with the older pure INT build (**3/5 3/5 3/5 2 2 10**), where 10 INT naturally lowered the cost to 3 focus points and Cunning-based skills did not deplete the focus pool. In the current build, keep Engineering capped at **3 Focus Points** for the level 150 utility tier to avoid focus starvation.
 
 ### Template 2: The Social Diplomat
 * **Target Attributes**:
