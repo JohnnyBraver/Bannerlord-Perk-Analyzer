@@ -1,6 +1,6 @@
 # Commander Banner Package Comparison
 
-Generated: 2026-06-05T13:21:05.896685+03:00
+Generated: 2026-06-05T14:21:22.986402+03:00
 
 This report scores full commander-relevant perk alternative sets around each major banner option. It is a package model over extracted perk rows, not a battle simulator.
 
@@ -16,17 +16,17 @@ Banner mechanics are confirmed in the generated [banner effects reference](banne
 
 | Package | Banner | Infantry movement | Melee damage | Ranged damage taken | Weapon inaccuracy | Accuracy penalty | HP | Shield damage | Differing picks vs speed |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Shock Speed | Increased Troop Movement Speed T3 (30%) - Banner of Dust Devils, Strider's Flag | 63% | 122% | 3% |  | 5% | 10 | 58% | 0 |
-| Anti-Arrow Durability | Decreased Taken Ranged Attack Damage T3 (-15%) - Locked Shields Banner, Testudo Standard | 25% | 100% | 27% |  | 5% | 28 | 68% | 7 |
-| Archer Accuracy | Decreased Ranged Accuracy Penalty T3 (-8%) - Banner of Sultan's Eagle, Tug of Whistling Arrow | 13% | 72% | 12% | 8% | 20% | 33 |  | 22 |
-| Melee Damage | Increased Melee Damage T3 (15%) - Standard of Wrath | 30% | 139% | 3% |  | 5% | 10 | 58% | 1 |
+| Shock Speed | Increased Troop Movement Speed T3 (30%) - Banner of Dust Devils, Strider's Flag | 63% | 122% | 13% |  | 5% | 10 | 58% | 0 |
+| Anti-Arrow Durability | Decreased Taken Ranged Attack Damage T3 (-15%) - Locked Shields Banner, Testudo Standard | 25% | 95% | 37% |  | 5% | 28 | 68% | 8 |
+| Archer Accuracy | Decreased Ranged Accuracy Penalty T3 (-8%) - Banner of Sultan's Eagle, Tug of Whistling Arrow | 13% | 72% | 12% | 8% | 100% | 33 |  | 26 |
+| Melee Damage | Increased Melee Damage T3 (15%) - Standard of Wrath | 30% | 139% | 13% |  | 5% | 10 | 58% | 1 |
 
 ## Delta vs Shock Speed
 
 | Package | Infantry movement | Melee damage | Ranged damage taken | Weapon inaccuracy | Accuracy penalty | HP | Shield damage | Read |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| Anti-Arrow Durability | -38% | -22% | +24% |  |  | +18 | +10% | Trades speed and some damage for a much larger ranged-damage, HP, and shield package. |
-| Archer Accuracy | -50% | -50% | +9% | +8% | +15% | +23 | -58% | Real but specialized: adds base inaccuracy reduction and ranged accuracy perks, while giving up most shock-infantry priorities. |
+| Anti-Arrow Durability | -38% | -27% | +24% |  |  | +18 | +10% | Trades speed and some damage for a much larger ranged-damage, HP, and shield package. |
+| Archer Accuracy | -50% | -50% | -1% | +8% | +95% | +23 | -58% | Real but specialized: adds base inaccuracy reduction and ranged accuracy perks, while giving up most shock-infantry priorities. |
 | Melee Damage | -33% | +17% |  |  |  |  |  | Mostly the same perk package as shock speed, but swaps about 33% infantry movement for 17% melee damage. |
 
 ## Accuracy Banner Mechanics
@@ -56,6 +56,7 @@ Infantry that expects to trade under ranged fire before contact.
 | One Handed 200 - Steel Core Shields | One Handed 200 - Fleet of Foot | -4% infantry movement; +10% shield damage reduction |
 | Tactics 200 - Elite Reserves | Tactics 200 - Encirclement | -5% melee damage; +5% ranged damage reduction |
 | Two Handed 200 - Thick Hides | Two Handed 200 - Reckless Charge | -2% infantry movement; -2% melee damage; +5 HP |
+| Engineering 225 - Metallurgy | Engineering 225 - Improved Tools | -5% melee damage; +5 armor |
 | One Handed 225 - Unwavering Defense | One Handed 225 - Deadly Purpose | -10% melee damage; +10 HP |
 
 ### Archer Accuracy
@@ -73,11 +74,14 @@ Ranged-heavy formation where hit rate is the bottleneck.
 | One Handed 75 - Cavalry | One Handed 75 - Shield Bearer | -3% infantry movement |
 | Tactics 75 - Horde Leader | Tactics 75 - Small Unit Tactics | -5% infantry movement; +9 party size |
 | Athletics 100 - Powerful | Athletics 100 - Sprint | -3% infantry movement; +2% melee damage |
+| Bow 100 - Mounted Archery | Bow 100 - Merry Men | +30% accuracy penalty reduction; -5 party size |
 | Polearm 100 - Hard Knock | Polearm 100 - Footwork | -2% infantry movement; +3 HP |
 | Riding 100 - Sagittarius | Riding 100 - Sweeping Wind | +15% accuracy penalty reduction |
 | Tactics 100 - Coaching | Tactics 100 - Law Keeper | -3% melee damage |
 | Crossbow 125 - Puncture | Crossbow 125 - Fletcher | +5% ranged armor penetration |
 | Crossbow 150 - Loose and Move | Crossbow 150 - Deft Hands | +5% ranged movement |
+| Bow 175 - Eagle Eye | Bow 175 - Skirmish Phase Master | -10% ranged damage reduction |
+| Crossbow 200 - Steady | Crossbow 200 - Long Shots | +50% accuracy penalty reduction |
 | Tactics 200 - Elite Reserves | Tactics 200 - Encirclement | -5% melee damage; +5% ranged damage reduction |
 | Throwing 200 - Resourceful | Throwing 200 - Splinters | -50% shield damage reduction |
 | Two Handed 200 - Thick Hides | Two Handed 200 - Reckless Charge | -2% infantry movement; -2% melee damage; +5 HP |
@@ -85,6 +89,7 @@ Ranged-heavy formation where hit rate is the bottleneck.
 | One Handed 225 - Unwavering Defense | One Handed 225 - Deadly Purpose | -10% melee damage; +10 HP |
 | Two Handed 225 - Blade Master | Two Handed 225 - Vandal | -20% melee damage |
 | Polearm 250 - Counterweight | Polearm 250 - Sharpen the Tip | -5% melee damage; +20 melee skill |
+| Riding 250 - Dauntless Steed | Riding 250 - Tough Steed | -5 armor |
 | Scouting 250 - Rearguard | Scouting 250 - Vanguard | -5% melee damage |
 
 ### Melee Damage

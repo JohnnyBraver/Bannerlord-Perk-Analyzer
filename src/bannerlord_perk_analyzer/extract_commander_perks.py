@@ -9,9 +9,11 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from .perk_limits import MAX_ATTRIBUTE, MAX_FOCUS, MIN_ATTRIBUTE, peak_learning_range, skill_limit
     from .postprocess import default_workspace
     from .xp_reports import display_path, table_escape
 except ImportError:
+    from perk_limits import MAX_ATTRIBUTE, MAX_FOCUS, MIN_ATTRIBUTE, peak_learning_range, skill_limit
     from postprocess import default_workspace
     from xp_reports import display_path, table_escape
 
@@ -192,6 +194,304 @@ PACKAGE_DEFINITIONS = {
     },
 }
 
+BAND_META = {
+    "worth": {
+        "title": "Worth It",
+        "description": "A strong commander target for the default elite one-party doctrine.",
+    },
+    "context": {
+        "title": "Meh or Contextual",
+        "description": "Useful in the right composition or if the attribute/focus is already paid, but not a clean reason to push alone.",
+    },
+    "skip": {
+        "title": "Usually Skip",
+        "description": "Too personal, too narrow, too simulation/siege focused, or too small for the focus/attribute cost.",
+    },
+}
+
+ATTRIBUTE_ORDER = ("Vigor", "Control", "Endurance", "Cunning", "Social", "Intelligence")
+PHYSICAL_ATTRIBUTES = {"Vigor", "Control", "Endurance"}
+ENDURANCE_ASSISTED_PHYSICAL_BASELINE = 4
+
+INVESTMENT_BAR_CONFIG = {
+    "Athletics": {
+        "default_stop": 200,
+        "stretch_stop": 250,
+        "worth": "25-200; 250 if Athletics is already core",
+        "context": "225 is mostly a throwing/personal dead band",
+        "skip": "275",
+        "point_read": (
+            "Do not buy extra Endurance only for Strong Arms. Stop at 200 for foot-party speed; "
+            "250 is the real stretch because Ignore Pain gives foot troops +5 armor."
+        ),
+        "details": {
+            200: ("worth", "Strong is the clean foot-party campaign speed capstone."),
+            225: ("context", "Strong Arms is throwing-skill support, not a shock-infantry reason to push."),
+            250: ("worth", "Ignore Pain is the real stretch target: +5 armor to all equipped armor pieces of foot troops."),
+            275: ("skip", "Mighty Blow is personal scaling and does not justify high Endurance by itself."),
+        },
+    },
+    "Riding": {
+        "default_stop": 100,
+        "stretch_stop": 175,
+        "worth": "25-100",
+        "context": "175 if herding penalty matters; 200+ for mounted armies",
+        "skip": "250-275 for infantry commanders",
+        "point_read": "For an infantry-heavy party, Sweeping Wind at 100 is the main prize. Later mounted armor/morale is composition-specific.",
+        "details": {
+            100: ("worth", "Sweeping Wind gives campaign speed, which directly supports fight selection."),
+            175: ("context", "Shepherd is excellent if herd penalty is a recurring problem, otherwise optional."),
+            200: ("context", "Mounted kill morale perks are good for cavalry/horse archer formations, not infantry doctrine."),
+            250: ("context", "Mount and mounted-troop armor are real, but not infantry value."),
+            275: ("skip", "Way of the Saddle is personal mount scaling."),
+        },
+    },
+    "One Handed": {
+        "default_stop": 225,
+        "stretch_stop": 250,
+        "worth": "25-225; 250 as part of the Vigor package",
+        "context": "250 is much better when Polearm is also pushed",
+        "skip": "275",
+        "point_read": "This is the best Vigor skill to push past 200 for shield infantry. If Vigor is already moving from 4 to 5, Prestige's +15 party size is a worthwhile extension.",
+        "details": {
+            125: ("worth", "Shield coverage perks are major arrow-survival tools for infantry."),
+            200: ("worth", "Fleet of Foot or Steel Core Shields keeps the 200 tier relevant."),
+            225: ("worth", "Deadly Purpose is a strong infantry damage stretch; Unwavering Defense is the HP alternative."),
+            250: ("worth", "Prestige's +15 party size can justify the Vigor 5 extension when Polearm 250 is also wanted."),
+            275: ("skip", "Way of the Sword is personal one-handed scaling."),
+        },
+    },
+    "Two Handed": {
+        "default_stop": 175,
+        "stretch_stop": 225,
+        "worth": "25-175; 175 can be 3 focus at Vigor 5",
+        "context": "200 is a small optional bump; 225 is a costly attack-speed stretch",
+        "skip": "250 unless personal weapon priority",
+        "point_read": (
+            "The efficient commander stop is 175. At Vigor 5, 3/4/5 focus reaches 175/200/225-250. "
+            "The fourth focus buys only +2% infantry movement and damage or +5 troop HP, and the fifth "
+            "focus buys the nice-but-small +2% infantry attack speed at 225. Those are hard to justify "
+            "unless Two Handed is also a personal weapon priority or the build has spare focus."
+        ),
+        "details": {
+            100: ("worth", "Shield and mount damage help shock infantry solve common battlefield blockers."),
+            175: ("worth", "Hope is +5 party size if this skill is already climbing."),
+            200: ("context", "Reckless Charge is only +2% infantry damage and movement speed, while Thick Hides is +5 troop HP; useful, but thin for an extra focus point."),
+            225: (
+                "context",
+                "Blade Master's +2% infantry attack speed is nice, but it costs two extra focus over the efficient 175 stop; Vandal is destructible-object damage.",
+            ),
+            250: ("skip", "Way of the Great Axe is personal scaling and only starts paying above 250."),
+        },
+    },
+    "Polearm": {
+        "default_stop": 175,
+        "stretch_stop": 250,
+        "worth": "25-175; 250 as part of the Vigor package",
+        "context": "200-225 depending on cavalry threat",
+        "skip": "275",
+        "point_read": "Clean Thrust and Footwork are excellent cheap targets. If Vigor is already moving from 4 to 5, Counterweight's +20 polearm skill makes 250 a worthwhile extension.",
+        "details": {
+            75: ("worth", "Clean Thrust's +30 Polearm skill is the stronger level-75 troop perk for polearm infantry."),
+            100: ("worth", "Footwork adds infantry movement speed, a scarce shock-infantry stat."),
+            175: ("worth", "Phalanx offers broad melee-skill and polearm damage value."),
+            200: ("context", "Hardy Frontline is useful; Drills is effectively a trap because the daily XP is tiny and can round away."),
+            225: ("context", "Sure Footed is strong against charge damage, but not a general lethality breakpoint."),
+            250: ("worth", "Counterweight's +20 Polearm skill is enough troop-facing value to pair well with One Handed 250 in a Vigor 5 package."),
+            275: ("skip", "Way of the Spear is personal scaling."),
+        },
+    },
+    "Bow": {
+        "default_stop": 100,
+        "stretch_stop": 175,
+        "worth": "100 for party size; 175 for archer-heavy commanders",
+        "context": "225 if ranged ammunition is a real bottleneck",
+        "skip": "250-275 for commander value",
+        "point_read": "For shock infantry, Bow is mostly Merry Men. Fian-heavy commanders can justify 175/225; personal bow perks after that do not help troops.",
+        "details": {
+            100: ("worth", "Merry Men is +5 party size, the universal reason to touch Bow."),
+            175: ("worth", "Skirmish Phase Master is excellent for ranged troops, not melee infantry."),
+            225: ("context", "Deep Quivers is useful for archer-heavy armies, but it is not a shock-infantry breakpoint."),
+            250: ("skip", "Quick Draw and Ranger's Swiftness are personal/governor value."),
+            275: ("skip", "Deadshot is personal scaling."),
+        },
+    },
+    "Crossbow": {
+        "default_stop": 0,
+        "stretch_stop": 175,
+        "worth": "Only for crossbow/ranged formations",
+        "context": "175 for universal -3% projectile damage if Control is already high",
+        "skip": "225+ for shock infantry",
+        "point_read": "This tree is the classic wording trap: most useful rows are ranged-specific and do not protect melee infantry.",
+        "details": {
+            125: ("context", "Fletcher is good crossbow ammunition, not infantry durability."),
+            175: ("context", "Counter Fire is the one broadly useful defensive row, but -3% projectile damage is expensive if this is the only target."),
+            225: ("context", "Hammer Bolts is crossbow damage only."),
+            250: ("context", "Picked Shots/Terror are ranged-specialist economy, HP, or morale pressure."),
+            275: ("skip", "Mighty Pull is personal scaling."),
+        },
+    },
+    "Throwing": {
+        "default_stop": 125,
+        "stretch_stop": 225,
+        "worth": "50 and 125",
+        "context": "225 for morale/renown; 250 for throwing-heavy troops",
+        "skip": "275",
+        "point_read": "Flexible Fighter and Skirmisher are the clean commander picks. After that, the tree becomes throwing-specialist or personal projectile speed.",
+        "details": {
+            50: ("worth", "Flexible Fighter is the cheap mixed-skill troop bonus."),
+            125: ("worth", "Skirmisher gives all troops -3% ranged damage taken."),
+            225: ("context", "Long Reach is morale/renown utility; Perfect Technique is projectile speed, not troop movement."),
+            250: ("context", "Impale/Weak Spot are good only for throwing-heavy formations."),
+            275: ("skip", "Unstoppable Force is personal scaling/projectile speed."),
+        },
+    },
+    "Tactics": {
+        "default_stop": 75,
+        "stretch_stop": 200,
+        "worth": "50-75",
+        "context": "200 if Cunning/focus is already available",
+        "skip": "225+ for live-command doctrine",
+        "point_read": "Tactics is almost free up to Horde Leader in a high-Cunning build. Pushing to 200 buys a real live -5% damage taken, but most later rows are simulation-only.",
+        "details": {
+            75: ("worth", "Horde Leader is +10 party size and can be free with high Cunning."),
+            200: ("context", "Elite Reserves has a live -5% damage taken side, but the alternative row is autoresolve."),
+            225: ("skip", "Pre Battle Maneuvers is simulation damage."),
+            250: ("context", "Gens d'armes is cavalry-vs-infantry damage; Counter Offensive is simulation."),
+            275: ("skip", "Tactical Mastery is army/autoresolve scaling."),
+        },
+    },
+    "Scouting": {
+        "default_stop": 150,
+        "stretch_stop": 275,
+        "worth": "25-150",
+        "context": "175-225 utility; 275 for map-speed maximizers",
+        "skip": "250 combat rows",
+        "point_read": "Unlike most physical stretches, Scouting 275 can pay back because engagement control is a core doctrine pillar.",
+        "details": {
+            150: ("worth", "Mounted Scouts is +5 party size on top of the early campaign speed chain."),
+            175: ("context", "Foragers/Beast Whisperer are logistics comfort, not combat power."),
+            225: ("context", "Prisoner lord escape prevention is useful but not build-defining."),
+            250: ("skip", "Rearguard/Vanguard are siege or simulation rows."),
+            275: ("worth", "Uncanny Insight is direct map speed scaling and can be worth it for fight selection."),
+        },
+    },
+    "Roguery": {
+        "default_stop": 0,
+        "stretch_stop": 200,
+        "worth": "Bandit builds only",
+        "context": "200-250 if already leveling Roguery for loot",
+        "skip": "General commander investment",
+        "point_read": "Roguery has scattered commander rows, but they are too niche to pull focus away from Scouting/Medicine/Steward.",
+        "details": {
+            100: ("context", "Prisoner and bandit logistics are useful only for that playstyle."),
+            200: ("context", "Carver is small all-formation one-handed damage if Roguery is already high."),
+            250: ("context", "Dash and Slash adds small two-handed troop damage, but this is a loot/crime skill first."),
+            275: ("skip", "Rogue Extraordinaire is loot scaling."),
+        },
+    },
+    "Leadership": {
+        "default_stop": 175,
+        "stretch_stop": 250,
+        "worth": "75 and 175",
+        "context": "250-275 for Social-heavy commanders",
+        "skip": "225 as a reason to buy attributes",
+        "point_read": "Leadership is excellent, but with low Social the practical stop is 175. Buy Social attributes only if party-size scaling is a deliberate build pillar.",
+        "details": {
+            175: ("worth", "Uplifting Spirit is +10 party size."),
+            225: ("context", "Morale and archer shared XP are useful but not worth Social attributes alone."),
+            250: ("worth", "Talent Magnet is another +10 party size if Social is already being pushed."),
+            275: ("context", "Ultimate Leader scales party size, but only dedicated Leadership builds should chase it."),
+        },
+    },
+    "Steward": {
+        "default_stop": 250,
+        "stretch_stop": 275,
+        "worth": "200-250",
+        "context": "275 if the player is the long-term quartermaster",
+        "skip": "None for quartermaster builds; delegate otherwise",
+        "point_read": "Steward is not a combat skill, but it scales the elite stack. It is a good place to spend points freed from late physical perks.",
+        "details": {
+            200: ("worth", "Wages/carrying-capacity rows help keep the one-party army moving and affordable."),
+            225: ("context", "Carry capacity is useful, but not a combat breakpoint."),
+            250: ("worth", "Master of Planning/Warcraft are strong siege-camp logistics."),
+            275: ("context", "Price of Loyalty is attractive for a true quartermaster, but it is a high-skill stretch."),
+        },
+    },
+    "Medicine": {
+        "default_stop": 275,
+        "stretch_stop": 330,
+        "worth": "200 and 275",
+        "context": "250 for recovery/XP support",
+        "skip": "225 for troop commander value",
+        "point_read": "This is one of the best destinations for saved physical points. Minister of Health turns extra Medicine skill into troop HP.",
+        "details": {
+            200: ("worth", "Physician of People improves low-tier lethal-wound recovery."),
+            225: ("context", "Fortitude Tonic helps heroes, not regular troops; Cheat Death is personal."),
+            250: ("context", "Battle Hardened/Helping Hands are useful recovery and XP support."),
+            275: ("worth", "Minister of Health is the big troop HP scaling breakpoint."),
+        },
+    },
+    "Engineering": {
+        "default_stop": 0,
+        "stretch_stop": 225,
+        "worth": "Delegate by default",
+        "context": "150/225 if the player is the active engineer",
+        "skip": "250+ for field commander value",
+        "point_read": "Metallurgy is good, but the tree is an expensive detour unless Engineering is already part of the build.",
+        "details": {
+            150: ("context", "Fire siege engines are useful if the player personally handles engineering."),
+            225: ("context", "Metallurgy is +5 armor to all troop armor pieces, but it is a focus trap when taken alone."),
+            250: ("skip", "Siege-engine reload/project rows are outside the default field commander doctrine."),
+            275: ("skip", "Masterwork is siege-engine scaling."),
+        },
+    },
+    "Smithing": {
+        "default_stop": 225,
+        "stretch_stop": 225,
+        "worth": "225 as an attribute/focus enabler",
+        "context": "250-275 for crafting economy",
+        "skip": "Combat commander value after enablers",
+        "point_read": "Smithing is here for permanent attribute/focus manipulation and money, not live commander perks.",
+        "details": {
+            225: (
+                "worth",
+                "Enduring Smith gives +1 Endurance; Fencer Smith instead gives +1 focus to both One Handed and Two Handed, which can save manual focus during a Vigor stretch.",
+            ),
+            250: ("context", "Crafted-weapon damage is personal/equipment economy, not a troop commander breakpoint."),
+            275: ("context", "Legendary Smith is an economy/crafting stretch."),
+        },
+    },
+    "Charm": {
+        "default_stop": 50,
+        "stretch_stop": 125,
+        "worth": "Early QoL only",
+        "context": "225+ for diplomacy builds",
+        "skip": "Commander combat investment",
+        "point_read": "Charm is not where freed physical points usually go unless the campaign plan needs diplomacy/renown.",
+        "details": {
+            50: ("context", "Early renown/influence perks are quality-of-life picks."),
+            225: ("context", "Public Speaker is strong renown, but it is campaign economy rather than troop combat."),
+            250: ("context", "Camaraderie's companion limit is useful if the clan plan needs it."),
+            275: ("context", "Immortal Charm is influence income for Social-heavy campaigns."),
+        },
+    },
+    "Trade": {
+        "default_stop": 50,
+        "stretch_stop": 300,
+        "worth": "50 for QoL",
+        "context": "300 only for settlement trading",
+        "skip": "Commander combat investment",
+        "point_read": "One focus for price marking is great. Everything Has a Price is a separate campaign goal, not a commander perk target.",
+        "details": {
+            50: ("worth", "Price marking is one of the best one-focus quality-of-life upgrades."),
+            225: ("context", "Late trade perks are economy or caravan support."),
+            275: ("context", "Man of Means/Trickle Down are campaign-economy perks."),
+            300: ("context", "Everything Has a Price is transformative only if settlement barter is a campaign goal."),
+        },
+    },
+}
+
 
 def read_json(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as handle:
@@ -299,7 +599,10 @@ def troop_classes(row: dict[str, Any]) -> list[str]:
 
     if "all troops" in text or (
         not restricted_scope
-        and matches(text, r"\btroops in your formation\b|\btroops in your party\b|\btroops under your formation\b")
+        and matches(
+            text,
+            r"\bto troops\b|\btroops in your formation\b|\btroops in your party\b|\btroops under your formation\b",
+        )
     ):
         classes.add("all_troops")
     if matches(text, r"infantry|foot troops?|footmen|on_foot|melee troops"):
@@ -338,7 +641,8 @@ def troop_facing(row: dict[str, Any], classes: list[str]) -> bool:
 
 def default_force_fit(row: dict[str, Any], classes: list[str], speed_kind: str | None) -> str:
     role = row_role(row)
-    if role == "personal":
+    text = row_effect_lower(row)
+    if role == "personal" and not matches(text, r"\btroops?\b|infantry|formation|party"):
         return "personal only"
     if role == "governor" or "governed settlement" in row_triggers(row):
         return "governor/settlement only"
@@ -356,6 +660,8 @@ def default_force_fit(row: dict[str, Any], classes: list[str], speed_kind: str |
         return "ranged-specific"
     if "mounted" in classes or "cavalry" in classes:
         return "mounted-specific"
+    if role == "personal":
+        return "personal only"
     if row_subtype(row) == "party size":
         return "one-party scaling"
     return "situational"
@@ -376,6 +682,7 @@ CORE_SUBTYPES = {
 STAYING_SUBTYPES = {
     "hit points",
     "armor",
+    "armor increase",
     "damage resistance",
     "survival chance",
     "shield protection",
@@ -417,6 +724,10 @@ def doctrine_category(row: dict[str, Any], speed_kind: str | None, classes: list
         return "core_troop_lethality"
     if ptype == "troop combat" and matches(text, r"damage|skill|accuracy|armor penetration|shield"):
         return "core_troop_lethality"
+    if role in {"surgeon", "party leader"} and ptype in {"death avoidance", "regen bonus"} and matches(
+        text, r"troops?|wounded|recovery|casualt"
+    ):
+        return "combat_staying_power"
     if subtype in STAYING_SUBTYPES and troop_facing(row, classes):
         return "combat_staying_power"
     if speed_kind == "campaign_party_speed":
@@ -442,7 +753,9 @@ def value_rating(row: dict[str, Any], category: str, speed_kind: str | None, fit
             return "high"
         return "medium"
     if category == "combat_staying_power":
-        if subtype in {"damage resistance", "armor", "shield protection"}:
+        if subtype in {"damage resistance", "armor", "armor increase", "shield protection"}:
+            return "high"
+        if subtype == "hit points" and "for every skill point above" in text:
             return "high"
         return "medium"
     if category == "engagement_control":
@@ -533,10 +846,15 @@ def commander_candidate(row: dict[str, Any]) -> bool:
     ptype = row_type(row)
     text = row_effect_lower(row)
     speed_kind = classify_speed_kind(row)
+    classes = troop_classes(row)
 
     if role in COMMANDER_ROLES and (
         speed_kind
         or ptype in {"troop combat", "party management", "troop management"}
+        or (
+            ptype in {"death avoidance", "regen bonus"}
+            and matches(text, r"troops?|wounded|recovery|casualt")
+        )
         or subtype in CORE_SUBTYPES
         or subtype in STAYING_SUBTYPES
         or subtype in SCALING_SUBTYPES
@@ -555,6 +873,14 @@ def commander_candidate(row: dict[str, Any]) -> bool:
         return True
 
     if matches(text, r"damage bonus from speed|movement speed"):
+        return True
+
+    if role == "personal" and classes and (
+        ptype == "troop combat"
+        or subtype in CORE_SUBTYPES
+        or subtype in STAYING_SUBTYPES
+        or subtype in SCALING_SUBTYPES
+    ):
         return True
 
     return False
@@ -616,6 +942,255 @@ def build_commander_records(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
     records = [compact_record(row, alternatives_by_perk) for row in rows if commander_candidate(row)]
     return sorted(records, key=record_sort_key)
+
+
+def investment_split_for_level(level: int, baseline_attribute: int = MIN_ATTRIBUTE) -> dict[str, Any]:
+    baseline_attribute = max(MIN_ATTRIBUTE, min(MAX_ATTRIBUTE, baseline_attribute))
+    if level <= 0:
+        return {
+            "baseline_attribute": baseline_attribute,
+            "attribute": baseline_attribute,
+            "focus": 0,
+            "limit": skill_limit(baseline_attribute, 0),
+            "peak_learning_range": peak_learning_range(baseline_attribute, 0),
+            "purchased_attributes": 0,
+            "focus_points": 0,
+            "allocation_points": 0,
+            "weighted_allocation_cost": 0,
+            "level_gate_cost": 0,
+            "category": "none",
+            "pressure": "no investment",
+        }
+
+    candidates: list[dict[str, Any]] = []
+    for attribute in range(baseline_attribute, MAX_ATTRIBUTE + 1):
+        for focus in range(0, MAX_FOCUS + 1):
+            limit = skill_limit(attribute, focus)
+            if limit < level:
+                continue
+            purchased_attributes = max(0, attribute - baseline_attribute)
+            focus_points = focus
+            weighted = focus_points + purchased_attributes * 4
+            candidates.append(
+                {
+                    "baseline_attribute": baseline_attribute,
+                    "attribute": attribute,
+                    "focus": focus,
+                    "limit": limit,
+                    "peak_learning_range": peak_learning_range(attribute, focus),
+                    "purchased_attributes": purchased_attributes,
+                    "focus_points": focus_points,
+                    "allocation_points": purchased_attributes + focus_points,
+                    "weighted_allocation_cost": weighted,
+                    "level_gate_cost": max(focus_points, purchased_attributes * 4),
+                    "category": "low" if purchased_attributes == 0 else "medium" if attribute <= 5 else "high",
+                    "pressure": (
+                        "assisted baseline"
+                        if purchased_attributes == 0 and baseline_attribute > MIN_ATTRIBUTE
+                        else "focus-only"
+                        if purchased_attributes == 0
+                        else "attribute-gated"
+                        if attribute <= 5
+                        else "specialist"
+                    ),
+                }
+            )
+
+    if not candidates:
+        raise ValueError(f"Cannot reach skill level {level} with legal attributes/focus.")
+    return sorted(
+        candidates,
+        key=lambda item: (
+            item["weighted_allocation_cost"],
+            item["allocation_points"],
+            item["level_gate_cost"],
+            item["purchased_attributes"],
+            item["focus_points"],
+            item["attribute"],
+        ),
+    )[0]
+
+
+def format_split_from_dict(split: dict[str, Any]) -> str:
+    return f"{split['attribute']} attr / {split['focus']} focus"
+
+
+def format_cost_from_dict(split: dict[str, Any]) -> str:
+    return (
+        f"{split['purchased_attributes']} attr + {split['focus_points']} focus "
+        f"(weighted {split['weighted_allocation_cost']})"
+    )
+
+
+def assisted_baseline_for_attribute(attribute: str) -> int:
+    if attribute in PHYSICAL_ATTRIBUTES:
+        return ENDURANCE_ASSISTED_PHYSICAL_BASELINE
+    return MIN_ATTRIBUTE
+
+
+def record_level_summary(records: list[dict[str, Any]]) -> str:
+    if not records:
+        return ""
+    useful = [record for record in records if record.get("doctrine_category") != "low_priority_misleading"]
+    source = useful or records
+    parts = []
+    for record in sorted(source, key=lambda item: (RATING_ORDER.get(item.get("value_rating", ""), 9), item["perk"], item["effect_slot"])):
+        parts.append(f"{record['perk']}: {record['effect']}")
+    return " / ".join(parts[:4])
+
+
+def build_investment_bars(rows: list[dict[str, Any]], records: list[dict[str, Any]]) -> dict[str, Any]:
+    attribute_by_skill = {}
+    levels_by_skill: dict[str, set[int]] = defaultdict(set)
+    for row in rows:
+        skill = str(row.get("skill", ""))
+        if not skill:
+            continue
+        attribute_by_skill.setdefault(skill, str(row.get("attribute", "")))
+        levels_by_skill[skill].add(int(row.get("level", 0) or 0))
+
+    records_by_skill_level: dict[tuple[str, int], list[dict[str, Any]]] = defaultdict(list)
+    for record in records:
+        records_by_skill_level[(str(record["skill"]), int(record["level"]))].append(record)
+
+    skill_rows = []
+    detail_rows = []
+    for skill, config in sorted(
+        INVESTMENT_BAR_CONFIG.items(),
+        key=lambda item: (
+            ATTRIBUTE_ORDER.index(
+                attribute_by_skill.get(item[0], "Intelligence")
+                if attribute_by_skill.get(item[0], "Intelligence") in ATTRIBUTE_ORDER
+                else "Intelligence"
+            ),
+            item[0],
+        ),
+    ):
+        default_stop = int(config["default_stop"])
+        stretch_stop = int(config["stretch_stop"])
+        attribute = attribute_by_skill.get(skill, "")
+        is_physical = attribute in PHYSICAL_ATTRIBUTES
+        assisted_baseline = assisted_baseline_for_attribute(attribute)
+        default_cost = investment_split_for_level(default_stop)
+        stretch_cost = investment_split_for_level(stretch_stop)
+        assisted_default_cost = (
+            investment_split_for_level(default_stop, assisted_baseline) if is_physical else None
+        )
+        assisted_stretch_cost = (
+            investment_split_for_level(stretch_stop, assisted_baseline) if is_physical else None
+        )
+        detail_config: dict[int, tuple[str, str]] = config["details"]  # type: ignore[assignment]
+        skill_rows.append(
+            {
+                "skill": skill,
+                "attribute": attribute,
+                "physical_skill": is_physical,
+                "assisted_baseline_attribute": assisted_baseline if is_physical else None,
+                "default_stop": default_stop,
+                "default_cost": default_cost,
+                "assisted_default_cost": assisted_default_cost,
+                "stretch_stop": stretch_stop,
+                "stretch_cost": stretch_cost,
+                "assisted_stretch_cost": assisted_stretch_cost,
+                "worth": config["worth"],
+                "context": config["context"],
+                "skip": config["skip"],
+                "point_read": config["point_read"],
+            }
+        )
+        for level, (band, note) in sorted(detail_config.items()):
+            split = investment_split_for_level(level)
+            assisted_split = investment_split_for_level(level, assisted_baseline) if is_physical else None
+            detail_rows.append(
+                {
+                    "skill": skill,
+                    "attribute": attribute,
+                    "physical_skill": is_physical,
+                    "level": level,
+                    "band": band,
+                    "band_title": BAND_META[band]["title"],
+                    "cost": split,
+                    "assisted_cost": assisted_split,
+                    "extracted_rows": [
+                        {
+                            "id": record["id"],
+                            "perk": record["perk"],
+                            "role": record["role"],
+                            "category": record["doctrine_category"],
+                            "rating": record["value_rating"],
+                            "fit": record["default_force_fit"],
+                            "effect": record["effect"],
+                        }
+                        for record in records_by_skill_level.get((skill, level), [])
+                    ],
+                    "extracted_summary": record_level_summary(records_by_skill_level.get((skill, level), [])),
+                    "note": note,
+                }
+            )
+
+    physical_cut_summary = [
+        {
+            "skill": "Crossbow",
+            "read": "Cut entirely for shock infantry unless the formation is actually ranged. The old crossbow-ranged-resistance assumption was not universal.",
+        },
+        {
+            "skill": "Bow",
+            "read": "Stop at 100 for Merry Men unless the commander is Fian/archer-heavy.",
+        },
+        {
+            "skill": "Throwing",
+            "read": "Stop at 125 for Flexible Fighter plus Skirmisher; later tiers are morale/QoL or throwing-specialist.",
+        },
+        {
+            "skill": "Two Handed",
+            "read": "Stop at 175 by default. With Vigor 5, 200 costs one extra focus for only +2% infantry speed/damage or +5 HP, while 225 costs two extra focus for +2% infantry attack speed.",
+        },
+        {
+            "skill": "Vigor hyper-stretch",
+            "read": "Smithing 225 Fencer Smith stacks with the +2 Vigor package and can save one manual focus in One Handed plus one in Two Handed while those skills are being trained; it does not help Polearm and it competes with Enduring Smith's +1 Endurance.",
+        },
+        {
+            "skill": "Polearm",
+            "read": "Stop at 175 by default, but Polearm 250 becomes worthwhile in the Vigor 5 package because +20 Polearm skill pairs with One Handed 250's party size.",
+        },
+        {
+            "skill": "Riding",
+            "read": "Stop at 100 for infantry-heavy parties; mounted armor/morale tiers are cavalry-specific.",
+        },
+    ]
+
+    return {
+        "assumptions": {
+            "baseline_attribute": MIN_ATTRIBUTE,
+            "endurance_assisted_physical_baseline": ENDURANCE_ASSISTED_PHYSICAL_BASELINE,
+            "max_focus": MAX_FOCUS,
+            "cost_formula": "focus_points + purchased_attribute_points * 4",
+            "focus_only_limit": skill_limit(MIN_ATTRIBUTE, MAX_FOCUS),
+            "assisted_physical_focus_only_limit": skill_limit(ENDURANCE_ASSISTED_PHYSICAL_BASELINE, MAX_FOCUS),
+            "default_lens": "Elite shock-infantry-heavy one-party commander.",
+            "assisted_physical_note": (
+                "Endurance-skill attribute perks can raise one chosen physical attribute to 4 without purchased "
+                "attribute points: Vigor via Smithing 150 plus Athletics 200, Control via the matching alternatives, "
+                "or Endurance via Athletics 175 plus Smithing 225. The assisted cost column uses that as a practical "
+                "physical baseline, but those free points are not available to every physical attribute at the same time, "
+                "and enabler perks still have to be reached before the assisted baseline exists."
+            ),
+            "vigor_hyper_stretch_note": (
+                "At Vigor 5, Two Handed reaches levels 175/200/225/250 with 3/4/5/5 focus. Smithing 225 "
+                "Fencer Smith gives +1 focus to One Handed and +1 focus to Two Handed, so it can function as a "
+                "temporary training/refund tool for the Vigor package if the build can give up Enduring Smith while "
+                "those weapon skills are being pushed. The granted focus is not generic and does not apply to Polearm."
+            ),
+            "non_monotonic_note": (
+                "Some bars are not strictly monotonic: a dead 225 tier can be followed by a strong 250 perk. "
+                "The report calls those out explicitly instead of pretending every skill has one clean cutoff."
+            ),
+        },
+        "band_meta": BAND_META,
+        "physical_cut_summary": physical_cut_summary,
+        "skills": skill_rows,
+        "details": detail_rows,
+    }
 
 
 def format_percent_from_factor(value: Any, force_plus: bool = False) -> str:
@@ -775,7 +1350,7 @@ def record_package_metrics(record: dict[str, Any]) -> dict[str, float]:
 
     if subtype == "hit points" and "mount" not in text:
         metrics["hit_points"] += value
-    elif subtype == "armor":
+    elif subtype in {"armor", "armor increase"}:
         metrics["armor"] += value
     elif subtype == "party size":
         metrics["party_size"] += value
@@ -1072,6 +1647,7 @@ def build_payload(workspace: Path, perk_export_path: Path) -> dict[str, Any]:
         },
         "category_meta": CATEGORY_META,
         "speed_kind_descriptions": SPEED_KIND_DESCRIPTIONS,
+        "investment_bars": build_investment_bars(rows, records),
         "summary": {
             "total_records": len(records),
             "category_counts": dict(category_counts),
@@ -1313,6 +1889,135 @@ def write_package_simulation_markdown(payload: dict[str, Any], path: Path, works
     path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
 
+def write_investment_bar_markdown(payload: dict[str, Any], path: Path, workspace: Path, json_output: Path) -> None:
+    bars = payload["investment_bars"]
+    lines = [
+        "# Commander Perk Investment Bars",
+        "",
+        f"Generated: {payload['generated_at']}",
+        "",
+        "This report turns the doctrine-ranked commander perk extract into practical stopping bars: what is worth reaching, what is merely contextual, and what is usually not worth extra focus or attribute points.",
+        "",
+        "Default lens: elite shock-infantry-heavy one-party commander. The goal is to maximize per-troop live combat power first, preserve engagement control second, and scale party size third.",
+        "",
+        "> [!NOTE]",
+        f"> Cost uses `{bars['assumptions']['cost_formula']}` from a {bars['assumptions']['baseline_attribute']}-attribute floor. With {bars['assumptions']['max_focus']} focus and no purchased attributes, a skill reaches {bars['assumptions']['focus_only_limit']}.",
+        "",
+        "> [!NOTE]",
+        f"> Assisted physical cost starts Vigor, Control, and Endurance from {bars['assumptions']['endurance_assisted_physical_baseline']} attribute when the Endurance-skill attribute perks are assigned that way. With {bars['assumptions']['max_focus']} focus, that reaches {bars['assumptions']['assisted_physical_focus_only_limit']}. {bars['assumptions']['assisted_physical_note']}",
+        "",
+        "> [!NOTE]",
+        f"> {bars['assumptions']['vigor_hyper_stretch_note']}",
+        "",
+        "> [!NOTE]",
+        f"> {bars['assumptions']['non_monotonic_note']}",
+        "",
+        "## How To Read The Bars",
+        "",
+        "| Band | Meaning |",
+        "| --- | --- |",
+    ]
+    for key in ("worth", "context", "skip"):
+        meta = bars["band_meta"][key]
+        lines.append(f"| {table_escape(meta['title'])} | {table_escape(meta['description'])} |")
+
+    lines.extend(
+        [
+            "",
+            "## Point-Recovery Summary",
+            "",
+            "The easiest physical point cuts for this doctrine are:",
+            "",
+        ]
+    )
+    for item in bars["physical_cut_summary"]:
+        lines.append(f"- **{item['skill']}**: {item['read']}")
+
+    lines.extend(
+        [
+            "",
+            "Broad read: the Endurance-assisted baseline makes physical splashes much cheaper, especially level 225 breakpoints, and can save a bought Vigor or Control attribute point. It does not make every late physical perk worth chasing: weak or personal perks are still weak. Saved purchased attributes usually have a better home in Medicine, Scouting, Steward, or Leadership unless a physical attribute is shared by several pushed weapon skills.",
+            "",
+            "## Skill Bars",
+            "",
+            "| Skill | Attr | Default Stop | Default Cost | Assisted Physical Cost | Stretch Stop | Stretch Cost | Assisted Physical Cost | Worth It | Meh / Context | Usually Skip | Point Read |",
+            "| --- | --- | ---: | --- | --- | ---: | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for row in bars["skills"]:
+        default_stop = "" if int(row["default_stop"]) <= 0 else str(row["default_stop"])
+        stretch_stop = "" if int(row["stretch_stop"]) <= 0 else str(row["stretch_stop"])
+        default_cost = "" if int(row["default_stop"]) <= 0 else format_cost_from_dict(row["default_cost"])
+        stretch_cost = "" if int(row["stretch_stop"]) <= 0 else format_cost_from_dict(row["stretch_cost"])
+        assisted_default = (
+            ""
+            if int(row["default_stop"]) <= 0 or not row.get("assisted_default_cost")
+            else format_cost_from_dict(row["assisted_default_cost"])
+        )
+        assisted_stretch = (
+            ""
+            if int(row["stretch_stop"]) <= 0 or not row.get("assisted_stretch_cost")
+            else format_cost_from_dict(row["assisted_stretch_cost"])
+        )
+        lines.append(
+            "| {skill} | {attribute} | {default_stop} | {default_cost} | {assisted_default} | {stretch_stop} | {stretch_cost} | {assisted_stretch} | {worth} | {context} | {skip} | {read} |".format(
+                skill=table_escape(row["skill"]),
+                attribute=table_escape(row["attribute"]),
+                default_stop=default_stop,
+                default_cost=table_escape(default_cost),
+                assisted_default=table_escape(assisted_default),
+                stretch_stop=stretch_stop,
+                stretch_cost=table_escape(stretch_cost),
+                assisted_stretch=table_escape(assisted_stretch),
+                worth=table_escape(row["worth"]),
+                context=table_escape(row["context"]),
+                skip=table_escape(row["skip"]),
+                read=table_escape(row["point_read"]),
+            )
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Threshold Details",
+            "",
+            "These rows show the levels where the bar changes or where a perk is a known trap/exception.",
+            "",
+            "| Skill | Level | Band | Neutral Split | Neutral Cost | Assisted Physical Cost | Extracted Commander Rows | Read |",
+            "| --- | ---: | --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for row in bars["details"]:
+        split = row["cost"]
+        assisted_cost = format_cost_from_dict(row["assisted_cost"]) if row.get("assisted_cost") else ""
+        extracted = row.get("extracted_summary") or "No commander-facing row in the generated extract."
+        lines.append(
+            "| {skill} | {level} | {band} | {split} | {cost} | {assisted} | {extracted} | {note} |".format(
+                skill=table_escape(row["skill"]),
+                level=row["level"],
+                band=table_escape(row["band_title"]),
+                split=table_escape(format_split_from_dict(split)),
+                cost=table_escape(format_cost_from_dict(split)),
+                assisted=table_escape(assisted_cost),
+                extracted=table_escape(extracted),
+                note=table_escape(row["note"]),
+            )
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Outputs",
+            "",
+            f"- JSON: `{display_path(json_output, workspace)}`",
+            f"- Report: `{display_path(path, workspace)}`",
+        ]
+    )
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+
+
 def write_markdown(payload: dict[str, Any], path: Path, workspace: Path, json_output: Path) -> None:
     lines = [
         "# Commander Perks Report",
@@ -1378,16 +2083,21 @@ def extract_commander_perks(
     json_output: Path,
     markdown_output: Path,
     package_output: Path | None = None,
+    investment_output: Path | None = None,
 ) -> None:
     if package_output is None:
         package_output = workspace / "Docs" / "reports" / "commander-banner-package-comparison.md"
+    if investment_output is None:
+        investment_output = workspace / "Docs" / "reports" / "commander-perk-investment-bars.md"
     payload = build_payload(workspace, perk_export_path)
     write_json(json_output, payload)
     write_markdown(payload, markdown_output, workspace, json_output)
     write_package_simulation_markdown(payload, package_output, workspace, json_output)
+    write_investment_bar_markdown(payload, investment_output, workspace, json_output)
     print(f"Commander perk JSON written: {json_output}")
     print(f"Commander perk report written: {markdown_output}")
     print(f"Commander banner package comparison written: {package_output}")
+    print(f"Commander perk investment bars written: {investment_output}")
     for key in CATEGORY_ORDER:
         print(f"  {key}: {payload['summary']['category_counts'].get(key, 0)} rows")
 
@@ -1399,6 +2109,7 @@ def main() -> None:
     parser.add_argument("--json-output", type=Path, default=None)
     parser.add_argument("--markdown-output", type=Path, default=None)
     parser.add_argument("--package-output", type=Path, default=None)
+    parser.add_argument("--investment-output", type=Path, default=None)
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()
@@ -1406,12 +2117,14 @@ def main() -> None:
     json_output = args.json_output or workspace / "Data" / "intermediate" / "commander_perks_extracted.json"
     markdown_output = args.markdown_output or workspace / "Data" / "intermediate" / "commander_perks_report.txt"
     package_output = args.package_output or workspace / "Docs" / "reports" / "commander-banner-package-comparison.md"
+    investment_output = args.investment_output or workspace / "Docs" / "reports" / "commander-perk-investment-bars.md"
     extract_commander_perks(
         workspace=workspace,
         perk_export_path=perk_export_path.resolve(),
         json_output=json_output,
         markdown_output=markdown_output,
         package_output=package_output,
+        investment_output=investment_output,
     )
 
 

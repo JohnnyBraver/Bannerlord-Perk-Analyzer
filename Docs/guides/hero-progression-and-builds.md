@@ -277,19 +277,21 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 * **Level 275** - `Way of the Sword`: At 330 skill, yields $+16\%$ attack speed and $+40\%$ One Handed damage.
 
 #### Two Handed
-* **Level 25** - `Strong Grip`: $+10\%$ weapon handling.
-* **Level 25** - `Wood Chopper`: $+15\%$ damage to shields.
+* **Level 25** - `Strong Grip`: $+10\%$ personal weapon handling, or $+30$ Two Handed skill to infantry in your formation.
+* **Level 25** - `Wood Chopper`: $+30\%$ personal shield damage, or $+15\%$ shield damage by troops in your formation.
 * **Level 50** - `Head Basher`: $+10\%$ blunt damage with two-handed weapons.
-* **Level 50** - `On the Edge`: $+5\%$ two-handed weapon swing speed.
-* **Level 75** - `Show of Strength`: Melee strikes have a $+30\%$ chance to knock down foot soldiers.
+* **Level 50** - `On the Edge`: $+3\%$ personal two-handed swing speed, or $+2\%$ infantry swing speed.
+* **Level 75** - `Show of Strength`: Two-handed weapons that can knock down ignore $30\%$ knockdown resistance on swing attacks.
 * **Level 150** - `Projectile Deflection`: Allows blocking projectiles with two-handed swords. Defining defensive tool, but it requires a higher investment than the level 100 utility tier.
 * **Level 100** - `Beast Slayer`: $+50\%$ damage against mounts.
 * **Level 125** - `Berserker`: Deal $+20\%$ damage when below $50\%$ health.
 * **Level 125** - `Confidence`: $+10\%$ damage when your character HP is above $90\%$.
-* **Level 175** - `Hope`: $+1$ daily influence per town under own clan control / $+10\%$ party morale.
-* **Level 200** - `Reckless Charge`: $+20\%$ damage when charging on foot.
-* **Level 225** - `Vandal`: Triple damage to wooden structures (shields/gates) and $+10\%$ armor penetration.
-* **Level 225** - `Blade Master`: $+10\%$ two-handed weapon speed.
+* **Level 175** - `Hope`: Friendly troop morale effect from your two-handed kills, or $+5$ party size.
+* **Level 175** - `Terror`: Enemy morale effect from your two-handed kills, or $+10$ prisoner capacity.
+* **Level 200** - `Reckless Charge`: $+20\%$ personal speed-damage bonus on foot, or $+2\%$ infantry damage and movement speed.
+* **Level 200** - `Thick Hides`: $+5$ personal HP, or $+5$ HP to troops in your party.
+* **Level 225** - `Vandal`: $+25\%$ personal armor penetration, or $+20\%$ damage to destructible objects by troops in your formation.
+* **Level 225** - `Blade Master`: $+10\%$ personal two-handed damage, or $+2\%$ attack speed to infantry in your formation.
 * **Level 250** - `Way Of The Great Axe`: *Note: the scaling formula only starts above 250.* At 330 skill, yields $+16\%$ speed and $+40\%$ damage.
 
 #### Polearm
@@ -410,12 +412,13 @@ These perks are highly prized because they grant permanent points that can resha
 | **Athletics** | 200 | `Strong` | $+1$ Vigor | Melee enabler. |
 | **Athletics** | 200 | `Steady` | $+1$ Control | Ranged enabler. |
 | **Smithing** | 225 | `Enduring Smith` | $+1$ Endurance | Pushes Endurance limits further. |
-| **Smithing** | 225 | `Fencer Smith` | $+1$ Focus Point | Grants 1 focus point split between One Handed and Two Handed. |
+| **Smithing** | 225 | `Fencer Smith` | $+1$ Focus Point to One Handed and Two Handed | Stacks with Vigor attribute perks and can save one manual focus in each skill while training them. Does not help Polearm. |
 
 > [!NOTE]
 > **The Physical Attribute Rotation Strategy**:
 > In vanilla Bannerlord, you can exploit the Arena Master respec mechanics to rotate physical attribute perks in Athletics (Level 175/200) and Smithing (Level 150/225). This allows your physical attributes (Vigor, Control, and Endurance) to reach 5 without ever investing hard attribute points.
 > * **Absurd Efficiency**: Investing 10 focus points (5 in Athletics, 5 in Smithing) to execute this push essentially buys **6 physical attribute points** (equivalent to 24 character levels of progression) while unlocking high-value utility and survival perks.
+> * **Vigor Focus Stretch**: `Fencer Smith` can be selected instead of `Enduring Smith` to give both One Handed and Two Handed an extra focus point while they are being trained. Since focus caps at 5, treat this as a temporary/manual focus refund rather than as extra room above the cap.
 > * **Progression Warning**: This requires a heavy investment of 10 focus points and is only relevant if your build requires multiple high-tier combat perks.
 > * **Detailed Guide**: For the step-by-step leveling walkthrough, focus point limits, and math proofs, see [The Arena Respec Rotation Trick in the Commander Guide](battanian-starts.md#the-arena-perk-respec-trick).
 

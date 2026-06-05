@@ -10,7 +10,7 @@ $$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \tex
 
 ### Focus Point Depletion vs. Attribute Limits
 > [!NOTE]
-> **Focus Point Scarcity**: Focus points are extremely scarce. You receive exactly $1$ focus point per character level (plus up to 12 starting focus points and $1$ optional bonus focus point from Smithing 225 `Fencer Smith`). Because focus points are highly limited, they are the primary bottleneck in late-game build designs. 
+> **Focus Point Scarcity**: Focus points are extremely scarce. You receive exactly $1$ focus point per character level (plus up to 12 starting focus points and the two fixed weapon-focus bonuses from Smithing 225 `Fencer Smith`: +1 One Handed and +1 Two Handed). Because focus points are highly limited, they are the primary bottleneck in late-game build designs. 
 > 
 > By contrast, attribute points are also scarce ($1$ point per 4 character levels), but a single attribute point increases the learning rate and learning limits of **three linked skills** simultaneously by 14 levels each. 
 > 

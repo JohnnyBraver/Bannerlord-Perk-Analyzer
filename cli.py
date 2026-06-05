@@ -310,6 +310,12 @@ def main() -> None:
         default=None,
         help="Path to save the banner package comparison. Defaults to Docs/reports/commander-banner-package-comparison.md."
     )
+    parser_commander.add_argument(
+        "--investment-output",
+        type=Path,
+        default=None,
+        help="Path to save the commander perk investment bars. Defaults to Docs/reports/commander-perk-investment-bars.md."
+    )
 
     args = parser.parse_args()
 
@@ -436,12 +442,14 @@ def main() -> None:
         json_output = args.json_output or workspace / "Data" / "intermediate" / "commander_perks_extracted.json"
         markdown_output = args.markdown_output or workspace / "Data" / "intermediate" / "commander_perks_report.txt"
         package_output = args.package_output or workspace / "Docs" / "reports" / "commander-banner-package-comparison.md"
+        investment_output = args.investment_output or workspace / "Docs" / "reports" / "commander-perk-investment-bars.md"
         extract_commander_perks(
             workspace=workspace,
             perk_export_path=perk_export_path.resolve(),
             json_output=json_output,
             markdown_output=markdown_output,
             package_output=package_output,
+            investment_output=investment_output,
         )
 
 

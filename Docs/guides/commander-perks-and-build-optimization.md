@@ -86,7 +86,8 @@ $$\text{Skill Limit} = 4 + 14 \times (\text{Attribute} - 1) + 40 \times F$$
 ### C. Combat & Physical Skills (Pushed to 5 via Respec Trick)
 
 #### Athletics & Smithing (Target: 175 / 225 during leveling phase)
-* **Focus Cost**: **5 Focus** each during the training phase. Pushing these to 5 focus points raises your learning limit to 232 with 3 Endurance, which is required to unlock `Durable` (Athletics 175) and `Enduring Smith` (Smithing 225) to push Endurance to 5. Once maxed and rotated via the Arena respec, they retain their cap.
+* **Focus Cost**: **5 Focus** each during the training phase. Pushing these to 5 focus points raises your learning limit to 232 with 3 Endurance, which is required to unlock `Durable` (Athletics 175) and the Smithing 225 attribute/focus choice. `Enduring Smith` pushes Endurance, while `Fencer Smith` gives +1 focus to both One Handed and Two Handed. `Fencer Smith` stacks with the +2 Vigor package from `Vigorous Smith` and `Strong`, but it replaces the +1 Endurance option while active.
+* **Vigor hyper-stretch note**: Because focus caps at 5, `Fencer Smith` should be read as saving one manual focus allocation in One Handed and one in Two Handed, not as pushing either skill past 5 focus. It can be used as a training/refund tool: let the granted focus help reach the target weapon perks, then later respec once the skill levels are already trained. This does not help Polearm.
 
 #### Riding (Target: 100)
 * **Focus Cost**: **1 Focus**. Once Endurance is pushed to 5, 1 focus point is enough to reach exactly 100 ($4 + 14 \times 4 + 40 \times 1 = 100$) to unlock `Sweeping Wind` ($+2\%$ party speed).
@@ -123,6 +124,26 @@ At character level 28, you have **40-41 Focus Points** available. By utilizing y
 ### Progression Path for Leftover Points:
 * **Weapon Splashes**: Spend 1 focus point on **Polearm** (limit 100 for infantry speed buffs) or **Throwing** (limit 100 for infantry stat boosts).
 * **Diplomacy Pushes**: Spend 3 additional focus points in **Leadership** (bringing it to 5 focus) to reach the level 175 perk `Uplifting Spirit` ($+10$ party size).
+
+### Reinvestment Bar
+The generated [commander perk investment bars](../reports/commander-perk-investment-bars.md) are the current stopping-point reference. The main point-budget read is:
+
+The neutral cost model starts every skill at 2 attribute, but the practical physical model is better than that once the Endurance perks are online. Athletics and Smithing can provide two free points into a chosen physical attribute, so Vigor, Control, or Endurance can often be planned from a 4-attribute baseline. That means level 225 physical perks can become focus-only, and level 250 physical perks can become a one-purchased-attribute stretch. This can save the bought Vigor/Control point that an older plan would have assumed. The enabler perks still have to be reached first, and the free points cannot sit in every physical attribute at the same time.
+
+The extreme Vigor plan has one more wrinkle: `Fencer Smith` at Smithing 225 stacks with the +2 Vigor path and gives +1 focus to One Handed and +1 focus to Two Handed. In practice, that can win back two manual focus points while those skills are being trained. The tradeoff is losing `Enduring Smith` while Fencer is selected, so it is strongest as a temporary weapon-training enabler or as a final choice only if the build does not need the extra Endurance point.
+
+| Skill Area | Practical Stop | Why |
+| --- | ---: | --- |
+| Bow | 100 | `Merry Men` is the universal prize; later perks are archer-specialist or personal. |
+| Crossbow | 0 / 175 | Skip for shock infantry. Only consider 175 for the narrow universal `Counter Fire` projectile reduction if Control is already paid. |
+| Throwing | 125 | `Flexible Fighter` and `Skirmisher` are the clean commander rows; later tiers are morale/QoL or throwing-specialist. |
+| Riding | 100 | `Sweeping Wind` is the infantry-party map-speed prize; late rows are mounted-specific. |
+| Two Handed | 175 / 200 / 225 | The efficient commander stop is 175. At Vigor 5, 200 costs one extra focus for only +2% infantry movement/damage or +5 HP; 225 costs two extra focus over 175 for +2% infantry attack speed. |
+| Polearm | 175 / 250 | Strong skill/speed package through `Phalanx`; if Vigor 5 is already planned, 250 `Counterweight` is a worthwhile +20 Polearm skill extension. |
+| One Handed | 225 / 250 | `Deadly Purpose` / `Unwavering Defense` justify 225; if Vigor 5 is already planned, 250 `Prestige` adds +15 party size. |
+| Athletics | 200 / 250 | 225 is weak, but 250 `Ignore Pain` is a real +5 armor stretch if Athletics is already central. |
+
+The points freed by stopping physical skills earlier usually belong in **Medicine**, **Scouting**, **Steward**, or **Leadership**. Attribute points get better when shared by several skills under the same attribute, so a single late physical perk should not be evaluated as if it owns the whole Vigor/Control/Endurance purchase. In the current Vigor read, the fifth attribute point is defensible only as a package: One Handed 250 plus Polearm 250, while Two Handed usually stops at 175 unless the build has spare focus or the player personally fights with two-handers.
 
 ---
 

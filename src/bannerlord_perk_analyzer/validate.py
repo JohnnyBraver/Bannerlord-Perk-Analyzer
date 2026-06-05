@@ -7,10 +7,10 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from .extract_commander_perks import build_commander_records
+    from .extract_commander_perks import build_commander_records, build_investment_bars
     from .perk_limits import check_perk_filters
 except ImportError:
-    from extract_commander_perks import build_commander_records
+    from extract_commander_perks import build_commander_records, build_investment_bars
     from perk_limits import check_perk_filters
 
 
@@ -150,6 +150,16 @@ def validate_commander_report_classification(
     if well_built and not well_built.get("comparison_note"):
         errors.append("Commander report should explain the Athletics HP-vs-speed tradeoff.")
 
+    ignore_pain = require_record("AthleticsIgnorePain|secondary")
+    if ignore_pain and ignore_pain.get("doctrine_category") != "combat_staying_power":
+        errors.append("Commander report should classify troop-facing Ignore Pain armor as combat staying power.")
+    if ignore_pain and ignore_pain.get("value_rating") != "high":
+        errors.append("Commander report should rate troop-facing Ignore Pain armor as high value.")
+
+    metallurgy = require_record("EngineeringMetallurgy|secondary")
+    if metallurgy and metallurgy.get("doctrine_category") != "combat_staying_power":
+        errors.append("Commander report should classify troop-facing Metallurgy armor as combat staying power.")
+
     shield_bearer = require_record("OneHandedShieldBearer|secondary")
     if shield_bearer and "all_troops" in shield_bearer.get("troop_classes", []):
         errors.append("Commander report should not mark infantry-only Shield Bearer as all_troops.")
@@ -169,6 +179,31 @@ def validate_commander_report_classification(
         errors.append("Commander report should classify RidingSweepingWind|secondary as campaign_party_speed.")
     if sweeping_wind and sweeping_wind.get("doctrine_category") != "engagement_control":
         errors.append("Commander report should rank RidingSweepingWind|secondary as engagement control.")
+
+    minister = require_record("MedicineMinisterOfHealth|primary")
+    if minister and minister.get("doctrine_category") != "combat_staying_power":
+        errors.append("Commander report should include troop-facing MedicineMinisterOfHealth as combat staying power.")
+    if minister and "all_troops" not in minister.get("troop_classes", []):
+        errors.append("Commander report should mark MedicineMinisterOfHealth as troop-facing despite its game role.")
+
+    physician = require_record("MedicinePhysicianOfPeople|secondary")
+    if physician and physician.get("doctrine_category") != "combat_staying_power":
+        errors.append("Commander report should classify troop-facing Physician of People death avoidance as combat staying power.")
+
+    bars = build_investment_bars(export_rows, records)
+    details = {(row["skill"], int(row["level"])): row for row in bars.get("details", [])}
+    one_handed_225 = details.get(("One Handed", 225), {})
+    if one_handed_225:
+        neutral = one_handed_225.get("cost", {}).get("weighted_allocation_cost")
+        assisted = one_handed_225.get("assisted_cost", {}).get("weighted_allocation_cost")
+        if neutral != 9 or assisted != 5:
+            errors.append("Commander investment bars should price One Handed 225 as neutral 9 / assisted 5 weighted cost.")
+    athletics_250 = details.get(("Athletics", 250), {})
+    if athletics_250:
+        neutral = athletics_250.get("cost", {}).get("weighted_allocation_cost")
+        assisted = athletics_250.get("assisted_cost", {}).get("weighted_allocation_cost")
+        if neutral != 17 or assisted != 9:
+            errors.append("Commander investment bars should price Athletics 250 as neutral 17 / assisted 9 weighted cost.")
 
     return errors
 
