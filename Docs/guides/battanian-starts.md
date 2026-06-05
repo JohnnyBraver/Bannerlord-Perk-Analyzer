@@ -10,13 +10,14 @@ $$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \tex
 
 ### Focus Point Depletion vs. Attribute Limits
 > [!NOTE]
-> **Focus Point Scarcity**: Focus points (max 40) are extremely scarce. You receive exactly $1$ focus point per character level (plus up to 12 starting focus points and $1$ optional bonus focus point from Smithing 225 `Fencer Smith`). Because focus points are highly limited, they are the primary bottleneck in late-game build designs. 
+> **Focus Point Scarcity**: Focus points are extremely scarce. You receive exactly $1$ focus point per character level (plus up to 12 starting focus points and $1$ optional bonus focus point from Smithing 225 `Fencer Smith`). Because focus points are highly limited, they are the primary bottleneck in late-game build designs. 
 > 
 > By contrast, attribute points are also scarce ($1$ point per 4 character levels), but a single attribute point increases the learning rate and learning limits of **three linked skills** simultaneously by 14 levels each. 
 > 
-> This build design invests heavily in **Cunning (7)** and **Intelligence (7)** to maximize the effectiveness of your scarce focus points:
+> This build design invests heavily in **Cunning (7)** and **Intelligence (7)** during its primary growth phase:
 > * At $7$ Cunning and $7$ Intelligence, you can reach the critical **level 250/275 perk milestones** across Scouting, Tactics, Roguery, Steward, Medicine, and Engineering by investing focus points, without wasting any attribute points.
-> * Your character will run out of focus points to spend long before running out of skill capacity, meaning every focus point you allocate is used at maximum attribute-boosted efficiency.
+> * Your character will run out of focus points to spend long before running out of skill capacity during this growth phase, meaning every focus point you allocate is used at maximum attribute-boosted efficiency.
+> * **Late-Game Scaling**: Reaching 7 Cunning and 7 Intelligence (by Level 28) marks the completion of the core build. Any attribute and focus points gained beyond this point can be directed to "overflow" social skills (for diplomacy/relations) or used to push Cunning and Intelligence toward 10 to maximize late-game perk scaling. Note that while pushing Cunning/Intelligence to 10/10 is theoretically possible, the exponential XP required to level up past level 30 makes this progression extremely steep and slow.
 
 ### The Physical Attribute "Rule of 5"
 A common mistake is investing hard attribute points to raise Vigor, Control, or Endurance above 5. 
@@ -46,11 +47,17 @@ Because $232$ is greater than the required skill thresholds:
 Taking both perks permanently increases your Endurance attribute from **3 to 5**.
 
 ### Riding 100 Speed Unlock
-Once your Endurance is raised to 5, investing exactly **1 focus point** in Riding gives you a learning limit of exactly **100**:
+Once your Endurance is raised to 5, investing exactly **1 focus point** in Riding (which is typically selected during character creation backgrounds or can be allocated manually at any time) gives you a learning limit of exactly **100**:
 $$\text{Limit} = 4 + 14 \times (5 - 1) + 40 \times 1 = 100$$
 
 > [!IMPORTANT]
 > **Riding 100 Limit**: This allows you to train Riding up to level 100 and unlock the critical `Sweeping Wind` perk ($+2\%$ flat party travel speed) with zero wasted focus or attribute points.
+
+> [!WARNING]
+> **The Focus Point Over-Investment Trap**:
+> The primary danger of the $3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \text{ } 2 \text{ } 7$ build is accidentally over-investing focus points beyond the absolute minimum needed to clear target perks. For example:
+> * **Riding**: Allocating a second focus point to Riding early on to speed up leveling is a permanent waste of a focus point. Once your Endurance is pushed to 5, a single focus point already guarantees a learning limit of exactly 100.
+> * **Engineering / Intelligence Skills**: Allocating 4 focus points to Engineering when you plan to raise Intelligence to 7 (or 10) is a waste of a point. Always cross-reference your planned final attribute levels with the [Alternative Splits Grid](file:///d:/Projects/Bannerlord/Docs/guides/hero-progression-and-builds.md#alternative-splits-attribute-and-focus-trade-offs) to avoid wasting focus points.
 
 ### The Arena Perk Respec Trick
 The Arena Master allows you to respec the perk selections of any skill for a small gold fee, but does not allow resetting focus or attribute points. You can exploit this to rotate your physical attribute points:
@@ -62,6 +69,13 @@ The Arena Master allows you to respec the perk selections of any skill for a sma
 >    * Select Vigor options (`Strong` in Athletics 200, `Vigorous Smith` in Smithing 150) to permanently raise Vigor to 5.
 >    * Select Control options (`Steady` in Athletics 200, `Controlled Smith` in Smithing 150) to permanently raise Control to 5.
 >    * Even though your Endurance drops back to 3, you retain all of your maxed-out Athletics and Smithing skill levels and their non-attribute perks. This trick allows you to achieve $5$ in Vigor, Control, and Endurance simultaneously.
+
+> [!TIP]
+> **The Absurd Efficiency of the Physical Push**:
+> By investing 10 focus points (5 in Athletics, 5 in Smithing), you are essentially buying **6 physical attribute points** ($+2$ Vigor, $+2$ Control, and $+2$ Endurance). Because attribute points are awarded only once every 4 character levels, obtaining 6 attribute points naturally would require leveling up **24 times**! Additionally, you acquire all of the extremely high-value utility and survival perks inside the Athletics and Smithing trees along the way.
+
+> [!WARNING]
+> **Heavy Focus Point Overhead**: Pushing Endurance from 3 to 5 and rotating attributes requires a heavy investment of **5 focus points in Athletics** and **5 focus points in Smithing** (10 focus points total) to reach the required learning limits. This overhead is only relevant if you specifically need multiple high-end combat perks across Vigor, Control, and Endurance. If you do not require high-tier physical perks, this focus point allocation is better spent elsewhere.
 
 ---
 

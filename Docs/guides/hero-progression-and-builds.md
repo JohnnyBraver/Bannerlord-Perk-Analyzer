@@ -412,10 +412,12 @@ These perks are highly prized because they grant permanent points that can resha
 | **Smithing** | 225 | `Enduring Smith` | $+1$ Endurance | Pushes Endurance limits further. |
 | **Smithing** | 225 | `Fencer Smith` | $+1$ Focus Point | Grants 1 focus point split between One Handed and Two Handed. |
 
-> [!TIP]
-> **Arena Perk Rotation Trick**: In vanilla Bannerlord, the Arena Master allows you to respec *perk choices* of a skill for a gold fee, but does not allow resetting focus or attribute points. You can exploit this to rotate your physical attribute bonuses:
-> 1. Early on, select the **Endurance** options (`Durable` in Athletics, `Enduring Smith` in Smithing) to temporarily boost your Endurance limit and accelerate leveling both skills.
-> 2. Once Smithing and Athletics are maxed out, visit an Arena Master to respec those skills. Rotate the selections to **Vigor** (`Strong` / `Vigorous Smith`) or **Control** (`Steady` / `Controlled Smith`) to permanently boost your physical combat attributes. This allows physical attributes to reach $5$ without ever investing hard attribute points in Vigor or Control.
+> [!NOTE]
+> **The Physical Attribute Rotation Strategy**:
+> In vanilla Bannerlord, you can exploit the Arena Master respec mechanics to rotate physical attribute perks in Athletics (Level 175/200) and Smithing (Level 150/225). This allows your physical attributes (Vigor, Control, and Endurance) to reach 5 without ever investing hard attribute points.
+> * **Absurd Efficiency**: Investing 10 focus points (5 in Athletics, 5 in Smithing) to execute this push essentially buys **6 physical attribute points** (equivalent to 24 character levels of progression) while unlocking high-value utility and survival perks.
+> * **Progression Warning**: This requires a heavy investment of 10 focus points and is only relevant if your build requires multiple high-tier combat perks.
+> * **Detailed Guide**: For the step-by-step leveling walkthrough, focus point limits, and math proofs, see [The Arena Respec Rotation Trick in the Commander Guide](file:///d:/Projects/Bannerlord/Docs/guides/battanian-starts.md#the-arena-perk-respec-trick).
 
 ---
 
@@ -426,18 +428,52 @@ These perks are highly prized because they grant permanent points that can resha
 * **Level 300 (Trade)** - `Everything Has a Price`: Allows trading fiefs and settlements directly in lord barters. Huge, but requires massive point investment.
 * **Level 150 (Roguery)** - `Smuggler Connections`: Allows trading with town merchants and markets even while in disguise inside enemy settlements.
 
+#### Charm and Diplomacy
 * **Level 25** - `Virile`: $+20\%$ pregnancy chance to hero couples.
 * **Level 50** - `Oratory`: Adds $+2$ renown and $+1$ influence for every issue/quest resolved.
 * **Level 200** - `Moral Leader` & `Natural Leader`: Reduces the number of successful arguments required during persuasion checks.
 * **Level 250** - `Camaraderie`: Doubles relation gains when aiding allied lords in combat.
 * **Level 275** - `Immortal Charm`: Passive $+5$ influence per day.
 
-## 8. Optimized Starting Selections (The General's Path)
+---
 
-When starting a new character, aligning your culture, background choices, and starting skills ensures you hit your target caps with **zero wasted attribute or focus points**.
+## 8. Recommended Build Templates
 
-Calradia's two most optimized commanding starting paths - one optimized for **Intelligence** and the other for **Cunning** - both naturally converge by level 28 into the ultimate General's attribute distribution:
-$$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \text{ } 2 \text{ } 7$$
-*(The $(5)$ represents the physical attributes boosted by Smithing and Athletics perks, rotated via the Arena Perk Respec Trick).*
+When starting a new character, aligning your attribute allocations with your planned campaign goals ensures you reach critical perk caps with minimal point waste. Depending on your desired focus, two primary late-game build templates are highly effective:
 
-For a complete guide detailing the exact starting background choice steps, progression tables, and the underlying mathematical proofs for physical attribute limits, focus point depletion, and riding speed thresholds, refer to the dedicated [Battanian Character Creation and Commander Progression Guide](file:///d:/Projects/Bannerlord/Docs/guides/battanian-starts.md).
+### Template 1: The Combat Commander
+* **Target Attributes**:
+  $$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \text{ } 2 \text{ } 7$$
+  *(Physical attributes are raised from 3 to 5 via Smithing and Athletics perks, rotated using the Arena Perk Respec Trick).*
+* **Primary Skills**: Scouting, Tactics, Roguery (Cunning) and Medicine, Engineering, Steward (Intelligence).
+* **Strategic Role**: Maximizes campaign map speed, army unit survival rates, and rapid siege operations. Best suited for leading large faction campaigns on the front line.
+* **Starting Selections**: For the exact zero-waste starting background choices and level-up steps, see the dedicated [Battanian Character Creation and Commander Progression Guide](file:///d:/Projects/Bannerlord/Docs/guides/battanian-starts.md).
+
+> [!WARNING]
+> **Focus Point Over-Investment Trap**: The primary progression danger for this build is accidentally allocating focus points beyond the minimum required to clear your target perks.
+> * **Riding**: Adding a second focus point to Riding early on to speed up training is a permanent waste; once Endurance reaches 5, exactly 1 focus point (which is usually picked up during character creation origin, or can be assigned at any time) is sufficient to reach the level 100 map-speed perk.
+> * **Intelligence / Cunning Skills**: Putting 4 focus points into Engineering when you plan to raise Intelligence to 7 (or 10) is a waste of a focus point. Plan your focus allocations carefully to match your target attribute level.
+
+### Template 2: The Social Diplomat
+* **Target Attributes**:
+  $$\text{Effective Attributes} = 2 \text{ } 2 \text{ } 3 \text{ } 2 \text{ } 7 \text{ } 7$$
+  *(Physical attributes are left at base levels since a diplomat does not require high-tier physical combat perks).*
+* **Primary Skills**: Charm, Leadership, Trade (Social) and Medicine, Engineering, Steward (Intelligence).
+* **Strategic Role**: Maximizes lord relations, kingdom persuasion checks, tournament rewards, peace/war barter discounts, and unlocks direct fief buying/selling (`Everything Has a Price` at Trade 300).
+* **Build Progression**: This template is significantly easier to build and develop because the vast majority of diplomacy, clan relation, and trade perks are concentrated directly within the Social tree.
+> [!NOTE]
+> **No Physical Respec Trick Required**: Unlike the Combat Commander, the Social Diplomat has far fewer physical skill requirements. Therefore, they do not need to perform the expensive Athletics/Smithing Arena Respec Trick, saving 10 focus points that can be reinvested into Charm, Leadership, Trade, and Medicine. Focus on early quest completion and tournament victories to train Charm and Leadership rapidly.
+
+---
+
+### Safe Focus Point Allocations (Zero-Waste Design)
+
+To guarantee no wasted points at any level (even when attributes are pushed to their maximum target limits), you should adhere to the following **Safe Focus Point Allocations**. These represent the minimum focus points required to clear target perks, accounting for eventual attribute growth:
+
+| Skill Group | Target Perk Level | Planned Peak Attribute | Safe Focus Points | Limit Reached | Why it is Safe |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Riding** | 100 (`Sweeping Wind`) | 5 Endurance | **1 Focus** | 100 | Eventual 5 Endurance guarantees the limit is exactly 100; allocating a second focus point is a waste. |
+| **Two-Handed** | 100 (`Projectile Deflection`) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor (from the Respec Trick) guarantees the limit is exactly 100; allocating more is a waste. |
+| **One-Handed / Polearm** | 100 (Utility/Speed Perks) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor guarantees the limit is exactly 100. |
+| **Scouting / Tactics / Roguery** | 275 (Final Perk) | 10 Cunning | **4 Focus** | 290 | If Cunning is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Cunning. *(Note: If Cunning is capped at 7, 5 focus points are required, as 4 focus points only caps at 248).* |
+| **Medicine / Engineering / Steward**| 275 (Final Perk) | 10 Intelligence | **4 Focus** | 290 | If Intelligence is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Intelligence. *(Note: If Intelligence is capped at 7, 5 focus points are required, as 4 focus points only caps at 248).* |
