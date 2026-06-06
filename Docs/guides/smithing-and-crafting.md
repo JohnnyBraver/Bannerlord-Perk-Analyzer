@@ -1,6 +1,6 @@
 # Smithing and Crafting Manual
 
-This manual covers the complete mechanics of the smithing and crafting systems in Bannerlord. It detail the mathematical formulas governing skill experience, weapon valuation, part research unlocks, design difficulty weights, and stamina consumption.
+
 
 ---
 
@@ -88,7 +88,7 @@ $$\text{Stamina Cost} = 10 + 5 \times \text{Item Tier} \quad (\text{Crafting})$$
 
 ## 4. Crafted Weapon Value Model
 
-Because both skill experience and part research scale directly with final item value, maximizing item value is the key to grinding smithing.
+
 
 ### Weapon Value Formula
 Weapon valuation is exponential relative to its calculated item tier:

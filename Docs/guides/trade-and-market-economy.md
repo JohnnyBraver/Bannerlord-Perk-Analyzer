@@ -1,6 +1,6 @@
 # Trade and Market Economy Manual
 
-This manual covers the complete mechanics of trade pricing, market arbitrage, trade penalties, and experience progression. It explains the mathematical relationship between market factors, trade penalty spreads, and the formulas governing trade profits and skill progression.
+
 
 ---
 
@@ -34,7 +34,7 @@ $$\text{Market Factor} = \text{Raw Factor}^{\text{Exponent}}$$
 The party leader's Trade skill reduces the active trade penalty through a decaying multiplier:
 $$\text{Trade Penalty Multiplier} = \frac{1}{1 + 0.002 \times \text{Party Leader Trade}}$$
 
-Here is how the remaining trade penalty scales with Trade skill level:
+
 
 | Party Leader Trade Skill | Remaining Penalty % |
 | :---: | ---: |

@@ -1,6 +1,6 @@
 # Military and Troop Tactics Manual
 
-This manual covers the complete mechanics of campaign-map military logistics, battle simulation, troop training, live-combat AI scaling, and village raiding. It explains the exact math governing party speeds, training schedules, combat behaviors, and loot acquisition.
+
 
 ---
 
@@ -36,7 +36,7 @@ $$\text{Nomadic Traditions Bonus} = 0.30 \times \text{Mounted Footmen Bonus}$$
 * **Cavalry vs. Foot**: Both noble and low-tier cavalry count equally as mounted for the composition bonus; the engine only checks the mounted/foot state, not troop quality.
 
 #### Comparison: 100-Man Party on Clean Terrain
-The following table shows the maximum potential speed for a 100-man party on flat, dry terrain under different composition setups:
+
 
 | Party Setup | Speed Factor | Final Speed | % of Pure Cavalry Speed |
 | :--- | :---: | :---: | ---: |
@@ -263,7 +263,8 @@ Because the mount surcharge (+150 or +500 gold) is so massive relative to a troo
 | **T6 Foot** | 600 | +0 | 600 | **150 gold** | **180 gold** |
 | **T6 Mounted** | 600 | +500 | 1100 | **275 gold** | **330 gold** |
 
-*Note: Mercenary troop counterparts (e.g., caravan guards or mercenary cavalry) multiply their base cost by $3.0\times$ before the surcharge is added. For example, a T5 Mounted Mercenary has a total cost of $(400 \times 3) + 500 = 1700$ gold, yielding a base ransom of **425 gold**.*
+> [!NOTE]
+> Mercenary troops (caravan guards, mercenary cavalry, etc.) have their base cost multiplied by **3.0×** before the ransom surcharge is added. A T5 Mounted Mercenary costs $(400 \times 3) + 500 = 1700$ gold total, yielding a base ransom of **425 gold**.
 
 #### 6. Strategic Prisoner Optimization
 > [!TIP]
@@ -546,7 +547,7 @@ Higher hearths act as a direct multiplier for raid gold, production progress, an
 
 ## 6. Command, Tactics & Leadership Directory
 
-The following directory outlines the commander, battle management, and lord recruitment perks that shape faction warfare.
+
 
 ### Battle Command & Formations (Tactics)
 * **Tactics (Level 25) - `Tight Formations`**: Reduces infantry morale penalty by $-25\%$ when in close formations. (Captain)

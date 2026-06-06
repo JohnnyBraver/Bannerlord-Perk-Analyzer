@@ -1,12 +1,12 @@
 # Fiefs and Settlement Governance Manual
 
-This manual covers the complete mechanics of fief stabilization, economic taxation, garrison defense, trade-bound supply chains, workshops, and alley systems. It details the mathematical models governing loyalty drift, price pressure, village production tiers, and governor perk synergies.
+
 
 ---
 
 ## 1. Fief Development and Stability
 
-Fief development is the foundation of faction dominance in Bannerlord. A town's stability directly dictates its daily tax yields, construction speeds, and defense capacities.
+A town's stability directly dictates its daily tax yields, construction speeds, and defense capacities.
 
 ### Loyalty Drift Formula
 Loyalty is the central metric of stability. It possesses a natural drift toward the baseline of $50$:

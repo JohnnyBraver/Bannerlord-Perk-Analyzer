@@ -1,6 +1,6 @@
 # Medicine and Party Survival Manual
 
-This manual covers the complete mechanics of troop survivability in Bannerlord: how casualties are processed into wound or death rolls, how to maximize troop hit points, and how to stack captain armor and damage resistance perks in combat formations.
+
 
 ---
 
@@ -60,7 +60,10 @@ The table below shows the base death chances (before additional perk multipliers
 The Medicine skill tree contains several passive and active perks that govern troop survival, healing rates, and character longevity:
 
 ### Surgery & Troop Survival Perks
-* **Medicine (Level 75) - `Doctor's Oath`**: Applies your Medicine survival bonus to enemy casualties, increasing the number of wounded enemies available for recruitment or ransom. Operates at $1.0\times$ in player battles and $0.1\times$ in simulated battles. **Warning**: This can prevent siege garrison attrition (see Section 7).
+* **Medicine (Level 75) - `Doctor's Oath`**: Applies your Medicine survival bonus to enemy casualties, increasing the number of wounded enemies available for recruitment or ransom. Operates at $1.0\times$ in player battles and $0.1\times$ in simulated battles.
+
+> [!WARNING]
+> Selecting **Doctor's Oath** prevents siege garrison attrition from ticking down — see Section 7 for full interaction details.
 * **Medicine (Level 125) - `Siege Medic`**: Grants a flat $50\%$ chance for troops to be wounded instead of killed during siege bombardment events.
 * **Medicine (Level 125) - `Veterinarian`**: Reduces troop mount loss by $-50\%$ when a mounted troop is killed in battle (mount is recovered and recycled).
 * **Medicine (Level 200) - `Physician of People`**: Gives Tier 1 and Tier 2 troops a $30\%$ chance to recover from lethal wounds **strictly in your party** (friendly only; does not apply to enemy casualties). Its governor side is $+1$ daily loyalty.
@@ -189,6 +192,6 @@ If you plan to use repeated assaults to wear down a massive garrison via attriti
 
 > [!TIP]
 > **The High-Medicine Backup Workaround**: The optimal strategy is to have a companion with high Medicine skill who has selected **`Sledges`** instead of **`Doctor's Oath`** at the Level 75 perk choice. 
-> 1. **Assign Backup Surgeon**: Open the Clan screen and temporarily assign this backup companion to the **Surgeon** role before launching the siege assault. (Do not assign a 0-Medicine surgeon, as that removes your own troop survival protection, putting both armies on equal footing and causing massive player casualties).
+> 1. **Assign Backup Surgeon**: Open the Clan screen and temporarily assign this backup companion to the **Surgeon** role before launching the siege assault. Do not assign a hero with 0 Medicine as Surgeon — this removes your troop survival protection entirely, placing both armies on equal footing and causing heavy casualties.
 > 2. **Execute Assault**: Perform the attack wave. Because the active backup surgeon has high Medicine but no Doctor's Oath, your own troops benefit from high survival rates while the downed defenders receive no surgery protection and die at normal rates, successfully depleting the garrison.
 > 3. **Restore Main Surgeon**: Once the siege is won or you need to recover health, reassign your main surgeon back.

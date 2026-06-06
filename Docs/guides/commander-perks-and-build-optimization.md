@@ -1,6 +1,6 @@
 # Commander Perks and Build Optimization Guide
 
-This guide provides a comprehensive cost-benefit analysis and build progression roadmap for a high-level melee commander:
+Build target for a high-level melee commander:
 $$\text{VIG 3(5) | CTR 2(4) | END 3(5) | CNG 7 | SOC 2 | INT 7}$$
 
 Unlike early-game utility drafts that stop weapon training at level ~100, this plan scales your main character's combat proficiency to powerful late-game commander milestones: **250 One Handed**, **175 Two Handed**, and **250 Polearm (Spear)**, paired with **125 Bow**, **0 Crossbow**, and **125 Throwing** for auxiliary ranged support.
@@ -24,47 +24,30 @@ In Mount & Blade II: Bannerlord, character leveling dictates your attribute and 
 
 ---
 
-## 2. Flagship 100% Leak-Free Starting Origins (Zero Social Leaks, Zero CTR Waste)
+## 2. Starting Origins (Zero CTR Waste)
 
-By treating **Engineering** as a core late-game target to unlock `Metallurgy` for +5 flat armor to troops, we can completely restructure the background choices. This allows us to achieve **0 Social leaks** — 0 Charm, 0 Leadership, 0 Trade — and **0 Control attribute waste** — stays at CTR 2 — channeling all 12 starting focus points exclusively into skills used in the final build.
+By treating **Engineering** as a late-game target rather than a starting priority, all 12 creation focus points go into skills actively used in the final build. CTR stays at base 2 — no Control attribute points are spent. No starting focus goes into Social skills (Charm, Leadership, Trade).
 
-### A. Campaign Mode Choice Path
+### Choice Path
 1. **Family**: **Foresters** | +1 Cunning $\rightarrow$ Scouting 1, Tactics 1
 2. **Childhood**: **your skill with horses** | +1 Endurance $\rightarrow$ Riding 1, Medicine 1
 3. **Education**: **private tutor** | +1 Intelligence $\rightarrow$ Steward 1, Engineering 1
 4. **Youth**: **joined a commander's staff** / **were a chieftain's servant** | +1 Cunning $\rightarrow$ Tactics 1, Steward 1
 5. **Adulthood**: **you defeated an enemy in battle** | +1 Vigor $\rightarrow$ One Handed 1, Two Handed 1
-6. **Escape**: **makeshift fortifications** | +1 Intelligence $\rightarrow$ Athletics 1, Engineering 1
+6. **Final step**:
+   * **Campaign Mode** — **Escape: makeshift fortifications** | +1 Intelligence $\rightarrow$ Athletics 1, Engineering 1
+   * **Sandbox Mode (Age 20)** — Place the free +1 Attribute point into Intelligence. Place the two free Focus points into Athletics 1 and One-Handed 1. Engineering already has 1 seed point from Education; no need to add more until late game.
 
 * **Starting Attributes**: `VIG 3 | CTR 2 | END 3 | CNG 4 | SOC 2 | INT 4`
-  * *Control Check*: **CTR stays at base 2** — Zero attribute waste.
-* **Starting Focus Profile**: Scouting 1, Tactics 2, Riding 1, Medicine 1, Steward 2, Engineering 2, One Handed 1, Two Handed 1, Athletics 1.
-  * *Leak Analysis*: Charm = 0, Leadership = 0, Trade = 0, Engineering 2 — non-waste, Roguery = 0, Crossbow = 0. This path has **absolutely 0 leaks**.
-* **Level 24 Attribute Target**: Buy level-up attributes +3 CNG, +3 INT on level-up to reach:
+* **Starting Focus Profile** (Campaign): Scouting 1, Tactics 2, Riding 1, Medicine 1, Steward 2, Engineering 2, One Handed 1, Two Handed 1, Athletics 1
+* **Level 24 Attribute Target**: Buy +3 CNG, +3 INT on level-up to reach:
   $$\text{VIG 3 | CTR 2 | END 3 | CNG 7 | SOC 2 | INT 7}$$
-
----
-
-### B. Sandbox Mode (Age 20 Choice Path)
-In Sandbox Mode, the 6th stage "Escape" is replaced. Choosing **Age 20** awards **+1 Attribute point** and **+2 Focus points** as **free, unassigned points** that you place yourself:
-1. **Family**: **Foresters** | +1 Cunning $\rightarrow$ Scouting 1, Tactics 1
-2. **Childhood**: **your skill with horses** | +1 Endurance $\rightarrow$ Riding 1, Medicine 1
-3. **Education**: **private tutor** | +1 Intelligence $\rightarrow$ Steward 1, Engineering 1
-4. **Youth**: **joined a commander's staff** / **were a chieftain's servant** | +1 Cunning $\rightarrow$ Tactics 1, Steward 1
-5. **Adulthood**: **you defeated an enemy in battle** | +1 Vigor $\rightarrow$ One Handed 1, Two Handed 1
-6. **Sandbox Free Assignment**: Place +1 Intelligence attribute, +1 Athletics focus, and +1 Engineering focus.
-
-* **Result**: Reaches the exact same starting attributes and focus profile as the campaign start, maintaining CTR 2 with **0 leaks**.
-
-> [!TIP]
-> **Sandbox Mode Free Allocation**:
-> Sandbox Mode's free assignments allow you to easily shift starting focus points around to cover missing weapon seeds. Since you do not need to lock in the "Escape" choice, you can run a completely leak-free start from the very first minute.
 
 ---
 
 ## 3. Low-Level Utility Dips (1-Focus Point Dips)
 
-Even for a dedicated, leak-free melee commander, allocating a single focus point strategically can unlock high-impact early game perks under base SOC 2:
+Under base SOC 2, a single focus point reaches skill level 58 — enough to unlock the level 25 and 50 perk tiers:
 
 *   **Leadership (1-Focus Dip)**
     *   **Level 25**: **Combat Tips** — +2 XP/day to all troops in your party and +1 recruit slot in own-culture villages
@@ -75,8 +58,6 @@ Even for a dedicated, leak-free melee commander, allocating a single focus point
 ---
 
 ## 4. Chronological Step-by-Step Progression Roadmaps
-
-Unlike static blocks of numbers, these progression paths detail exactly when to allocate attributes, starting seeds, and level-up focus points.
 
 ### Variant A: The One-Man Show — CNG 7, Self-Scout
 *   **Starting Profile — Level 1**: VIG 3 | CTR 2 | END 3 | CNG 4 | SOC 2 | INT 4
@@ -203,7 +184,7 @@ Prioritize these perks by doctrine: live troop lethality and responsiveness firs
 ### A. Party Size Perks
 * **Athletics (75) - `Imposing Stature`** (Party Leader): $+5$ Party Size.
 * **Bow (100) - `Merry Men`** (Party Leader): $+5$ Party Size.
-* **Tactics (75) - `Horde Leader`** (Party Leader): $+10$ Party Size. *(Unlocked with 0 focus under CNG 7, 2 focus under CNG 2)*.
+* **Tactics (75) - `Horde Leader`** (Party Leader): $+10$ Party Size. Requires 0 focus under CNG 7 (passive cap reaches 75); requires 2 focus under CNG 2.
 * **Scouting (150) - `Mounted Scouts`** (Party Leader): $+5$ Party Size.
 * **Leadership (75) - `Authority`** (Party Leader): $+5$ Party Size.
 * **Leadership (175) - `Uplifting Spirit`** (Party Leader): $+10$ Party Size.

@@ -1,12 +1,12 @@
 # Kingdom Management and Policies Manual
 
-This manual covers the mechanics of kingdom-level governance, diplomacy, army assembly, and the voting processes of Bannerlord. It details how the influence economy operates, how ruler overrides are calculated, and how the A/O/E (Authoritarian, Oligarchic, Egalitarian) voting weights shape noble council decisions.
+
 
 ---
 
 ## 1. The Influence Economy & Proposal Costs
 
-Influence is the primary currency of statecraft. It is expended to propose laws, veto council decisions, annex fiefs, summon lords to war, and maintain cohesion.
+Influence is the primary currency of statecraft.
 
 ### Base Decision Costs
 The base cost to propose a kingdom-level action or decision is dictated by the campaign diplomacy model:
@@ -54,7 +54,7 @@ The ruler can overrule any council vote by spending influence proportional to th
 
 ## 2. Policy Voting Tendencies & Hidden Ideologies
 
-Voting clans are not purely random. Every kingdom policy has hidden ideology weights across three vectors: Authoritarian (A), Oligarchic (O), and Egalitarian (E).
+Every kingdom policy has hidden ideology weights across three vectors: Authoritarian (A), Oligarchic (O), and Egalitarian (E).
 
 ### Clan Decision-Making
 A clan's support for a policy is determined by its cultural leanings and current situation:
@@ -115,7 +115,7 @@ $$\text{Daily Influence Award} = \frac{\text{Party Strength} + 20}{200} \text{ (
 
 ## 5. Diplomacy & War Scoring
 
-War and peace are calculated using a diplomatic evaluation score rather than simple military dominance. The key vectors include:
+The key diplomatic evaluation vectors are:
 1. **Military Strength**: Relative total strength between kingdoms.
 2. **Settlement Values**: The total prosperity and village status of owned lands. Losing prosperous towns drastically shifts a kingdom's peace evaluation.
 3. **Casualties**: Cumulative battle casualties. High casualty counts trigger war fatigue.

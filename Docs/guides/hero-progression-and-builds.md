@@ -1,6 +1,6 @@
 # Hero Progression and Build Guide
 
-This manual covers the complete mechanics of character growth in Bannerlord: how character levels and skills gain experience, how learning rate limits shape attribute and focus choices, where to find the best low-investment perk splashes, and how to optimize personal combat and utility perks.
+
 
 ---
 
@@ -93,7 +93,7 @@ $$\text{Riding XP} = \text{Base XP} \times (1 + \text{Horse Difficulty} \times 0
 
 ## 3. Passive and Semi-Passive XP Channels
 
-Passive and semi-passive XP channels run continuously in the background as you travel, rest, or manage your clan's assets. Because character level XP is gained by accumulating skill levels, optimizing these channels is the most effective way to accelerate your hero's main level progression.
+Passive and semi-passive XP channels run continuously in the background as you travel, rest, or manage your clan's assets.
 
 ### Stewardship - Food Consumption
 Steward XP is awarded daily to the party's assigned **Quartermaster** based on food consumption and variety.
@@ -247,7 +247,7 @@ At the baseline of **2 Attribute and 1 Focus Point**, any skill will reach a lim
 
 ## 6. Combat Tree Highlights
 
-Combat tree perks usually improve the main hero's live-battle performance, but several high-value tiers are worth noting because their alternate side effects support formations, party size, morale, settlement defense, or governor utility. Those off-bucket effects are called out where they are the real reason to target the perk.
+
 
 ### Direct Skill Passive Scaling
 Even before perks are unlocked, raising your weapon skill levels provides passive bonuses:
@@ -399,7 +399,7 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 
 ## 7. Personal Non-Combat Perks
 
-These perks are focused on character attribute growth, economic trade benefits, and diplomacy utilities.
+
 
 ### Permanent Attribute Points
 These perks are highly prized because they grant permanent points that can reshape your entire character build:
@@ -417,7 +417,7 @@ These perks are highly prized because they grant permanent points that can resha
 > [!NOTE]
 > **The Physical Attribute Rotation Strategy**:
 > In vanilla Bannerlord, you can exploit the Arena Master respec mechanics to rotate physical attribute perks in Athletics (Level 175/200) and Smithing (Level 150/225). This allows your physical attributes (Vigor, Control, and Endurance) to reach 5 without ever investing hard attribute points.
-> * **Absurd Efficiency**: Investing 10 focus points (5 in Athletics, 5 in Smithing) to execute this push essentially buys **6 physical attribute points** (equivalent to 24 character levels of progression) while unlocking high-value utility and survival perks.
+> * **Physical Attribute Push**: Investing 10 focus points (5 in Athletics, 5 in Smithing) to execute this push essentially buys **6 physical attribute points** (equivalent to 24 character levels of progression) while unlocking high-value utility and survival perks.
 > * **Vigor Focus Stretch**: `Fencer Smith` can be selected instead of `Enduring Smith` to give both One Handed and Two Handed an extra focus point while they are being trained. Since focus caps at 5, treat this as a temporary/manual focus refund rather than as extra room above the cap.
 > * **Progression Warning**: This requires a heavy investment of 10 focus points and is only relevant if your build requires multiple high-tier combat perks.
 > * **Detailed Guide**: For the step-by-step leveling walkthrough, focus point limits, and math proofs, see [The Arena Respec Rotation Trick in the Commander Guide](battanian-starts.md#the-arena-perk-respec-trick).
@@ -445,7 +445,7 @@ These perks are highly prized because they grant permanent points that can resha
 
 ## 8. Recommended Build Templates
 
-When starting a new character, aligning your attribute allocations with your planned campaign goals ensures you reach critical perk caps with minimal point waste. Depending on your desired focus, two primary late-game build templates are highly effective:
+Two primary late-game build templates:
 
 ### Template 1: The Combat Commander
 * **Target Attributes**:
@@ -481,6 +481,9 @@ To guarantee no wasted points at any level (even when attributes are pushed to t
 | **Riding** | 100 (`Sweeping Wind`) | 5 Endurance | **1 Focus** | 100 | Eventual 5 Endurance guarantees the limit is exactly 100; allocating a second focus point is a waste. |
 | **Two-Handed** | 100 (`Beast Slayer` / `Shield breaker`) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor (from the Respec Trick) guarantees the limit is exactly 100. `Projectile Deflection` is level 150 and needs a separate higher-investment plan. |
 | **One-Handed / Polearm** | 100 (Utility/Speed Perks) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor guarantees the limit is exactly 100. |
-| **Scouting / Tactics / Roguery** | 275 (Final Perk) | 10 Cunning | **4 Focus** | 290 | If Cunning is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Cunning. *(Note: If Cunning is capped at 7, 5 focus points are required, as 4 focus points only caps at 248).* |
-| **Medicine / Steward** | 275 (Final Perk) | 10 Intelligence | **4 Focus** | 290 | If Intelligence is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Intelligence. *(Note: If Intelligence is capped at 7, 5 focus points are required, as 4 focus points only caps at 248).* |
+| **Scouting / Tactics / Roguery** | 275 (Final Perk) | 10 Cunning | **4 Focus** | 290 | If Cunning is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Cunning. |
+| **Medicine / Steward** | 275 (Final Perk) | 10 Intelligence | **4 Focus** | 290 | If Intelligence is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Intelligence. |
+
+> [!WARNING]
+> If Cunning or Intelligence is at 7 rather than 10, **5 focus points** are required to clear the 248+ skill target — 4 focus points only reaches 248, falling short of the 250 milestone.
 | **Engineering** | 150 (`Stonecutters` / `Siege Engineer`) | 7 Intelligence | **0 (or 3) Focus** | 88 (to 208) | Delegating to an Engineer companion lets the player dump Engineering to 0 focus. If the player builds, 3 focus is the maximum needed for 150; Metallurgy (225) is a trap. |
