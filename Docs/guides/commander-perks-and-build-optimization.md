@@ -88,146 +88,118 @@ Unlike static blocks of numbers, these progression paths detail exactly when to 
 ### Variant A: The One-Man Show (CNG 7, Self-Scout)
 *   **Starting Profile (Level 1)**: `VIG 3 | CTR 2 | END 3 | CNG 4 | SOC 2 | INT 4`
     *   *Starting Focus Seeds (12)*: Scouting (1), Tactics (2), Riding (1), Medicine (1), Steward (2), Engineering (2), One-Handed (1), Two-Handed (1), Athletics (1).
-    *   *Control Check*: CTR stays at base 2 (Zero attribute waste). No starting points in Charm, Leadership, or Trade (0 Social leaks).
-*   **Effective Attribute Targets**: In late-game, we use `Controlled Smith` (+1 CTR) at Smithing 150, `Steady` (+1 CTR) at Athletics 175, `Strong` (+1 VIG) at Athletics 200, and `Vigorous Smith` (+1 VIG) at Smithing 150 to reach effective **CTR 4** and **VIG 5**. Late-game level-up attribute points will also reach **INT 10** at level 36.
+*   **Effective Attribute Targets**: In late-game, we reach effective **CTR 4** and **VIG 5** via perks. Late-game level-up attribute points will reach **INT 10** at level 36.
 
 #### **Phase 1: The Combat & Survival Foundation (Levels 1–10)**
-*   **Attribute Target**: Add **+1 Cunning** (reaches CNG 5).
-*   **Focus Points Gained**: **+9** (Levels 2 to 10).
+*   **Attribute Target**: Add **+1 Cunning** (CNG 5)
+*   **Focus Points Gained**: **+9** (Levels 2 to 10)
 *   **Allocation Roadmap**:
-    1.  **Leadership**: +1 point (at Level 2; immediately begins leveling to unlock early troop training perks).
-    2.  **One-Handed**: +2 points (brings to 3 manual + 1 starting = 4 focus. With `Fencer Smith` later, this hits the max 5 focus).
-    3.  **Polearm**: +3 points (brings to 3 manual = 3 focus; allows spear/lance training).
-    4.  **Athletics**: +2 points (brings to 2 manual + 1 starting = 3 focus).
-    5.  **Smithing**: +1 point (brings to 1 manual + 1 starting = 2 focus).
-*   **Key Perks to Select**:
-    *   *Leadership (25)*: **Combat Tips** (essential recruit training and recruitment slot).
-    *   *Leadership (50)*: **Stout Defender** (+50% Tier 4+ prisoner recruitment rate).
-    *   *One-Handed (25/75)*: **Wrapped Handles** (troop combat) / **Shield Bearer** (+3% troop movement speed).
-    *   *Athletics (50/75)*: **Morning Exercise** (+3% movement speed) / **Imposing Stature** (+5 party size).
+    1.  **Leadership**: +1 point (brings to 1 focus total)
+    2.  **One-Handed**: +2 points (brings to 3 focus total)
+    3.  **Polearm**: +3 points (brings to 3 focus total)
+    4.  **Athletics**: +2 points (brings to 3 focus total)
+    5.  **Smithing**: +1 point (brings to 2 focus total)
 
 #### **Phase 2: Mid-Game Core & Combat Mastering (Levels 11–24)**
-*   **Attribute Target**: Add **+2 Cunning**, **+3 Intelligence** (reaches `VIG 3 | CTR 2 | END 3 | CNG 7 | SOC 2 | INT 7`).
-*   **Focus Points Gained**: **+14** (Levels 11 to 24).
+*   **Attribute Target**: Add **+2 Cunning**, **+3 Intelligence** (CNG 7, INT 7)
+*   **Focus Points Gained**: **+14** (Levels 11 to 24)
 *   **Allocation Roadmap**:
-    1.  **Polearm**: +2 points (brings to 5 manual = 5 focus; maximizes spear/glaive limits).
-    2.  **Athletics**: +2 points (brings to 4 manual + 1 starting = 5 focus; scales speed and health).
-    3.  **Smithing**: +3 points (brings to 4 manual + 1 starting = 5 focus; unlocks high-tier crafting).
-    4.  **Medicine**: +4 points (brings to 4 manual + 1 starting = 5 focus; secures troop survival).
-    5.  **Scouting**: +3 points (brings to 3 manual + 1 starting = 4 focus; map movement speed).
-*   **Key Perks to Select**:
-    *   *Smithing (150/225)*: **Vigorous Smith** (+1 Vigor) / **Controlled Smith** (+1 Control) $\rightarrow$ **Fencer Smith** (+1 OH/+1 TH focus).
-    *   *Athletics (175/200)*: **Steady** (+1 Control) / **Strong** (+1 Vigor).
-    *   *Medicine (75/125/200)*: **Sledges** (wounded speed) / **Triage Tent** / **Indestructible** (+5% personal HP).
-    *   *Scouting (75/100/150)*: **Forest Kin** (infantry forest speed) / **Forced March** / **Mounted Scouts** (+5 party size).
-
-> [!TIP]
-> **The `Fencer Smith` Focus Refund Trick (Smithing 225)**:
-> Reaching Smithing 225 unlocks the **`Fencer Smith`** perk, which grants **+1 Focus to One-Handed** and **+1 Focus to Two-Handed**. 
-> * **Focus Savings**: This effectively saves you **2 manual focus point allocations** in Vigor skills. 
-> * **The Training Refund Strategy**: You can select `Fencer Smith` during your weapon-grinding phase to hit the targets (250 One-Handed, 175 Two-Handed). Once your skills are fully trained, visit the Arena master, pay the small gold fee, and respec the perk back to **`Enduring Smith`** (+1 Endurance attribute). This permanently locks in the extra Endurance point while retaining your high weapon skill levels.
+    1.  **Polearm**: +2 points (brings to 5 focus total)
+    2.  **Athletics**: +2 points (brings to 5 focus total)
+    3.  **Smithing**: +3 points (brings to 5 focus total)
+    4.  **Medicine**: +4 points (brings to 5 focus total)
+    5.  **Scouting**: +3 points (brings to 4 focus total)
 
 #### **Phase 3: Late-Mid Game Transition (Levels 25–28)**
-*   **Attribute Target**: Add **+1 Intelligence** (reaches INT 8).
-*   **Focus Points Gained**: **+4** (Levels 25 to 28).
+*   **Attribute Target**: Add **+1 Intelligence** (INT 8)
+*   **Focus Points Gained**: **+4** (Levels 25 to 28)
 *   **Allocation Roadmap**:
-    1.  **Scouting**: +1 point (brings to 4 manual + 1 starting = 5 focus; unlocks `Uncanny Insight` 275).
-    2.  **Two-Handed**: +1 point (brings to 1 manual + 1 starting = 2 focus. With Fencer Smith's +1 boost, this reaches 3 focus, allowing you to hit the 175 milestone).
-    3.  **Steward**: +1 point (brings to 1 manual + 2 starting = 3 focus).
-    4.  **Tactics**: +1 point (brings to 1 manual + 2 starting = 3 focus; unlocks `Elite Reserves` 200).
-*   **Key Perks to Select**:
-    *   *Two-Handed (175)*: **Uplifting Spirit** (+10 party size).
-    *   *Tactics (200)*: **Elite Reserves** (-5% damage taken).
-    *   *Scouting (275)*: **Uncanny Insight** (massive campaign map speed scaling).
+    1.  **Scouting**: +1 point (brings to 5 focus total)
+    2.  **Two-Handed**: +1 point (brings to 2 focus total)
+    3.  **Steward**: +1 point (brings to 3 focus total)
+    4.  **Tactics**: +1 point (brings to 3 focus total)
 
 #### **Phase 4: Late-Game Core (Levels 29–32)**
-*   **Attribute Target**: Add **+1 Intelligence** (reaches INT 9).
-*   **Focus Points Gained**: **+4** (Levels 29 to 32).
+*   **Attribute Target**: Add **+1 Intelligence** (INT 9)
+*   **Focus Points Gained**: **+4** (Levels 29 to 32)
 *   **Allocation Roadmap**:
-    1.  **Steward**: +1 point (brings to 2 manual + 2 starting = 4 focus; reaches 275 once INT hits 10).
-    2.  **Engineering**: +1 point (brings to 1 manual + 2 starting = 3 focus; sleeper Engineering starts to wake up).
-    3.  **Bow**: +2 points (brings to 2 manual = 2 focus; allows reaching 125 milestone).
-*   **Key Perks to Select**:
-    *   *Steward (275)*: **Price of Loyalty** (-15% troop wages).
-    *   *Bow (100)*: **Merry Men** (+5 party size).
+    1.  **Steward**: +1 point (brings to 4 focus total)
+    2.  **Engineering**: +1 point (brings to 3 focus total)
+    3.  **Bow**: +2 points (brings to 2 focus total)
 
 #### **Phase 5: Hyper-Late Game Optimization (Levels 33–36)**
-*   **Attribute Target**: Add **+1 Intelligence** (reaches INT 10; fully enabling Steward 275 and Engineering 225 at low focus caps).
-*   **Focus Points Gained**: **+4** (Levels 33 to 36).
+*   **Attribute Target**: Add **+1 Intelligence** (INT 10)
+*   **Focus Points Gained**: **+4** (Levels 33 to 36)
 *   **Allocation Roadmap**:
-    1.  **Throwing**: +2 points (brings to 2 manual = 2 focus; allows reaching 125 milestone).
-    2.  **Trade**: +1 point (1 manual; QoL dip for Appraiser).
-    3.  **Spare**: +1 point (unassigned / luxury choice, e.g. second point in Leadership, or extra combat focus).
-*   **Key Perks to Select**:
-    *   *Engineering (225)*: **Metallurgy** (+5 flat armor to troops).
-    *   *Trade (25)*: **Appraiser** (price color highlights).
-
-> [!WARNING]
-> **The Engineering 225 Early-Game Trap**:
-> Do not attempt to force Engineering to 225 early in the build. Under INT 7, reaching 225 requires 4 focus points, which will starve your combat and physical engines. Treat Engineering as a "sleeper agent": keep it parked at its starting 2 focus points until your late-game attribute points raise Intelligence to 10. Only then should you invest the final **1 focus point** to activate `Metallurgy` (since 3 focus points total at INT 10 is enough to clear the 225 limit).
-
-> [!TIP]
-> **Fire Catapults for Siege Domination & XP**:
-> While Engineering levels up slowly in regular campaign travel, manually aiming and getting kills with a **Fire Catapult** during a siege assault is the fastest way to farm Engineering XP. Use the level 150 `Siege Engineer` utility tier to build them yourself, and let the siege kills wake up the sleeper agent.
+    1.  **Throwing**: +2 points (brings to 2 focus total)
+    2.  **Trade**: +1 point (brings to 1 focus total)
+    3.  **Spare**: +1 point (unassigned)
 
 ---
 
 ### Variant B: The Companion-Assisted Commander (CNG 2, Delegated Scout)
 *   **Starting Profile (Level 1)**: `VIG 3 | CTR 2 | END 3 | CNG 2 | SOC 2 | INT 6`
     *   *Starting Focus Seeds (12)*: One-Handed (1), Two-Handed (1), Athletics (1), Riding (1), Smithing (1), Medicine (1), Steward (2), Engineering (2), Tactics (2) (Zero Scouting).
-*   **Key Difference**: Scouting is completely delegated to a companion Scout, freeing up attribute points in Cunning. Level-up attribute points are poured directly into **INT** (reaching **INT 10** at Level 24) and then **SOC** (to **SOC 4/5** in late game to boost Leadership scaling).
+*   **Key Difference**: Scouting is completely delegated to a companion Scout. Level-up attribute points go into **INT** (reaching **INT 10** at Level 24) and **SOC** (to **SOC 6/7** in late game).
 
 #### **Phase 1: The Heavy Physical Engine (Levels 1–10)**
-*   **Attribute Target**: Add **+2 Intelligence** (reaches INT 8).
-*   **Focus Points Gained**: **+9** (Levels 2 to 10).
+*   **Attribute Target**: Add **+2 Intelligence** (INT 8)
+*   **Focus Points Gained**: **+9** (Levels 2 to 10)
 *   **Allocation Roadmap**:
-    1.  **Leadership**: +1 point (at Level 2; early training perk).
-    2.  **One-Handed**: +3 points (brings to 3 manual + 1 starting = 4 focus. Hits 5 focus with Fencer Smith).
-    3.  **Polearm**: +5 points (brings to 5 manual = 5 focus).
-*   **Key Perks to Select**:
-    *   *Leadership (25)*: **Combat Tips** / **Raise the Meek**.
-    *   *One-Handed (250)*: **Prestige** (+15 party size).
+    1.  **Leadership**: +1 point (brings to 1 focus total)
+    2.  **One-Handed**: +3 points (brings to 4 focus total)
+    3.  **Polearm**: +5 points (brings to 5 focus total)
 
 #### **Phase 2: Master Leader & Doctor (Levels 11–24)**
-*   **Attribute Target**: Add **+2 Intelligence** (reaches INT 10), then **+4 Social** (reaches `VIG 3 | CTR 2 | END 3 | CNG 2 | SOC 6 | INT 10`).
-*   **Focus Points Gained**: **+14** (Levels 11 to 24).
+*   **Attribute Target**: Add **+2 Intelligence**, **+4 Social** (INT 10, SOC 6)
+*   **Focus Points Gained**: **+14** (Levels 11 to 24)
 *   **Allocation Roadmap**:
-    1.  **Athletics**: +4 points (brings to 4 manual + 1 starting = 5 focus).
-    2.  **Smithing**: +4 points (brings to 4 manual + 1 starting = 5 focus).
-    3.  **Medicine**: +4 points (brings to 4 manual + 1 starting = 5 focus; scaling up to 330 HP perks under INT 10).
-    4.  **Leadership**: +2 points (brings to 2 manual + 1 level-1 dip = 3 focus; under SOC 6, this allows reaching 175/225 milestones).
-*   **Key Perks to Select**:
-    *   *Medicine (275/330)*: **Fortitude Tonic** (+10 HP to heroes) / **Minister of Health** (massive HP scaling based on medicine skill).
-    *   *Leadership (175/250)*: **Uplifting Spirit** (+10 party size) / **Ultimate Leader** (scales party size past 250).
+    1.  **Athletics**: +4 points (brings to 5 focus total)
+    2.  **Smithing**: +4 points (brings to 5 focus total)
+    3.  **Medicine**: +4 points (brings to 5 focus total)
+    4.  **Leadership**: +2 points (brings to 3 focus total)
 
 #### **Phase 3: Late-Mid Game Transition (Levels 25–28)**
-*   **Attribute Target**: Add **+1 Social** (reaches SOC 7).
-*   **Focus Points Gained**: **+4** (Levels 25 to 28).
+*   **Attribute Target**: Add **+1 Social** (SOC 7)
+*   **Focus Points Gained**: **+4** (Levels 25 to 28)
 *   **Allocation Roadmap**:
-    1.  **Two-Handed**: +2 points (brings to 2 manual + 1 starting = 3 focus. Hits 4 focus with Fencer Smith).
-    2.  **Steward**: +2 points (brings to 2 manual + 2 starting = 4 focus; reaches 275 quartermaster cap under INT 10).
-*   **Key Perks to Select**:
-    *   *Steward (275)*: **Price of Loyalty** (-15% troop wages).
+    1.  **Two-Handed**: +2 points (brings to 3 focus total)
+    2.  **Steward**: +2 points (brings to 4 focus total)
 
 #### **Phase 4: Late-Game Ranged Support (Levels 29–32)**
-*   **Attribute Target**: Add **+1 Vigor** (reaches VIG 4).
-*   **Focus Points Gained**: **+4** (Levels 29 to 32).
+*   **Attribute Target**: Add **+1 Vigor** (VIG 4)
+*   **Focus Points Gained**: **+4** (Levels 29 to 32)
 *   **Allocation Roadmap**:
-    1.  **Bow**: +2 points (brings to 2 focus).
-    2.  **Engineering**: +1 point (brings to 1 manual + 2 starting = 3 focus; reaches 225 easily under INT 10).
-    3.  **Throwing**: +1 point (brings to 1 manual = 1 focus).
+    1.  **Bow**: +2 points (brings to 2 focus total)
+    2.  **Engineering**: +1 point (brings to 3 focus total)
+    3.  **Throwing**: +1 point (brings to 1 focus total)
 
 #### **Phase 5: Endgame Luxury Dips (Levels 33–36)**
-*   **Attribute Target**: Add **+1 Vigor** (reaches VIG 5).
-*   **Focus Points Gained**: **+4** (Levels 33 to 36).
+*   **Attribute Target**: Add **+1 Vigor** (VIG 5)
+*   **Focus Points Gained**: **+4** (Levels 33 to 36)
 *   **Allocation Roadmap**:
-    1.  **Throwing**: +1 point (brings to 2 manual = 2 focus).
-    2.  **Trade**: +1 point (QoL dip).
-    3.  **Leadership**: +2 points (brings to 5 focus total to max out ultimate campaign limits).
+    1.  **Throwing**: +1 point (brings to 2 focus total)
+    2.  **Trade**: +1 point (brings to 1 focus total)
+    3.  **Leadership**: +2 points (brings to 5 focus total)
 
 ---
 
-## 5. Directory of Key Commander & Party Leader Perks
+## 5. Key Build Optimization & Training Tips
+
+### A. The `Fencer Smith` Focus Refund Trick (Smithing 225)
+Reaching Smithing 225 unlocks the **`Fencer Smith`** perk, which grants **+1 Focus to One-Handed** and **+1 Focus to Two-Handed**. 
+*   **Focus Savings**: This effectively saves you **2 manual focus point allocations** in Vigor skills. 
+*   **The Training Refund Strategy**: You can select `Fencer Smith` during your weapon-grinding phase to hit the targets (250 One-Handed, 175 Two-Handed). Once your skills are fully trained, visit the Arena master, pay the small gold fee, and respec the perk back to **`Enduring Smith`** (+1 Endurance attribute). This permanently locks in the extra Endurance point while retaining your high weapon skill levels.
+
+### B. The Engineering 225 Early-Game Trap
+Do not attempt to force Engineering to 225 early in the build. Under INT 7, reaching 225 requires 4 focus points, which will starve your combat and physical engines. Treat Engineering as a "sleeper agent": keep it parked at its starting 2 focus points until your late-game attribute points raise Intelligence to 10. Only then should you invest the final **1 focus point** to activate `Metallurgy` (since 3 focus points total at INT 10 is enough to clear the 225 limit).
+
+### C. Fire Catapults for Siege Domination & XP
+While Engineering levels up slowly in regular campaign travel, manually aiming and getting kills with a **Fire Catapult** during a siege assault is the fastest way to farm Engineering XP. Use the level 150 `Siege Engineer` utility tier to build them yourself, and let the siege kills wake up the sleeper agent.
+
+---
+
+## 6. Directory of Key Commander & Party Leader Perks
 
 Prioritize these perks by doctrine: live troop lethality and responsiveness first, campaign engagement control second, party size and logistics third.
 
@@ -260,7 +232,7 @@ Prioritize these perks by doctrine: live troop lethality and responsiveness firs
 
 ---
 
-## 6. Troop Combat Commander Perks (Captain Role)
+## 7. Troop Combat Commander Perks (Captain Role)
 
 ### A. Infantry & Shock Troop Formations (Vigor/Endurance)
 * **One-Handed (25) - `Wrapped Handles`**: $+30$ One-Handed skill to infantry in your formation.
