@@ -3,7 +3,7 @@
 Build target for a high-level melee commander:
 $$\text{VIG 3(5) | CTR 2(4) | END 3(5) | CNG 7 | SOC 2 | INT 7}$$
 
-Unlike early-game utility drafts that stop weapon training at level ~100, this plan scales your main character's combat proficiency to powerful late-game commander milestones: **250 One Handed**, **175 Two Handed**, and **250 Polearm (Spear)**, paired with **125 Bow**, **0 Crossbow**, and **125 Throwing** for auxiliary ranged support.
+Unlike early-game utility drafts that stop weapon training at level ~100, the build scales combat proficiency to late-game commander milestones: **250 One Handed**, **175 Two Handed**, and **250 Polearm (Spear)**, paired with **125 Bow**, **0 Crossbow**, and **125 Throwing** for auxiliary ranged support.
 
 ---
 
@@ -49,11 +49,12 @@ By treating **Engineering** as a late-game target rather than a starting priorit
 
 Under base SOC 2, a single focus point reaches skill level 58 — enough to unlock the level 25 and 50 perk tiers:
 
-*   **Leadership (1-Focus Dip)**
-    *   **Level 25**: **Combat Tips** — +2 XP/day to all troops in your party and +1 recruit slot in own-culture villages
-    *   **Level 50**: **Stout Defender** — +8 battle morale when defending and +50% recruitment rate of Tier 4+ prisoners
-*   **Trade (1-Focus Dip)**
-    *   **Level 25**: **Appraiser** — Price markup/markdown highlighted in green/red and 15% decrease in the sell price penalty for equipment
+| Skill | Level | Perk | Effect |
+| :--- | :---: | :--- | :--- |
+| **Leadership** | 25 | **Combat Tips** | +2 XP/day to all troops; +1 recruit slot in own-culture villages |
+| **Leadership** | 50 | **Stout Defender** | +8 battle morale when defending; +50% recruitment rate of Tier 4+ prisoners |
+| **Trade** | 25 | **Appraiser** | Price markup/markdown highlighted in trade UI; 15% decrease in equipment sell price penalty |
+| **Trade** | 50 | **Caravan Master** | Marks item prices relative to market average; Quartermaster gains +30% party carrying capacity |
 
 ---
 
@@ -62,9 +63,9 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
 ### Variant A: The One-Man Show — CNG 7, Self-Scout
 *   **Starting Profile — Level 1**: VIG 3 | CTR 2 | END 3 | CNG 4 | SOC 2 | INT 4
     *   *Starting Focus Seeds — 12*: Scouting 1, Tactics 2, Riding 1, Medicine 1, Steward 2, Engineering 2, One-Handed 1, Two-Handed 1, Athletics 1
-*   **Effective Attribute Targets**: In late-game, we reach effective CTR 4 and VIG 5 via perks. Late-game level-up attribute points will reach INT 10 at level 36.
+*   **Effective Attribute Targets**: Late-game perks push effective CTR to 4 and VIG to 5. Level-up attribute points reach INT 10 at level 36.
 
-#### **Phase 1: The Combat & Survival Foundation — Levels 1–10**
+#### Phase 1: Combat & Survival Foundation — Levels 1–10
 *   **Attribute Target**: Add **+1 Cunning** | CNG 5
 *   **Focus Points Gained**: **+9** | Levels 2 to 10
 *   **Allocation Roadmap**:
@@ -74,7 +75,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     4.  **Athletics**: +2 points | 3 focus total
     5.  **Smithing**: +1 point | 2 focus total
 
-#### **Phase 2: Mid-Game Core & Combat Mastering — Levels 11–24**
+#### Phase 2: Mid-Game Core & Combat — Levels 11–24
 *   **Attribute Target**: Add **+2 Cunning**, **+3 Intelligence** | CNG 7, INT 7
 *   **Focus Points Gained**: **+14** | Levels 11 to 24
 *   **Allocation Roadmap**:
@@ -84,7 +85,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     4.  **Medicine**: +4 points | 5 focus total
     5.  **Scouting**: +3 points | 4 focus total
 
-#### **Phase 3: Late-Mid Game Transition — Levels 25–28**
+#### Phase 3: Late-Mid Transition — Levels 25–28
 *   **Attribute Target**: Add **+1 Intelligence** | INT 8
 *   **Focus Points Gained**: **+4** | Levels 25 to 28
 *   **Allocation Roadmap**:
@@ -93,7 +94,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     3.  **Steward**: +1 point | 3 focus total
     4.  **Tactics**: +1 point | 3 focus total
 
-#### **Phase 4: Late-Game Core — Levels 29–32**
+#### Phase 4: Late-Game Core — Levels 29–32
 *   **Attribute Target**: Add **+1 Intelligence** | INT 9
 *   **Focus Points Gained**: **+4** | Levels 29 to 32
 *   **Allocation Roadmap**:
@@ -101,7 +102,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     2.  **Engineering**: +1 point | 3 focus total
     3.  **Bow**: +2 points | 2 focus total
 
-#### **Phase 5: Hyper-Late Game Optimization — Levels 33–36**
+#### Phase 5: Hyper-Late Optimization — Levels 33–36
 *   **Attribute Target**: Add **+1 Intelligence** | INT 10
 *   **Focus Points Gained**: **+4** | Levels 33 to 36
 *   **Allocation Roadmap**:
@@ -116,7 +117,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     *   *Starting Focus Seeds — 12*: One-Handed 1, Two-Handed 1, Athletics 1, Riding 1, Smithing 1, Medicine 1, Steward 2, Engineering 2, Tactics 2 | Zero Scouting
 *   **Key Difference**: Scouting is completely delegated to a companion Scout. Level-up attribute points go into INT | INT 10 at Level 24 and SOC | SOC 6/7 in late game.
 
-#### **Phase 1: The Heavy Physical Engine — Levels 1–10**
+#### Phase 1: Heavy Physical Engine — Levels 1–10
 *   **Attribute Target**: Add **+2 Intelligence** | INT 8
 *   **Focus Points Gained**: **+9** | Levels 2 to 10
 *   **Allocation Roadmap**:
@@ -124,7 +125,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     2.  **One-Handed**: +3 points | 4 focus total
     3.  **Polearm**: +5 points | 5 focus total
 
-#### **Phase 2: Master Leader & Doctor — Levels 11–24**
+#### Phase 2: Master Leader & Doctor — Levels 11–24
 *   **Attribute Target**: Add **+2 Intelligence**, **+4 Social** | INT 10, SOC 6
 *   **Focus Points Gained**: **+14** | Levels 11 to 24
 *   **Allocation Roadmap**:
@@ -133,14 +134,14 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     3.  **Medicine**: +4 points | 5 focus total
     4.  **Leadership**: +2 points | 3 focus total
 
-#### **Phase 3: Late-Mid Game Transition — Levels 25–28**
+#### Phase 3: Late-Mid Transition — Levels 25–28
 *   **Attribute Target**: Add **+1 Social** | SOC 7
 *   **Focus Points Gained**: **+4** | Levels 25 to 28
 *   **Allocation Roadmap**:
     1.  **Two-Handed**: +2 points | 3 focus total
     2.  **Steward**: +2 points | 4 focus total
 
-#### **Phase 4: Late-Game Ranged Support — Levels 29–32**
+#### Phase 4: Late-Game Ranged Support — Levels 29–32
 *   **Attribute Target**: Add **+1 Vigor** | VIG 4
 *   **Focus Points Gained**: **+4** | Levels 29 to 32
 *   **Allocation Roadmap**:
@@ -148,7 +149,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     2.  **Engineering**: +1 point | 3 focus total
     3.  **Throwing**: +1 point | 1 focus total
 
-#### **Phase 5: Endgame Luxury Dips — Levels 33–36**
+#### Phase 5: Endgame Luxury Dips — Levels 33–36
 *   **Attribute Target**: Add **+1 Vigor** | VIG 5
 *   **Focus Points Gained**: **+4** | Levels 33 to 36
 *   **Allocation Roadmap**:
@@ -168,14 +169,12 @@ Reaching Smithing 225 unlocks the **`Fencer Smith`** perk, which grants **+1 Foc
 ### B. The Engineering 225 Early-Game Trap
 Do not attempt to force Engineering to 225 early in the build. Under INT 7, reaching 225 requires 4 focus points, which will starve your combat and physical engines. Treat Engineering as a sleeper agent: keep it parked at its starting 2 focus points until your late-game attribute points raise Intelligence to 10. Only then should you invest the final **1 focus point** to activate `Metallurgy` — since 3 focus points total at INT 10 is enough to clear the 225 target.
 
-### C. Fire Catapults for Siege Domination & XP
+### C. Fire Catapults for Siege XP
 While Engineering levels up slowly in regular campaign travel, manually aiming and getting kills with a **Fire Catapult** during a siege assault is the fastest way to farm Engineering XP. Use the level 150 `Siege Engineer` utility tier to build them yourself, and let the siege kills wake up the sleeper agent.
 
 ---
 
 ## 6. Directory of Key Commander & Party Leader Perks
-
-Prioritize these perks by doctrine: live troop lethality and responsiveness first, campaign engagement control second, party size and logistics third.
 
 > [!WARNING]
 > **The Riding 100 Trap for Infantry Commanders**:
