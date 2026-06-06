@@ -162,15 +162,13 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
 ## 5. Key Build Optimization & Training Tips
 
 ### A. The `Fencer Smith` Focus Refund Trick — Smithing 225
-Reaching Smithing 225 unlocks the **`Fencer Smith`** perk, which grants **+1 Focus to One-Handed** and **+1 Focus to Two-Handed**. 
-*   **Focus Savings**: This effectively saves you **2 manual focus point allocations** in Vigor skills. 
-*   **The Training Refund Strategy**: You can select `Fencer Smith` during your weapon-grinding phase to hit the targets (250 One-Handed, 175 Two-Handed). Once your skills are fully trained, visit the Arena master, pay the small gold fee, and respec the perk back to **`Enduring Smith`** — which grants +1 Endurance attribute. This permanently locks in the extra Endurance point while retaining your high weapon skill levels.
+Reaching Smithing 225 unlocks **`Fencer Smith`**, which grants **+1 Focus to One-Handed** and **+1 Focus to Two-Handed** — saving 2 manual focus point allocations in Vigor skills. Select `Fencer Smith` during the weapon-grinding phase to clear the One-Handed 250 and Two-Handed 175 targets. Once those skills are fully trained, visit the Arena master, pay the respec fee, and switch to **`Enduring Smith`** for the permanent +1 Endurance attribute.
 
-### B. The Engineering 225 Early-Game Trap
-Do not attempt to force Engineering to 225 early in the build. Under INT 7, reaching 225 requires 4 focus points, which will starve your combat and physical engines. Treat Engineering as a sleeper agent: keep it parked at its starting 2 focus points until your late-game attribute points raise Intelligence to 10. Only then should you invest the final **1 focus point** to activate `Metallurgy` — since 3 focus points total at INT 10 is enough to clear the 225 target.
+### B. Engineering 225 — Focus Cost by INT Level
+Do not invest more than 2 focus points in Engineering before INT reaches 10. Under INT 7, clearing 225 requires 4 focus points and competes directly with the combat and physical skill budget. Keep Engineering at its starting 2 focus points and invest the final **1 focus point** once INT reaches 10 — at that point, 3 focus total clears the `Metallurgy` 225 target.
 
 ### C. Fire Catapults for Siege XP
-While Engineering levels up slowly in regular campaign travel, manually aiming and getting kills with a **Fire Catapult** during a siege assault is the fastest way to farm Engineering XP. Use the level 150 `Siege Engineer` utility tier to build them yourself, and let the siege kills wake up the sleeper agent.
+While Engineering levels up slowly in regular campaign travel, manually aiming and getting kills with a **Fire Catapult** during a siege assault is the fastest way to farm Engineering XP. Use the level 150 `Siege Engineer` utility tier to build them yourself.
 
 ---
 
