@@ -66,18 +66,13 @@ In Sandbox Mode, the 6th stage ("Escape") is replaced. Choosing **Age 20** award
 
 Even for a dedicated, leak-free melee commander, allocating a single focus point strategically can unlock high-impact early game perks under base **SOC 2**:
 
-*   **Leadership (1-Focus Dip - Recommended)**
-    *   **Hard Cap (SOC 2, Focus 1)**: **58** (easily clears the level 50 milestone).
-    *   **Level 25 Choice**: **Combat Tips** (+2 XP/day to all troops in your party, +1 recruit slot in own-culture villages) OR **Raise the Meek** (+4 XP/day to Tier 1–2 troops in your party).
-        *   *Recommendation*: Choose **Combat Tips** for the passive, army-wide troop XP and the critical culture recruitment bonus to speed up troop replacement.
-    *   **Level 50 Choice**: **Stout Defender** (+8 battle morale when defending, +50% recruitment rate of Tier 4+ prisoners) OR **Fervent Attacker** (+4 starting battle morale when attacking, +50% recruitment rate of Tier 1–3 prisoners).
-        *   *Recommendation*: Choose **Stout Defender** to easily recruit elite tier-4+ prisoners and get a higher morale boost when defending.
-    *   **Build Value**: Putting this single point in early (at Level 2) provides passive troop training when it is needed most, and accelerates elite prisoner conversion. We do not spend a second point to get `Authority` (75) to keep points focused on combat and mobility.
-*   **Trade (1-Focus Dip - QoL Option)**
-    *   **Hard Cap (SOC 2, Focus 1)**: **58** (clears the level 50 milestone).
-    *   **Level 25 Choice**: **Appraiser** (price markup/markdown highlighted in green/red, +15% equipment sell price) OR **Whole Seller** (+5% trade goods sell price).
-        *   *Recommendation*: Choose **Appraiser** to see instantly which trade routes are profitable and gain +15% gold from selling battle loot (which is mostly equipment).
-    *   **Build Value**: A fantastic Quality of Life (QoL) choice. The red/green price coloring makes trading instantly intuitive, and `Appraiser` boosts early game gold by 15% when selling battle loot. Non-essential, but helpful.
+*   **Leadership (1-Focus Dip)**
+    *   **Hard Cap (SOC 2, Focus 1)**: **58**
+    *   **Level 25**: **Combat Tips** (+2 XP/day to all troops in your party, +1 recruit slot in own-culture villages)
+    *   **Level 50**: **Stout Defender** (+8 battle morale when defending, +50% recruitment rate of Tier 4+ prisoners)
+*   **Trade (1-Focus Dip)**
+    *   **Hard Cap (SOC 2, Focus 1)**: **58**
+    *   **Level 25**: **Appraiser** (price markup/markdown highlighted in green/red, +15% equipment sell price)
 
 ---
 
