@@ -1,4 +1,4 @@
-# Hero Progression and Build Guide
+# Hero Progression Guide
 
 
 
@@ -443,47 +443,7 @@ These perks are highly prized because they grant permanent points that can resha
 
 ---
 
-## 8. Recommended Build Templates
+## See Also
 
-Two primary late-game build templates:
-
-### Template 1: The Combat Commander
-* **Target Attributes**:
-  $$\text{Effective Attributes} = 3(5) \text{ } 3(5) \text{ } 3(5) \text{ } 7 \text{ } 2 \text{ } 7$$
-  *(Physical attributes are raised from 3 to 5 via Smithing and Athletics perks, rotated using the Arena Perk Respec Trick).*
-* **Primary Skills**: Scouting, Tactics, Roguery (Cunning) and Medicine, Engineering, Steward (Intelligence).
-* **Strategic Role**: Maximizes campaign map speed, army unit survival rates, and rapid siege operations. Best suited for leading large faction campaigns on the front line.
-* **Starting Selections**: For the exact zero-waste starting background choices and level-up steps, see the dedicated [Battanian Character Creation and Commander Progression Guide](battanian-starts.md). For a detailed cost-benefit analysis of the focus point starvation conflict, a directory of commander perks, and an optimized generalist captain setup, see the [Commander Perks and Build Optimization Guide](commander-perks-and-build-optimization.md).
-
-> [!WARNING]
-> **Focus Point Over-Investment Trap**: The primary progression danger for this build is accidentally allocating focus points beyond the minimum required to clear your target perks.
-> * **Riding**: Adding a second focus point to Riding early on to speed up training is a permanent waste; once Endurance reaches 5, exactly 1 focus point (which is usually picked up during character creation origin, or can be assigned at any time) is sufficient to reach the level 100 map-speed perk.
-> * **Engineering (The Metallurgy Trap)**: Reaching level 225 for **`Metallurgy`** ($+5$ formation armor) is a major focus point sink under a **7 Cunning / 7 Intelligence** setup, requiring 4 focus points (limit 248). This perk was better aligned with the older pure INT build (**3/5 3/5 3/5 2 2 10**), where 10 INT naturally lowered the cost to 3 focus points and Cunning-based skills did not deplete the focus pool. In the current build, keep Engineering capped at **3 Focus Points** for the level 150 utility tier to avoid focus starvation.
-
-### Template 2: The Social Diplomat
-* **Target Attributes**:
-  $$\text{Effective Attributes} = 2 \text{ } 2 \text{ } 3 \text{ } 2 \text{ } 7 \text{ } 7$$
-  *(Physical attributes are left at base levels since a diplomat does not require high-tier physical combat perks).*
-* **Primary Skills**: Charm, Leadership, Trade (Social) and Medicine, Engineering, Steward (Intelligence).
-* **Strategic Role**: Maximizes lord relations, kingdom persuasion checks, tournament rewards, peace/war barter discounts, and unlocks direct fief buying/selling (`Everything Has a Price` at Trade 300).
-* **Build Progression**: This template is significantly easier to build and develop because the vast majority of diplomacy, clan relation, and trade perks are concentrated directly within the Social tree.
-> [!NOTE]
-> **No Physical Respec Trick Required**: Unlike the Combat Commander, the Social Diplomat has far fewer physical skill requirements. Therefore, they do not need to perform the expensive Athletics/Smithing Arena Respec Trick, saving 10 focus points that can be reinvested into Charm, Leadership, Trade, and Medicine. Focus on early quest completion and tournament victories to train Charm and Leadership rapidly.
-
----
-
-### Safe Focus Point Allocations (Zero-Waste Design)
-
-To guarantee no wasted points at any level (even when attributes are pushed to their maximum target limits), you should adhere to the following **Safe Focus Point Allocations**. These represent the minimum focus points required to clear target perks, accounting for eventual attribute growth:
-
-| Skill Group | Target Perk Level | Planned Peak Attribute | Safe Focus Points | Limit Reached | Why it is Safe |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| **Riding** | 100 (`Sweeping Wind`) | 5 Endurance | **1 Focus** | 100 | Eventual 5 Endurance guarantees the limit is exactly 100; allocating a second focus point is a waste. |
-| **Two-Handed** | 100 (`Beast Slayer` / `Shield breaker`) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor (from the Respec Trick) guarantees the limit is exactly 100. `Projectile Deflection` is level 150 and needs a separate higher-investment plan. |
-| **One-Handed / Polearm** | 100 (Utility/Speed Perks) | 5 Vigor | **1 Focus** | 100 | Eventual 5 Vigor guarantees the limit is exactly 100. |
-| **Scouting / Tactics / Roguery** | 275 (Final Perk) | 10 Cunning | **4 Focus** | 290 | If Cunning is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Cunning. |
-| **Medicine / Steward** | 275 (Final Perk) | 10 Intelligence | **4 Focus** | 290 | If Intelligence is pushed to 10, 4 focus points are enough to clear level 275. Allocating 5 focus points is a waste if you ever intend to reach 10 Intelligence. |
-
-> [!WARNING]
-> If Cunning or Intelligence is at 7 rather than 10, **5 focus points** are required to clear the 248+ skill target — 4 focus points only reaches 248, falling short of the 250 milestone.
-| **Engineering** | 150 (`Stonecutters` / `Siege Engineer`) | 7 Intelligence | **0 (or 3) Focus** | 88 (to 208) | Delegating to an Engineer companion lets the player dump Engineering to 0 focus. If the player builds, 3 focus is the maximum needed for 150; Metallurgy (225) is a trap. |
+* [Commander Perks and Build Optimization Guide](commander-perks-and-build-optimization.md) — focus point allocation, starting origins, progression roadmaps, and perk directory for a melee commander build.
+* [Battanian Character Creation and Commander Progression Guide](battanian-starts.md) — zero-waste starting background choices and level-up walkthrough.

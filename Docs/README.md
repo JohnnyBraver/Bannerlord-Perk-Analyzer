@@ -1,7 +1,7 @@
 # Docs
 
 - `guides/` contains the authored player-facing manuals:
-  - `hero-progression-and-builds.md`: character XP, skill learning, perk limits, low-investment splashes, and build templates.
+  - `hero-progression.md`: character XP formulas, skill learning limits, passive XP channels, perk limit grids, early splash perks, and combat/utility perk directories.
   - `commander-perks-and-build-optimization.md`: commander-focused perk priorities, investment bars, and banner package comparisons.
   - `military-and-troop-tactics.md`: campaign movement, troop XP, combat AI scaling, damage formulas, village raids, and command perks.
   - `medicine-and-party-survival.md`: casualty survival, Medicine scaling, troop hit points, armor, and damage resistance stacks.
