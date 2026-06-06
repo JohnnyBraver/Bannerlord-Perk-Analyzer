@@ -26,7 +26,7 @@ In Mount & Blade II: Bannerlord, character leveling dictates your attribute and 
 
 ## 2. Starting Origins (Zero CTR Waste)
 
-By treating **Engineering** as a late-game target rather than a starting priority, all 12 creation focus points go into skills actively used in the final build. CTR stays at base 2 — no Control attribute points are spent. No starting focus goes into Social skills (Charm, Leadership, Trade).
+Engineering is not seeded at character creation — all 12 starting focus points go into skills actively used in the final build. CTR stays at base 2 — no Control attribute points are spent. No starting focus goes into Social skills (Charm, Leadership, Trade).
 
 ### Choice Path
 1. **Family**: **Foresters** | +1 Cunning $\rightarrow$ Scouting 1, Tactics 1
@@ -36,7 +36,7 @@ By treating **Engineering** as a late-game target rather than a starting priorit
 5. **Adulthood**: **you defeated an enemy in battle** | +1 Vigor $\rightarrow$ One Handed 1, Two Handed 1
 6. **Final step**:
    * **Campaign Mode** — **Escape: makeshift fortifications** | +1 Intelligence $\rightarrow$ Athletics 1, Engineering 1
-   * **Sandbox Mode (Age 20)** — Place the free +1 Attribute point into Intelligence. Place the two free Focus points into Athletics 1 and One-Handed 1. Engineering already has 1 seed point from Education; no need to add more until late game.
+   * **Sandbox Mode (Age 20)** — Place the free +1 Attribute point into Intelligence. Place the two free Focus points into Athletics 1 and One-Handed 1. Engineering has 1 focus from Education and does not need more at this stage.
 
 * **Starting Attributes**: `VIG 3 | CTR 2 | END 3 | CNG 4 | SOC 2 | INT 4`
 * **Starting Focus Profile** (Campaign): Scouting 1, Tactics 2, Riding 1, Medicine 1, Steward 2, Engineering 2, One Handed 1, Two Handed 1, Athletics 1
@@ -161,7 +161,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
 
 ## 5. Key Build Optimization & Training Tips
 
-### A. The `Fencer Smith` Focus Refund Trick — Smithing 225
+### A. `Fencer Smith` Perk Respec — Smithing 225
 Reaching Smithing 225 unlocks **`Fencer Smith`**, which grants **+1 Focus to One-Handed** and **+1 Focus to Two-Handed** — saving 2 manual focus point allocations in Vigor skills. Select `Fencer Smith` during the weapon-grinding phase to clear the One-Handed 250 and Two-Handed 175 targets. Once those skills are fully trained, visit the Arena master, pay the respec fee, and switch to **`Enduring Smith`** for the permanent +1 Endurance attribute.
 
 ### B. Engineering 225 — Focus Cost by INT Level
@@ -198,8 +198,8 @@ While Engineering levels up slowly in regular campaign travel, manually aiming a
 * **Scouting (275) - `Uncanny Insight`** (Scout): $+7.5\%$ party speed at unlock, then $+0.1\%$ per Scouting point above 275.
 
 > [!WARNING]
-> **Scouting is Not a Dump Skill**:
-> In elite infantry doctrines, campaign map speed is a primary combat stat, not a QoL convenience. Moving faster than your opponents determines whether you can catch favorable targets or escape faction doomstacks. Pushing Scouting to 275 for `Uncanny Insight` is a core pillar of the One-Man Show build.
+> **Scouting — Do Not Skip**:
+> Campaign map speed determines whether you can intercept favorable targets or disengage from hostile armies. Scouting 275 `Uncanny Insight` adds +7.5% party speed at unlock and +0.1% per point above 275 — a significant sustained bonus in the Variant A build.
 
 ---
 
@@ -230,7 +230,7 @@ While Engineering levels up slowly in regular campaign travel, manually aiming a
 * **Bow (175) - `Skirmish Phase Master`**: $-10\%$ damage taken from projectiles by ranged troops in your formation.
 
 ### C. Battle Banner Shortlist
-For the shock-infantry commander doctrine, the main competitors are:
+Banners ranked by effect for a shock-infantry formation:
 * **Banner of Dust Devils / Strider's Flag**: $+30\%$ infantry movement speed at tier 3.
 * **Locked Shields Banner / Testudo Standard**: $-15\%$ ranged attack damage taken at tier 3.
 * **Banner of Sultan's Eagle / Tug of Whistling Arrow**: $-8\%$ ranged accuracy penalty for ranged troops at tier 3.
