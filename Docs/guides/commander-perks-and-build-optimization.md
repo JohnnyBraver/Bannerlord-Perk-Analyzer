@@ -3,6 +3,8 @@
 Build target for a high-level melee commander:
 $$\text{VIG 3(5) | CTR 2(4) | END 3(5) | CNG 7 | SOC 2 | INT 7}$$
 
+*Vigor (VIG) | Control (CTR) | Endurance (END) | Cunning (CNG) | Social (SOC) | Intelligence (INT). Values in parentheses are effective totals after perk bonuses from the Smithing and Athletics respec.*
+
 Unlike early-game utility drafts that stop weapon training at level ~100, the build scales combat proficiency to late-game commander milestones: **250 One Handed**, **175 Two Handed**, and **250 Polearm (Spear)**, paired with **125 Bow**, **0 Crossbow**, and **125 Throwing** for auxiliary ranged support.
 
 ---
@@ -24,9 +26,9 @@ In Mount & Blade II: Bannerlord, character leveling dictates your attribute and 
 
 ---
 
-## 2. Starting Origins (Zero CTR Waste)
+## 2. Starting Origins
 
-Engineering is not seeded at character creation — all 12 starting focus points go into skills actively used in the final build. CTR stays at base 2 — no Control attribute points are spent. No starting focus goes into Social skills (Charm, Leadership, Trade).
+The background choices incidentally seed Engineering with 2 focus points (Campaign) or 1 (Sandbox). No additional Engineering focus is invested until INT reaches 10. Control stays at base 2 throughout — no attribute points are spent on it. No starting focus goes into Social skills (Charm, Leadership, Trade).
 
 ### Choice Path
 1. **Family**: **Foresters** | +1 Cunning $\rightarrow$ Scouting 1, Tactics 1
@@ -73,7 +75,7 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     2.  **One-Handed**: +2 points | 3 focus total
     3.  **Polearm**: +3 points | 3 focus total
     4.  **Athletics**: +2 points | 3 focus total
-    5.  **Smithing**: +1 point | 2 focus total
+    5.  **Smithing**: +1 point | 1 focus total
 
 #### Phase 2: Mid-Game Core & Combat — Levels 11–24
 *   **Attribute Target**: Add **+2 Cunning**, **+3 Intelligence** | CNG 7, INT 7
@@ -81,18 +83,17 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
 *   **Allocation Roadmap**:
     1.  **Polearm**: +2 points | 5 focus total
     2.  **Athletics**: +2 points | 5 focus total
-    3.  **Smithing**: +3 points | 5 focus total
+    3.  **Smithing**: +4 points | 5 focus total
     4.  **Medicine**: +4 points | 5 focus total
-    5.  **Scouting**: +3 points | 4 focus total
+    5.  **Scouting**: +2 points | 3 focus total
 
 #### Phase 3: Late-Mid Transition — Levels 25–28
 *   **Attribute Target**: Add **+1 Intelligence** | INT 8
 *   **Focus Points Gained**: **+4** | Levels 25 to 28
 *   **Allocation Roadmap**:
-    1.  **Scouting**: +1 point | 5 focus total
+    1.  **Scouting**: +2 points | 5 focus total
     2.  **Two-Handed**: +1 point | 2 focus total
     3.  **Steward**: +1 point | 3 focus total
-    4.  **Tactics**: +1 point | 3 focus total
 
 #### Phase 4: Late-Game Core — Levels 29–32
 *   **Attribute Target**: Add **+1 Intelligence** | INT 9
@@ -108,14 +109,14 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
 *   **Allocation Roadmap**:
     1.  **Throwing**: +2 points | 2 focus total
     2.  **Trade**: +1 point | 1 focus total
-    3.  **Spare**: +1 point | unassigned
+    3.  **One-Handed**: +1 point | 4 focus total
 
 ---
 
 ### Variant B: The Companion-Assisted Commander — CNG 2, Delegated Scout
 *   **Starting Profile — Level 1**: VIG 3 | CTR 2 | END 3 | CNG 2 | SOC 2 | INT 6
     *   *Starting Focus Seeds — 12*: One-Handed 1, Two-Handed 1, Athletics 1, Riding 1, Smithing 1, Medicine 1, Steward 2, Engineering 2, Tactics 2 | Zero Scouting
-*   **Key Difference**: Scouting is completely delegated to a companion Scout. Level-up attribute points go into INT | INT 10 at Level 24 and SOC | SOC 6/7 in late game.
+*   Scouting is delegated to a companion Scout. Level-up attribute points go into INT — reaching INT 10 at Level 24 — then SOC 6/7 in late game.
 
 #### Phase 1: Heavy Physical Engine — Levels 1–10
 *   **Attribute Target**: Add **+2 Intelligence** | INT 8
@@ -175,7 +176,7 @@ While Engineering levels up slowly in regular campaign travel, manually aiming a
 ## 6. Directory of Key Commander & Party Leader Perks
 
 > [!WARNING]
-> **The Riding 100 Trap for Infantry Commanders**:
+> **Riding — 1 Focus Point Maximum**:
 > Do not invest more than **1 focus point** in Riding. While Riding 100 `Sweeping Wind` (+2% party speed) is a core map-speed payout, the tree past 100 scales mounted combat, horse armor, mount health, and prisoner lord recovery. Pushing past 100 is a complete focus sink for a commander running foot troops.
 
 ### A. Party Size Perks
