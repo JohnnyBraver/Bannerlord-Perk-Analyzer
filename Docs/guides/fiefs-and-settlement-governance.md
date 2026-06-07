@@ -150,6 +150,28 @@ $$\text{Daily Security Drift} = \frac{-(\text{Security} - 50)}{15}$$
 > - `Siegeworks` gives a prebuilt catapult when the governed settlement is besieged, not tariff income.
 > Check the role column before treating these as generic economy, defense, or capacity picks.
 
+### Governor Prisoner Escape Control
+
+Hero prisoners held in your towns and castles roll for escape once per in-game day. The base daily escape chance for settlement prisoners is **4%** flat (compared to a variable 8–20% for mobile parties). If the settlement is owned by the player's clan, the base is **halved to 2%** before perks are applied.
+
+All three governor perks below feed into a single additive `SumOfFactors` pool:
+$$\text{Effective Escape Chance} = \text{Base} \times (1 + \text{SumOfFactors})$$
+
+| Perk | Skill | Level | Factor | Source |
+| :--- | :--- | ---: | ---: | :--- |
+| `Sweet Talker` | Roguery | 25 | −0.20 | Governor secondary slot |
+| `Dungeon Architect` | Engineering | 50 | −0.25 | Governor secondary slot |
+| `Mounted Patrols` | Riding | 225 | −0.50 | Governor secondary slot |
+
+With all three on the same governor: `SumOfFactors = −0.95` → escape chance = `Base × 0.05`.
+- Enemy-owned town (4% base): **0.2% per day**.
+- Player-owned town (2% base after halving): **0.1% per day**.
+
+> [!TIP]
+> `Dungeon Architect` (Engineering 50) is extremely cheap to pick up and gives −25% to settlement escape on its own. For a dedicated prison-keeper governor, the priority order is `Mounted Patrols` (largest single factor) → `Dungeon Architect` → `Sweet Talker`.
+
+For mobile-party escape mechanics (Mounted Patrols primary, Ransom Broker, Keen Sight, Fleet Footed) and regular troop over-capacity escape, see [Prisoner Escape Mechanics](military-and-troop-tactics.md#prisoner-escape-mechanics).
+
 ---
 
 ## 4. The Settlement Supply Chain

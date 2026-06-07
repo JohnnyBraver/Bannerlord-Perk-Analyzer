@@ -391,7 +391,10 @@ Even before perks are unlocked, raising your weapon skill levels provides passiv
 * **Level 200** - `Annoying Buzz`: Mounted ranged kills apply a battle morale penalty to enemies.
 * **Level 200** - `Thunderous Charge`: Mounted melee kills apply a battle morale penalty to enemies.
 * **Level 225** - `Cavalry Tactics`: $+30\%$ cavalry volunteering rate in settlements governed by your clan, or $-50\%$ wages of mounted troops in a governed settlement.
-* **Level 225** - `Mounted Patrols`: Prisoner escape chance reduced by $-50\%$.
+* **Level 225** - `Mounted Patrols`: Adds a $-0.50$ factor to prisoner escape chance. Role-dependent:
+  * **Party leader (primary slot)**: Applied via `AddPerkBonusForParty` — reduces hero escape chance from your mobile party.
+  * **Governor (secondary slot)**: Applied via `AddFactor` — reduces hero escape chance from your governed town or castle.
+  * All escape-chance factors from perks share a single `SumOfFactors` pool: `Result = Base × (1 + SumOfFactors)`. Combined with `Keen Sight` (−0.50) the pool reaches −1.00 → **0% escape** (clamped). See [Prisoner Escape Mechanics](military-and-troop-tactics.md#prisoner-escape-mechanics) for full stacking details.
 * **Level 250** - `Tough Steed` & `Dauntless Steed`: Provides $+20\%$ armor to your mount, $+10$ armor to troop mounts, $+50\%$ mounted stagger resistance, or $+5$ armor to mounted troops.
 * **Level 275** - `The Way Of The Saddle`: Mount maneuverability and speed scaling.
 
