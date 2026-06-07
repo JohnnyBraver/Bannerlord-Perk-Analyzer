@@ -16,6 +16,7 @@ try:
     from bannerlord_perk_analyzer.extract_combat_formulas import extract_combat_formulas
     from bannerlord_perk_analyzer.extract_commander_perks import extract_commander_perks
     from bannerlord_perk_analyzer.extract_guide_stats import extract_guide_stats
+    from bannerlord_perk_analyzer.extract_modifiers import extract_modifiers
     from bannerlord_perk_analyzer.extract_skill_xp_sources import extract_skill_xp_sources
     from bannerlord_perk_analyzer.extract_xp_awards import extract_xp_awards
     from bannerlord_perk_analyzer.extract_xp_formulas import extract_xp_formulas
@@ -244,6 +245,41 @@ def main() -> None:
         "--include-mp",
         action="store_true",
         help="Also include multiplayer banner XML; off by default to avoid duplicate singleplayer item IDs."
+    )
+
+    # Extract-modifiers subcommand
+    parser_modifiers = subparsers.add_parser(
+        "extract-modifiers",
+        help="Run the item quality modifiers extraction."
+    )
+    parser_modifiers.add_argument(
+        "--workspace",
+        type=Path,
+        default=default_workspace(),
+        help="Path to workspace directory"
+    )
+    parser_modifiers.add_argument(
+        "--game-root",
+        type=Path,
+        default=None,
+        help="Bannerlord game root directory. Overrides BANNERLORD_GAME_ROOT env var."
+    )
+    parser_modifiers.add_argument(
+        "--json-output",
+        type=Path,
+        default=None,
+        help="Path to save modifiers JSON. Defaults to Data/raw/item-modifiers.json."
+    )
+    parser_modifiers.add_argument(
+        "--markdown-output",
+        type=Path,
+        default=None,
+        help="Path to save modifiers markdown. Defaults to Docs/reports/item-modifiers.md."
+    )
+    parser_modifiers.add_argument(
+        "--skip-scan",
+        action="store_true",
+        help="Skip fresh C# scanning and reuse existing modifiers JSON to regenerate the report."
     )
 
     # Stats subcommand
@@ -496,6 +532,17 @@ def main() -> None:
             skip_scan=args.skip_scan,
             skip_usage_scan=args.skip_usage_scan,
             include_mp=args.include_mp,
+        )
+
+    elif args.command == "extract-modifiers":
+        json_output = args.json_output or workspace / "Data" / "raw" / "item-modifiers.json"
+        markdown_output = args.markdown_output or workspace / "Docs" / "reports" / "item-modifiers.md"
+        extract_modifiers(
+            workspace=workspace,
+            game_root=args.game_root,
+            json_output=json_output,
+            markdown_output=markdown_output,
+            skip_scan=args.skip_scan,
         )
 
     elif args.command == "stats":

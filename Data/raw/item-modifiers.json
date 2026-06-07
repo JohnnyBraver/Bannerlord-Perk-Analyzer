@@ -1,0 +1,1932 @@
+{
+  "generated_at": "2026-06-07T07:32:41.3044166+03:00",
+  "inputs": {
+    "game_root": "<local Bannerlord install>",
+    "item_modifiers_xml": "Modules\\Native\\ModuleData\\item_modifiers.xml",
+    "item_modifiers_groups_xml": "Modules\\Native\\ModuleData\\item_modifiers_groups.xml"
+  },
+  "modifiers": [
+    {
+      "Id": "legendary_sword",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "sword",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "7",
+        "speed": "3"
+      }
+    },
+    {
+      "Id": "masterwork_sword",
+      "Name": "Masterwork {ITEMNAME}",
+      "NameRaw": "{=8Tal0XIj}Masterwork {ITEMNAME}",
+      "ModifierGroup": "sword",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "5",
+        "speed": "2"
+      }
+    },
+    {
+      "Id": "balanced_sword",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "sword",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "3",
+        "speed": "1"
+      }
+    },
+    {
+      "Id": "dull_sword",
+      "Name": "Dull {ITEMNAME}",
+      "NameRaw": "{=LmzHz4CG}Dull {ITEMNAME}",
+      "ModifierGroup": "sword",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-10",
+        "speed": "-10"
+      }
+    },
+    {
+      "Id": "rusty_sword",
+      "Name": "Rusty {ITEMNAME}",
+      "NameRaw": "{=l7QEpVwU}Rusty {ITEMNAME}",
+      "ModifierGroup": "sword",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-15",
+        "speed": "-5"
+      }
+    },
+    {
+      "Id": "legendary_bow",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "bow",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "7",
+        "speed": "4",
+        "missile_speed": "4"
+      }
+    },
+    {
+      "Id": "masterwork_bow",
+      "Name": "Masterwork {ITEMNAME}",
+      "NameRaw": "{=8Tal0XIj}Masterwork {ITEMNAME}",
+      "ModifierGroup": "bow",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "5",
+        "speed": "3",
+        "missile_speed": "3"
+      }
+    },
+    {
+      "Id": "balanced_bow",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "bow",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "1",
+        "speed": "2",
+        "missile_speed": "2"
+      }
+    },
+    {
+      "Id": "cracked_bow",
+      "Name": "Cracked {ITEMNAME}",
+      "NameRaw": "{=br0N6SSH}Cracked {ITEMNAME}",
+      "ModifierGroup": "bow",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-8",
+        "speed": "-4",
+        "missile_speed": "-6"
+      }
+    },
+    {
+      "Id": "splintered_bow",
+      "Name": "Splintered {ITEMNAME}",
+      "NameRaw": "{=8Pd6fLoy}Splintered {ITEMNAME}",
+      "ModifierGroup": "bow",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-15",
+        "speed": "-2",
+        "missile_speed": "0"
+      }
+    },
+    {
+      "Id": "legendary_crossbow",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "crossbow",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "4",
+        "speed": "4",
+        "missile_speed": "15"
+      }
+    },
+    {
+      "Id": "masterwork_crossbow",
+      "Name": "Masterwork {ITEMNAME}",
+      "NameRaw": "{=8Tal0XIj}Masterwork {ITEMNAME}",
+      "ModifierGroup": "crossbow",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "3",
+        "speed": "3",
+        "missile_speed": "9"
+      }
+    },
+    {
+      "Id": "tuned_crossbow",
+      "Name": "Tuned {ITEMNAME}",
+      "NameRaw": "{=WbaIorOh}Tuned {ITEMNAME}",
+      "ModifierGroup": "crossbow",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "0",
+        "speed": "0",
+        "missile_speed": "3"
+      }
+    },
+    {
+      "Id": "bent_crossbow",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "crossbow",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-5",
+        "speed": "-1",
+        "missile_speed": "-1"
+      }
+    },
+    {
+      "Id": "cracked_crossbow",
+      "Name": "Cracked {ITEMNAME}",
+      "NameRaw": "{=br0N6SSH}Cracked {ITEMNAME}",
+      "ModifierGroup": "crossbow",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-10",
+        "speed": "-2",
+        "missile_speed": "-6"
+      }
+    },
+    {
+      "Id": "legendary_arrows",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "arrow",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "3",
+        "stack_count": "5"
+      }
+    },
+    {
+      "Id": "balanced_arrows",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "arrow",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "2"
+      }
+    },
+    {
+      "Id": "large_bag_arrows",
+      "Name": "Large Bag of {ITEMNAME}",
+      "NameRaw": "{=3JaHZA3Y}Large Bag of {ITEMNAME}",
+      "ModifierGroup": "arrow",
+      "PriceFactor": 2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "0",
+        "stack_count": "5"
+      }
+    },
+    {
+      "Id": "bent_arrows",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "arrow",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-1"
+      }
+    },
+    {
+      "Id": "splintered_arrows",
+      "Name": "Splintered {ITEMNAME}",
+      "NameRaw": "{=8Pd6fLoy}Splintered {ITEMNAME}",
+      "ModifierGroup": "arrow",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-3"
+      }
+    },
+    {
+      "Id": "legendary_bolts",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "bolt",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "3",
+        "stack_count": "4"
+      }
+    },
+    {
+      "Id": "balanced_bolts",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "bolt",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "2"
+      }
+    },
+    {
+      "Id": "large_bag_bolts",
+      "Name": "Large Bag of {ITEMNAME}",
+      "NameRaw": "{=3JaHZA3Y}Large Bag of {ITEMNAME}",
+      "ModifierGroup": "bolt",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "0",
+        "stack_count": "2"
+      }
+    },
+    {
+      "Id": "bent_bolts",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "bolt",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-1"
+      }
+    },
+    {
+      "Id": "splintered_bolts",
+      "Name": "Splintered {ITEMNAME}",
+      "NameRaw": "{=8Pd6fLoy}Splintered {ITEMNAME}",
+      "ModifierGroup": "bolt",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-5"
+      }
+    },
+    {
+      "Id": "legendary_cheap",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "cheap_weapon",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "7",
+        "speed": "3"
+      }
+    },
+    {
+      "Id": "fine_cheap",
+      "Name": "Fine {ITEMNAME}",
+      "NameRaw": "{=xeb1b5PQ}Fine {ITEMNAME}",
+      "ModifierGroup": "cheap_weapon",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "5",
+        "speed": "2"
+      }
+    },
+    {
+      "Id": "well_crafted_cheap",
+      "Name": "Well made {ITEMNAME}",
+      "NameRaw": "{=85WO1MKG}Well made {ITEMNAME}",
+      "ModifierGroup": "cheap_weapon",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "2",
+        "speed": "1"
+      }
+    },
+    {
+      "Id": "bent_cheap",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "cheap_weapon",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-5",
+        "speed": "-1"
+      }
+    },
+    {
+      "Id": "cracked_cheap",
+      "Name": "Cracked {ITEMNAME}",
+      "NameRaw": "{=br0N6SSH}Cracked {ITEMNAME}",
+      "ModifierGroup": "cheap_weapon",
+      "PriceFactor": 0.4,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-10",
+        "speed": "-2"
+      }
+    },
+    {
+      "Id": "legendary_polearm",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "polearm",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "7",
+        "speed": "3"
+      }
+    },
+    {
+      "Id": "masterwork_polearm",
+      "Name": "Masterwork {ITEMNAME}",
+      "NameRaw": "{=8Tal0XIj}Masterwork {ITEMNAME}",
+      "ModifierGroup": "polearm",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "5",
+        "speed": "2"
+      }
+    },
+    {
+      "Id": "balanced_polearm",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "polearm",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "3",
+        "speed": "1"
+      }
+    },
+    {
+      "Id": "bent_polearm",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "polearm",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-3",
+        "speed": "-1"
+      }
+    },
+    {
+      "Id": "cracked_polearm",
+      "Name": "Cracked {ITEMNAME}",
+      "NameRaw": "{=br0N6SSH}Cracked {ITEMNAME}",
+      "ModifierGroup": "polearm",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-6",
+        "speed": "-3"
+      }
+    },
+    {
+      "Id": "legendary_mace",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "mace",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "7",
+        "speed": "3"
+      }
+    },
+    {
+      "Id": "masterwork_mace",
+      "Name": "Masterwork {ITEMNAME}",
+      "NameRaw": "{=8Tal0XIj}Masterwork {ITEMNAME}",
+      "ModifierGroup": "mace",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "5",
+        "speed": "2"
+      }
+    },
+    {
+      "Id": "balanced_mace",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "mace",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "3",
+        "speed": "1"
+      }
+    },
+    {
+      "Id": "unbalanced_mace",
+      "Name": "Unbalanced {ITEMNAME}",
+      "NameRaw": "{=VbxJPJGe}Unbalanced {ITEMNAME}",
+      "ModifierGroup": "mace",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-1",
+        "speed": "-1"
+      }
+    },
+    {
+      "Id": "splintered_mace",
+      "Name": "Splintered {ITEMNAME}",
+      "NameRaw": "{=8Pd6fLoy}Splintered {ITEMNAME}",
+      "ModifierGroup": "mace",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-4",
+        "speed": "-2"
+      }
+    },
+    {
+      "Id": "legendary_axe",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "axe",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "7",
+        "speed": "3"
+      }
+    },
+    {
+      "Id": "masterwork_axe",
+      "Name": "Masterwork {ITEMNAME}",
+      "NameRaw": "{=8Tal0XIj}Masterwork {ITEMNAME}",
+      "ModifierGroup": "axe",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "damage": "5",
+        "speed": "2"
+      }
+    },
+    {
+      "Id": "quality_axe",
+      "Name": "Quality {ITEMNAME}",
+      "NameRaw": "{=bAdxUq7s}Quality {ITEMNAME}",
+      "ModifierGroup": "axe",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "damage": "3",
+        "speed": "1"
+      }
+    },
+    {
+      "Id": "dented_axe",
+      "Name": "Dented {ITEMNAME}",
+      "NameRaw": "{=PobRGG9S}Dented {ITEMNAME}",
+      "ModifierGroup": "axe",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-1",
+        "speed": "-1"
+      }
+    },
+    {
+      "Id": "rusty_axe",
+      "Name": "Rusty {ITEMNAME}",
+      "NameRaw": "{=l7QEpVwU}Rusty {ITEMNAME}",
+      "ModifierGroup": "axe",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-4",
+        "speed": "0"
+      }
+    },
+    {
+      "Id": "legendary_axe_throwing",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "axe_throwing",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 2,
+      "Stats": {
+        "stack_count": "4",
+        "missile_speed": "3"
+      }
+    },
+    {
+      "Id": "large_bag_axe_throwing",
+      "Name": "Large Bag of {ITEMNAME}",
+      "NameRaw": "{=3JaHZA3Y}Large Bag of {ITEMNAME}",
+      "ModifierGroup": "axe_throwing",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 10,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "stack_count": "2",
+        "missile_speed": "0"
+      }
+    },
+    {
+      "Id": "balanced_axe_throwing",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "axe_throwing",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "missile_speed": "5"
+      }
+    },
+    {
+      "Id": "bent_axe_throwing",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "axe_throwing",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "missile_speed": "-3"
+      }
+    },
+    {
+      "Id": "splintered_axe_throwing",
+      "Name": "Splintered {ITEMNAME}",
+      "NameRaw": "{=8Pd6fLoy}Splintered {ITEMNAME}",
+      "ModifierGroup": "axe_throwing",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "missile_speed": "-6"
+      }
+    },
+    {
+      "Id": "legendary_knife_throwing",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "knife_throwing",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 2,
+      "Stats": {
+        "stack_count": "4",
+        "missile_speed": "8"
+      }
+    },
+    {
+      "Id": "balanced_knife_throwing",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "knife_throwing",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 10,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "0",
+        "speed": "0",
+        "missile_speed": "4"
+      }
+    },
+    {
+      "Id": "large_bag_knife_throwing",
+      "Name": "Large Bag of {ITEMNAME}",
+      "NameRaw": "{=3JaHZA3Y}Large Bag of {ITEMNAME}",
+      "ModifierGroup": "knife_throwing",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "stack_count": "2",
+        "damage": "0",
+        "speed": "0",
+        "missile_speed": "0"
+      }
+    },
+    {
+      "Id": "bent_knife_throwing",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "knife_throwing",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "0",
+        "speed": "0",
+        "missile_speed": "-2"
+      }
+    },
+    {
+      "Id": "rusty_knife_throwing",
+      "Name": "Rusty {ITEMNAME}",
+      "NameRaw": "{=l7QEpVwU}Rusty {ITEMNAME}",
+      "ModifierGroup": "knife_throwing",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "0",
+        "speed": "0",
+        "missile_speed": "-2"
+      }
+    },
+    {
+      "Id": "legendary_spear_dart_throwing",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "spear_dart_throwing",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 2,
+      "Stats": {
+        "damage": "3",
+        "speed": "2",
+        "missile_speed": "6"
+      }
+    },
+    {
+      "Id": "balanced_spear_dart_throwing",
+      "Name": "Balanced {ITEMNAME}",
+      "NameRaw": "{=fdgcpipH}Balanced {ITEMNAME}",
+      "ModifierGroup": "spear_dart_throwing",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 10,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "damage": "2",
+        "speed": "1",
+        "missile_speed": "3"
+      }
+    },
+    {
+      "Id": "large_bag_spear_dart_throwing",
+      "Name": "Large Bag of {ITEMNAME}",
+      "NameRaw": "{=3JaHZA3Y}Large Bag of {ITEMNAME}",
+      "ModifierGroup": "spear_dart_throwing",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "stack_count": "2",
+        "damage": "0",
+        "speed": "0",
+        "missile_speed": "0"
+      }
+    },
+    {
+      "Id": "bent_spear_dart_throwing",
+      "Name": "Bent {ITEMNAME}",
+      "NameRaw": "{=eb4miTUB}Bent {ITEMNAME}",
+      "ModifierGroup": "spear_dart_throwing",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-2",
+        "speed": "0",
+        "missile_speed": "-1"
+      }
+    },
+    {
+      "Id": "cracked_spear_dart_throwing",
+      "Name": "Cracked {ITEMNAME}",
+      "NameRaw": "{=br0N6SSH}Cracked {ITEMNAME}",
+      "ModifierGroup": "spear_dart_throwing",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "damage": "-5",
+        "speed": "0",
+        "missile_speed": "-2"
+      }
+    },
+    {
+      "Id": "legendary_shield",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "shield",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "hit_points": "210",
+        "speed": "0",
+        "armor": "8"
+      }
+    },
+    {
+      "Id": "lordly_shield",
+      "Name": "Lordly {ITEMNAME}",
+      "NameRaw": "{=w3jn7Ahz}Lordly {ITEMNAME}",
+      "ModifierGroup": "shield",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "hit_points": "130",
+        "speed": "0",
+        "armor": "5"
+      }
+    },
+    {
+      "Id": "thick_shield",
+      "Name": "Thick {ITEMNAME}",
+      "NameRaw": "{=BA9c7gPb}Thick {ITEMNAME}",
+      "ModifierGroup": "shield",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "hit_points": "40",
+        "speed": "0",
+        "armor": "3"
+      }
+    },
+    {
+      "Id": "battered_shield",
+      "Name": "Battered {ITEMNAME}",
+      "NameRaw": "{=TePk4BSJ}Battered {ITEMNAME}",
+      "ModifierGroup": "shield",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "hit_points": "-70",
+        "speed": "0",
+        "armor": "-2"
+      }
+    },
+    {
+      "Id": "cracked_shield",
+      "Name": "Cracked {ITEMNAME}",
+      "NameRaw": "{=br0N6SSH}Cracked {ITEMNAME}",
+      "ModifierGroup": "shield",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "hit_points": "-110",
+        "speed": "-1",
+        "armor": "-4"
+      }
+    },
+    {
+      "Id": "legendary_plate",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "plate",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "armor": "12"
+      }
+    },
+    {
+      "Id": "lordly_plate",
+      "Name": "Lordly {ITEMNAME}",
+      "NameRaw": "{=w3jn7Ahz}Lordly {ITEMNAME}",
+      "ModifierGroup": "plate",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "armor": "8"
+      }
+    },
+    {
+      "Id": "fine_plate",
+      "Name": "Fine {ITEMNAME}",
+      "NameRaw": "{=xeb1b5PQ}Fine {ITEMNAME}",
+      "ModifierGroup": "plate",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "armor": "4"
+      }
+    },
+    {
+      "Id": "dented_plate",
+      "Name": "Dented {ITEMNAME}",
+      "NameRaw": "{=PobRGG9S}Dented {ITEMNAME}",
+      "ModifierGroup": "plate",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-4"
+      }
+    },
+    {
+      "Id": "rusty_plate",
+      "Name": "Rusty {ITEMNAME}",
+      "NameRaw": "{=l7QEpVwU}Rusty {ITEMNAME}",
+      "ModifierGroup": "plate",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-6"
+      }
+    },
+    {
+      "Id": "legendary_chain",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "chain",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "armor": "9"
+      }
+    },
+    {
+      "Id": "lordly_chain",
+      "Name": "Lordly {ITEMNAME}",
+      "NameRaw": "{=w3jn7Ahz}Lordly {ITEMNAME}",
+      "ModifierGroup": "chain",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "armor": "6"
+      }
+    },
+    {
+      "Id": "fine_chain",
+      "Name": "Fine {ITEMNAME}",
+      "NameRaw": "{=xeb1b5PQ}Fine {ITEMNAME}",
+      "ModifierGroup": "chain",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "armor": "3"
+      }
+    },
+    {
+      "Id": "loose_chain",
+      "Name": "Loose {ITEMNAME}",
+      "NameRaw": "{=bWhJwHA1}Loose {ITEMNAME}",
+      "ModifierGroup": "chain",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-6"
+      }
+    },
+    {
+      "Id": "rusty_chain",
+      "Name": "Rusty {ITEMNAME}",
+      "NameRaw": "{=l7QEpVwU}Rusty {ITEMNAME}",
+      "ModifierGroup": "chain",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-8"
+      }
+    },
+    {
+      "Id": "legendary_leather",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "leather",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "armor": "7"
+      }
+    },
+    {
+      "Id": "fine_leather",
+      "Name": "Fine {ITEMNAME}",
+      "NameRaw": "{=xeb1b5PQ}Fine {ITEMNAME}",
+      "ModifierGroup": "leather",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "armor": "5"
+      }
+    },
+    {
+      "Id": "waxed_leather",
+      "Name": "Waxed {ITEMNAME}",
+      "NameRaw": "{=zPqPvf0o}Waxed {ITEMNAME}",
+      "ModifierGroup": "leather",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "armor": "3"
+      }
+    },
+    {
+      "Id": "worn_leather",
+      "Name": "Worn {ITEMNAME}",
+      "NameRaw": "{=5yVgXqQr}Worn {ITEMNAME}",
+      "ModifierGroup": "leather",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-2"
+      }
+    },
+    {
+      "Id": "battered_leather",
+      "Name": "Battered {ITEMNAME}",
+      "NameRaw": "{=TePk4BSJ}Battered {ITEMNAME}",
+      "ModifierGroup": "leather",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-3"
+      }
+    },
+    {
+      "Id": "legendary_cloth",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "cloth",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "armor": "5"
+      }
+    },
+    {
+      "Id": "fine_cloth",
+      "Name": "Fine {ITEMNAME}",
+      "NameRaw": "{=xeb1b5PQ}Fine {ITEMNAME}",
+      "ModifierGroup": "cloth",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 5,
+      "ProductionDropScore": 10,
+      "Stats": {
+        "armor": "3"
+      }
+    },
+    {
+      "Id": "tailored_cloth",
+      "Name": "Tailored {ITEMNAME}",
+      "NameRaw": "{=Q5HVyNWJ}Tailored {ITEMNAME}",
+      "ModifierGroup": "cloth",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "armor": "1"
+      }
+    },
+    {
+      "Id": "worn_cloth",
+      "Name": "Worn {ITEMNAME}",
+      "NameRaw": "{=5yVgXqQr}Worn {ITEMNAME}",
+      "ModifierGroup": "cloth",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-1"
+      }
+    },
+    {
+      "Id": "ripped_cloth",
+      "Name": "Ripped {ITEMNAME}",
+      "NameRaw": "{=Pbb94NdW}Ripped {ITEMNAME}",
+      "ModifierGroup": "cloth",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-2"
+      }
+    },
+    {
+      "Id": "legendary_cloth_unarmoured",
+      "Name": "Legendary {ITEMNAME}",
+      "NameRaw": "{=lRf4t9Qg}Legendary {ITEMNAME}",
+      "ModifierGroup": "cloth_unarmoured",
+      "PriceFactor": 1.8,
+      "Quality": "legendary",
+      "LootDropScore": 2,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "armor": "3"
+      }
+    },
+    {
+      "Id": "fine_cloth_unarmoured",
+      "Name": "Fine {ITEMNAME}",
+      "NameRaw": "{=xeb1b5PQ}Fine {ITEMNAME}",
+      "ModifierGroup": "cloth_unarmoured",
+      "PriceFactor": 1.5,
+      "Quality": "masterwork",
+      "LootDropScore": 10,
+      "ProductionDropScore": 5,
+      "Stats": {
+        "armor": "2"
+      }
+    },
+    {
+      "Id": "tailored_cloth_unarmoured",
+      "Name": "Tailored {ITEMNAME}",
+      "NameRaw": "{=Q5HVyNWJ}Tailored {ITEMNAME}",
+      "ModifierGroup": "cloth_unarmoured",
+      "PriceFactor": 1.2,
+      "Quality": "fine",
+      "LootDropScore": 10,
+      "ProductionDropScore": 15,
+      "Stats": {
+        "armor": "1"
+      }
+    },
+    {
+      "Id": "worn_cloth_unarmoured",
+      "Name": "Worn {ITEMNAME}",
+      "NameRaw": "{=5yVgXqQr}Worn {ITEMNAME}",
+      "ModifierGroup": "cloth_unarmoured",
+      "PriceFactor": 0.6,
+      "Quality": "inferior",
+      "LootDropScore": 15,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-1"
+      }
+    },
+    {
+      "Id": "ripped_cloth_unarmoured",
+      "Name": "Ripped {ITEMNAME}",
+      "NameRaw": "{=Pbb94NdW}Ripped {ITEMNAME}",
+      "ModifierGroup": "cloth_unarmoured",
+      "PriceFactor": 0.3,
+      "Quality": "poor",
+      "LootDropScore": 25,
+      "ProductionDropScore": 1,
+      "Stats": {
+        "armor": "-2"
+      }
+    },
+    {
+      "Id": "lame_horse",
+      "Name": "Lame {ITEMNAME}",
+      "NameRaw": "{=geUpgQI5}Lame {ITEMNAME}",
+      "ModifierGroup": "horse",
+      "PriceFactor": 0.1,
+      "Quality": "poor",
+      "LootDropScore": 0,
+      "ProductionDropScore": 0,
+      "Stats": {
+        "horse_speed": "0.7",
+        "maneuver": "0.9",
+        "charge_damage": "0.6",
+        "horse_hit_points": "0.8"
+      }
+    },
+    {
+      "Id": "companion_horse",
+      "Name": "Old {ITEMNAME}",
+      "NameRaw": "{=y3TvYqhG}Old {ITEMNAME}",
+      "ModifierGroup": "companion",
+      "PriceFactor": 0.2,
+      "Quality": "poor",
+      "LootDropScore": 0,
+      "ProductionDropScore": 0,
+      "Stats": {
+        "horse_speed": "0.8",
+        "maneuver": "0.95",
+        "charge_damage": "0.8",
+        "horse_hit_points": "0.9"
+      }
+    },
+    {
+      "Id": "companion_weapon",
+      "Name": "Rusty {ITEMNAME}",
+      "NameRaw": "{=l7QEpVwU}Rusty {ITEMNAME}",
+      "ModifierGroup": "companion",
+      "PriceFactor": 0.2,
+      "Quality": "poor",
+      "LootDropScore": 0,
+      "ProductionDropScore": 0,
+      "Stats": {
+        "damage": "-10"
+      }
+    },
+    {
+      "Id": "companion_armor",
+      "Name": "Worn {ITEMNAME}",
+      "NameRaw": "{=5yVgXqQr}Worn {ITEMNAME}",
+      "ModifierGroup": "companion",
+      "PriceFactor": 0.2,
+      "Quality": "poor",
+      "LootDropScore": 0,
+      "ProductionDropScore": 0,
+      "Stats": {
+        "armor": "-6"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "Id": "sword",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_sword",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "masterwork_sword",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "balanced_sword",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "dull_sword",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "rusty_sword",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "bow",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_bow",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "masterwork_bow",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "balanced_bow",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "cracked_bow",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "splintered_bow",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "crossbow",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_crossbow",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "masterwork_crossbow",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "tuned_crossbow",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_crossbow",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "cracked_crossbow",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "arrow",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_arrows",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "balanced_arrows",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "large_bag_arrows",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_arrows",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "splintered_arrows",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "bolt",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_bolts",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "balanced_bolts",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "large_bag_bolts",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_bolts",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "splintered_bolts",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "cheap_weapon",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_cheap",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "fine_cheap",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "well_crafted_cheap",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_cheap",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "cracked_cheap",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "polearm",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_polearm",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "masterwork_polearm",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "balanced_polearm",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_polearm",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "cracked_polearm",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "mace",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_mace",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "masterwork_mace",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "balanced_mace",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "unbalanced_mace",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "splintered_mace",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "axe",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_axe",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "masterwork_axe",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "quality_axe",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "dented_axe",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "rusty_axe",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "axe_throwing",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_axe_throwing",
+          "LootDropScore": 2,
+          "ProductionDropScore": 2
+        },
+        {
+          "Id": "large_bag_axe_throwing",
+          "LootDropScore": 10,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "balanced_axe_throwing",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_axe_throwing",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "splintered_axe_throwing",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "knife_throwing",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_knife_throwing",
+          "LootDropScore": 2,
+          "ProductionDropScore": 2
+        },
+        {
+          "Id": "balanced_knife_throwing",
+          "LootDropScore": 10,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "large_bag_knife_throwing",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_knife_throwing",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "rusty_knife_throwing",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "spear_dart_throwing",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_spear_dart_throwing",
+          "LootDropScore": 2,
+          "ProductionDropScore": 2
+        },
+        {
+          "Id": "balanced_spear_dart_throwing",
+          "LootDropScore": 10,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "large_bag_spear_dart_throwing",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "bent_spear_dart_throwing",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "cracked_spear_dart_throwing",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "shield",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_shield",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "lordly_shield",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "thick_shield",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "battered_shield",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "cracked_shield",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "plate",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_plate",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "lordly_plate",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "fine_plate",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "dented_plate",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "rusty_plate",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "chain",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_chain",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "lordly_chain",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "fine_chain",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "loose_chain",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "rusty_chain",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "leather",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_leather",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "fine_leather",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "waxed_leather",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "worn_leather",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "battered_leather",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "cloth",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_cloth",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "fine_cloth",
+          "LootDropScore": 5,
+          "ProductionDropScore": 10
+        },
+        {
+          "Id": "tailored_cloth",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "worn_cloth",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "ripped_cloth",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "cloth_unarmoured",
+      "NoModifierLootScore": 45,
+      "NoModifierProductionScore": 75,
+      "Modifiers": [
+        {
+          "Id": "legendary_cloth_unarmoured",
+          "LootDropScore": 2,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "fine_cloth_unarmoured",
+          "LootDropScore": 10,
+          "ProductionDropScore": 5
+        },
+        {
+          "Id": "tailored_cloth_unarmoured",
+          "LootDropScore": 10,
+          "ProductionDropScore": 15
+        },
+        {
+          "Id": "worn_cloth_unarmoured",
+          "LootDropScore": 15,
+          "ProductionDropScore": 1
+        },
+        {
+          "Id": "ripped_cloth_unarmoured",
+          "LootDropScore": 25,
+          "ProductionDropScore": 1
+        }
+      ]
+    },
+    {
+      "Id": "horse",
+      "NoModifierLootScore": 1,
+      "NoModifierProductionScore": 1,
+      "Modifiers": [
+        {
+          "Id": "lame_horse",
+          "LootDropScore": 0,
+          "ProductionDropScore": 0
+        }
+      ]
+    },
+    {
+      "Id": "companion",
+      "NoModifierLootScore": 1,
+      "NoModifierProductionScore": 1,
+      "Modifiers": [
+        {
+          "Id": "companion_horse",
+          "LootDropScore": 0,
+          "ProductionDropScore": 0
+        },
+        {
+          "Id": "companion_weapon",
+          "LootDropScore": 0,
+          "ProductionDropScore": 0
+        },
+        {
+          "Id": "companion_armor",
+          "LootDropScore": 0,
+          "ProductionDropScore": 0
+        }
+      ]
+    }
+  ]
+}

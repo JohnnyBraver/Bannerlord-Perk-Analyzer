@@ -4,6 +4,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using System.Xml;
 
 internal static class Program
 {
@@ -29,6 +30,7 @@ internal static class Program
             {
                 "perks" => ExtractPerks(options),
                 "banners" => ExtractBanners(options),
+                "modifiers" => ExtractModifiers(options),
                 "xp-methods" => ExtractXpMethods(options),
                 "dump-il" => DumpIl(options),
                 "find-methods" => FindMethods(options),
@@ -38,7 +40,11 @@ internal static class Program
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine(ex.Message);
+            Console.Error.WriteLine($"Unhandled exception: {ex}");
+            if (ex.InnerException != null)
+            {
+                Console.Error.WriteLine($"Inner Exception: {ex.InnerException}");
+            }
             return 1;
         }
     }
@@ -50,6 +56,7 @@ internal static class Program
         Console.WriteLine("Commands:");
         Console.WriteLine("  perks --game-root <path> --output <json>");
         Console.WriteLine("  banners --game-root <path> --output <json> [--include-mp]");
+        Console.WriteLine("  modifiers --game-root <path> --output <json>");
         Console.WriteLine("  xp-methods --game-root <path> --json-output <json> [--assembly <name>] [--include-il] [--deep-scan-callers] [--include-contracts]");
         Console.WriteLine("  dump-il --game-root <path> --assembly <name> --type <full type> --method <name> [--output <txt>]");
         Console.WriteLine("  find-methods --game-root <path> --query <text> [--assembly <name>] [--all-game-assemblies] [--include-il] [--output <json>]");
@@ -60,14 +67,28 @@ internal static class Program
     {
         var gameRoot = options.RequiredPath("game-root");
         var bin = ResolveGameBin(gameRoot);
-        var campaignDll = Path.Combine(bin, "TaleWorlds.CampaignSystem.dll");
+        var objectSystemDll = Path.Combine(bin, "TaleWorlds.ObjectSystem.dll");
         AddAssemblyResolver(ResolveAssemblySearchDirs(gameRoot));
-        var campaignAsm = Assembly.LoadFrom(campaignDll);
-        var enumType = campaignAsm.GetType("TaleWorlds.CampaignSystem.Occupation", throwOnError: true);
-        foreach (var val in Enum.GetValues(enumType))
+        
+        var objectSystemAsm = Assembly.LoadFrom(objectSystemDll);
+        var xmlInfoType = objectSystemAsm.GetType("TaleWorlds.ObjectSystem.MbObjectXmlInformation", true);
+
+        Console.WriteLine("=== MbObjectXmlInformation Fields & Properties ===");
+        foreach (var f in xmlInfoType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static))
         {
-            Console.WriteLine($"{(int)val}: {val}");
+            Console.WriteLine($"Field: {f.FieldType.Name} {f.Name}");
         }
+        foreach (var p in xmlInfoType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static))
+        {
+            Console.WriteLine($"Prop: {p.PropertyType.Name} {p.Name}");
+        }
+
+        Console.WriteLine("=== MbObjectXmlInformation Constructors ===");
+        foreach (var c in xmlInfoType.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+        {
+            Console.WriteLine($"Ctor: ({string.Join(", ", c.GetParameters().Select(p => $"{p.ParameterType.Name} {p.Name}"))})");
+        }
+
         return 0;
     }
 
@@ -225,6 +246,827 @@ internal static class Program
         Console.WriteLine($"Banner items extracted: {items.Count}");
         Console.WriteLine($"Output: {output}");
         return 0;
+    }
+
+    private static int ExtractModifiers(CliOptions options)
+    {
+        var gameRoot = options.RequiredPath("game-root");
+        var output = options.RequiredPath("output");
+
+        var modules = Path.Combine(Path.GetFullPath(gameRoot), "Modules");
+        if (!Directory.Exists(modules))
+        {
+            return Fail($"Could not find Modules directory under game root: {modules}");
+        }
+
+        var modifiersPath = Path.Combine(modules, "Native", "ModuleData", "item_modifiers.xml");
+        if (!File.Exists(modifiersPath))
+        {
+            modifiersPath = Directory.GetFiles(modules, "item_modifiers.xml", SearchOption.AllDirectories).FirstOrDefault();
+        }
+        if (string.IsNullOrEmpty(modifiersPath) || !File.Exists(modifiersPath))
+        {
+            return Fail("Could not find item_modifiers.xml.");
+        }
+
+        var groupsPath = Path.Combine(modules, "Native", "ModuleData", "item_modifiers_groups.xml");
+        if (!File.Exists(groupsPath))
+        {
+            groupsPath = Directory.GetFiles(modules, "item_modifiers_groups.xml", SearchOption.AllDirectories).FirstOrDefault();
+        }
+        if (string.IsNullOrEmpty(groupsPath) || !File.Exists(groupsPath))
+        {
+            return Fail("Could not find item_modifiers_groups.xml.");
+        }
+
+        // Parse groups
+        var groupsDoc = XDocument.Load(groupsPath);
+        var groups = new List<ModifierGroupDefinition>();
+        foreach (var groupEl in groupsDoc.Descendants("ItemModifierGroup"))
+        {
+            groups.Add(new ModifierGroupDefinition
+            {
+                Id = Attr(groupEl, "id"),
+                NoModifierLootScore = ParseInt(Attr(groupEl, "no_modifier_loot_score")),
+                NoModifierProductionScore = ParseInt(Attr(groupEl, "no_modifier_production_score")),
+                Modifiers = new List<ModifierInGroup>()
+            });
+        }
+        var groupsById = groups.ToDictionary(g => g.Id, StringComparer.OrdinalIgnoreCase);
+
+        // Parse modifiers
+        var modifiersDoc = XDocument.Load(modifiersPath);
+        var modifiers = new List<ItemModifierDefinition>();
+
+        foreach (var modEl in modifiersDoc.Descendants("ItemModifier"))
+        {
+            var rawGroup = Attr(modEl, "modifier_group");
+            var groupName = rawGroup.Replace("ItemModifierGroup.", "", StringComparison.OrdinalIgnoreCase);
+
+            var mod = new ItemModifierDefinition
+            {
+                Id = Attr(modEl, "id"),
+                NameRaw = Attr(modEl, "name"),
+                Name = StripLocPrefix(Attr(modEl, "name")),
+                ModifierGroup = groupName,
+                PriceFactor = ParseDouble(Attr(modEl, "price_factor")),
+                Quality = Attr(modEl, "quality"),
+                LootDropScore = ParseInt(Attr(modEl, "loot_drop_score")),
+                ProductionDropScore = ParseInt(Attr(modEl, "production_drop_score"))
+            };
+
+            var metadataKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            {
+                "id", "name", "modifier_group", "price_factor", "quality", "loot_drop_score", "production_drop_score"
+            };
+
+            foreach (var attr in modEl.Attributes())
+            {
+                if (!metadataKeys.Contains(attr.Name.LocalName))
+                {
+                    mod.Stats[attr.Name.LocalName] = attr.Value;
+                }
+            }
+
+            modifiers.Add(mod);
+
+            if (groupsById.TryGetValue(groupName, out var group))
+            {
+                group.Modifiers.Add(new ModifierInGroup
+                {
+                    Id = mod.Id,
+                    LootDropScore = mod.LootDropScore,
+                    ProductionDropScore = mod.ProductionDropScore
+                });
+            }
+        }
+
+        var payload = new Dictionary<string, object?>
+        {
+            ["generated_at"] = DateTimeOffset.Now.ToString("o"),
+            ["inputs"] = new Dictionary<string, object?>
+            {
+                ["game_root"] = "<local Bannerlord install>",
+                ["item_modifiers_xml"] = SanitizeLocalPath(modifiersPath, gameRoot),
+                ["item_modifiers_groups_xml"] = SanitizeLocalPath(groupsPath, gameRoot)
+            },
+            ["modifiers"] = modifiers,
+            ["groups"] = groups
+        };
+
+        WriteJson(output, payload);
+        Console.WriteLine($"Extracted {modifiers.Count} modifiers and {groups.Count} modifier groups.");
+        Console.WriteLine($"Output: {output}");
+        return 0;
+    }
+
+    private static readonly string[] SlotNames = new[]
+    {
+        "Weapon0",
+        "Weapon1",
+        "Weapon2",
+        "Weapon3",
+        "ExtraWeaponSlot",
+        "Head",
+        "Body",
+        "Leg",
+        "Gloves",
+        "Cape",
+        "Horse",
+        "HorseHarness"
+    };
+
+    private static int ExtractTroops(CliOptions options)
+    {
+        var gameRoot = options.RequiredPath("game-root");
+        var output = options.RequiredPath("output");
+        var bin = ResolveGameBin(gameRoot);
+
+        var coreDll = Path.Combine(bin, "TaleWorlds.Core.dll");
+        var campaignDll = Path.Combine(bin, "TaleWorlds.CampaignSystem.dll");
+        var objectSystemDll = Path.Combine(bin, "TaleWorlds.ObjectSystem.dll");
+        var moduleManagerDll = Path.Combine(bin, "TaleWorlds.ModuleManager.dll");
+
+        RequireFile(coreDll, "Could not find TaleWorlds.Core.dll.");
+        RequireFile(campaignDll, "Could not find TaleWorlds.CampaignSystem.dll.");
+        RequireFile(objectSystemDll, "Could not find TaleWorlds.ObjectSystem.dll.");
+        RequireFile(moduleManagerDll, "Could not find TaleWorlds.ModuleManager.dll.");
+
+        AddAssemblyResolver(ResolveAssemblySearchDirs(gameRoot));
+
+        var coreAsm = Assembly.LoadFrom(coreDll);
+        var campaignAsm = Assembly.LoadFrom(campaignDll);
+        var objectSystemAsm = Assembly.LoadFrom(objectSystemDll);
+        var moduleManagerAsm = Assembly.LoadFrom(moduleManagerDll);
+
+        // Initialize ModuleHelper & active modules
+        Console.WriteLine("Initializing ModuleHelper and active modules...");
+        try
+        {
+            var moduleHelperType = moduleManagerAsm.GetType("TaleWorlds.ModuleManager.ModuleHelper", true);
+            var moduleInfoType = moduleManagerAsm.GetType("TaleWorlds.ModuleManager.ModuleInfo", true);
+            
+            var loadedModulesField = moduleHelperType.GetField("_loadedModules", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+            if (loadedModulesField != null)
+            {
+                var dictType = typeof(Dictionary<,>).MakeGenericType(typeof(string), moduleInfoType);
+                var dictInstance = Activator.CreateInstance(dictType);
+                loadedModulesField.SetValue(null, dictInstance);
+                Console.WriteLine("ModuleHelper._loadedModules initialized to empty dictionary.");
+                
+                var initializeSingleModuleMethod = moduleHelperType.GetMethod("InitializeSingleModule", BindingFlags.Public | BindingFlags.Static);
+                if (initializeSingleModuleMethod != null)
+                {
+                    var modDir = Path.Combine(gameRoot, "Modules");
+                    if (Directory.Exists(modDir))
+                    {
+                        var loadedModulesDict = (System.Collections.IDictionary)dictInstance;
+                        foreach (var dir in Directory.GetDirectories(modDir))
+                        {
+                            var moduleInfo = initializeSingleModuleMethod.Invoke(null, new object[] { dir });
+                            if (moduleInfo != null)
+                            {
+                                var moduleIdProp = moduleInfoType.GetProperty("Id", BindingFlags.Public | BindingFlags.Instance);
+                                var id = moduleIdProp?.GetValue(moduleInfo)?.ToString();
+                                if (!string.IsNullOrEmpty(id))
+                                {
+                                    // Set IsActive = true and IsSelected = true
+                                    SetPrivateFieldOrProperty(moduleInfo, "IsActive", true);
+                                    SetPrivateFieldOrProperty(moduleInfo, "IsSelected", true);
+                                    
+                                    loadedModulesDict[id.ToLowerInvariant()] = moduleInfo;
+                                    Console.WriteLine($"Loaded module: {id} from {dir}");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error initializing ModuleHelper/Modules: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+            }
+        }
+
+        // Initialize GameTexts
+        Console.WriteLine("Initializing GameTexts...");
+        try
+        {
+            var gameTextsType = coreAsm.GetType("TaleWorlds.Core.GameTexts", true);
+            var gameTextManagerType = coreAsm.GetType("TaleWorlds.Core.GameTextManager", true);
+            var gameTextManagerInstance = Activator.CreateInstance(gameTextManagerType);
+            
+            try
+            {
+                var loadDefaultTextsMethod = gameTextManagerType.GetMethod("LoadDefaultTexts", BindingFlags.Public | BindingFlags.Instance);
+                if (loadDefaultTextsMethod != null)
+                {
+                    loadDefaultTextsMethod.Invoke(gameTextManagerInstance, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Warning: Failed to load default texts: {ex.Message}");
+            }
+            
+            var initializeMethod = gameTextsType.GetMethod("Initialize", BindingFlags.Public | BindingFlags.Static);
+            if (initializeMethod != null)
+            {
+                initializeMethod.Invoke(null, new[] { gameTextManagerInstance });
+                Console.WriteLine("GameTexts initialized successfully.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error initializing GameTexts: {ex.Message}");
+        }
+
+        var objectManagerType = objectSystemAsm.GetType("TaleWorlds.ObjectSystem.MBObjectManager", true)
+            ?? throw new InvalidOperationException("Could not load MBObjectManager type.");
+        var initMethod = objectManagerType.GetMethod("Init", BindingFlags.Public | BindingFlags.Static)
+            ?? throw new InvalidOperationException("Could not find MBObjectManager.Init.");
+        var loadXmlMethod = objectManagerType.GetMethod("LoadXml", new[] { typeof(XmlDocument), typeof(bool) })
+            ?? throw new InvalidOperationException("Could not find MBObjectManager.LoadXml.");
+
+        Console.WriteLine("Initializing MBObjectManager...");
+        var manager = initMethod.Invoke(null, null);
+        if (manager == null)
+        {
+            return Fail("Failed to initialize MBObjectManager instance.");
+        }
+
+        // Types
+        var monsterType = coreAsm.GetType("TaleWorlds.Core.Monster", true);
+        var bodyPropertyType = coreAsm.GetType("TaleWorlds.Core.MBBodyProperty", true);
+        var itemType = coreAsm.GetType("TaleWorlds.Core.ItemObject", true);
+        var itemModifierType = coreAsm.GetType("TaleWorlds.Core.ItemModifier", true);
+        var itemModifierGroupType = coreAsm.GetType("TaleWorlds.Core.ItemModifierGroup", true);
+        var characterAttributeType = coreAsm.GetType("TaleWorlds.Core.CharacterAttribute", true);
+        var skillType = coreAsm.GetType("TaleWorlds.Core.SkillObject", true);
+        var itemCategoryType = coreAsm.GetType("TaleWorlds.Core.ItemCategory", true);
+        var craftingPieceType = coreAsm.GetType("TaleWorlds.Core.CraftingPiece", true);
+        var craftingTemplateType = coreAsm.GetType("TaleWorlds.Core.CraftingTemplate", true);
+        var weaponDescType = coreAsm.GetType("TaleWorlds.Core.WeaponDescription", true);
+        var charType = campaignAsm.GetType("TaleWorlds.CampaignSystem.CharacterObject", true);
+        var cultureType = campaignAsm.GetType("TaleWorlds.CampaignSystem.CultureObject", true);
+        var siegeEngineType = coreAsm.GetType("TaleWorlds.Core.SiegeEngineType", true);
+        var equipmentType = coreAsm.GetType("TaleWorlds.Core.Equipment", true);
+        var equipmentElementType = coreAsm.GetType("TaleWorlds.Core.EquipmentElement", true);
+        var equipmentRosterType = coreAsm.GetType("TaleWorlds.Core.MBEquipmentRoster", true);
+        var skillSetType = coreAsm.GetType("TaleWorlds.Core.MBCharacterSkills", true);
+        var bannerEffectType = coreAsm.GetType("TaleWorlds.Core.BannerEffect", true);
+        var traitType = campaignAsm.GetType("TaleWorlds.CampaignSystem.CharacterDevelopment.TraitObject", true);
+
+        var gameTypeType = coreAsm.GetType("TaleWorlds.Core.GameType", true);
+        var gameManagerBaseType = coreAsm.GetType("TaleWorlds.Core.GameManagerBase", true);
+        var gameType = coreAsm.GetType("TaleWorlds.Core.Game", true);
+
+        Console.WriteLine("Registering types...");
+        RegisterType(manager, monsterType, "Monster", "Monsters", 2U, true, false);
+        RegisterType(manager, bodyPropertyType, "BodyProperty", "BodyProperties", 3U, true, false);
+        RegisterType(manager, itemType, "Item", "Items", 4U, true, false);
+        RegisterType(manager, itemModifierType, "ItemModifier", "ItemModifiers", 6U, true, false);
+        RegisterType(manager, itemModifierGroupType, "ItemModifierGroup", "ItemModifierGroups", 7U, true, false);
+        RegisterType(manager, characterAttributeType, "CharacterAttribute", "CharacterAttributes", 8U, true, false);
+        RegisterType(manager, skillType, "Skill", "Skills", 9U, true, false);
+        RegisterType(manager, itemCategoryType, "ItemCategory", "ItemCategories", 10U, true, false);
+        RegisterType(manager, craftingPieceType, "CraftingPiece", "CraftingPieces", 11U, true, false);
+        RegisterType(manager, craftingTemplateType, "CraftingTemplate", "CraftingTemplates", 12U, true, false);
+        RegisterType(manager, weaponDescType, "WeaponDescription", "WeaponDescriptions", 14U, true, false);
+        RegisterType(manager, charType, "NPCCharacter", "NPCCharacters", 16U, true, false);
+        RegisterType(manager, cultureType, "Culture", "SPCultures", 17U, true, false);
+        RegisterType(manager, traitType, "Trait", "Traits", 32U, true, false);
+        RegisterType(manager, siegeEngineType, "SiegeEngineType", "SiegeEngineTypes", 50U, true, false);
+        RegisterType(manager, equipmentRosterType, "EquipmentRoster", "EquipmentRosters", 51U, true, false);
+        RegisterType(manager, skillSetType, "SkillSet", "SkillSets", 52U, true, false);
+        RegisterType(manager, bannerEffectType, "BannerEffect", "BannerEffects", 53U, true, false);
+        Console.WriteLine("Types registered.");
+
+        Console.WriteLine("Initializing XmlResource...");
+        try
+        {
+            var xmlResourceType = objectSystemAsm.GetType("TaleWorlds.ObjectSystem.XmlResource", true);
+            var xmlInfoType = objectSystemAsm.GetType("TaleWorlds.ObjectSystem.MbObjectXmlInformation", true);
+
+            var xmlInfoListType = typeof(List<>).MakeGenericType(xmlInfoType);
+            var xmlInfoListInstance = (System.Collections.IList)Activator.CreateInstance(xmlInfoListType)!;
+
+            var emptyStringList = new List<string>();
+
+            var xmlInfoCtor = xmlInfoType.GetConstructor(new[] { typeof(string), typeof(string), typeof(string), typeof(List<string>) })
+                ?? throw new InvalidOperationException("Could not find MbObjectXmlInformation constructor.");
+
+            var info1 = xmlInfoCtor.Invoke(new object[] { "CoreParameters", "managed_core_parameters", "Native", emptyStringList });
+            var info2 = xmlInfoCtor.Invoke(new object[] { "SiegeEngines", "siege_engine_types", "Native", emptyStringList });
+
+            xmlInfoListInstance.Add(info1);
+            xmlInfoListInstance.Add(info2);
+
+            var initializeXmlInformationListMethod = xmlResourceType.GetMethod("InitializeXmlInformationList", BindingFlags.Public | BindingFlags.Static)
+                ?? throw new InvalidOperationException("Could not find XmlResource.InitializeXmlInformationList method.");
+
+            initializeXmlInformationListMethod.Invoke(null, new object[] { xmlInfoListInstance });
+            Console.WriteLine("XmlResource initialized successfully.");
+
+            var xmlInformationListField = xmlResourceType.GetField("XmlInformationList", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+            var currentList = xmlInformationListField?.GetValue(null) as System.Collections.IEnumerable;
+            if (currentList != null)
+            {
+                int count = 0;
+                foreach (var item in currentList) count++;
+                Console.WriteLine($"Verify: XmlResource.XmlInformationList count = {count}");
+            }
+            else
+            {
+                Console.WriteLine("Verify: XmlResource.XmlInformationList is NULL!");
+            }
+
+            // Diagnostics
+            if (currentList != null)
+            {
+                var moduleHelperType = moduleManagerAsm.GetType("TaleWorlds.ModuleManager.ModuleHelper", true);
+                var isNativeActive = moduleHelperType.GetMethod("IsModuleActive", BindingFlags.Public | BindingFlags.Static)
+                    ?.Invoke(null, new object[] { "Native" });
+                Console.WriteLine($"Diagnostic: IsModuleActive(\"Native\") = {isNativeActive}");
+
+                var getXmlPathMethod = moduleHelperType.GetMethod("GetXmlPath", BindingFlags.Public | BindingFlags.Static);
+                var xmlPath = getXmlPathMethod?.Invoke(null, new object[] { "Native", "managed_core_parameters" })?.ToString();
+                Console.WriteLine($"Diagnostic: GetXmlPath(\"Native\", \"managed_core_parameters\") = {xmlPath}");
+                if (xmlPath != null)
+                {
+                    Console.WriteLine($"Diagnostic: File.Exists(xmlPath) = {File.Exists(xmlPath)}");
+                }
+
+                foreach (var item in currentList)
+                {
+                    var itemId = xmlInfoType.GetField("Id")?.GetValue(item)?.ToString();
+                    var itemName = xmlInfoType.GetField("Name")?.GetValue(item)?.ToString();
+                    var itemModuleName = xmlInfoType.GetField("ModuleName")?.GetValue(item)?.ToString();
+                    var itemGameTypes = xmlInfoType.GetField("GameTypesIncluded")?.GetValue(item) as System.Collections.IEnumerable;
+                    int gtCount = 0;
+                    if (itemGameTypes != null) foreach (var gt in itemGameTypes) gtCount++;
+                    Console.WriteLine($"Diagnostic XmlInfo: Id={itemId}, Name={itemName}, ModuleName={itemModuleName}, GameTypesCount={gtCount}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error initializing XmlResource: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+            }
+        }
+
+        Console.WriteLine("Initializing Game.Current with mocks...");
+        object? gameInstance = null;
+        try
+        {
+            var mockGameType = CreateMockSubclass(gameTypeType, "MockGameType");
+            var mockGameManager = CreateMockSubclass(gameManagerBaseType, "MockGameManager");
+
+            var dummyGameTypeObj = Activator.CreateInstance(mockGameType);
+            var dummyGameManagerObj = Activator.CreateInstance(mockGameManager);
+
+            var ctor = gameType.GetConstructor(
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
+                null,
+                new[] { gameTypeType, gameManagerBaseType, manager.GetType() },
+                null
+            ) ?? throw new InvalidOperationException("Game constructor not found.");
+
+            gameInstance = ctor.Invoke(new object[] { dummyGameTypeObj, dummyGameManagerObj, manager });
+            Console.WriteLine($"Game.Current set to instance: {gameInstance}");
+
+            // Set BasicModels on gameInstance
+            try
+            {
+                var basicGameModelsType = coreAsm.GetType("TaleWorlds.Core.BasicGameModels", true);
+                var gameModelType = coreAsm.GetType("TaleWorlds.Core.GameModel", true);
+                var listType = typeof(List<>).MakeGenericType(gameModelType);
+                var emptyList = Activator.CreateInstance(listType);
+
+                var basicModelsInstance = Activator.CreateInstance(basicGameModelsType, new object[] { emptyList });
+                Console.WriteLine("BasicGameModels instance created.");
+
+                var defaultRidingModelType = coreAsm.GetType("TaleWorlds.Core.DefaultRidingModel", true);
+                var defaultItemCategorySelectorType = coreAsm.GetType("TaleWorlds.Core.DefaultItemCategorySelector", true);
+                var defaultItemValueModelType = coreAsm.GetType("TaleWorlds.Core.DefaultItemValueModel", true);
+
+                var ridingModelInstance = CreateInstanceSafe(defaultRidingModelType);
+                var categorySelectorInstance = CreateInstanceSafe(defaultItemCategorySelectorType);
+                var itemValueModelInstance = CreateInstanceSafe(defaultItemValueModelType);
+
+                SetPrivateFieldOrProperty(basicModelsInstance, "RidingModel", ridingModelInstance);
+                SetPrivateFieldOrProperty(basicModelsInstance, "ItemCategorySelector", categorySelectorInstance);
+                SetPrivateFieldOrProperty(basicModelsInstance, "ItemValueModel", itemValueModelInstance);
+
+                SetPrivateFieldOrProperty(gameInstance, "BasicModels", basicModelsInstance);
+                Console.WriteLine("BasicModels set successfully on gameInstance.");
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Error setting up BasicModels: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error setting up Game.Current: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                Console.Error.WriteLine($"Stack Trace:\n{ex.InnerException.StackTrace}");
+            }
+        }
+
+        Console.WriteLine("Instantiating default game objects...");
+        var defaultTypes = new[]
+        {
+            ("DefaultCharacterAttributes", coreAsm.GetType("TaleWorlds.Core.DefaultCharacterAttributes", true)),
+            ("DefaultSkills", coreAsm.GetType("TaleWorlds.Core.DefaultSkills", true)),
+            ("DefaultItemCategories", coreAsm.GetType("TaleWorlds.Core.DefaultItemCategories", true)),
+            ("DefaultBannerEffects", coreAsm.GetType("TaleWorlds.Core.DefaultBannerEffects", true)),
+            ("DefaultSiegeEngineTypes", coreAsm.GetType("TaleWorlds.Core.DefaultSiegeEngineTypes", true))
+        };
+
+        foreach (var dt in defaultTypes)
+        {
+            try
+            {
+                var instance = CreateInstanceSafe(dt.Item2);
+                Console.WriteLine($"Instantiated: {dt.Item1}");
+                if (gameInstance != null)
+                {
+                    SetPrivateFieldOrProperty(gameInstance, dt.Item1, instance);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Error instantiating/setting {dt.Item1}: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                    Console.Error.WriteLine($"Stack Trace:\n{ex.InnerException.StackTrace}");
+                }
+            }
+        }
+        Console.WriteLine("Default game objects instantiation pass finished.");
+
+        Console.WriteLine("Initializing Campaign.Current...");
+        try
+        {
+            var campaignType = campaignAsm.GetType("TaleWorlds.CampaignSystem.Campaign", true);
+            var campaignGameModeType = campaignAsm.GetType("TaleWorlds.CampaignSystem.CampaignGameMode", true);
+            var defaultTraitsType = campaignAsm.GetType("TaleWorlds.CampaignSystem.CharacterDevelopment.DefaultTraits", true);
+
+            var gameModeVal = Enum.ToObject(campaignGameModeType, 0);
+            var campaignInstance = Activator.CreateInstance(campaignType, new object[] { gameModeVal });
+            Console.WriteLine($"Campaign instance created: {campaignInstance}");
+
+            var currentSetter = campaignType.GetMethod("set_Current", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+            if (currentSetter != null)
+            {
+                currentSetter.Invoke(null, new[] { campaignInstance });
+                Console.WriteLine("Campaign.Current set successfully.");
+            }
+
+            var defaultTraitsInstance = CreateInstanceSafe(defaultTraitsType);
+            Console.WriteLine("DefaultTraits instantiated successfully.");
+            if (campaignInstance != null)
+            {
+                SetPrivateFieldOrProperty(campaignInstance, "DefaultTraits", defaultTraitsInstance);
+            }
+
+            // Setup Campaign models
+            try
+            {
+                var gameModelType = coreAsm.GetType("TaleWorlds.Core.GameModel", true);
+                var listType = typeof(List<>).MakeGenericType(gameModelType);
+                var listInstance = (System.Collections.IList)Activator.CreateInstance(listType)!;
+
+                var defaultCharacterStatsModelType = campaignAsm.GetType("TaleWorlds.CampaignSystem.GameComponents.DefaultCharacterStatsModel", true);
+                var characterStatsModelInstance = CreateInstanceSafe(defaultCharacterStatsModelType);
+                listInstance.Add(characterStatsModelInstance);
+                Console.WriteLine("DefaultCharacterStatsModel instantiated and added to list.");
+
+                var gameModelsType = campaignAsm.GetType("TaleWorlds.CampaignSystem.GameModels", true);
+                var gameModelsInstance = Activator.CreateInstance(gameModelsType, new object[] { listInstance });
+                Console.WriteLine("GameModels instance created.");
+                SetPrivateFieldOrProperty(gameModelsInstance, "CharacterStatsModel", characterStatsModelInstance);
+
+                if (campaignInstance != null)
+                {
+                    SetPrivateFieldOrProperty(campaignInstance, "_gameModels", gameModelsInstance);
+                    Console.WriteLine("Campaign models initialized successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Error setting up Campaign models: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error setting up Campaign.Current: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                Console.Error.WriteLine($"Stack Trace:\n{ex.InnerException.StackTrace}");
+            }
+        }
+
+        var modulesDir = Path.Combine(gameRoot, "Modules");
+        var relativeXmlPaths = new[]
+        {
+            "Native/ModuleData/skills.xml",
+            "Native/ModuleData/monsters.xml",
+            "Native/ModuleData/weapon_descriptions.xml",
+            "Native/ModuleData/crafting_pieces.xml",
+            "Native/ModuleData/crafting_templates.xml",
+            "Native/ModuleData/item_modifiers.xml",
+            "Native/ModuleData/item_modifiers_groups.xml",
+            "Native/ModuleData/native_skill_sets.xml",
+            "Native/ModuleData/native_equipment_sets.xml",
+            "SandBoxCore/ModuleData/spcultures.xml",
+            "SandBoxCore/ModuleData/sandboxcore_skill_sets.xml",
+            "SandBoxCore/ModuleData/sandboxcore_equipment_sets.xml",
+            "SandBoxCore/ModuleData/items/weapons.xml",
+            "SandBoxCore/ModuleData/items/arm_armors.xml",
+            "SandBoxCore/ModuleData/items/body_armors.xml",
+            "SandBoxCore/ModuleData/items/head_armors.xml",
+            "SandBoxCore/ModuleData/items/leg_armors.xml",
+            "SandBoxCore/ModuleData/items/shoulder_armors.xml",
+            "SandBoxCore/ModuleData/items/horses_and_others.xml",
+            "SandBoxCore/ModuleData/items/shields.xml",
+            "SandBoxCore/ModuleData/spnpccharactertemplates.xml",
+            "SandBoxCore/ModuleData/spnpccharacters.xml",
+            "SandBox/ModuleData/sandbox_skill_sets.xml",
+            "SandBox/ModuleData/sandbox_equipment_sets.xml",
+            "SandBox/ModuleData/spgenericcharacters.xml",
+            "SandBox/ModuleData/spspecialcharacters.xml",
+            "StoryMode/ModuleData/story_mode_characters.xml"
+        };
+
+        Console.WriteLine("Loading XML files...");
+        foreach (var relPath in relativeXmlPaths)
+        {
+            var path = Path.Combine(modulesDir, relPath.Replace('/', Path.DirectorySeparatorChar));
+            LoadXmlFile(manager, loadXmlMethod, path);
+        }
+
+        return 0;
+    }
+
+    private static object CreateInstanceSafe(Type type)
+    {
+        var ctor = type.GetConstructor(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, Type.EmptyTypes, null);
+        if (ctor != null)
+        {
+            return ctor.Invoke(null);
+        }
+        return Activator.CreateInstance(type);
+    }
+
+    private static void SetPrivateFieldOrProperty(object obj, string name, object value)
+    {
+        var type = obj.GetType();
+        var field = type.GetField(name, BindingFlags.NonPublic | BindingFlags.Instance);
+        if (field == null)
+        {
+            field = type.GetField($"<{name}>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+        if (field != null)
+        {
+            field.SetValue(obj, value);
+            Console.WriteLine($"Successfully set field: {field.Name}");
+            return;
+        }
+
+        var prop = type.GetProperty(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        if (prop != null && prop.CanWrite)
+        {
+            prop.SetValue(obj, value);
+            Console.WriteLine($"Successfully set property: {prop.Name}");
+            return;
+        }
+
+        var setter = type.GetMethod($"set_{name}", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        if (setter != null)
+        {
+            setter.Invoke(obj, new[] { value });
+            Console.WriteLine($"Successfully invoked setter: set_{name}");
+        }
+        else
+        {
+            Console.WriteLine($"Warning: Field or Property {name} not found on {type.FullName}");
+        }
+    }
+
+    private static PropertyInfo? GetPropertySafe(Type type, string name)
+    {
+        var prop = type.GetProperty(name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+        if (prop != null) return prop;
+
+        var currentType = type.BaseType;
+        while (currentType != null)
+        {
+            prop = currentType.GetProperty(name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            if (prop != null) return prop;
+            currentType = currentType.BaseType;
+        }
+
+        return type.GetProperty(name, BindingFlags.Public | BindingFlags.Instance);
+    }
+
+    private static Type CreateMockSubclass(Type baseType, string className)
+    {
+        var assemblyName = new AssemblyName("MockAssembly_" + className);
+        var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+        var moduleBuilder = assemblyBuilder.DefineDynamicModule("MockModule");
+        var typeBuilder = moduleBuilder.DefineType(className, TypeAttributes.Public, baseType);
+
+        var ctor = typeBuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, Type.EmptyTypes);
+        var il = ctor.GetILGenerator();
+        il.Emit(OpCodes.Ldarg_0);
+        var baseCtor = baseType.GetConstructor(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, Type.EmptyTypes, null)
+            ?? throw new InvalidOperationException($"Base type {baseType.FullName} does not have a parameterless constructor.");
+        il.Emit(OpCodes.Call, baseCtor);
+        il.Emit(OpCodes.Ret);
+
+        // Implement all abstract methods
+        foreach (var method in baseType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(m => m.IsAbstract))
+        {
+            var parameterTypes = method.GetParameters().Select(p => p.ParameterType).ToArray();
+            var methodBuilder = typeBuilder.DefineMethod(
+                method.Name,
+                (method.Attributes & ~MethodAttributes.Abstract) | MethodAttributes.Virtual,
+                method.CallingConvention,
+                method.ReturnType,
+                parameterTypes
+            );
+
+            var mil = methodBuilder.GetILGenerator();
+            if (method.ReturnType != typeof(void))
+            {
+                if (method.ReturnType.IsValueType)
+                {
+                    var local = mil.DeclareLocal(method.ReturnType);
+                    mil.Emit(OpCodes.Ldloca_S, local);
+                    mil.Emit(OpCodes.Initobj, method.ReturnType);
+                    mil.Emit(OpCodes.Ldloc, local);
+                }
+                else
+                {
+                    mil.Emit(OpCodes.Ldnull);
+                }
+            }
+            mil.Emit(OpCodes.Ret);
+            typeBuilder.DefineMethodOverride(methodBuilder, method);
+        }
+
+        return typeBuilder.CreateType();
+    }
+
+    private static void RegisterType(object manager, Type type, string prefix, string plural, uint id, bool autoCreate, bool isTemp)
+    {
+        var registerTypeMethod = manager.GetType().GetMethod("RegisterType", BindingFlags.Public | BindingFlags.Instance)
+            ?? throw new InvalidOperationException("Could not find RegisterType method.");
+        var concrete = registerTypeMethod.MakeGenericMethod(type);
+        concrete.Invoke(manager, new object[] { prefix, plural, id, autoCreate, isTemp });
+    }
+
+    private static void LoadXmlFile(object manager, MethodInfo loadXmlMethod, string path)
+    {
+        if (!File.Exists(path))
+        {
+            Console.WriteLine($"Warning: File not found: {path}");
+            return;
+        }
+
+        try
+        {
+            var doc = new XmlDocument();
+            doc.Load(path);
+            loadXmlMethod.Invoke(manager, new object[] { doc, false });
+            Console.WriteLine($"Successfully loaded: {Path.GetFileName(path)}");
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error loading {path}: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.Error.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                Console.Error.WriteLine($"Stack Trace:\n{ex.InnerException.StackTrace}");
+            }
+        }
+    }
+
+    private static Dictionary<string, object?> DumpItem(object itemObj)
+    {
+        var dict = DumpSimpleProperties(itemObj);
+
+        // Weapons
+        var weaponsProp = GetPropertySafe(itemObj.GetType(), "Weapons");
+        if (weaponsProp != null)
+        {
+            var weaponsList = (System.Collections.IEnumerable)weaponsProp.GetValue(itemObj);
+            if (weaponsList != null)
+            {
+                var weaponModes = new List<Dictionary<string, object?>>();
+                foreach (var mode in weaponsList)
+                {
+                    var modeDict = DumpSimpleProperties(mode);
+
+                    // Add RelevantSkill string id
+                    var relevantSkillProp = GetPropertySafe(mode.GetType(), "RelevantSkill");
+                    if (relevantSkillProp != null)
+                    {
+                        var skillObj = relevantSkillProp.GetValue(mode);
+                        if (skillObj != null)
+                        {
+                            var stringIdProp = GetPropertySafe(skillObj.GetType(), "StringId");
+                            if (stringIdProp != null)
+                            {
+                                modeDict["RelevantSkill"] = stringIdProp.GetValue(skillObj)?.ToString() ?? "";
+                            }
+                        }
+                    }
+                    weaponModes.Add(modeDict);
+                }
+                if (weaponModes.Count > 0)
+                {
+                    dict["Weapons"] = weaponModes;
+                }
+            }
+        }
+
+        // Armor
+        var armorCompProp = GetPropertySafe(itemObj.GetType(), "ArmorComponent");
+        if (armorCompProp != null)
+        {
+            var armorComp = armorCompProp.GetValue(itemObj);
+            if (armorComp != null)
+            {
+                dict["Armor"] = DumpSimpleProperties(armorComp);
+            }
+        }
+
+        // Horse
+        var horseCompProp = GetPropertySafe(itemObj.GetType(), "HorseComponent");
+        if (horseCompProp != null)
+        {
+            var horseComp = horseCompProp.GetValue(itemObj);
+            if (horseComp != null)
+            {
+                dict["Horse"] = DumpSimpleProperties(horseComp);
+            }
+        }
+
+        return dict;
+    }
+
+    private static Dictionary<string, object?> DumpSimpleProperties(object obj)
+    {
+        var dict = new Dictionary<string, object?>(StringComparer.OrdinalIgnoreCase);
+        if (obj == null) return dict;
+        foreach (var prop in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+        {
+            try
+            {
+                var t = prop.PropertyType;
+                var underlyingType = Nullable.GetUnderlyingType(t) ?? t;
+                if (underlyingType.IsPrimitive || 
+                    underlyingType.IsEnum || 
+                    underlyingType == typeof(string) || 
+                    underlyingType == typeof(decimal))
+                {
+                    var val = prop.GetValue(obj);
+                    dict[prop.Name] = val?.ToString() ?? "";
+                    if (underlyingType.IsPrimitive && val != null)
+                    {
+                        dict[prop.Name] = val; // keep numeric types as numbers
+                    }
+                }
+                else if (underlyingType.Name == "TextObject" && prop.Name == "Name")
+                {
+                    dict[prop.Name] = prop.GetValue(obj)?.ToString() ?? "";
+                }
+            }
+            catch {}
+        }
+        return dict;
     }
 
     private static int ExtractXpMethods(CliOptions options)
@@ -1389,6 +2231,34 @@ internal static class Program
         public string Mesh { get; init; } = "";
         public string Prefab { get; init; } = "";
         public double Weight { get; init; }
+    }
+
+    private sealed class ItemModifierDefinition
+    {
+        public string Id { get; init; } = "";
+        public string Name { get; init; } = "";
+        public string NameRaw { get; init; } = "";
+        public string ModifierGroup { get; init; } = "";
+        public double PriceFactor { get; init; }
+        public string Quality { get; init; } = "";
+        public int LootDropScore { get; init; }
+        public int ProductionDropScore { get; init; }
+        public Dictionary<string, string> Stats { get; init; } = new();
+    }
+
+    private sealed class ModifierInGroup
+    {
+        public string Id { get; init; } = "";
+        public int LootDropScore { get; init; }
+        public int ProductionDropScore { get; init; }
+    }
+
+    private sealed class ModifierGroupDefinition
+    {
+        public string Id { get; init; } = "";
+        public int NoModifierLootScore { get; init; }
+        public int NoModifierProductionScore { get; init; }
+        public List<ModifierInGroup> Modifiers { get; init; } = new();
     }
 
     private sealed class CliOptions
