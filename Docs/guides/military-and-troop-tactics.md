@@ -392,6 +392,23 @@ This table models the final damage dealt by a standard $100$-magnitude hit at di
 > [!IMPORTANT]
 > **Armor Mitigation Divergence**: Against a heavily armored knight ($A = 80$), a **Cut** attack loses its entire non-blunt component to armor soak ($C_{\text{nonBlunt}} = 0$), leaving only the $10\%$ blunt impact component ($3.85$ damage). Conversely, a **Blunt** attack bypasses most of the soak, dealing **$32.06$ damage**—more than **8 times** the damage of Cut under the exact same magnitude!
 
+### Effective Health (EHP) and Survivability Scaling
+To understand how armor impacts a soldier's lifetime in battle, we look at **Effective Health Points (EHP)**:
+$$\text{EHP} = \frac{\text{Base HP}}{\text{Dealt Damage}}$$
+
+If damage mitigation only used the hyperbolic term ($\frac{50}{50+A}$), EHP would scale **perfectly linearly** with armor (every 50 points of armor adds exactly 100% of the unit's base HP as effective health).
+However, because of the subtractive soak component ($- k \cdot A$), EHP scales **hyper-linearly (exponential-like)**:
+* **Low Armor Tiers (0 $\rightarrow$ 20)**: Armor soak is small, so EHP grows close to linear.
+* **High Armor Tiers (40 $\rightarrow$ 80)**: Armor soak becomes massive. An increase from 60 to 80 armor against Cut damage multiplies EHP from **541** to **2600** (a $+380\%$ relative gain from just 20 armor). 
+
+Consequently, flat armor buffs are exponentially more valuable on already heavily armored elite units than on recruits.
+
+### Damage Type Strengths and Archetypes
+The three damage types serve distinct tactical roles against armor values:
+* **Cut Damage (Anti-Light)**: High base weapon damage makes Cut exceptionally lethal against light armor. However, due to its high soak ($k=0.5$) and low concussive bleedthrough ($B=0.1$), it is severely mitigated by heavy armor.
+* **Pierce Damage (Versatile/Velocity-based)**: Sits in the middle ($k=0.33$, $B=0.25$). It offers decent armor penetration that scales dynamically with speed (e.g. lances, mounted archers).
+* **Blunt Damage (Anti-Heavy)**: Excels against heavily armored units. Since concussive hits ignore most armor soak ($k=0.2$) and have high bleedthrough ($B=0.6$), armor EHP scaling against blunt remains close to linear. This guarantees that blunt weapons can reliably break through heavy shield walls and elite infantry lines.
+
 ---
 
 ### Case Study: Sturgian Heroic Line Breaker vs. Imperial Elite Menavliaton

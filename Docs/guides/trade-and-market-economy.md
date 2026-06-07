@@ -146,5 +146,37 @@ This allows you to level up your Trade skill passively without running manual tr
 * **Splash Utility**: Spending points to reach Trade level 50 is highly recommended for trade-focused characters. `Appraiser`/`Whole Seller` (level 25) mark profit colors, while the personal level 50 Trade effects mark prices relative to the average. `Caravan Master` can also be chosen for its Quartermaster $+30\%$ carrying capacity effect when logistics matter more than price display.
 > [!TIP]
 > **The 300 Trade Target**: Pushing Trade to level 300 unlocks `Everything Has a Price`, which allows you to trade fiefs and settlements in lord barters. This is a game-changing political tool. If you do not plan to reach level 300, stopping at Trade level 50 or 75 is the most point-efficient setup.
-* **Caravan Arbitrage**: Caravans are subject to halved trade penalties. Always prioritize buying from or selling to caravans rather than town markets when their inventories allow it.
+* **Caravan Arbitrage**: Caravans are subject to halved trade penalties for AI-led trades. Always prioritize buying from or selling to caravans rather than town markets when their inventories allow it.
 * **Crafted Weapon Sales**: If you are funding your clan by selling crafted weapons, the Smithing perk `Artisan Smith` ($-50\%$ penalty) is far more effective than generic Trade skill penalty reductions.
+
+---
+
+## 8. Trading with Non-Town Entities
+
+Different trading entities in Calradia follow distinct economic models, trading penalty rules, and update behaviors:
+
+### Mobile Caravans
+* **Price Tracking**: Caravans do not maintain an independent, self-contained economy. Their baseline prices are dynamically tied to the **closest town** on the campaign map. As a caravan travels, its base prices shift to match the nearest town's market supply/demand values.
+* **Inventory Saturation**: A caravan's own inventory acts as the `InStoreValue` (local supply) in the pricing formula. Because caravans carry raw goods in bulk, their internal supply for those goods is extremely high, which heavily depresses the sell prices they offer to the player.
+* **No Transaction Decay**: Unlike towns, prices do not fluctuate dynamically *during* player trade (flat rate). However, prices will reset once the caravan trades with a town and clears its inventory.
+* **Halved Trade Penalty**: The caravan's halved trade penalty discount only applies when the caravan is the `clientParty` (i.e., when the AI trades with towns). When the player trades with a caravan on the road, the player is the `clientParty`, so the player's standard trade penalty applies unless modified by companion perks.
+* **Price Updates**: 
+  - Caravan inventories and gold are updated whenever they enter a town.
+  - Global price index caches (average/minimum prices across all towns) are updated daily via the behavior's `DailyTick`.
+
+### Village Settlements
+* **Penalty Modifiers**: Buying goods from villages adds `+0.10` to the penalty, while selling adds `+1.00` (making sales to villages highly inefficient).
+* **Pack Animal Exception**: Villages bypass the `+2.00` penalty applied when buying pack animals in towns.
+* **Dedicated Perk**: The `Distributed Goods` perk (Trade 75) reduces village buy penalties by $-15\%$.
+* **Pricing & Gold**: Prices are typically cheap for their locally produced goods due to high supply, but they have extremely limited gold reserves.
+
+### Villager Parties (On the Road)
+* **Bulk Buy-out**: Triggered via conversation dialogue, requiring you to buy their entire inventory in bulk (excluding pack animals).
+* **Village Market Rates**: Item prices are evaluated using their **home village's market data**, which bypasses town markups and tariffs.
+* **No Transaction Decay**: Prices are calculated statically for their current inventory stacks at the start of dialogue, so unit prices do not escalate as you buy.
+* **Silver Tongue Perk**: The bulk purchase price is discounted by $15\%$ if you possess the `Silver Tongue` perk (Trade 250).
+
+### Lords (Barter System)
+* **Diplomacy Barter**: Trading items with lords is conducted via the barter screen, completely bypassing the standard trade penalty model and town supply/demand market factors.
+* **Base Valuation**: Items are valued at their flat base value.
+* **Barter Penalty**: Subject to a barter penalty instead of a trade penalty. Barter-specific perks (e.g., `Self-made Man` at Trade 225) reduce this barter penalty by $-50\%$.

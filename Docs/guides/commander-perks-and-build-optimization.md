@@ -236,3 +236,30 @@ Banners ranked by effect for a shock-infantry formation:
 * **Locked Shields Banner / Testudo Standard**: $-15\%$ ranged attack damage taken at tier 3.
 * **Banner of Sultan's Eagle / Tug of Whistling Arrow**: $-8\%$ ranged accuracy penalty for ranged troops at tier 3.
 * **Standard of Wrath**: $+15\%$ melee damage at tier 3.
+
+---
+
+## 8. Flat Armor Perks & Formation Survivability Analysis
+
+Because of Bannerlord's subtractive armor soak mechanics (for detailed physics formulas and damage type scaling see [military-and-troop-tactics.md Section 4](file:///d:/Projects/Bannerlord/Docs/guides/military-and-troop-tactics.md#L353-L407)), **flat armor additions (+5 or +10 armor) yield accelerating returns to survivability (Effective Health) on already heavily armored units**.
+
+### Flat Armor Stacking
+By stacking Captain perks, you can add flat armor to your formation's units:
+* **Engineering (225) - `Metallurgy`**: $+5$ armor to all equipped armor pieces of troops in your formation.
+* **Athletics (250) - `Ignore Pain`**: $+5$ armor to all equipped armor pieces of foot troops in your formation.
+* **Riding (250) - `Dauntless Steed`**: $+5$ armor to all equipped armor pieces of mounted troops in your formation.
+
+If you stack `Metallurgy` with `Ignore Pain` (for foot troops) or `Dauntless Steed` (for cavalry), your soldiers gain a total of **+10 armor to all equipped pieces** (applied to Head, Torso, Legs, and Arms).
+
+### Impact on Effective Health (EHP)
+Here is the exact impact of getting +5 and +10 armor on different tiers of soldiers (assuming 100 base HP) when hit by a standard **100-magnitude Cut swing** (a typical heavy weapon strike):
+
+| Unit Tier | Base Armor | No Buff (EHP) | +5 Armor (EHP) | +10 Armor (EHP) | Relative EHP Gain (+10) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Recruit** (Low Tier) | 10 | 127 | 143 | 160 | **+26.2%** |
+| **Infantry** (Mid Tier) | 30 | 204 | 232 | 266 | **+30.4%** |
+| **Legionary** (Elite Tier) | 50 | 364 | 437 | 542 | **+49.1%** |
+
+### Strategic Insight
+* **Exponential Survivability for Elites**: While a recruit gets a modest $+26.2\%$ survival boost, an elite soldier with 50 base armor gets a massive **$+49.1\%$ boost to survivability** against cut damage from the same $+10$ armor buff. This makes stacking flat armor perks a top-tier endgame strategy for elite shock-infantry or heavy cavalry armies.
+* **Neutralizing Low-Magnitude Hits**: Against small attacks (e.g. low-tier archer arrows or recruit weapon swings of $M \le 30$), the additional $+10$ armor easily pushes high-tier units above the soak threshold ($k \cdot A \ge C_{\text{nonBlunt}}$), reducing incoming damage to a negligible $1-2$ bleedthrough points and making them virtually invulnerable.
