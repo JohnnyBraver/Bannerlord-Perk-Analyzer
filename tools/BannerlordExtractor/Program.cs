@@ -35,6 +35,7 @@ internal static class Program
                 "dump-il" => DumpIl(options),
                 "find-methods" => FindMethods(options),
                 "print-enum" => PrintEnum(options),
+                "troops" => ExtractTroops(options),
                 _ => Fail($"Unknown command: {command}"),
             };
         }
@@ -61,6 +62,7 @@ internal static class Program
         Console.WriteLine("  dump-il --game-root <path> --assembly <name> --type <full type> --method <name> [--output <txt>]");
         Console.WriteLine("  find-methods --game-root <path> --query <text> [--assembly <name>] [--all-game-assemblies] [--include-il] [--output <json>]");
         Console.WriteLine("  print-enum --game-root <path>");
+        Console.WriteLine("  troops --game-root <path> --output <json>");
     }
 
     private static int PrintEnum(CliOptions options)
@@ -825,6 +827,116 @@ internal static class Program
             var path = Path.Combine(modulesDir, relPath.Replace('/', Path.DirectorySeparatorChar));
             LoadXmlFile(manager, loadXmlMethod, path);
         }
+
+        Console.WriteLine("Querying characters database...");
+        var getObjectsMethod = objectManagerType.GetMethod("GetObjectTypeList", BindingFlags.Public | BindingFlags.Instance)
+            ?? throw new InvalidOperationException("Could not find GetObjectTypeList method.");
+
+        var concreteGetObjects = getObjectsMethod.MakeGenericMethod(charType);
+        var charList = (System.Collections.IEnumerable)concreteGetObjects.Invoke(manager, null);
+
+        var concreteGetSkills = getObjectsMethod.MakeGenericMethod(skillType);
+        var skillList = (System.Collections.IEnumerable)concreteGetSkills.Invoke(manager, null);
+
+        var troopsData = new List<Dictionary<string, object?>>();
+
+        // Properties we need from character
+        var idProp = GetPropertySafe(charType, "StringId") ?? throw new InvalidOperationException("Could not find StringId property.");
+        var nameProp = GetPropertySafe(charType, "Name") ?? throw new InvalidOperationException("Could not find Name property.");
+        var tierProp = GetPropertySafe(charType, "Tier") ?? throw new InvalidOperationException("Could not find Tier property.");
+        var levelProp = GetPropertySafe(charType, "Level") ?? throw new InvalidOperationException("Could not find Level property.");
+        var cultureProp = GetPropertySafe(charType, "Culture") ?? throw new InvalidOperationException("Could not find Culture property.");
+        var occupationProp = GetPropertySafe(charType, "Occupation") ?? throw new InvalidOperationException("Could not find Occupation property.");
+        var isHeroProp = GetPropertySafe(charType, "IsHero") ?? throw new InvalidOperationException("Could not find IsHero property.");
+        var isRegularProp = GetPropertySafe(charType, "IsRegular") ?? throw new InvalidOperationException("Could not find IsRegular property.");
+        var getSkillValueMethod = charType.GetMethod("GetSkillValue", new[] { skillType }) ?? throw new InvalidOperationException("Could not find GetSkillValue method.");
+        var battleEquipsProp = GetPropertySafe(charType, "BattleEquipments") ?? throw new InvalidOperationException("Could not find BattleEquipments property.");
+
+        // Properties/Indexer on equipment
+        var equipmentIndexer = equipmentType.GetProperties()
+            .FirstOrDefault(p => p.GetIndexParameters().Length == 1 && p.GetIndexParameters()[0].ParameterType == typeof(int))
+            ?? throw new InvalidOperationException("Could not find Equipment indexer.");
+        var itemPropInElement = equipmentElementType.GetProperty("Item") ?? throw new InvalidOperationException("Could not find Item property in EquipmentElement.");
+        var isEmptyPropInElement = equipmentElementType.GetProperty("IsEmpty") ?? throw new InvalidOperationException("Could not find IsEmpty property in EquipmentElement.");
+
+        foreach (var character in charList)
+        {
+            var isHero = (bool)isHeroProp.GetValue(character);
+            var isRegular = (bool)isRegularProp.GetValue(character);
+
+            if (isHero || !isRegular) continue;
+
+            var id = (string)idProp.GetValue(character);
+            var name = nameProp.GetValue(character)?.ToString() ?? "";
+            var tier = (int)tierProp.GetValue(character);
+            var level = (int)levelProp.GetValue(character);
+            var cultureVal = cultureProp.GetValue(character);
+            var culture = cultureVal != null ? GetPropertySafe(cultureVal.GetType(), "StringId")?.GetValue(cultureVal)?.ToString() : "";
+            var occupation = occupationProp.GetValue(character)?.ToString() ?? "";
+
+            var troopDict = new Dictionary<string, object?>
+            {
+                ["id"] = id,
+                ["name"] = name,
+                ["tier"] = tier,
+                ["level"] = level,
+                ["culture"] = culture,
+                ["occupation"] = occupation
+            };
+
+            // Skills
+            var skillsDict = new Dictionary<string, int>();
+            var skillsField = character.GetType().GetField("DefaultCharacterSkills", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                ?? character.GetType().BaseType?.GetField("DefaultCharacterSkills", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            var skillsVal = skillsField?.GetValue(character);
+
+            if (skillsVal != null)
+            {
+                foreach (var skillObj in skillList)
+                {
+                    var skillId = (string)GetPropertySafe(skillObj.GetType(), "StringId")?.GetValue(skillObj);
+                    var skillValue = (int)getSkillValueMethod.Invoke(character, new[] { skillObj });
+                    if (skillValue > 0 && skillId != null)
+                    {
+                        skillsDict[skillId] = skillValue;
+                    }
+                }
+            }
+            troopDict["skills"] = skillsDict;
+
+            // Equipment sets
+            var battleEquips = (System.Collections.IEnumerable)battleEquipsProp.GetValue(character);
+            var setsList = new List<Dictionary<string, object?>>();
+
+            foreach (var equip in battleEquips)
+            {
+                var setDict = new Dictionary<string, object?>();
+                for (int i = 0; i <= 11; i++)
+                {
+                    var element = equipmentIndexer.GetValue(equip, new object[] { i });
+                    var isEmpty = (bool)isEmptyPropInElement.GetValue(element);
+                    if (isEmpty) continue;
+
+                    var itemObj = itemPropInElement.GetValue(element);
+                    if (itemObj == null) continue;
+
+                    var slotName = SlotNames[i];
+                    var itemDict = DumpItem(itemObj);
+                    setDict[slotName] = itemDict;
+                }
+                if (setDict.Count > 0)
+                {
+                    setsList.Add(setDict);
+                }
+            }
+            troopDict["equipment_sets"] = setsList;
+
+            troopsData.Add(troopDict);
+        }
+
+        Console.WriteLine($"Extracted {troopsData.Count} troops.");
+        WriteJson(output, troopsData);
+        Console.WriteLine($"Output written to: {output}");
 
         return 0;
     }

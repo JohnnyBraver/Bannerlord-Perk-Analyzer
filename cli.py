@@ -17,6 +17,7 @@ try:
     from bannerlord_perk_analyzer.extract_commander_perks import extract_commander_perks
     from bannerlord_perk_analyzer.extract_guide_stats import extract_guide_stats
     from bannerlord_perk_analyzer.extract_modifiers import extract_modifiers
+    from bannerlord_perk_analyzer.extract_troops import extract_troops
     from bannerlord_perk_analyzer.extract_skill_xp_sources import extract_skill_xp_sources
     from bannerlord_perk_analyzer.extract_xp_awards import extract_xp_awards
     from bannerlord_perk_analyzer.extract_xp_formulas import extract_xp_formulas
@@ -282,6 +283,35 @@ def main() -> None:
         help="Skip fresh C# scanning and reuse existing modifiers JSON to regenerate the report."
     )
 
+    # Extract-troops subcommand
+    parser_troops = subparsers.add_parser(
+        "extract-troops",
+        help="Run the troop data extraction."
+    )
+    parser_troops.add_argument(
+        "--workspace",
+        type=Path,
+        default=default_workspace(),
+        help="Path to workspace directory"
+    )
+    parser_troops.add_argument(
+        "--game-root",
+        type=Path,
+        default=None,
+        help="Bannerlord game root directory. Overrides BANNERLORD_GAME_ROOT env var."
+    )
+    parser_troops.add_argument(
+        "--json-output",
+        type=Path,
+        default=None,
+        help="Path to save troops JSON. Defaults to Data/raw/troops.json."
+    )
+    parser_troops.add_argument(
+        "--skip-scan",
+        action="store_true",
+        help="Skip fresh extraction and reuse existing troops JSON."
+    )
+
     # Stats subcommand
     parser_stats = subparsers.add_parser(
         "stats",
@@ -542,6 +572,15 @@ def main() -> None:
             game_root=args.game_root,
             json_output=json_output,
             markdown_output=markdown_output,
+            skip_scan=args.skip_scan,
+        )
+
+    elif args.command == "extract-troops":
+        json_output = args.json_output or workspace / "Data" / "raw" / "troops.json"
+        extract_troops(
+            workspace=workspace,
+            game_root=args.game_root,
+            json_output=json_output,
             skip_scan=args.skip_scan,
         )
 
