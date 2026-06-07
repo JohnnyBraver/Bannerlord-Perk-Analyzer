@@ -273,6 +273,109 @@ Because the mount surcharge (+150 or +500 gold) is so massive relative to a troo
 > * **Donate Low-to-Mid Tier Foot Prisoners**: T3 and T4 foot units (selling for 25–50 gold) yield excellent influence returns relative to their market value. They convert at a highly favorable Gold-to-Influence ratio ($\approx 35\text{ to }50$ gold per 1.0 Influence), making them the cheapest source of Influence in the game.
 > * **Keep Regular Troops for Roguery XP**: Since Roguery XP scales strictly on Troop Tier and is identical for foot and mounted units, you gain the same Roguery progress from a T3 foot unit (25 gold) as you do from a T3 mounted unit (62 gold). Keep your high-value mounts for gold and burn your lower-value foot units for XP/influence.
 
+### Prisoner Escape Mechanics
+
+Escape chance is computed and rolled separately for two prisoner categories: **hero prisoners** (enemy lords and companions) and **regular troops** held over the party's capacity limit.
+
+#### Hero Prisoner Daily Escape (DailyHeroTick)
+
+Every **24 in-game hours** the game evaluates each imprisoned non-player hero. The escape roll is a single random float compared against a final `ExplainedNumber` result.
+
+**Step 1 — Base Chance Calculation**
+
+The raw base differs depending on whether the captor is a mobile party or a settlement.
+
+| Captor Type | Base Chance |
+| :--- | :--- |
+| **Settlement (town / castle)** | `4%` flat daily |
+| **Mobile party** | `4% × (5 − min(81, healthyTroops)^0.25)` — scales with party size |
+| **Player-owned settlement** | Settlement base × 50% (additional halving) |
+
+For the mobile-party formula, "healthy troops" is the captor party's current combat-ready headcount (non-wounded). Representative values:
+
+| Party Size (Healthy) | Base Daily Escape % |
+| ---: | ---: |
+| 0 (empty) | 20.0% |
+| 1 | 16.0% |
+| 5 | 11.7% |
+| 16 | 9.7% |
+| 32 | 8.8% |
+| 81+ | 8.0% (floor) |
+
+> [!NOTE]
+> The formula is `0.04 × (5 − clamp(healthyTroops, 0, 81)^0.25)`. A party with 81+ healthy troops fixes the base at **8% per day**. An empty party (0 troops) peaks at **20% per day**. Keeping your party well-manned dramatically suppresses hero escape.
+
+**Step 2 — Perk Modifiers (applied as multiplicative `AddFactor` calls)**
+
+**When the captor is a town or castle** (governor perks, secondary slot required):
+
+| Perk | Skill | Level | Role | Escape Chance Effect |
+| :--- | :--- | ---: | :--- | :--- |
+| `Sweet Talker` | Roguery | 25 | Governor | −20% |
+| `Dungeon Architect` | Engineering | 50 | Governor | −25% |
+| `Mounted Patrols` | Riding | 225 | Governor | −50% |
+
+All three stack multiplicatively. A governor with all three reduces escape chance to:
+$$\text{Effective} = \text{Base} \times (1 - 0.20) \times (1 - 0.25) \times (1 - 0.50) = \text{Base} \times 0.30$$
+That is a **−70% total reduction** from the 4% flat base → **1.2% per day**.
+
+**When the captor is a mobile party** (party leader / companion perks):
+
+| Perk | Skill | Level | Role | Escape Chance Effect | Applies To |
+| :--- | :--- | ---: | :--- | :--- | :--- |
+| `Fleet Footed` | Roguery | 250 | Prisoner's own perk | +30% | All heroes |
+| `Mounted Patrols` | Riding | 225 | Party leader (primary) | −50% | All heroes |
+| `Ransom Broker` | Roguery | 200 | Party leader (secondary) | −30% | Heroes only |
+| `Keen Sight` | Scouting | 225 | Party leader (secondary) | −50% | All heroes (land only) |
+
+> [!IMPORTANT]
+> `Keen Sight` and `Mounted Patrols` only reduce escape while the captor party is **not at sea**. A raft crossing removes both bonuses.
+> `Fleet Footed` is a **prisoner's own perk** — it increases their personal escape chance regardless of the captor's perks.
+> `Mounted Patrols` on a party leader applies via `AddPerkBonusForParty` using the **primary slot** (the party-leader half of the perk).
+
+**Optimal mobile party stack** (all four perks, land travel, no Fleet Footed on prisoner):
+$$\text{Effective} = \text{Base} \times (1 - 0.50) \times (1 - 0.30) \times (1 - 0.50)$$
+$$= \text{Base} \times 0.175$$
+
+At 81+ healthy troops (8% base): effective escape = **1.4% per day**.
+
+> [!TIP]
+> `Athletics.Stamina` (level 75) gives +5 prisoner limit **and** −10% escape chance to your prisoners — a compact dual benefit for a party-leader companion.
+
+---
+
+#### Regular Troop Over-Capacity Escape (HourlyPartyTick)
+
+Regular (non-hero) troops only trigger escape rolls when your **prisoner count exceeds the party's prisoner size limit**. This runs every **in-game hour** on a per-troop basis.
+
+**Base chance: 10% per hour** for each troop above the capacity limit.
+
+The over-limit loop selects a random troop in the excess and rolls `RandomFloat < resultNumber`. A successful roll removes that troop (either by `EndCaptivityAction.ApplyByEscape` for a captured hero, or by decrementing the roster count for a regular troop).
+
+**Modifiers:**
+
+| Perk | Skill | Level | Role | Effect |
+| :--- | :--- | ---: | :--- | :--- |
+| `Stamina` | Athletics | 75 | Party leader | −10% factor (secondary slot) |
+
+**Immunity conditions:**
+- The party is **at sea** (raft state): escape rolls are skipped entirely.
+- The troop is **player character** themselves: skipped.
+- Garrison and militia parties: skipped — over-limit troops simply remain.
+
+> [!WARNING]
+> Regular troops escape at 10% **per hour** when you are over your prisoner limit — that is approximately a 91% chance of losing at least one troop over a full day. Never march overloaded with valuable high-tier prisoners. Sell, donate, or recruit them before leaving the battle area.
+
+**Prisoner limit sources:**
+
+| Source | Limit Bonus |
+| :--- | :--- |
+| Base (party size formula) | Scales with party size |
+| `Manhunter` (Roguery 100, secondary) | +10 |
+| `Vantage Point` (Scouting 225, secondary) | +10 |
+| `Terror` (Two Handed 175, secondary) | +10 |
+| `Stamina` (Athletics 75, secondary) | +5 |
+
 ---
 
 
