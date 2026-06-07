@@ -305,39 +305,47 @@ For the mobile-party formula, "healthy troops" is the captor party's current com
 > [!NOTE]
 > The formula is `0.04 × (5 − clamp(healthyTroops, 0, 81)^0.25)`. A party with 81+ healthy troops fixes the base at **8% per day**. An empty party (0 troops) peaks at **20% per day**. Keeping your party well-manned dramatically suppresses hero escape.
 
-**Step 2 — Perk Modifiers (applied as multiplicative `AddFactor` calls)**
+**Step 2 — Perk Modifiers**
+
+All escape-chance perks call `ExplainedNumber.AddFactor()`, which accumulates into a single `SumOfFactors` pool. The engine then computes:
+$$\text{Result} = \text{Base} \times (1 + \text{SumOfFactors})$$
+
+This means all perks are **additive to each other** within that pool — they do **not** multiply successively against one another. A −50% factor and a −30% factor together give `SumOfFactors = −0.80`, not `(1−0.5)×(1−0.3) = 0.35`.
 
 **When the captor is a town or castle** (governor perks, secondary slot required):
 
-| Perk | Skill | Level | Role | Escape Chance Effect |
+| Perk | Skill | Level | Role | Escape Chance Factor |
 | :--- | :--- | ---: | :--- | :--- |
-| `Sweet Talker` | Roguery | 25 | Governor | −20% |
-| `Dungeon Architect` | Engineering | 50 | Governor | −25% |
-| `Mounted Patrols` | Riding | 225 | Governor | −50% |
+| `Sweet Talker` | Roguery | 25 | Governor | −0.20 |
+| `Dungeon Architect` | Engineering | 50 | Governor | −0.25 |
+| `Mounted Patrols` | Riding | 225 | Governor | −0.50 |
 
-All three stack multiplicatively. A governor with all three reduces escape chance to:
-$$\text{Effective} = \text{Base} \times (1 - 0.20) \times (1 - 0.25) \times (1 - 0.50) = \text{Base} \times 0.30$$
-That is a **−70% total reduction** from the 4% flat base → **1.2% per day**.
+All three together: `SumOfFactors = −0.95`. A governor holding all three reduces escape chance to:
+$$\text{Effective} = \text{Base} \times (1 + (-0.95)) = \text{Base} \times 0.05$$
+That is a **−95% total reduction** from the 4% flat base → **0.2% per day**.
 
 **When the captor is a mobile party** (party leader / companion perks):
 
-| Perk | Skill | Level | Role | Escape Chance Effect | Applies To |
+| Perk | Skill | Level | Role | Escape Chance Factor | Applies To |
 | :--- | :--- | ---: | :--- | :--- | :--- |
-| `Fleet Footed` | Roguery | 250 | Prisoner's own perk | +30% | All heroes |
-| `Mounted Patrols` | Riding | 225 | Party leader (primary) | −50% | All heroes |
-| `Ransom Broker` | Roguery | 200 | Party leader (secondary) | −30% | Heroes only |
-| `Keen Sight` | Scouting | 225 | Party leader (secondary) | −50% | All heroes (land only) |
+| `Fleet Footed` | Roguery | 250 | Prisoner's own perk | +0.30 | All heroes |
+| `Mounted Patrols` | Riding | 225 | Party leader (primary) | −0.50 | All heroes |
+| `Ransom Broker` | Roguery | 200 | Party leader (secondary) | −0.30 | Heroes only |
+| `Keen Sight` | Scouting | 225 | Party leader (secondary) | −0.50 | All heroes (land only) |
 
 > [!IMPORTANT]
 > `Keen Sight` and `Mounted Patrols` only reduce escape while the captor party is **not at sea**. A raft crossing removes both bonuses.
-> `Fleet Footed` is a **prisoner's own perk** — it increases their personal escape chance regardless of the captor's perks.
+> `Fleet Footed` is a **prisoner's own perk** — it increases the prisoner's own escape chance by adding +0.30 to the same `SumOfFactors`, working against your reductions.
 > `Mounted Patrols` on a party leader applies via `AddPerkBonusForParty` using the **primary slot** (the party-leader half of the perk).
 
-**Optimal mobile party stack** (all four perks, land travel, no Fleet Footed on prisoner):
-$$\text{Effective} = \text{Base} \times (1 - 0.50) \times (1 - 0.30) \times (1 - 0.50)$$
-$$= \text{Base} \times 0.175$$
+**Optimal mobile party stack** (Mounted Patrols + Ransom Broker + Keen Sight on party, land travel, no Fleet Footed on the prisoner):
+$$\text{SumOfFactors} = -0.50 + (-0.30) + (-0.50) = -1.30$$
+$$\text{Effective} = \text{Base} \times (1 + (-1.30)) = \text{Base} \times (-0.30) \rightarrow \text{clamped to } 0$$
 
-At 81+ healthy troops (8% base): effective escape = **1.4% per day**.
+The result is clamped to 0 by `MathF.Clamp`. With Mounted Patrols + Keen Sight alone (`SumOfFactors = −1.00`): exactly **0% escape chance** on land.
+
+At 81+ healthy troops (8% base), Mounted Patrols only (`SumOfFactors = −0.50`): effective escape = **4% per day**.
+With Mounted Patrols + Ransom Broker (`SumOfFactors = −0.80`): effective escape = **1.6% per day**.
 
 > [!TIP]
 > `Athletics.Stamina` (level 75) gives +5 prisoner limit **and** −10% escape chance to your prisoners — a compact dual benefit for a party-leader companion.
