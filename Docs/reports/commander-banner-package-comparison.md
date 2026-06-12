@@ -1,6 +1,6 @@
 # Commander Banner Package Comparison
 
-Generated: 2026-06-05T15:19:54.709962+03:00
+Generated: 2026-06-12T18:53:32.515127+03:00
 
 This report scores full commander-relevant perk alternative sets around each major banner option. It is a package model over extracted perk rows, not a battle simulator.
 

@@ -3,9 +3,9 @@
 Build target for a high-level melee commander:
 $$\text{VIG 3(5) | CTR 2(4) | END 3(5) | CNG 7 | SOC 2 | INT 7}$$
 
-*Vigor (VIG) | Control (CTR) | Endurance (END) | Cunning (CNG) | Social (SOC) | Intelligence (INT). Values in parentheses are effective totals after perk bonuses from the Smithing and Athletics respec.*
+*Vigor (VIG) | Control (CTR) | Endurance (END) | Cunning (CNG) | Social (SOC) | Intelligence (INT). Values in parentheses are effective training states after Smithing/Athletics respecs, not simultaneous permanent totals.*
 
-Unlike early-game utility drafts that stop weapon training at level ~100, the build scales combat proficiency to late-game commander milestones: **250 One Handed**, **175 Two Handed**, and **250 Polearm (Spear)**, paired with **125 Bow**, **0 Crossbow**, and **125 Throwing** for auxiliary ranged support.
+Unlike early-game utility drafts that stop weapon training at level ~100, the build scales combat proficiency to late-game commander milestones: **250 One Handed**, **175 Two Handed**, and **250 Polearm (Spear)**, paired with **0 Bow**, **0 Crossbow**, and **125 Throwing** for auxiliary ranged support. Bow 100 costs two focus even under the Endurance-assisted Control stretch, and `Merry Men`'s +5 party size is too thin to justify that spend for a non-ranged infantry commander.
 
 ---
 
@@ -28,7 +28,7 @@ In Mount & Blade II: Bannerlord, character leveling dictates your attribute and 
 
 ## 2. Starting Origins
 
-The background choices incidentally seed Engineering with 2 focus points (Campaign) or 1 (Sandbox). No additional Engineering focus is invested until INT reaches 10. Control stays at base 2 throughout — no attribute points are spent on it. No starting focus goes into Social skills (Charm, Leadership, Trade).
+The background choices incidentally seed Engineering with 2 focus points (Campaign) or 1 (Sandbox). No additional Engineering focus is invested until INT 9 in Phase 4, where the third Engineering focus makes `Metallurgy` reachable. Control stays at base 2 throughout — no attribute points are spent on it. No starting focus goes into Social skills (Charm, Leadership, Trade).
 
 ### Choice Path
 1. **Family**: **Foresters** | +1 Cunning $\rightarrow$ Scouting 1, Tactics 1
@@ -101,15 +101,16 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
 *   **Allocation Roadmap**:
     1.  **Steward**: +1 point | 4 focus total
     2.  **Engineering**: +1 point | 3 focus total
-    3.  **Bow**: +2 points | 2 focus total
+    3.  **Throwing**: +2 points | 2 focus total
 
 #### Phase 5: Hyper-Late Optimization — Levels 33–36
 *   **Attribute Target**: Add **+1 Intelligence** | INT 10
 *   **Focus Points Gained**: **+4** | Levels 33 to 36
 *   **Allocation Roadmap**:
-    1.  **Throwing**: +2 points | 2 focus total
-    2.  **Trade**: +1 point | 1 focus total
-    3.  **One-Handed**: +1 point | 4 focus total
+    1.  **Trade**: +1 point | 1 focus total
+    2.  **One-Handed**: +1 point | 4 focus total
+    3.  **Steward**: +1 point | 5 focus total
+    4.  **Leadership**: +1 point | 2 focus total
 
 ---
 
@@ -142,21 +143,22 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
     1.  **Two-Handed**: +2 points | 3 focus total
     2.  **Steward**: +2 points | 4 focus total
 
-#### Phase 4: Late-Game Ranged Support — Levels 29–32
+#### Phase 4: Late-Game Infantry Support — Levels 29–32
 *   **Attribute Target**: Add **+1 Vigor** | VIG 4
 *   **Focus Points Gained**: **+4** | Levels 29 to 32
 *   **Allocation Roadmap**:
-    1.  **Bow**: +2 points | 2 focus total
+    1.  **Throwing**: +2 points | 2 focus total
     2.  **Engineering**: +1 point | 3 focus total
-    3.  **Throwing**: +1 point | 1 focus total
+    3.  **Two-Handed**: +1 point | 4 focus total
 
 #### Phase 5: Endgame Luxury Dips — Levels 33–36
 *   **Attribute Target**: Add **+1 Vigor** | VIG 5
 *   **Focus Points Gained**: **+4** | Levels 33 to 36
 *   **Allocation Roadmap**:
-    1.  **Throwing**: +1 point | 2 focus total
-    2.  **Trade**: +1 point | 1 focus total
-    3.  **Leadership**: +2 points | 5 focus total
+    1.  **Trade**: +1 point | 1 focus total
+    2.  **Leadership**: +1 point | 5 focus total
+    3.  **One-Handed**: +1 point | 5 focus total
+    4.  **Steward**: +1 point | 5 focus total
 
 ---
 
@@ -165,8 +167,12 @@ Under base SOC 2, a single focus point reaches skill level 58 — enough to unlo
 ### A. `Fencer Smith` Perk Respec — Smithing 225
 Reaching Smithing 225 unlocks **`Fencer Smith`**, which grants **+1 Focus to One-Handed** and **+1 Focus to Two-Handed** — saving 2 manual focus point allocations in Vigor skills. Select `Fencer Smith` during the weapon-grinding phase to clear the One-Handed 250 and Two-Handed 175 targets. Once those skills are fully trained, visit the Arena master, pay the respec fee, and switch to **`Enduring Smith`** for the permanent +1 Endurance attribute.
 
+The Endurance perk package is a respec lever, not a single fixed baseline. While training Control, use `Controlled Smith` plus `Steady` for effective Control 4, letting Throwing 125 land with 2 focus. While training the Vigor package, switch to `Vigorous Smith` plus `Strong` for +2 Vigor, and use `Fencer Smith` for +1 focus to both One-Handed and Two-Handed. After those skill caps are reached, respec back to the permanent `Enduring Smith` setup.
+
 ### B. Engineering 225 — Focus Cost by INT Level
-Do not invest more than 2 focus points in Engineering before INT reaches 10. Under INT 7, clearing 225 requires 4 focus points and competes directly with the combat and physical skill budget. Keep Engineering at its starting 2 focus points and invest the final **1 focus point** once INT reaches 10 — at that point, 3 focus total clears the `Metallurgy` 225 target.
+Do not invest more than 2 focus points in Engineering before INT 9. At INT 8, 3 Engineering focus caps at skill 222 and just misses `Metallurgy`; at INT 9, 3 focus caps at 236 and clears it. Under INT 7, clearing 225 requires 4 focus points and competes directly with the combat and physical skill budget. Keep Engineering at its starting 2 focus points and invest the final **1 focus point** in Phase 4 once INT reaches 9.
+
+This makes Engineering the most defensible hard leak in the plan: it is a dead setup skill if delegated, but it is not pure waste when Battanian origin choices already add Intelligence and Engineering focus. Those starts can turn the leak into a late `Metallurgy` armor stretch instead of paying the full cost from zero.
 
 ### C. Fire Catapults for Siege XP
 While Engineering levels up slowly in regular campaign travel, manually aiming and getting kills with a **Fire Catapult** during a siege assault is the fastest way to farm Engineering XP. Use the level 150 `Siege Engineer` utility tier to build them yourself.
@@ -201,6 +207,10 @@ While Engineering levels up slowly in regular campaign travel, manually aiming a
 > [!WARNING]
 > **Scouting — Do Not Skip**:
 > Campaign map speed determines whether you can intercept favorable targets or disengage from hostile armies. Scouting 275 `Uncanny Insight` adds +7.5% party speed at unlock and +0.1% per point above 275 — a significant sustained bonus in the Variant A build.
+
+> [!NOTE]
+> **Bow vs. Throwing for the infantry one-man-show**:
+> Bow is not a default leveling target for non-ranged infantry. `Merry Men` at Bow 100 costs two focus even with the Endurance-assisted Control stretch, and the nearby Bow captain perks mainly improve bows, archers, or ranged troops. Throwing 125 is the better Control stop for this doctrine: `Flexible Fighter` adds infantry Control skill, `Running Throw` adds throwing skill to the formation, `Saddlebags` adds daily XP to infantry, and `Skirmisher` reduces ranged damage taken by troops in the formation.
 
 ---
 

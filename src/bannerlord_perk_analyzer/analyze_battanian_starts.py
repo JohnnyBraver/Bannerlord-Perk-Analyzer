@@ -16,6 +16,73 @@ except ImportError:
 STAGES = ("family", "childhood", "education", "youth", "adulthood", "escape")
 ATTRIBUTES = ("Vigor", "Control", "Endurance", "Cunning", "Social", "Intelligence")
 BASE_ATTRIBUTES = {attribute: 2 for attribute in ATTRIBUTES}
+URBAN_PARENT_OCCUPATIONS = {
+    "artisan_urban",
+    "bard_urban",
+    "healer_urban",
+    "merchant_urban",
+    "mercenary_urban",
+    "physician_urban",
+    "retainer_urban",
+    "vagabond_urban",
+}
+EDUCATION_URBAN_OPTIONS = {
+    "education_docker_option",
+    "education_ganger_option",
+    "education_horser_option",
+    "education_marketer_option",
+    "education_tutor_option",
+    "education_watcher_option",
+}
+EDUCATION_NON_URBAN_OPTIONS = {
+    "education_doctor_option",
+    "education_engineer_option",
+    "education_herder_option",
+    "education_hunter_option",
+    "education_merchant_option",
+    "education_smith_option",
+}
+YOUTH_CULTURE_OPTIONS = {
+    "youth_camp_option": {"Vlandia", "Sturgia"},
+    "youth_cavalry_option": {"Vlandia"},
+    "youth_envoys_guard_first_option": {"Empire", "Khuzait"},
+    "youth_envoys_guard_second_option": {"Aserai", "Battania"},
+    "youth_groom_option": {"Vlandia"},
+    "youth_guard_empire_register_option": {"Empire"},
+    "youth_guard_garrisons_register_option": {"Aserai", "Battania", "Khuzait"},
+    "youth_guard_high_register_option": {"Vlandia"},
+    "youth_guard_low_register_option": {"Sturgia"},
+    "youth_hearth_option": {"Battania", "Sturgia"},
+    "youth_infantry_option": {"Aserai", "Battania", "Empire", "Khuzait", "Sturgia", "Vlandia"},
+    "youth_kern_option": {"Battania"},
+    "youth_rider_high_register_option": {"Empire", "Khuzait"},
+    "youth_rider_low_register_option": {"Aserai", "Sturgia"},
+    "youth_servant_first_option": {"Khuzait"},
+    "youth_servant_second_option": {"Battania"},
+    "youth_skirmisher_option": {"Aserai", "Empire", "Khuzait", "Sturgia", "Vlandia"},
+    "youth_staff_first_option": {"Empire"},
+    "youth_staff_second_option": {"Aserai"},
+}
+ADULTHOOD_URBAN_OPTIONS = {
+    "adulthood_escapade_low_register_option",
+    "adulthood_siege_survivor_option",
+    "adulthood_workshop_option",
+}
+ADULTHOOD_NON_URBAN_OPTIONS = {
+    "adulthood_escapade_high_register_option",
+    "adulthood_hunter_option",
+    "adulthood_investor_option",
+}
+ADULTHOOD_CULTURE_OCCUPATION_OPTIONS = {
+    "adulthood_caravan_leader_option": ({"Aserai", "Empire", "Khuzait", "Sturgia", "Vlandia"}, "urban"),
+    "adulthood_manhunt_option": ({"Aserai", "Battania", "Empire", "Khuzait", "Vlandia"}, "non_urban"),
+    "adulthood_saved_city_option": ({"Battania"}, "urban"),
+    "adulthood_saved_village_option": ({"Sturgia"}, "non_urban"),
+}
+ADULTHOOD_ALWAYS_OPTIONS = {
+    "adulthood_defeated_enemy_option",
+    "adulthood_nice_person_option",
+}
 DEFAULT_TARGET_ATTRIBUTES = {
     "Vigor": 3,
     "Control": 2,
@@ -35,13 +102,13 @@ FOCUS_POLICY: dict[str, dict[str, Any]] = {
     "Polearm": {"bucket": "core", "cap": 5, "read": "Core Vigor infantry package."},
     "Two Handed": {"bucket": "core", "cap": 3, "read": "Default stop is 175; later focus is optional."},
     "Riding": {"bucket": "core", "cap": 1, "read": "Only needs one focus for Riding 100 in infantry doctrine."},
-    "Bow": {"bucket": "core", "cap": 2, "read": "Bow 100 Merry Men under assisted Control 4."},
+    "Bow": {"bucket": "side_plan", "cap": 0, "read": "Ranged-side plan only; Bow 100 Merry Men costs two focus under assisted Control 4 and is too thin for default infantry."},
     "Throwing": {"bucket": "core", "cap": 2, "read": "Throwing 125 Skirmisher under assisted Control 4."},
     "Leadership": {"bucket": "optional", "cap": 5, "read": "Useful party-size stretch; Social still stays at 2."},
     "Charm": {"bucket": "optional", "cap": 1, "read": "One-focus QoL or renown pickup."},
     "Trade": {"bucket": "optional", "cap": 1, "read": "One-focus price-marking QoL pickup."},
     "Tactics": {"bucket": "soft", "cap": 5, "read": "Soft leak unless Tactics 200 is planned."},
-    "Engineering": {"bucket": "side_plan", "cap": 0, "read": "Side plan only; usually delegate engineer."},
+    "Engineering": {"bucket": "side_plan", "cap": 0, "read": "Convertible hard leak: delegate by default, but Engineering 225 Metallurgy can justify a late player-engineer stretch."},
     "Roguery": {"bucket": "side_plan", "cap": 0, "read": "Side plan only; loot/crime build."},
     "Crossbow": {"bucket": "side_plan", "cap": 0, "read": "Side plan only; crossbow formations."},
 }
@@ -69,6 +136,74 @@ def option_skills(option: dict[str, Any]) -> list[str]:
     return [str(item.get("skill", "")) for item in option.get("effects", {}).get("skills", []) if item.get("skill")]
 
 
+def is_urban_parent(parent_occupation: str | None) -> bool:
+    return bool(parent_occupation in URBAN_PARENT_OCCUPATIONS)
+
+
+def method_to_on_select(method_name: str) -> str:
+    if method_name.startswith("Get") and method_name.endswith("OptionArgs"):
+        return method_name[3:-len("OptionArgs")] + "OptionOnSelect"
+    return ""
+
+
+def family_parent_occupations(payload: dict[str, Any]) -> dict[str, str]:
+    methods = {str(method.get("method", "")): method for method in payload.get("methods", [])}
+    occupations: dict[str, str] = {}
+    for option in payload.get("character_creation_options", []):
+        if option.get("stage") != "family":
+            continue
+        on_select = methods.get(method_to_on_select(str(option.get("method", ""))))
+        if not on_select:
+            continue
+        il = [str(line) for line in on_select.get("il", [])]
+        for index, line in enumerate(il):
+            if "SetParentOccupation" not in line:
+                continue
+            for previous in reversed(il[:index]):
+                occupation = parse_ldstr_value(previous)
+                if occupation:
+                    occupations[str(option.get("id", ""))] = occupation
+                    break
+            break
+    return occupations
+
+
+def parse_ldstr_value(line: str) -> str | None:
+    marker = "ldstr"
+    if marker not in line:
+        return None
+    return line.split(marker, 1)[1].strip() or None
+
+
+def option_allowed(option: dict[str, Any], culture: str, parent_occupation: str | None) -> bool:
+    option_id = str(option.get("id", ""))
+    stage = str(option.get("stage", ""))
+    urban = is_urban_parent(parent_occupation)
+    if stage == "education":
+        if option_id in EDUCATION_URBAN_OPTIONS:
+            return urban
+        if option_id in EDUCATION_NON_URBAN_OPTIONS:
+            return not urban
+    elif stage == "youth":
+        cultures = YOUTH_CULTURE_OPTIONS.get(option_id)
+        if cultures is not None:
+            return culture in cultures
+    elif stage == "adulthood":
+        if option_id in ADULTHOOD_ALWAYS_OPTIONS:
+            return True
+        if option_id in ADULTHOOD_URBAN_OPTIONS:
+            return urban
+        if option_id in ADULTHOOD_NON_URBAN_OPTIONS:
+            return not urban
+        gated = ADULTHOOD_CULTURE_OCCUPATION_OPTIONS.get(option_id)
+        if gated:
+            cultures, occupation_gate = gated
+            if culture not in cultures:
+                return False
+            return urban if occupation_gate == "urban" else not urban
+    return True
+
+
 def option_summary(option: dict[str, Any]) -> dict[str, Any]:
     return {
         "id": option.get("id", ""),
@@ -83,6 +218,7 @@ def option_summary(option: dict[str, Any]) -> dict[str, Any]:
 def load_stage_options(workspace: Path, culture: str) -> dict[str, list[dict[str, Any]]]:
     payload = read_json(workspace / "Data" / "raw" / "character-creation-options.json")
     options = payload.get("character_creation_options", [])
+    parent_occupations = family_parent_occupations(payload)
     result: dict[str, list[dict[str, Any]]] = {stage: [] for stage in STAGES}
     for option in options:
         stage = str(option.get("stage", ""))
@@ -96,6 +232,8 @@ def load_stage_options(workspace: Path, culture: str) -> dict[str, list[dict[str
             continue
         if "campaign" not in option.get("availability", []):
             continue
+        if stage == "family":
+            option = {**option, "parent_occupation": parent_occupations.get(str(option.get("id", "")), "")}
         result[stage].append(option)
     missing = [stage for stage, values in result.items() if not values]
     if missing:
@@ -179,16 +317,25 @@ def path_record(
 def enumerate_paths(
     stage_options: dict[str, list[dict[str, Any]]],
     target_attributes: dict[str, int],
+    culture: str,
 ) -> tuple[list[dict[str, Any]], dict[str, int]]:
     valid: list[dict[str, Any]] = []
     pruned: Counter[str] = Counter()
 
-    def walk(stage_index: int, choices: list[dict[str, Any]], attributes: Counter[str]) -> None:
+    def walk(
+        stage_index: int,
+        choices: list[dict[str, Any]],
+        attributes: Counter[str],
+        parent_occupation: str | None,
+    ) -> None:
         if stage_index >= len(STAGES):
             valid.append(path_record(choices, attributes, target_attributes))
             return
         stage = STAGES[stage_index]
         for option in stage_options[stage]:
+            if not option_allowed(option, culture, parent_occupation):
+                pruned[f"{stage}_condition"] += 1
+                continue
             attribute = option_attribute(option)
             next_attributes = Counter(attributes)
             if attribute:
@@ -206,9 +353,12 @@ def enumerate_paths(
                 else:
                     pruned["other_attribute_overflow"] += 1
                 continue
-            walk(stage_index + 1, [*choices, option], next_attributes)
+            next_parent_occupation = parent_occupation
+            if stage == "family":
+                next_parent_occupation = str(option.get("parent_occupation") or "")
+            walk(stage_index + 1, [*choices, option], next_attributes, next_parent_occupation)
 
-    walk(0, [], Counter())
+    walk(0, [], Counter(), None)
     return valid, dict(sorted(pruned.items()))
 
 
@@ -313,7 +463,7 @@ def render_report(payload: dict[str, Any]) -> str:
         "",
         f"Generated: {payload['generated_at']}",
         "",
-        f"This report brute-forces {culture} story-campaign character creation choices, prunes starts that exceed the current commander attribute target, and classifies where unavoidable focus leaks land.",
+        f"This report brute-forces {culture} story-campaign character creation choices, applies the game's parent-occupation and culture option gates, prunes starts that exceed the current commander attribute target, and classifies where unavoidable focus leaks land.",
         "",
         "## Assumptions",
         "",
@@ -505,7 +655,7 @@ def render_culture_comparison_report(payload: dict[str, Any]) -> str:
         "",
         f"Generated: {payload['generated_at']}",
         "",
-        "This report compares story-campaign character creation paths across cultures for the current commander attribute target.",
+        "This report compares story-campaign character creation paths across cultures for the current commander attribute target, after applying the game's parent-occupation and culture option gates.",
         "",
         "## Assumptions",
         "",
@@ -634,7 +784,7 @@ def analyze_battanian_starts(
     workspace = workspace.resolve()
     stage_options = load_stage_options(workspace, culture)
     total_combinations = math.prod(len(stage_options[stage]) for stage in STAGES)
-    paths, pruned = enumerate_paths(stage_options, DEFAULT_TARGET_ATTRIBUTES)
+    paths, pruned = enumerate_paths(stage_options, DEFAULT_TARGET_ATTRIBUTES, culture)
     summary = summarize_paths(paths, top=top)
     payload = {
         "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),

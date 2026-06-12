@@ -1,6 +1,6 @@
 # Commander Perks Report
 
-Generated: 2026-06-05T15:19:54.709962+03:00
+Generated: 2026-06-12T18:53:32.515127+03:00
 
 This generated report is tuned for an elite one-party commander build: first make every troop as lethal as possible, then keep enough campaign speed to choose fights, then add party size once the force can still catch worthwhile targets.
 

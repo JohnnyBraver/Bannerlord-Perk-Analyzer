@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T15:19:54.709962+03:00",
+  "generated_at": "2026-06-12T18:53:32.515127+03:00",
   "inputs": {
     "perk_export": "Data\\export\\perk-effects.json",
     "banner_items": "Data\\raw\\banner-items.json"
@@ -52,9 +52,9 @@
       "focus_only_limit": 218,
       "assisted_physical_focus_only_limit": 246,
       "default_lens": "Elite shock-infantry-heavy one-party commander.",
-      "assisted_physical_note": "Endurance-skill attribute perks can raise one chosen physical attribute to 4 without purchased attribute points: Vigor via Smithing 150 plus Athletics 200, Control via the matching alternatives, or Endurance via Athletics 175 plus Smithing 225. The assisted cost column uses that as a practical physical baseline, but those free points are not available to every physical attribute at the same time, and enabler perks still have to be reached before the assisted baseline exists.",
+      "assisted_physical_note": "Endurance-skill attribute perks can raise one chosen physical attribute to 4 without purchased attribute points: Vigor via Smithing 150 plus Athletics 200, Control via the matching alternatives, or Endurance via Athletics 175 plus Smithing 225. Treat the assisted cost column as a respec state for the skill currently being trained, not as Vigor, Control, and Endurance all being raised at once. The build can take turns: Control 4 for Throwing 125, then Vigor 4/5 plus Fencer Smith while training One-Handed and Two-Handed. Enabler perks still have to be reached before the assisted baseline exists.",
       "vigor_hyper_stretch_note": "At Vigor 5, Two Handed reaches levels 175/200/225/250 with 3/4/5/5 focus. Smithing 225 Fencer Smith gives +1 focus to One Handed and +1 focus to Two Handed, so it can function as a temporary training/refund tool for the Vigor package if the build can give up Enduring Smith while those weapon skills are being pushed. The granted focus is not generic and does not apply to Polearm.",
-      "control_baseline_note": "Default shock-infantry Control can be planned as 2 purchased attribute, 4 effective attribute after Controlled Smith plus Steady. At Control 4, 2 focus reaches level 126, enough for both Bow 100 Merry Men and Throwing 125 Skirmisher. Control 5 mostly saves one focus on Bow 100, so it is a ranged-specialist or luxury choice rather than a default attribute buy.",
+      "control_baseline_note": "Default shock-infantry Control can be planned as 2 purchased attribute, 4 effective attribute after Controlled Smith plus Steady. At Control 4, 2 focus reaches level 126, enough for Throwing 125 Skirmisher. Bow 100 also fits at 2 focus, but Merry Men's +5 party size is too thin for default shock infantry; treat it as a ranged-side or luxury choice.",
       "non_monotonic_note": "Some bars are not strictly monotonic: a dead 225 tier can be followed by a strong 250 perk. The report calls those out explicitly instead of pretending every skill has one clean cutoff."
     },
     "band_meta": {
@@ -74,7 +74,7 @@
     "physical_cut_summary": [
       {
         "skill": "Control baseline",
-        "read": "Drop the bought Control point for the default shock-infantry plan. Controlled Smith plus Steady can make effective Control 4, where Bow 100 and Throwing 125 each need 2 focus; buy Control only for ranged-specialist paths or if one saved focus is worth the attribute."
+        "read": "Drop the bought Control point for the default shock-infantry plan. Controlled Smith plus Steady can make effective Control 4, where Throwing 125 needs 2 focus. Bow 100 also needs 2 focus here, but +5 party size is too thin for strict infantry."
       },
       {
         "skill": "Crossbow",
@@ -82,7 +82,7 @@
       },
       {
         "skill": "Bow",
-        "read": "Stop at 100 for Merry Men unless the commander is Fian/archer-heavy; Bow 175+ is ranged composition value, not infantry protection."
+        "read": "Cut for strict shock infantry. Bow 100's Merry Men is only +5 party size for two focus under the assisted Control plan; Bow 175+ is ranged composition value, not infantry protection."
       },
       {
         "skill": "Throwing",
@@ -319,34 +319,34 @@
         "attribute": "Control",
         "physical_skill": true,
         "assisted_baseline_attribute": 4,
-        "default_stop": 100,
+        "default_stop": 0,
         "default_cost": {
           "baseline_attribute": 2,
           "attribute": 2,
-          "focus": 3,
-          "limit": 138,
-          "peak_learning_range": 100,
+          "focus": 0,
+          "limit": 18,
+          "peak_learning_range": 10,
           "purchased_attributes": 0,
-          "focus_points": 3,
-          "allocation_points": 3,
-          "weighted_allocation_cost": 3,
-          "level_gate_cost": 3,
-          "category": "low",
-          "pressure": "focus-only"
+          "focus_points": 0,
+          "allocation_points": 0,
+          "weighted_allocation_cost": 0,
+          "level_gate_cost": 0,
+          "category": "none",
+          "pressure": "no investment"
         },
         "assisted_default_cost": {
           "baseline_attribute": 4,
           "attribute": 4,
-          "focus": 2,
-          "limit": 126,
-          "peak_learning_range": 90,
+          "focus": 0,
+          "limit": 46,
+          "peak_learning_range": 30,
           "purchased_attributes": 0,
-          "focus_points": 2,
-          "allocation_points": 2,
-          "weighted_allocation_cost": 2,
-          "level_gate_cost": 2,
-          "category": "low",
-          "pressure": "assisted baseline"
+          "focus_points": 0,
+          "allocation_points": 0,
+          "weighted_allocation_cost": 0,
+          "level_gate_cost": 0,
+          "category": "none",
+          "pressure": "no investment"
         },
         "stretch_stop": 175,
         "stretch_cost": {
@@ -377,10 +377,10 @@
           "category": "low",
           "pressure": "assisted baseline"
         },
-        "worth": "100 for party size",
-        "context": "175+ only for archer-heavy commanders",
-        "skip": "225+ for shock infantry",
-        "point_read": "For shock infantry, Bow is mostly Merry Men. At assisted Control 4, Bow 100 needs 2 focus; buying Control 3 just to make this a 1-focus pickup is usually worse than spending that attribute on Scouting, Medicine, Steward, or a shared Vigor package. The captain bonuses are archer/ranged value, and Skirmish Phase Master protects ranged troops, not melee infantry."
+        "worth": "None for default shock infantry",
+        "context": "100 only if +5 party size is worth two focus; 175+ only for archer-heavy commanders",
+        "skip": "100+ for strict shock infantry",
+        "point_read": "For shock infantry, Bow is not a default target. At assisted Control 4, Bow 100 still needs 2 focus, and Merry Men's +5 party size is too thin compared with Steward, Medicine, Scouting, Throwing 125, or a shared Vigor package. The captain bonuses are archer/ranged value, and Skirmish Phase Master protects ranged troops, not melee infantry."
       },
       {
         "skill": "Crossbow",
@@ -1014,7 +1014,7 @@
         "worth": "Delegate by default",
         "context": "150/225 if the player is the active engineer",
         "skip": "250+ for field commander value",
-        "point_read": "Metallurgy is good, but the tree is an expensive detour unless Engineering is already part of the build."
+        "point_read": "Engineering is the best hard leak to inherit from origins: dead in setup if delegated, but INT-heavy origins and starting Engineering focus can convert into Engineering 225 Metallurgy for +5 armor. With 3 focus, INT 8 caps at 222 and misses; INT 9 caps at 236 and clears it."
       },
       {
         "skill": "Medicine",
@@ -2120,8 +2120,8 @@
         "attribute": "Control",
         "physical_skill": true,
         "level": 100,
-        "band": "worth",
-        "band_title": "Worth It",
+        "band": "context",
+        "band_title": "Meh or Contextual",
         "cost": {
           "baseline_attribute": 2,
           "attribute": 2,
@@ -2171,7 +2171,7 @@
           }
         ],
         "extracted_summary": "Merry Men: 5 party size.",
-        "note": "Merry Men is +5 party size, the universal reason to touch Bow."
+        "note": "Merry Men is +5 party size, but it is a poor two-focus deal for strict shock infantry."
       },
       {
         "skill": "Bow",
@@ -4900,7 +4900,7 @@
           }
         ],
         "extracted_summary": "Improved Tools: 5% melee damage by troops in your formation. / Metallurgy: 5 armor to all equipped armor pieces of troops in your formation.",
-        "note": "Metallurgy is +5 armor to all troop armor pieces, but it is a focus trap when taken alone."
+        "note": "Metallurgy is +5 armor to all troop armor pieces; consider it when origins already seed Engineering/INT, but treat it as a trap when taken from zero."
       },
       {
         "skill": "Engineering",
