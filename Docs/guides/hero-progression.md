@@ -134,6 +134,9 @@ The Medicine 75 perk `Doctor's Oath` applies your Surgeon survival calculations 
 Traveling on the campaign map on foot (without a mount equipped in your character's active horse slot) awards passive Athletics XP:
 $$\text{Athletics XP} = 1 + \text{RoundRandomized}(\text{Speed} \times 0.2)$$
 
+> [!TIP]
+> **Stealth/Crouching Kills XP Boost**: Performing kills while sneaking (crouched) in active missions awards a massive multiplier of XP to **Athletics** and **One-Handed** combat skills. This is commonly exploited in the repeatable stealth training tutorial early in the campaign to power-level these skills quickly by repeatedly executing guards and retreating/resetting the scenario before completion.
+
 ### Riding - Campaign Map Quirk
 > [!NOTE]
 > **Riding Map Travel Quirk**: Riding on the campaign map while mounted awards exactly **$0$ Riding XP**. Unlike Athletics, there is no map travel XP hook in the Riding code; Riding XP can only be earned in active combat missions or tournaments (by hitting targets while mounted or moving at high speed).
